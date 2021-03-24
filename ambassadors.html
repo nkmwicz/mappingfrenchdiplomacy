@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>French Ambassadors Abroad during the Sixteenth Century</title>
+
+        <!-- using leaflet 1.7.1 -->
+        <link rel="stylesheet" href="resources/leaflet.css">
+
+        <!-- using Bootstrap 4.0 / change to bootstrap.min.css before upload and delete full version -->
+        <link rel="stylesheet" type="text/css" href="resources/bootstrap.css">
+        
+        <!-- using leaflet 1.7.1 / change to leaflet.js before upload / delete leaflet-src-->
+        <script src="resources/leaflet-src.js"></script>
+
+        <!-- using marker cluster 1.4.1 -->
+        <link rel="stylesheet" type="text/css" href="resources/MarkerCluster.css">
+        
+        <link rel="stylesheet" type="text/css" href="css/ambassadors_screen.css">
+
+    </head>
+
+    <body>
+        <div id= "box1">
+            <div id="wrapper">
+                <div id="nav1">
+                    <h1 id="h1"><a href="#">Mapping French Diplomatic Geography</a></h1>
+                    <!-- Example single danger button -->
+                    <div class="btn-group">
+                        <button type="button" style="top:20px; margin-left:40px; z-index: 999;" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Table of Contents
+                        </button>
+                        <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Home</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Introduction</a>
+                        <a class="dropdown-item" href="#">Part I</a>
+                        <a class="dropdown-item" href="#">Part II</a>
+                        <a class="dropdown-item" href="#">Part III</a>
+                        <a class="dropdown-item" href="#">Part IV</a>
+                        <a class="dropdown-item" href="#">Appendix</a>
+                        <a class="dropdown-item" href="#">Bibliography</a>
+                        </div>
+                    </div>
+                </div>    
+                <div id="Title"><h2></h2>French Ambassadors Abroad <br> during the Sixteenth Century</h2><br><br>
+                    <h3>The importance on playing the significant stuff all over the place</h3>
+                </div>
+
+                    <div id="nav2">
+                        <ul class="links">
+                            <li class="li2"><a href="#">Home</a></li>
+                            <li class="li2"><a href="#">This Place</a></li>
+                            <li class="li2"><a href="#">That Place</a></li>
+                            <li class="li2"><a href="#">Another Place</a></li>
+                            <li class="li2"><a href="#">Final Place</a></li>
+                        </ul>
+                    </div> 
+            </div> 
+        </div>
+            
+        <div id="box2">      
+            <div id= "article">
+                <p>At the beginning of the sixteenth century, <button class="action" id="zoomto">French </button> diplomacy dramatically increased. This development is observable in the number of permanent embassies maintained across Europe. When Francis I (r. 1515-1547) ascended to the throne in 1515, France only had one residential ambassador abroad, located at the court of the Holy Roman Empire. When Francis I died in 1547, France maintained at least ten ambassadors in residence across Europe (the Holy Roman Empire beginning in 1509; Venice, 1517; England, 1525; the Swiss Cantons, 1522; Portugal, 1522; Rome, 1530; The Ottoman Empire, 1535; the Grisons, 1537; Denmark 1541; and the Netherlands, intermittently after 1538). Using Fleury Vindry’s collections of ambassadors abroad, we can view the explosion of France’s diplomacy abroad.<sup><a href="#FN1" id="r1">1</sup></a> Arranging these embassies by total years present–for instance, two ambassadors, not including their retinues, present during one year, produce a value osf two for that year–we can visualize France’s diplomatic priorities and how they changed over time.</p>
+                <p>Figures 1 and 2 demonstrate the dramatic increase in France’s diplomatic presence abroad. For instance, between 1515 and 1525, France maintained only twenty-two total years of ambassadorial presence in six different states. The significance of the Battle of Pavia (1525) to increasing France’s diplomatic outreach is dramatic. The battle was decisive. King Francis I himself was taken prisoner (2). The crushing defeat caused the French court to recognize the importance of a robust diplomatic network. Between 1525 and 1535, France maintained seventy-seven cumulative years of ambassadorial presence abroad in twelve separate states. France’s diplomatic network only grew from there. In the twenty years before 1535, France did not have a single year during which ten separate ambassadors were dispatched. In the twenty years after, there were fifteen. The axis on which this network centered extended from England to Switzerland, Venice, and the Ottoman Empire–the four states most densely populated with French diplomats.</p>
+                <p>In 1559, the conflict between France and the Habsburgs came to an end with the Treaty of Cateau-Cambrésis. Shortly thereafter, a series of religious civil wars broke out in 1562, dominating French concerns until they ended in 1629 (3). Naturally, these wars have caused many historians to focus on France’s domestic concerns during the second half of the sixteenth century. Three diplomatic events have drawn historians’ attention during this period: various marriage negotiations between French princes and Queen Elizabeth of England; support extended to the Dutch as they revolted against Habsburg Spain; and the election of Henry of Valois to the Polish throne (4). Beyond this instance, French diplomacy during this period remains relatively unexplored. Nevertheless, as Figures 4-6 indicate, the French court maintained a robust diplomatic network in place. Moreover, the same diplomatic axis remained in place despite dramatically different international circumstances following 1559.</p>
+                <br>
+                <p id="FN1"><a href="#r1"><sup>1.</sup></a> Here is FN1 text.</p>
+            </div> 
+            <div>
+                <button class="btn btn-secondary" id="back-button">Home View</button>
+            </div>  
+
+            <div id="mapid">
+            </div>
+
+            <div class="row" id="footer">
+                <h4 id="map_coords">Latitude: 19.4 Longitude: -99.1 | Zoom Level: 11</h4>                
+            </div>
+        </div>
+        <script src="resources/jquery-3.6.0.min.js"></script>
+        
+        <script src="resources/popper.js"></script>
+               
+        <!-- using bootstrap 4.0 -->
+        <script src="resources/bootstrap.bundle.min.js"></script>
+
+        <!-- using leaflet.ajax 2.1.0 -->
+        <script src="resources/leaflet.ajax.js"></script>
+
+        <!-- using marker cluster 1.4.1 -->
+        <script src="resources/leaflet.markercluster.js"></script>
+
+        <script src="js/ambassadors_java.js"></script>
+    </body>
+</html>
