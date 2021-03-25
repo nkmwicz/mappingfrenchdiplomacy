@@ -1,4 +1,4 @@
-var mymap = L.map('mapid').setView([44.95, 17.56], 5);
+var mymap = L.map('mapid').setView([44.95, 13.56], 5);
 var lyrMarkerCluster;
 
  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -35,7 +35,7 @@ var lyrMarkerCluster;
 mymap.scrollWheelZoom.disable()
 
 $("#back-button").click(function(){
-    mymap.setView([44.95, 17.56], 5);
+    mymap.setView([44.95, 13.56], 5);
     mymap.closePopup();
 });
 
