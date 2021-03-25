@@ -13,7 +13,7 @@ var lyrMarkerCluster;
     }).addTo(mymap);
 
     lyrMarkerCluster = L.markerClusterGroup({
-        maxClusterRadius: 20,
+        maxClusterRadius: 5,
     });
 
     var geojsonLayer = new L.GeoJSON.AJAX('data/diplomats_data.geojson', {pointToLayer: function(feature,latlng){
