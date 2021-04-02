@@ -181,6 +181,22 @@ h3{
     margin-top: 10px;
 }
 
+#map-title-line{
+    position: absolute;
+    margin-left: 27%;
+    margin-right: 40%;
+    margin-top: 10px;
+    bottom: 18px;
+    z-index: 31;
+    max-width: 450px;
+    padding:4px;
+    background-color: rgba(245, 242, 236, 0.84);
+}
+
+#map-title{
+    text-align: center;
+}
+
 
 #footer{
     position: absolute;

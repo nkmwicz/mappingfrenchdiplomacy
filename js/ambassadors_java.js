@@ -21,13 +21,13 @@ $(document).ready(function(){
         maxClusterRadius: 1,
         });
 
-    // loading All dates data to the map
+    // *****loading All dates data to the map******
     var lyrAllDates = new L.GeoJSON.AJAX('data/diplomats_data.geojson',{pointToLayer: function(feature,latlng){
         var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
             str += "<p>Place: "+feature.properties.place +"</p>";
             str += "<p>Year: "+feature.properties.year +"</p>";
             str += "<p>Information: "+feature.properties.ambInfo +"</p>";
-    // delete the objectID string before publication
+        // *******delete the objectID string before publication********
             str += "<p>Object ID: "+feature.properties.objectID +"</p>";
             if (feature.properties.place == 'Ottoman Empire'){
                 fillCircle='red'
@@ -69,28 +69,6 @@ $(document).ready(function(){
         }
     });
 
-
-    // function returnMarkers(json, latlng){
-    //     var att = json.properties;
-    //     if (att.place == 'Ottoman Empire'){
-    //         var clrCircles = 'blue';
-    //         var fillCircles = 'blue';
-    //     } else {
-    //         var clrCircles = 'red';
-    //         var fillCircles =  'red';
-    //     };
-    //     var str = "<p style= text-align:center> "+att.name +"</p><hr>";
-    //         str += "<p>Place: "+att.place +"</p>";
-    //         str += "<p>Year: "+att.year +"</p>";
-    //         str += "<p>Information: "+att.ambInfo +"</p>";
-    // // delete the objectID string before publication
-    //         str += "<p>Object ID: "+att.objectID +"</p>";
-    //     var mrkCircles = L.circleMarker(latlng,{radius:10, color:clrCircles, fillColor:fillCircles}).bindTooltip(str);
-    //     return mrkCircles;
-    // };
-
-    // mrkCircles.bindTooltip('Hi');
-
     // creating the Layer control
     objBasemap = {
         "Esri Shaded Relief": lyrEsri_WorldShadedRelief,
@@ -110,7 +88,6 @@ $(document).ready(function(){
     
     lyrAllDates.on('data:loaded', function(){
         lyrAllDatesCluster.addLayer(lyrAllDates);
-        lyrAllDatesCluster.addLayer(lyr1515To1525);
         });
     mymap.addLayer(lyrAllDatesCluster);
 
@@ -120,17 +97,15 @@ $(document).ready(function(){
     //     // lyr1515To1525Cluster.addTo(mymap);            
     //                 // .bindpopup(feature.properties.place).openPopup())
     //     });
+    //     mymap.addLayer(lyr1515To1525Cluster);
         
 
-    // lyrAllDatesCluster.on('clustermouseover', function(){
-    //     this.bindPopup(json.properties.place).openPopup()});
-    // lyrAllDatesCluster.on('clusterclick', (){
-    //     this.spiderfy()});
 
     mymap.scrollWheelZoom.disable()
 
     // ************Action Buttions**************
     $("#back-button").click(function(){
+        $("#map-title").text("French Ambassadors Abroad, 1515 to 1600");
         mymap.setView([44.95, 13.56], 5);
         mymap.closePopup();
         mymap.addLayer(lyrAllDates);
@@ -140,8 +115,8 @@ $(document).ready(function(){
 
     //Zooms to Paris, France on click text-button "zoomto"
     $("#zoomto").click(function(){
+        $("#map-title").text("French Ambassadors Abroad, 1515 to 1525");
         mymap.removeLayer(lyrAllDates);
-        // mymap.addLayer(lyr1515To1525);
         mymap.addLayer(lyr1515To1525);
         mymap.addLayer(lyrAllDatesCluster);
         lyrAllDatesCluster.refreshCluster(lyrAllDates);
@@ -149,8 +124,6 @@ $(document).ready(function(){
 
     //********Shows coordinates of mouse in "map_coords" section******
     mymap.on('mousemove', function(e){
-        var str = "Latitude: "+e.latlng.lat.toFixed(2)+" Longitude: "+e.latlng.lng.toFixed(2)+" Zoom level: "+mymap.getZoom(); 
-    var str = "Latitude: "+e.latlng.lat.toFixed(2)+" Longitude: "+e.latlng.lng.toFixed(2)+" Zoom level: "+mymap.getZoom(); 
         var str = "Latitude: "+e.latlng.lat.toFixed(2)+" Longitude: "+e.latlng.lng.toFixed(2)+" Zoom level: "+mymap.getZoom(); 
         $("#map_coords").html(str);
     });
