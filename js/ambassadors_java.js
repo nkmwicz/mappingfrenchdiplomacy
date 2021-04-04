@@ -35,13 +35,87 @@ $(document).ready(function(){
     .then(Response => Response.json())
     .then(json => {
         console.log(json)
+
         clusters = L.markerClusterGroup.layerSupport({
             maxClusterRadius: 0,
         });
         clusters.on('click', function(e){
             console.log(e);
         });
-        lyrGeoJson = L.geoJson(json);
+        
+        lyrAllDates = L.geoJson(json, {
+            pointToLayer: function (feature, latlng) {
+                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
+                str += "<p>Place: "+feature.properties.place +"</p>";
+                str += "<p>Year: "+feature.properties.year +"</p>";
+                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+        // *******delete the objectID string before publication********
+                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
+                if (feature.properties.place == 'Swiss') {
+                    fillCircle='#005ce36',
+                    colorCircle='#005ce6'
+                } else if (feature.properties.place == 'Grisons') {
+                    fillCircle='#e60000',
+                    colorCircle='#e60000'
+                } else if (feature.properties.place == 'Holy Roman Empire') {
+                    fillCircle='#ffff00',
+                    colorCircle='#ffff00'
+                } else if (feature.properties.place == 'England') {
+                    fillCircle='#4ce600',
+                    colorCircle='#4ce600'
+                } else if (feature.properties.place == 'Venice') {
+                    fillCircle='#9c9c9c',
+                    colorCircle='#9c9c9c'
+                } else if (feature.properties.place == 'Denmark') {
+                    fillCircle='#c1b8fe',
+                    colorCircle='#c1b8fe'
+                } else if (feature.properties.place == 'Ferrara') {
+                    fillCircle='#febfe5',
+                    colorCircle='#febfe5'
+                } else if (feature.properties.place == 'Geneva') {
+                    fillCircle='#c2f3fd',
+                    colorCircle='#c3f3fd'
+                } else if (feature.properties.place == 'Ottoman Empire') {
+                    fillCircle='#000000',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Netherlands') {
+                    fillCircle='#b4fddf',
+                    colorCircle='#b4fddf'
+                } else if (feature.properties.place == 'Poland') {
+                    fillCircle='#d6d8ff',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Portugal') {
+                    fillCircle='#fffdb4',
+                    colorCircle='#fffdb4'
+                } else if (feature.properties.place == 'Rome') {
+                    fillCircle='#efcafd',
+                    colorCircle='#efcafd'
+                } else if (feature.properties.place == 'Savoy') {
+                    fillCircle='#e2fdd3',
+                    colorCircle='#e2fdd3'
+                } else if (feature.properties.place == 'Saxe') {
+                    fillCircle='#fdd9c6',
+                    colorCircle='#fdd9c6'
+                } else if (feature.properties.place == 'Scotland') {
+                    fillCircle='#ffffbe',
+                    colorCircle='#ffffbe'
+                } else if (feature.properties.place == 'Spain') {
+                    fillCircle='#ffffff',
+                    colorCircle='#ffffff'
+                } else if (feature.properties.place == 'Tuscany') {
+                    fillCircle='#bbdffe',
+                    colorCircle='#bbdffe'
+                } else {
+                    fillCircle='blue',
+                    colorCircle='blue'
+                };
+                var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
+                .on('mouseover', function(){this.bindPopup(str).openPopup()})
+                .on('mouseout', function(){this.closePopup()})
+                return circleMarker;
+            },
+        });
+
 // *****Layer data for the layer group that goes into the clusters*****
         lyr1516 = L.geoJSON(json, {
             filter: function(feature, layer){
@@ -54,7 +128,17 @@ $(document).ready(function(){
                 str += "<p>Information: "+feature.properties.ambInfo +"</p>";
         // *******delete the objectID string before publication********
                 str += "<p>Object ID: "+feature.properties.objectID +"</p>";
-                var circleMarker = L.circleMarker(latlng)
+                if (feature.properties.place == 'England'){
+                    fillCircle='#4ce600',
+                    colorCircle='#4ce600'
+                } if (feature.properties.place == 'Ottoman Empire') {
+                    fillCircle='green',
+                    colorCircle='green'
+                } else {
+                    fillCircle='blue',
+                    colorCircle='blue'
+                };
+                var circleMarker = L.circleMarker(latlng, {radius:'5', fillColor:fillCircle, color:colorCircle, opacity:'1.0'})
                 .on('mouseover', function(){this.bindPopup(str).openPopup()})
                 .on('mouseout', function(){this.closePopup()})
                 return circleMarker;
@@ -171,13 +255,13 @@ $(document).ready(function(){
 
         // *****layer group and cluster*****
         lyrGroup = L.layerGroup()
-            .addLayer(lyr1516)
-            .addLayer(lyr1517To1525)
-            .addLayer(lyr1526To1535)
-            .addLayer(lyr1536To1545)
-            .addLayer(lyr1546)
-            .addLayer(lyr1547)
-            .addLayer(lyr1548To1555);
+            .addLayer(lyrAllDates);
+            // .addLayer(lyr1517To1525)
+            // .addLayer(lyr1526To1535)
+            // .addLayer(lyr1536To1545)
+            // .addLayer(lyr1546)
+            // .addLayer(lyr1547)
+            // .addLayer(lyr1548To1555);
         
         clusters.addTo(mymap); 
         clusters.checkIn(lyrGroup);
@@ -185,7 +269,7 @@ $(document).ready(function(){
 
         mymap.fitBounds(lyr1547.getBounds());
 
-        clusters.on('mouseover', function(e){
+        mymap.on('click', function(e){
             console.log(e);
         });
              
@@ -196,13 +280,13 @@ $(document).ready(function(){
             mymap.fitBounds(lyr1547.getBounds());
             mymap.closePopup();
             lyrGroup.clearLayers();
-            lyrGroup.addLayer(lyr1516)
-            .addLayer(lyr1517To1525)
-            .addLayer(lyr1526To1535)
-            .addLayer(lyr1536To1545)
-            .addLayer(lyr1546)
-            .addLayer(lyr1547)
-            .addLayer(lyr1548To1555);
+            lyrGroup.addLayer(lyrAllDates)
+            // .addLayer(lyr1517To1525)
+            // .addLayer(lyr1526To1535)
+            // .addLayer(lyr1536To1545)
+            // .addLayer(lyr1546)
+            // .addLayer(lyr1547)
+            // .addLayer(lyr1548To1555);
         });
 
         $("#1516").click(function(){
