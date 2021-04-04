@@ -52,62 +52,62 @@ $(document).ready(function(){
         // *******delete the objectID string before publication********
                 str += "<p>Object ID: "+feature.properties.objectID +"</p>";
                 if (feature.properties.place == 'Swiss') {
-                    fillCircle='#005ce36',
-                    colorCircle='#005ce6'
+                    fillCircle='purple',
+                    colorCircle='black'
                 } else if (feature.properties.place == 'Grisons') {
                     fillCircle='#e60000',
-                    colorCircle='#e60000'
+                    colorCircle='#000000'
                 } else if (feature.properties.place == 'Holy Roman Empire') {
                     fillCircle='#ffff00',
-                    colorCircle='#ffff00'
+                    colorCircle='#000000'
                 } else if (feature.properties.place == 'England') {
                     fillCircle='#4ce600',
-                    colorCircle='#4ce600'
+                    colorCircle='#000000'
                 } else if (feature.properties.place == 'Venice') {
                     fillCircle='#9c9c9c',
-                    colorCircle='#9c9c9c'
+                    colorCircle='#000000'
                 } else if (feature.properties.place == 'Denmark') {
                     fillCircle='#c1b8fe',
-                    colorCircle='#c1b8fe'
+                    colorCircle='#000000'
                 } else if (feature.properties.place == 'Ferrara') {
                     fillCircle='#febfe5',
-                    colorCircle='#febfe5'
+                    colorCircle='#000000'
                 } else if (feature.properties.place == 'Geneva') {
                     fillCircle='#c2f3fd',
-                    colorCircle='#c3f3fd'
+                    colorCircle='#000000'
                 } else if (feature.properties.place == 'Ottoman Empire') {
                     fillCircle='#000000',
-                    colorCircle='#000000'
+                    colorCircle='white'
                 } else if (feature.properties.place == 'Netherlands') {
                     fillCircle='#b4fddf',
-                    colorCircle='#b4fddf'
+                    colorCircle='#000000'
                 } else if (feature.properties.place == 'Poland') {
                     fillCircle='#d6d8ff',
                     colorCircle='#000000'
                 } else if (feature.properties.place == 'Portugal') {
                     fillCircle='#fffdb4',
-                    colorCircle='#fffdb4'
+                    colorCircle='#000000'
                 } else if (feature.properties.place == 'Rome') {
                     fillCircle='#efcafd',
-                    colorCircle='#efcafd'
+                    colorCircle='#000000'
                 } else if (feature.properties.place == 'Savoy') {
                     fillCircle='#e2fdd3',
-                    colorCircle='#e2fdd3'
+                    colorCircle='#000000'
                 } else if (feature.properties.place == 'Saxe') {
                     fillCircle='#fdd9c6',
-                    colorCircle='#fdd9c6'
+                    colorCircle='#000000'
                 } else if (feature.properties.place == 'Scotland') {
                     fillCircle='#ffffbe',
-                    colorCircle='#ffffbe'
+                    colorCircle='#000000'
                 } else if (feature.properties.place == 'Spain') {
                     fillCircle='#ffffff',
-                    colorCircle='#ffffff'
+                    colorCircle='#000000'
                 } else if (feature.properties.place == 'Tuscany') {
                     fillCircle='#bbdffe',
-                    colorCircle='#bbdffe'
+                    colorCircle='#000000'
                 } else {
                     fillCircle='blue',
-                    colorCircle='blue'
+                    colorCircle='000000'
                 };
                 var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
                 .on('mouseover', function(){this.bindPopup(str).openPopup()})
@@ -128,17 +128,65 @@ $(document).ready(function(){
                 str += "<p>Information: "+feature.properties.ambInfo +"</p>";
         // *******delete the objectID string before publication********
                 str += "<p>Object ID: "+feature.properties.objectID +"</p>";
-                if (feature.properties.place == 'England'){
+                if (feature.properties.place == 'Swiss') {
+                    fillCircle='purple',
+                    colorCircle='black'
+                } else if (feature.properties.place == 'Grisons') {
+                    fillCircle='#e60000',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Holy Roman Empire') {
+                    fillCircle='#ffff00',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'England') {
                     fillCircle='#4ce600',
-                    colorCircle='#4ce600'
-                } if (feature.properties.place == 'Ottoman Empire') {
-                    fillCircle='green',
-                    colorCircle='green'
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Venice') {
+                    fillCircle='#9c9c9c',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Denmark') {
+                    fillCircle='#c1b8fe',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Ferrara') {
+                    fillCircle='#febfe5',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Geneva') {
+                    fillCircle='#c2f3fd',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Ottoman Empire') {
+                    fillCircle='#000000',
+                    colorCircle='white'
+                } else if (feature.properties.place == 'Netherlands') {
+                    fillCircle='#b4fddf',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Poland') {
+                    fillCircle='#d6d8ff',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Portugal') {
+                    fillCircle='#fffdb4',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Rome') {
+                    fillCircle='#efcafd',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Savoy') {
+                    fillCircle='#e2fdd3',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Saxe') {
+                    fillCircle='#fdd9c6',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Scotland') {
+                    fillCircle='#ffffbe',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Spain') {
+                    fillCircle='#ffffff',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Tuscany') {
+                    fillCircle='#bbdffe',
+                    colorCircle='#000000'
                 } else {
                     fillCircle='blue',
-                    colorCircle='blue'
+                    colorCircle='000000'
                 };
-                var circleMarker = L.circleMarker(latlng, {radius:'5', fillColor:fillCircle, color:colorCircle, opacity:'1.0'})
+                var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
                 .on('mouseover', function(){this.bindPopup(str).openPopup()})
                 .on('mouseout', function(){this.closePopup()})
                 return circleMarker;
@@ -156,7 +204,65 @@ $(document).ready(function(){
                 str += "<p>Information: "+feature.properties.ambInfo +"</p>";
         // *******delete the objectID string before publication********
                 str += "<p>Object ID: "+feature.properties.objectID +"</p>";
-                var circleMarker = L.circleMarker(latlng)
+                if (feature.properties.place == 'Swiss') {
+                    fillCircle='purple',
+                    colorCircle='black'
+                } else if (feature.properties.place == 'Grisons') {
+                    fillCircle='#e60000',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Holy Roman Empire') {
+                    fillCircle='#ffff00',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'England') {
+                    fillCircle='#4ce600',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Venice') {
+                    fillCircle='#9c9c9c',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Denmark') {
+                    fillCircle='#c1b8fe',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Ferrara') {
+                    fillCircle='#febfe5',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Geneva') {
+                    fillCircle='#c2f3fd',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Ottoman Empire') {
+                    fillCircle='#000000',
+                    colorCircle='white'
+                } else if (feature.properties.place == 'Netherlands') {
+                    fillCircle='#b4fddf',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Poland') {
+                    fillCircle='#d6d8ff',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Portugal') {
+                    fillCircle='#fffdb4',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Rome') {
+                    fillCircle='#efcafd',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Savoy') {
+                    fillCircle='#e2fdd3',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Saxe') {
+                    fillCircle='#fdd9c6',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Scotland') {
+                    fillCircle='#ffffbe',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Spain') {
+                    fillCircle='#ffffff',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Tuscany') {
+                    fillCircle='#bbdffe',
+                    colorCircle='#000000'
+                } else {
+                    fillCircle='blue',
+                    colorCircle='000000'
+                };
+                var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
                 .on('mouseover', function(){this.bindPopup(str).openPopup()})
                 .on('mouseout', function(){this.closePopup()})
                 return circleMarker;
@@ -174,7 +280,65 @@ $(document).ready(function(){
                 str += "<p>Information: "+feature.properties.ambInfo +"</p>";
         // *******delete the objectID string before publication********
                 str += "<p>Object ID: "+feature.properties.objectID +"</p>";
-                var circleMarker = L.circleMarker(latlng)
+                if (feature.properties.place == 'Swiss') {
+                    fillCircle='purple',
+                    colorCircle='black'
+                } else if (feature.properties.place == 'Grisons') {
+                    fillCircle='#e60000',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Holy Roman Empire') {
+                    fillCircle='#ffff00',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'England') {
+                    fillCircle='#4ce600',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Venice') {
+                    fillCircle='#9c9c9c',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Denmark') {
+                    fillCircle='#c1b8fe',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Ferrara') {
+                    fillCircle='#febfe5',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Geneva') {
+                    fillCircle='#c2f3fd',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Ottoman Empire') {
+                    fillCircle='#000000',
+                    colorCircle='white'
+                } else if (feature.properties.place == 'Netherlands') {
+                    fillCircle='#b4fddf',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Poland') {
+                    fillCircle='#d6d8ff',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Portugal') {
+                    fillCircle='#fffdb4',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Rome') {
+                    fillCircle='#efcafd',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Savoy') {
+                    fillCircle='#e2fdd3',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Saxe') {
+                    fillCircle='#fdd9c6',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Scotland') {
+                    fillCircle='#ffffbe',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Spain') {
+                    fillCircle='#ffffff',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Tuscany') {
+                    fillCircle='#bbdffe',
+                    colorCircle='#000000'
+                } else {
+                    fillCircle='blue',
+                    colorCircle='000000'
+                };
+                var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
                 .on('mouseover', function(){this.bindPopup(str).openPopup()})
                 .on('mouseout', function(){this.closePopup()})
                 return circleMarker;
@@ -192,7 +356,65 @@ $(document).ready(function(){
                 str += "<p>Information: "+feature.properties.ambInfo +"</p>";
         // *******delete the objectID string before publication********
                 str += "<p>Object ID: "+feature.properties.objectID +"</p>";
-                var circleMarker = L.circleMarker(latlng)
+                if (feature.properties.place == 'Swiss') {
+                    fillCircle='purple',
+                    colorCircle='black'
+                } else if (feature.properties.place == 'Grisons') {
+                    fillCircle='#e60000',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Holy Roman Empire') {
+                    fillCircle='#ffff00',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'England') {
+                    fillCircle='#4ce600',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Venice') {
+                    fillCircle='#9c9c9c',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Denmark') {
+                    fillCircle='#c1b8fe',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Ferrara') {
+                    fillCircle='#febfe5',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Geneva') {
+                    fillCircle='#c2f3fd',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Ottoman Empire') {
+                    fillCircle='#000000',
+                    colorCircle='white'
+                } else if (feature.properties.place == 'Netherlands') {
+                    fillCircle='#b4fddf',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Poland') {
+                    fillCircle='#d6d8ff',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Portugal') {
+                    fillCircle='#fffdb4',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Rome') {
+                    fillCircle='#efcafd',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Savoy') {
+                    fillCircle='#e2fdd3',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Saxe') {
+                    fillCircle='#fdd9c6',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Scotland') {
+                    fillCircle='#ffffbe',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Spain') {
+                    fillCircle='#ffffff',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Tuscany') {
+                    fillCircle='#bbdffe',
+                    colorCircle='#000000'
+                } else {
+                    fillCircle='blue',
+                    colorCircle='000000'
+                };
+                var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
                 .on('mouseover', function(){this.bindPopup(str).openPopup()})
                 .on('mouseout', function(){this.closePopup()})
                 return circleMarker;
@@ -210,7 +432,65 @@ $(document).ready(function(){
                 str += "<p>Information: "+feature.properties.ambInfo +"</p>";
         // *******delete the objectID string before publication********
                 str += "<p>Object ID: "+feature.properties.objectID +"</p>";
-                var circleMarker = L.circleMarker(latlng)
+                if (feature.properties.place == 'Swiss') {
+                    fillCircle='purple',
+                    colorCircle='black'
+                } else if (feature.properties.place == 'Grisons') {
+                    fillCircle='#e60000',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Holy Roman Empire') {
+                    fillCircle='#ffff00',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'England') {
+                    fillCircle='#4ce600',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Venice') {
+                    fillCircle='#9c9c9c',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Denmark') {
+                    fillCircle='#c1b8fe',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Ferrara') {
+                    fillCircle='#febfe5',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Geneva') {
+                    fillCircle='#c2f3fd',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Ottoman Empire') {
+                    fillCircle='#000000',
+                    colorCircle='white'
+                } else if (feature.properties.place == 'Netherlands') {
+                    fillCircle='#b4fddf',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Poland') {
+                    fillCircle='#d6d8ff',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Portugal') {
+                    fillCircle='#fffdb4',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Rome') {
+                    fillCircle='#efcafd',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Savoy') {
+                    fillCircle='#e2fdd3',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Saxe') {
+                    fillCircle='#fdd9c6',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Scotland') {
+                    fillCircle='#ffffbe',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Spain') {
+                    fillCircle='#ffffff',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Tuscany') {
+                    fillCircle='#bbdffe',
+                    colorCircle='#000000'
+                } else {
+                    fillCircle='blue',
+                    colorCircle='000000'
+                };
+                var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
                 .on('mouseover', function(){this.bindPopup(str).openPopup()})
                 .on('mouseout', function(){this.closePopup()})
                 return circleMarker;
@@ -228,7 +508,65 @@ $(document).ready(function(){
                 str += "<p>Information: "+feature.properties.ambInfo +"</p>";
         // *******delete the objectID string before publication********
                 str += "<p>Object ID: "+feature.properties.objectID +"</p>";
-                var circleMarker = L.circleMarker(latlng)
+                if (feature.properties.place == 'Swiss') {
+                    fillCircle='purple',
+                    colorCircle='black'
+                } else if (feature.properties.place == 'Grisons') {
+                    fillCircle='#e60000',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Holy Roman Empire') {
+                    fillCircle='#ffff00',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'England') {
+                    fillCircle='#4ce600',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Venice') {
+                    fillCircle='#9c9c9c',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Denmark') {
+                    fillCircle='#c1b8fe',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Ferrara') {
+                    fillCircle='#febfe5',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Geneva') {
+                    fillCircle='#c2f3fd',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Ottoman Empire') {
+                    fillCircle='#000000',
+                    colorCircle='white'
+                } else if (feature.properties.place == 'Netherlands') {
+                    fillCircle='#b4fddf',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Poland') {
+                    fillCircle='#d6d8ff',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Portugal') {
+                    fillCircle='#fffdb4',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Rome') {
+                    fillCircle='#efcafd',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Savoy') {
+                    fillCircle='#e2fdd3',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Saxe') {
+                    fillCircle='#fdd9c6',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Scotland') {
+                    fillCircle='#ffffbe',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Spain') {
+                    fillCircle='#ffffff',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Tuscany') {
+                    fillCircle='#bbdffe',
+                    colorCircle='#000000'
+                } else {
+                    fillCircle='blue',
+                    colorCircle='000000'
+                };
+                var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
                 .on('mouseover', function(){this.bindPopup(str).openPopup()})
                 .on('mouseout', function(){this.closePopup()})
                 return circleMarker;
@@ -246,7 +584,65 @@ $(document).ready(function(){
                 str += "<p>Information: "+feature.properties.ambInfo +"</p>";
         // *******delete the objectID string before publication********
                 str += "<p>Object ID: "+feature.properties.objectID +"</p>";
-                var circleMarker = L.circleMarker(latlng)
+                if (feature.properties.place == 'Swiss') {
+                    fillCircle='purple',
+                    colorCircle='black'
+                } else if (feature.properties.place == 'Grisons') {
+                    fillCircle='#e60000',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Holy Roman Empire') {
+                    fillCircle='#ffff00',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'England') {
+                    fillCircle='#4ce600',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Venice') {
+                    fillCircle='#9c9c9c',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Denmark') {
+                    fillCircle='#c1b8fe',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Ferrara') {
+                    fillCircle='#febfe5',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Geneva') {
+                    fillCircle='#c2f3fd',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Ottoman Empire') {
+                    fillCircle='#000000',
+                    colorCircle='white'
+                } else if (feature.properties.place == 'Netherlands') {
+                    fillCircle='#b4fddf',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Poland') {
+                    fillCircle='#d6d8ff',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Portugal') {
+                    fillCircle='#fffdb4',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Rome') {
+                    fillCircle='#efcafd',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Savoy') {
+                    fillCircle='#e2fdd3',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Saxe') {
+                    fillCircle='#fdd9c6',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Scotland') {
+                    fillCircle='#ffffbe',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Spain') {
+                    fillCircle='#ffffff',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Tuscany') {
+                    fillCircle='#bbdffe',
+                    colorCircle='#000000'
+                } else {
+                    fillCircle='blue',
+                    colorCircle='000000'
+                };
+                var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
                 .on('mouseover', function(){this.bindPopup(str).openPopup()})
                 .on('mouseout', function(){this.closePopup()})
                 return circleMarker;
@@ -256,12 +652,6 @@ $(document).ready(function(){
         // *****layer group and cluster*****
         lyrGroup = L.layerGroup()
             .addLayer(lyrAllDates);
-            // .addLayer(lyr1517To1525)
-            // .addLayer(lyr1526To1535)
-            // .addLayer(lyr1536To1545)
-            // .addLayer(lyr1546)
-            // .addLayer(lyr1547)
-            // .addLayer(lyr1548To1555);
         
         clusters.addTo(mymap); 
         clusters.checkIn(lyrGroup);
@@ -281,12 +671,6 @@ $(document).ready(function(){
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates)
-            // .addLayer(lyr1517To1525)
-            // .addLayer(lyr1526To1535)
-            // .addLayer(lyr1536To1545)
-            // .addLayer(lyr1546)
-            // .addLayer(lyr1547)
-            // .addLayer(lyr1548To1555);
         });
 
         $("#1516").click(function(){
@@ -319,11 +703,11 @@ $(document).ready(function(){
             $("#map_coords").html(str);
         });
     });
-    // *****Data Toggles on links declaring inoperability and for footnotes*****
+    // *****Data Toggles on links declaring inoperability and footnotes*****
     $('[data-toggle="popover"]').popover({trigger:'hover'});
     
 
-    // creating the Layer control
+    // *****creating the Layer control*****
     objBasemap = {
         "Esri Shaded Relief": lyrEsri_WorldShadedRelief,
     };
