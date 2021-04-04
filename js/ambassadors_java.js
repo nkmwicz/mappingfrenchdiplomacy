@@ -43,6 +43,7 @@ $(document).ready(function(){
             console.log(e);
         });
         
+    // *****Layer data for the layer group that goes into the clusters*****
         lyrAllDates = L.geoJson(json, {
             pointToLayer: function (feature, latlng) {
                 var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
@@ -116,7 +117,7 @@ $(document).ready(function(){
             },
         });
 
-// *****Layer data for the layer group that goes into the clusters*****
+
         lyr1516 = L.geoJSON(json, {
             filter: function(feature, layer){
                 return feature.properties.year=="1516" 
