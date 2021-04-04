@@ -1,9 +1,19 @@
 var mymap = L.map('mapid').setView([44.95, 13.56], 5);
 var lyrAllDatesCluster;
 var lyrAllDates;
-var lyr1515To1525;
-var lyr1515To1525Cluster;
+var lyr1516;
+var lyr1517To1525;
+var lyr1526To1535;
+var lyr1536To1545;
+var lyr1546;
+var lyr1547;
+var lyr1548To1555;
+var lyrGroup;
+var lyrGeoJson;
+var clusters;
+var popup;
 var lyrEsri_WorldShadedRelief;
+var ambassadorgeojson;
 var circleMarker;
 var circleMarker1;
 var ctlLayers;
@@ -17,57 +27,217 @@ $(document).ready(function(){
 	maxZoom: 13
     }).addTo(mymap);
 
-    lyrAllDatesCluster = L.markerClusterGroup({
-        maxClusterRadius: 1,
+    // *****loading data to the map******
+    var ambassadorgeojson = false;
+    fetch('data/diplomats_data.geojson', {
+        method: 'GET'
+    })
+    .then(Response => Response.json())
+    .then(json => {
+        console.log(json)
+        clusters = L.markerClusterGroup.layerSupport({
+            maxClusterRadius: 0,
         });
-
-    // *****loading All dates data to the map******
-    var lyrAllDates = new L.GeoJSON.AJAX('data/diplomats_data.geojson',{pointToLayer: function(feature,latlng){
-        var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
-            str += "<p>Place: "+feature.properties.place +"</p>";
-            str += "<p>Year: "+feature.properties.year +"</p>";
-            str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+        clusters.on('click', function(e){
+            console.log(e);
+        });
+        lyrGeoJson = L.geoJson(json);
+// *****Layer data for the layer group that goes into the clusters*****
+        lyr1516 = L.geoJSON(json, {
+            filter: function(feature, layer){
+                return feature.properties.year=="1516" 
+            },
+            pointToLayer: function (feature, latlng) {
+                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
+                str += "<p>Place: "+feature.properties.place +"</p>";
+                str += "<p>Year: "+feature.properties.year +"</p>";
+                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
         // *******delete the objectID string before publication********
-            str += "<p>Object ID: "+feature.properties.objectID +"</p>";
-            if (feature.properties.place == 'Ottoman Empire'){
-                fillCircle='red'
-            } else {
-                fillCircle='green'
-            };
-            var circleMarker = L.circleMarker(latlng, {radius: '10', fillColor:fillCircle})
-            .on('mouseover',function(){this.bindPopup(str).openPopup()})
-            .on('mouseout', function(){this.closePopup()});
-            return circleMarker;
-        }
-    });
-    mymap.addLayer(lyrAllDates);
-
-    lyr1515To1525Cluster = L.markerClusterGroup({
-        maxClusterRadius: 5,
+                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
+                var circleMarker = L.circleMarker(latlng)
+                .on('mouseover', function(){this.bindPopup(str).openPopup()})
+                .on('mouseout', function(){this.closePopup()})
+                return circleMarker;
+            },
         });
 
-    var lyr1515To1525 = new L.GeoJSON.AJAX('data/diplomats_data.geojson',
-        {filter: function(feature, layer){
-            return feature.properties.year>="1515" && feature.properties.year<="1525"
-        },
-        pointToLayer: function(feature,latlng){
-            var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
-            str += "<p>Place: "+feature.properties.place +"</p>";
-            str += "<p>Year: "+feature.properties.year +"</p>";
-            str += "<p>Information: "+feature.properties.ambInfo +"</p>";
-    // delete the objectID string before publication
-            str += "<p>Object ID: "+feature.properties.objectID +"</p>";
-            if (feature.properties.place == 'Ottoman Empire'){
-                fillCircle='red'
-                } else {
-                fillCircle='green'
-            };
-            var circleMarker1 = L.circleMarker(latlng, {radius: '10', fillColor:fillCircle})
-                .on('mouseover',function(){this.bindPopup(str).openPopup()})
-                .on('mouseout', function(){this.closePopup()});
-                return circleMarker1;
-        }
+        lyr1517To1525 = L.geoJSON(json, {
+            filter: function(feature, layer){
+                return feature.properties.year>="1517" && feature.properties.year<="1525"
+            },
+            pointToLayer: function (feature, latlng) {
+                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
+                str += "<p>Place: "+feature.properties.place +"</p>";
+                str += "<p>Year: "+feature.properties.year +"</p>";
+                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+        // *******delete the objectID string before publication********
+                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
+                var circleMarker = L.circleMarker(latlng)
+                .on('mouseover', function(){this.bindPopup(str).openPopup()})
+                .on('mouseout', function(){this.closePopup()})
+                return circleMarker;
+            },
+        });
+
+        lyr1526To1535 = L.geoJSON(json, {
+            filter: function(feature, layer){
+                return feature.properties.year>="1526" && feature.properties.year<="1535"
+            },
+            pointToLayer: function(feature,latlng){
+                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
+                str += "<p>Place: "+feature.properties.place +"</p>";
+                str += "<p>Year: "+feature.properties.year +"</p>";
+                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+        // *******delete the objectID string before publication********
+                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
+                var circleMarker = L.circleMarker(latlng)
+                .on('mouseover', function(){this.bindPopup(str).openPopup()})
+                .on('mouseout', function(){this.closePopup()})
+                return circleMarker;
+                }
+        });
+
+        lyr1536To1545 = L.geoJSON(json, {
+            filter: function(feature, layer){
+                return feature.properties.year>="1536" && feature.properties.year<="1546"
+            },
+            pointToLayer: function(feature,latlng){
+                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
+                str += "<p>Place: "+feature.properties.place +"</p>";
+                str += "<p>Year: "+feature.properties.year +"</p>";
+                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+        // *******delete the objectID string before publication********
+                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
+                var circleMarker = L.circleMarker(latlng)
+                .on('mouseover', function(){this.bindPopup(str).openPopup()})
+                .on('mouseout', function(){this.closePopup()})
+                return circleMarker;
+                }
+        });
+
+        lyr1546 = L.geoJSON(json, {
+            filter: function(feature, layer){
+                return feature.properties.year=="1546"
+            },
+            pointToLayer: function(feature,latlng){
+                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
+                str += "<p>Place: "+feature.properties.place +"</p>";
+                str += "<p>Year: "+feature.properties.year +"</p>";
+                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+        // *******delete the objectID string before publication********
+                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
+                var circleMarker = L.circleMarker(latlng)
+                .on('mouseover', function(){this.bindPopup(str).openPopup()})
+                .on('mouseout', function(){this.closePopup()})
+                return circleMarker;
+                }
+        });
+
+        lyr1547 = L.geoJSON(json, {
+            filter: function(feature, layer){
+                return feature.properties.year=="1547"
+            },
+            pointToLayer: function(feature,latlng){
+                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
+                str += "<p>Place: "+feature.properties.place +"</p>";
+                str += "<p>Year: "+feature.properties.year +"</p>";
+                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+        // *******delete the objectID string before publication********
+                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
+                var circleMarker = L.circleMarker(latlng)
+                .on('mouseover', function(){this.bindPopup(str).openPopup()})
+                .on('mouseout', function(){this.closePopup()})
+                return circleMarker;
+                }
+        });
+
+        lyr1548To1555 = L.geoJSON(json, {
+            filter: function(feature, layer){
+                return feature.properties.year>="1548" && feature.properties.year<="1555"
+            },
+            pointToLayer: function(feature,latlng){
+                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
+                str += "<p>Place: "+feature.properties.place +"</p>";
+                str += "<p>Year: "+feature.properties.year +"</p>";
+                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+        // *******delete the objectID string before publication********
+                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
+                var circleMarker = L.circleMarker(latlng)
+                .on('mouseover', function(){this.bindPopup(str).openPopup()})
+                .on('mouseout', function(){this.closePopup()})
+                return circleMarker;
+                }
+        });
+
+        // *****layer group and cluster*****
+        lyrGroup = L.layerGroup()
+            .addLayer(lyr1516)
+            .addLayer(lyr1517To1525)
+            .addLayer(lyr1526To1535)
+            .addLayer(lyr1536To1545)
+            .addLayer(lyr1546)
+            .addLayer(lyr1547)
+            .addLayer(lyr1548To1555);
+        
+        clusters.addTo(mymap); 
+        clusters.checkIn(lyrGroup);
+        lyrGroup.addTo(mymap); 
+
+        mymap.fitBounds(lyr1547.getBounds());
+
+        clusters.on('mouseover', function(e){
+            console.log(e);
+        });
+             
+        
+        // *****Event Buttons*****
+        $("#back-button").click(function(){
+            $("#map-title").text("French Ambassadors Abroad, 1515 to 1600");
+            mymap.fitBounds(lyr1547.getBounds());
+            mymap.closePopup();
+            lyrGroup.clearLayers();
+            lyrGroup.addLayer(lyr1516)
+            .addLayer(lyr1517To1525)
+            .addLayer(lyr1526To1535)
+            .addLayer(lyr1536To1545)
+            .addLayer(lyr1546)
+            .addLayer(lyr1547)
+            .addLayer(lyr1548To1555);
+        });
+
+        $("#1516").click(function(){
+            $("#map-title").text("French Ambassadors Abroad, 1516");
+            lyrGroup.clearLayers();
+            lyrGroup.addLayer(lyr1516);
+            mymap.fitBounds(lyr1516.getBounds(), {padding:[100,100]});
+        });
+
+        $("#1547").click(function(){
+            $("#map-title").text("French Ambassadors Abroad, 1547");
+            lyrGroup.clearLayers();
+            lyrGroup.addLayer(lyr1547);
+            mymap.fitBounds(lyr1547.getBounds(), {padding:[50,50]});
+        });
+
+        $("#1515-1525").click(function(){
+            $("#map-title").text("French Ambassadors Abroad, 1515 to 1525");
+            lyrGroup.clearLayers();
+            lyrGroup.addLayer(lyr1516);
+            lyrGroup.addLayer(lyr1517To1525);
+            mymap.fitBounds(lyr1517To1525.getBounds(), {padding:[100,100]} );
+        });
+
+        mymap.scrollWheelZoom.disable()
+
+        //********Shows coordinates of mouse in "map_coords" section******
+        mymap.on('mousemove', function(e){
+            var str = "Latitude: "+e.latlng.lat.toFixed(2)+" Longitude: "+e.latlng.lng.toFixed(2)+" Zoom level: "+mymap.getZoom(); 
+            $("#map_coords").html(str);
+        });
     });
+    // *****Data Toggles on links declaring inoperability and for footnotes*****
+    $('[data-toggle="popover"]').popover({trigger:'hover'});
+    
 
     // creating the Layer control
     objBasemap = {
@@ -79,52 +249,5 @@ $(document).ready(function(){
     };
 
     ctlLayers = L.control.layers(objBasemap, objOverlays).addTo(mymap);
-
-        // clustering--trying to make it show (feature.properties.place) on hover.
     
-    // lyrAllDatesCluster.addLayer(circleMarker);
-    // mymap.addLayer(lyrAllDatesCluster);
-    
-    
-    lyrAllDates.on('data:loaded', function(){
-        lyrAllDatesCluster.addLayer(lyrAllDates);
-        });
-    mymap.addLayer(lyrAllDatesCluster);
-
-    // lyr1515To1525.on('data:loaded', function(){
-    //     lyr1515To1525Cluster.removeLayer(lyrAllDatesCluster);
-    //     lyr1515To1525Cluster.addLayer(lyr1515To1525Cluster);
-    //     // lyr1515To1525Cluster.addTo(mymap);            
-    //                 // .bindpopup(feature.properties.place).openPopup())
-    //     });
-    //     mymap.addLayer(lyr1515To1525Cluster);
-        
-
-
-    mymap.scrollWheelZoom.disable()
-
-    // ************Action Buttions**************
-    $("#back-button").click(function(){
-        $("#map-title").text("French Ambassadors Abroad, 1515 to 1600");
-        mymap.setView([44.95, 13.56], 5);
-        mymap.closePopup();
-        mymap.addLayer(lyrAllDates);
-        mymap.refreshCluster(lyrAllDates);
-        mymap.removeLayer(lyr1515To1525);
-    });
-
-    //Zooms to Paris, France on click text-button "zoomto"
-    $("#zoomto").click(function(){
-        $("#map-title").text("French Ambassadors Abroad, 1515 to 1525");
-        mymap.removeLayer(lyrAllDates);
-        mymap.addLayer(lyr1515To1525);
-        mymap.addLayer(lyrAllDatesCluster);
-        lyrAllDatesCluster.refreshCluster(lyrAllDates);
-    });
-
-    //********Shows coordinates of mouse in "map_coords" section******
-    mymap.on('mousemove', function(e){
-        var str = "Latitude: "+e.latlng.lat.toFixed(2)+" Longitude: "+e.latlng.lng.toFixed(2)+" Zoom level: "+mymap.getZoom(); 
-        $("#map_coords").html(str);
-    });
 })

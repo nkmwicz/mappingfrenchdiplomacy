@@ -186,7 +186,7 @@ h3{
     margin-left: 27%;
     margin-right: 40%;
     margin-top: 10px;
-    bottom: 18px;
+    bottom: 20px;
     z-index: 31;
     max-width: 450px;
     padding:4px;
@@ -194,22 +194,34 @@ h3{
 }
 
 #map-title{
-    text-align: center;
+    margin-inline-start: 10px;
+    margin-inline-end: 10px;
 }
 
 
 #footer{
     position: absolute;
-    margin-left: 10px;
-    bottom:10px;
-    height: 10px;
+    margin-left: 0px;
+    bottom:0px;
+    height: 20px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     z-index: 300;
-    text-align: center;
+    background-color: rgba(245, 242, 236, 0.84);
 }
 
 #map_coords{
     font-size: 12pt;
-    text-align: left;
-    background-color: rgba(245, 242, 236, 0.84);
+    margin-inline-end: 10px;
+    margin-inline-start: 10px;
+}
+
+.dropdown-menu.show{
+    top: -36px;
+    left: 158px;
+}
+
+/* .leaflet-control refers to attribution of map container */
+.leaflet-control{
+    height: 20px;
+    line-height: 20px;
 }
