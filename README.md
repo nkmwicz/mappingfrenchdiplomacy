@@ -1,0 +1,3 @@
+# mappingfrenchdiplomacy
+
+This project is a born-digital monagraph that will be housed at mappingfrenchdiplomacy.org. It is a meta-analysis of French diplomats and letters from French rulers to foreign recipients. It is designed as an interactive leaflet map with which the narrative is fully interactive, changing data on the map through event buttons in the text. The text also includes graphs and charts--which are now in Tableau, but will later be created in Chart.js--to further visualize the argument. The site will be organized as a monograph--introduction, chapters, and conclusion that are linearly constructed--but it will be designed so the sections within chapters lack a hierarchy and can be investigated in the order chosen by the reader. 
