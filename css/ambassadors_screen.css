@@ -48,6 +48,10 @@ body::-webkit-scrollbar-thumb {
     z-index: 200;
 }
 
+.dropdown-toggle::after{
+    vertical-align: 0;
+}
+
 a{
     text-decoration: none;
     color: black;
@@ -94,7 +98,7 @@ h3{
 
 #nav2{
     position: absolute;
-    background-color: rgba(185, 134, 45, 0.5);
+    background-color: rgba(245, 242, 236, 0.7);
     text-align: center;
     vertical-align: middle;
     font-size: 20pt;
@@ -172,7 +176,6 @@ h3{
     padding: 0;
     font-size: inherit;
     cursor: pointer;
-    display: inline-block;
 }
 
 .action:hover{
@@ -225,13 +228,13 @@ h3{
     margin-inline-start: 10px;
 }
 
-.dropdown-toggle .dropdown-item{
-    top: -36px;
-    left: 158px;
-}
-
 /* .leaflet-control refers to attribution of map container */
 .leaflet-control{
     height: 20px;
     line-height: 20px;
+}
+
+/* styling for leaflet aspects */
+.leaflet-popup-close-button{
+    display: none;
 }

@@ -1,9 +1,11 @@
-var mymap = L.map('mapid').setView([44.95, 13.56], 5);
+var mymap = L.map('mapid');
+var popup;
 var lyrAllDatesCluster;
 var lyrAllDates;
 var lyr1516;
 var lyr1517To1525;
-var lyr1526To1535;
+var lyr1515To1535;
+var lyr1525To1535;
 var lyr1536To1545;
 var lyr1546;
 var lyr1547;
@@ -39,7 +41,58 @@ $(document).ready(function(){
         clusters = L.markerClusterGroup.layerSupport({
             maxClusterRadius: 0,
         });
-        clusters.on('click', function(e){
+        clusters.on('clustermouseover', function(a){
+            if (a.layer._cLatLng.lat == '55.68', a.layer._cLatLng.lng == '12.57'){
+                popupText = "<p>Denmark</p>"
+            } else if (a.layer._cLatLng.lat == '51.51', a.layer._cLatLng.lng == '-0.12'){
+                    popupText = "<p>England</p>"
+            } else if (a.layer._cLatLng.lat == '44.84', a.layer._cLatLng.lng == '11.62'){
+                popupText = "<p>Ferrara</p>"
+            } else if (a.layer._cLatLng.lat == '46.21', a.layer._cLatLng.lng == '6.14'){
+                popupText = "<p>Geneva</p>"
+            } else if (a.layer._cLatLng.lat == '46.66', a.layer._cLatLng.lng == '9.63'){
+                popupText = "<p>Grisons</p>"
+            } else if (a.layer._cLatLng.lat == '48.21', a.layer._cLatLng.lng == '16.36'){
+                popupText = "<p>Holy Roman Empire</p>"
+            } else if (a.layer._cLatLng.lat == '52.37', a.layer._cLatLng.lng == '4.89'){
+                popupText = "<p>The Netherlands</p>"
+            } else if (a.layer._cLatLng.lat == '41.01', a.layer._cLatLng.lng == '28.96'){
+                popupText = "<p>Ottoman Empire</p>"
+            } else if (a.layer._cLatLng.lat == '52.23', a.layer._cLatLng.lng == '21.02'){
+                popupText = "<p>Poland</p>"
+            } else if (a.layer._cLatLng.lat == '38.72', a.layer._cLatLng.lng == '-9.13'){
+                popupText = "<p>Portugal</p>"
+            } else if (a.layer._cLatLng.lat == '41.89', a.layer._cLatLng.lng == '12.51'){
+                popupText = "<p>Rome</p>"
+            } else if (a.layer._cLatLng.lat == '45.06', a.layer._cLatLng.lng == '7.68'){
+                popupText = "<p>Savoy</p>"
+            } else if (a.layer._cLatLng.lat == '51.05', a.layer._cLatLng.lng == '13.35'){
+                popupText = "<p>Saxony</p>"
+            } else if (a.layer._cLatLng.lat == '55.95', a.layer._cLatLng.lng == '-3.19'){
+                popupText = "<p>Scotland</p>"
+            } else if (a.layer._cLatLng.lat == '40.43', a.layer._cLatLng.lng == '-3.7'){
+                popupText = "<p>Spain</p>"
+            } else if (a.layer._cLatLng.lat == '46.94', a.layer._cLatLng.lng == '7.45'){
+                popupText = "<p>The Swiss Cantons</p>"
+            } else if (a.layer._cLatLng.lat == '43.46', a.layer._cLatLng.lng == '11.14'){
+                popupText = "<p>Tuscany</p>"
+            } else if (a.layer._cLatLng.lat == '45.44', a.layer._cLatLng.lng == '12.33'){
+                popupText = "<p>Venice</p>"
+            } else {
+                popupText = "<p></p>"
+            };
+            var popup = L.popup()
+                .setLatLng([a.layer._cLatLng.lat, a.layer._cLatLng.lng])
+                .setContent(popupText)
+                .openOn(mymap);
+            a.layer.openPopup(popup)
+        });
+
+        clusters.on('clustermouseout', function(){
+            mymap.closePopup(popup);
+        });
+
+        clusters.on('clustermouseover', function(e){
             console.log(e);
         });
         
@@ -270,9 +323,9 @@ $(document).ready(function(){
             },
         });
 
-        lyr1526To1535 = L.geoJSON(json, {
+        lyr1515To1535 = L.geoJSON(json, {
             filter: function(feature, layer){
-                return feature.properties.year>="1526" && feature.properties.year<="1535"
+                return feature.properties.year>="1515" && feature.properties.year<="1535"
             },
             pointToLayer: function(feature,latlng){
                 var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
@@ -346,9 +399,85 @@ $(document).ready(function(){
                 }
         });
 
-        lyr1536To1545 = L.geoJSON(json, {
+        lyr1525To1535 = L.geoJSON(json, {
             filter: function(feature, layer){
-                return feature.properties.year>="1536" && feature.properties.year<="1546"
+                return feature.properties.year>="1525" && feature.properties.year<="1535"
+            },
+            pointToLayer: function(feature,latlng){
+                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
+                str += "<p>Place: "+feature.properties.place +"</p>";
+                str += "<p>Year: "+feature.properties.year +"</p>";
+                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+        // *******delete the objectID string before publication********
+                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
+                if (feature.properties.place == 'Swiss') {
+                    fillCircle='purple',
+                    colorCircle='black'
+                } else if (feature.properties.place == 'Grisons') {
+                    fillCircle='#e60000',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Holy Roman Empire') {
+                    fillCircle='#ffff00',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'England') {
+                    fillCircle='#4ce600',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Venice') {
+                    fillCircle='#9c9c9c',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Denmark') {
+                    fillCircle='#c1b8fe',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Ferrara') {
+                    fillCircle='#febfe5',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Geneva') {
+                    fillCircle='#c2f3fd',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Ottoman Empire') {
+                    fillCircle='#000000',
+                    colorCircle='white'
+                } else if (feature.properties.place == 'Netherlands') {
+                    fillCircle='#b4fddf',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Poland') {
+                    fillCircle='#d6d8ff',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Portugal') {
+                    fillCircle='#fffdb4',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Rome') {
+                    fillCircle='#efcafd',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Savoy') {
+                    fillCircle='#e2fdd3',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Saxe') {
+                    fillCircle='#fdd9c6',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Scotland') {
+                    fillCircle='#ffffbe',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Spain') {
+                    fillCircle='#ffffff',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Tuscany') {
+                    fillCircle='#bbdffe',
+                    colorCircle='#000000'
+                } else {
+                    fillCircle='blue',
+                    colorCircle='000000'
+                };
+                var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
+                .on('mouseover', function(){this.bindPopup(str).openPopup()})
+                .on('mouseout', function(){this.closePopup()})
+                return circleMarker;
+                }
+        });
+
+        lyr1535To1555 = L.geoJSON(json, {
+            filter: function(feature, layer){
+                return feature.properties.year>="1535" && feature.properties.year<="1555"
             },
             pointToLayer: function(feature,latlng){
                 var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
@@ -678,7 +807,7 @@ $(document).ready(function(){
             $("#map-title").text("French Ambassadors Abroad, 1516");
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyr1516);
-            mymap.fitBounds(lyr1516.getBounds(), {padding:[100,100]});
+            mymap.fitBounds(lyr1516.getBounds(), {padding:[150,150]});
         });
 
         $("#1547").click(function(){
@@ -696,6 +825,27 @@ $(document).ready(function(){
             mymap.fitBounds(lyr1517To1525.getBounds(), {padding:[100,100]} );
         });
 
+        $("#1525-1535").click(function(){
+            $("#map-title").text("French Ambassadors Abroad, 1515 to 1525");
+            lyrGroup.clearLayers();
+            lyrGroup.addLayer(lyr1525To1535);
+            mymap.fitBounds(lyr1525To1535.getBounds());
+        });
+
+        $("#1515-1535").click(function(){
+            $("#map-title").text("French Ambassadors Abraod, 1515 to 1535");
+            lyrGroup.clearLayers();
+            lyrGroup.addLayer(lyr1515To1535);
+            mymap.fitBounds(lyr1515To1535.getBounds());
+        });
+
+        $("#1535-1555").click(function(){
+            $("#map-title").text("French Ambassadors Abraod, 1535 to 1555");
+            lyrGroup.clearLayers();
+            lyrGroup.addLayer(lyr1535To1555);
+            mymap.fitBounds(lyr1535To1555.getBounds());
+        });
+
         mymap.scrollWheelZoom.disable()
 
         //********Shows coordinates of mouse in "map_coords" section******
@@ -709,14 +859,14 @@ $(document).ready(function(){
     
 
     // *****creating the Layer control*****
-    objBasemap = {
-        "Esri Shaded Relief": lyrEsri_WorldShadedRelief,
-    };
+    // objBasemap = {
+    //     "Esri Shaded Relief": lyrEsri_WorldShadedRelief,
+    // };
 
-    objOverlays = {
-        "1515-1600": lyrAllDates,  
-    };
+    // objOverlays = {
+    //     "1515-1600": lyrAllDates,  
+    // };
 
-    ctlLayers = L.control.layers(objBasemap, objOverlays).addTo(mymap);
+    // ctlLayers = L.control.layers(objBasemap, objOverlays).addTo(mymap);
     
 })
