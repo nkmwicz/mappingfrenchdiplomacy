@@ -238,3 +238,11 @@ h3{
 .leaflet-popup-close-button{
     display: none;
 }
+
+.leaflet-popup-content p{
+    font-size: 12pt;
+}
+
+.popover-body{
+    padding: 0.5rem;
+}
