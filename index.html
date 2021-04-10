@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>French Ambassadors during the Sixteenth Century</title>
+        <title>Mapping French Diplomacy</title>
 
         <!-- using leaflet 1.7.1 -->
         <link rel="stylesheet" href="resources/leaflet.css">
@@ -26,7 +26,7 @@
         <div id= "box1">
             <div id="wrapper">
                 <div id="nav1">
-                    <h1 id="h1"><a href="#">Mapping French Diplomatic Geography</a></h1>
+                    <h1 id="h1"><a href="#">Mapping France's Diplomatic Geography</a></h1>
                     <div class="btn-group">
                         <button type="button" style="top:20px; margin-left:40px; z-index: 999;" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Table of Contents
@@ -34,47 +34,53 @@
                         <div class="dropdown-menu">
                         <a class="dropdown-item" href="index.html" data-toggle="popover" data-placement="right" data-content="You are here.">Home</a>
                         <div class="dropdown-divider"></div>
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Introduction</a>
-                          <div class="dropdown-menu" style="margin-top:-40px; margin-left:300px">
-                            <a class="dropdown-item" href="#"data-toggle="popover" data-content="This page is under construction.">Introduction</a>
-                            <a class="dropdown-item" href="#" data-toggle="popover" data-content="This page is under construction.">Distance and Diplomacy</a>
-                            <a class="dropdown-item" href="sixteenthcenturyambassadors.html" data-toggle="popover" data-content="">Sixteenth-Century Ambassadors</a>
-                            <a class="dropdown-item" href="#" data-toggle="popover" data-content="This page is under construction.">Seventeenth-Century Ambassadors</a>
-                          </div>
+                        <div class="drpdn">
+                            <button class="drpbtn">Introduction</button>
+                            <div class="drpdn-content" >
+                                <a href="#"data-toggle="popover" data-content="This page is under construction.">Introduction</a>
+                                <a href="#" data-toggle="popover" data-content="This page is under construction.">Distance and Diplomacy</a>
+                                <a href="sixteenthcenturydiplomats.html" data-toggle="popover" data-content="">Sixteenth-Century Diplomats</a>
+                                <a href="#" data-toggle="popover" data-content="This page is under construction.">Seventeenth-Century Diplomats</a>
+                            </div>
+                        </div>
                         <a class="dropdown-item" href="#" data-toggle="popover" data-content="This page is under construction.">I: The Italian Wars, 1494-1559</a>
                         <a class="dropdown-item" href="#" data-toggle="popover" data-content="This page is under construction.">II: The Wars of Religion, 1559-1629</a>
                         <a class="dropdown-item" href="#" data-toggle="popover" data-content="This page is under construction.">III: The Thirty Years War, 1610-1659</a>
                         <a class="dropdown-item" href="#" data-toggle="popover" data-content="This page is under construction.">IV: The Wars of Louis XIV, 1645-1715</a>
-                        <a class="dropdown-item" href="#" data-toggle="popover" data-content="This page is under construction.">Appendix</a>
+                        <a class="dropdown-item" href="#" data-toggle="popover" data-content="This page is under construction.">Appendices</a>
                         <a class="dropdown-item" href="#" data-toggle="popover" data-content="This page is under construction.">Bibliography</a>
                         </div>
                     </div>
                 </div>    
-                <div id="Title"><br><br><h2>Mapping France's Diplomatic Geography, 1494-1715</h2><br><br>
-                    <h2 style="font-size: .75em;">Nathan Michalewicz</h2>
+                <div id="title">
+                    <div id="title-line">
+                        <h2>Mapping France's Diplomatic Geography<br>1494-1715 <br><br>
+                            <span style="font-size: 1.5rem;">by<br><br>
+                        Nathan Michalewicz</span></h2>
+                    </div>
                 </div>
                 <nav class="navbar fixed-bottom navbar-light justify-content-center" style="z-index: 999;">
-                    <div class="d-flex justify-content-center"><a class="navbar-brand" href="#"data-toggle="popover" data-placement= "top" data-content="You are here.">About</a></div>
+                    <div class="d-flex justify-content-center"><a class="navbar-brand" href="#"data-toggle="popover" data-placement= "top" data-content="You are here.">Preface</a></div>
                     <div class="d-flex justify-content-center"><a class="navbar-brand" href="#"data-toggle="popover" data-placement= "top" data-content="This page is under construction.">About the Author</a></div>
-                    <div class="d-flex justify-content-center"><a class="navbar-brand" href="#"data-toggle="popover" data-placement= "top" data-content="You are here.">Sixteenth-Century Ambassadors</a></div>
+                    <div class="d-flex justify-content-center"><a class="navbar-brand" href="#"data-toggle="popover" data-placement= "top" data-content="">Acknowledgements</a></div>
                     <div class="d-flex justify-content-center"><a class="navbar-brand" href="#"data-toggle="popover" data-placement= "top" data-content="This page is under construction.">Seventeenth-Century Ambassadors</a></div>
                   </nav>
             </div> 
         </div>
             
-        <div id="box2">   
-                <div  id= "article">
+        <div class="row" id="box2">   
+                <div class="justify-content-center" id= "article">
                     <br><br><h3 style="text-align: center; cursor: pointer;">A Note on This Project</h3>
-                    <p>This monograph is a work in progress. It is still in its early stages of research and production. Currently only one section, <a  href="sixteenthcenturyambassadors.html">"Sixteenth-Century Diplomats,"</a> is active. As sections are completed, they will be added. Similarly, sections are likely to be modified. Feel free to leave feedback as <a  href="https://github.com/nkmwicz/mappingfrenchdiplomacy">as issues at the Github repository</a> or <a href="mailto:nathan@mwicz.com?subject=Feedback%20for%20Mapping%20French%20Diplomacy">e-mail me.</a></p>
+                    <p>This monograph is a work in progress. It is still in its early stages of research and production. Currently only one section, <a  href="sixteenthcenturyambassadors.html">"Sixteenth-Century Diplomats,"</a> is active. As sections are completed, they will be added. Similarly, sections are likely to be modified. Feel free to leave feedback as <a  href="https://github.com/nkmwicz/mappingfrenchdiplomacy" target="_blank">as issues at the Github repository</a> or <a href="mailto:nathan@mwicz.com?subject=Feedback%20for%20Mapping%20French%20Diplomacy">e-mail me.</a></p>
                     <br>
                     <h3 style="text-align: center;">About This Project</h3>
-                    <p>Mapping France's Diplomatic Geography is a born-digital monograph</p><br>
+                    <p>In 1494, the kind of France, Charles VIII (r. 1483-1498), marched his army into the Italian peninsula to conquer Naples, which fell under Spain’s sovereignty to fulfill Charles VIII’s claim to the throne. The king’s actions set off a series of wars across Europe and the Mediterranean known as the Italian Wars (1494-1559). Almost all countries of the region were involved, including France, Spain, England, the Low Countries, the Holy Roman Empire, the Ottoman Empire, and the various Italian principalities, to name the most prominent states involved. This explosion of multi-continental war was a catalyst for a dramatic increase in French diplomacy and the development of a network of diplomats across Europe and the Mediterranean region to navigate the numerous alliances that permeated the conflict. For instance, France maintained one permanent ambassador abroad in 1515 but had established at least ten by 1547. France’s diplomatic outreach only expanded after 1559. The diplomatic network and priorities established during these conflicts provided an essential tool the French court used to navigate a series of crises until 1714: a series of religious civil wars in France from 1562 to 1629, France’s entrance into the Thirty Years War from 1630 until 1648, another civil war in France known as The Fronde from 1648 to 1659, and finally the wars of Louis XIV from 1661 to 1714. The end of the War of Spanish Succession in 1714 represented the end of an epoch as Louis XIV placed a member of his Bourbon dynasty on the Spanish throne, cementing the transition of France’s primary rivalry from Spain to England.</p> 
+                    <p>Mapping France's Diplomatic Geography seeks to track France's geo-political priorities during this dynamic period in the form of a born-digital monograph. It is focused on reconstructing France's geo-political world in the sixteenth and seventeenth centuries by by mapping all the letters that French rulers wrote to foreign recipients. The project will begin with the Italian wars (1494-1559) and extend to the end of the Wars of Louis XIV (r.1643-1715). This period represents the period during which French foreign policy was predominated by its rivalry with the Habsburgs and speicifically the Spanish Habsburgs.</p>
+                    <p>By mapping these letters, my project will produce a visual representation of France’s international priorities&mdash;what I refer to as its diplomatic geography&mdash;and how it changed over time. I will make two primary arguments. One, the period from 1494 to 1715 represented a single cohesive period of political history, during which France maintained a standard set of priorities that were structural to their foreign policy system: the maintenance of cross-confessional alliances with the Protestant powers of Europe and the Muslim Ottoman Empire. Two, the region comprising the core of France’s foreign-policy priorities—or France’s diplomatic geography—was truly multi-continental, including Europe, the Middle East, and North Africa. </p><br>
                     
                 </div> 
-            <div>
+            
                 <button class="btn btn-secondary" id="back-button">Home View</button>
-            </div>  
 
             <div id="mapid">
             </div>
@@ -82,9 +88,7 @@
             <div id="mapid-overlay">
             </div>
 
-            <div class="row" id="footer">
-                <h4 id="map_coords">Lat: 19.4 Long: -99.1 | Zoom: 11</h4>                
-            </div>
+        
         </div>
         <script src="resources/jquery-3.6.0.min.js"></script>
         

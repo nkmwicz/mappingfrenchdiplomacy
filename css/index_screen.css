@@ -8,6 +8,16 @@ p{
     font-size: 14pt;
 }
 
+a{
+    text-decoration: none;
+    color: black;
+}
+
+a:hover{
+    color: black;
+    text-decoration: none;
+}
+
 p a{
     color: blue;
 }
@@ -52,19 +62,61 @@ body::-webkit-scrollbar-thumb {
     z-index: 200;
 }
 
+/* Navigation Drop down Button*/
 .dropdown-toggle::after{
     vertical-align: 0;
 }
 
-a{
-    text-decoration: none;
-    color: black;
+.drpdn{
+    position:relative; 
+    display:inline-block;
+    width: 100%;
 }
 
-a:hover{
-    color: black;
-    text-decoration: none;
+.drpbtn{
+    background-color: white;
+    /* color: white; */
+    padding: 5px;
+    padding-left: 25px;
+    /* margin-left: 15px; */
+    text-align: left;
+    font-size: 16px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
 }
+
+.drpdn-content{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    width: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.drpdn-content a{
+    width: 100%;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.drpdn-content a:hover{
+    background-color: #f1f1f1
+}
+
+.drpdn:hover .drpdn-content{
+    display: inline-block;
+}
+
+.drpdn:hover .drpbtn{
+    background-color: rgba(245, 242, 236, 0.84);
+}
+
+/* HEADERS */
 
 #h1{
     color: black;
@@ -92,13 +144,26 @@ h3{
     font-size: 16pt;
 }
 
-#Title{
-    margin-top: 15%;
-    text-align: center;
-    font-size: 24pt;
+#title{
+    margin-top: 20%;
+    align-content: center;
+    /* font-size: 24pt; */
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color: black;
+
 }    
+
+#title-line{
+    position: relative;
+    align-content: center;
+    text-align: center;
+    width: 800px;
+    background-color: rgba(245, 242, 236, 0.7);
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
 
 .fixed-bottom{
     position: absolute;
@@ -106,7 +171,8 @@ h3{
 }
 
 .navbar-brand{
-    margin-left: 2rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
 }
 /* #nav2{
     position: absolute;
@@ -138,6 +204,8 @@ h3{
     position:absolute;
     top:100%;
     height: 100%;
+    width: 100%;
+    margin: 0;
     /* background-color: rgba(245, 242, 236, 0.84); */
 }
 
@@ -163,21 +231,17 @@ h3{
     
 #article{
     position: relative;
-    float: right;
-    width: 33%;
+    float:none;
+    width: 35%;
+    min-width: 570px;
     height:100%;
     background-color: rgba(245, 242, 236, 0.84);
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    padding-left: 1.27%;
-    padding-right: 1.27%;
-    /* margin-inline-start: 50px; */
     overflow: scroll;
     overflow-x: hidden;
     z-index: 150;
-    margin-right: 35%;
-    /* margin-top: 1%; */
-    margin-left: 50%;
-    margin-bottom: 2.5%;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 #article::-webkit-scrollbar{
@@ -237,7 +301,6 @@ h3{
 
 #footer{
     position: absolute;
-    margin-left: 0px;
     bottom:0px;
     height: 20px;
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -255,6 +318,7 @@ h3{
 .leaflet-control{
     height: 20px;
     line-height: 20px;
+    /* margin-right: 45px; */
 }
 
 /* styling for leaflet aspects */
