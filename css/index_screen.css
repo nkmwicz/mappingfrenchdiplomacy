@@ -4,7 +4,7 @@ body{
 }
 
 p{
-    margin:10px;
+    margin:20px;
     font-size: 14pt;
 }
 
@@ -50,7 +50,7 @@ body::-webkit-scrollbar-thumb {
     position: absolute;
     height: 100%;
     width: 100%;
-    background-color: rgba(255, 255, 255, .7);
+    background-color: rgba(255, 228, 196, .4);
     z-index: 2;
 }
 
@@ -58,7 +58,7 @@ body::-webkit-scrollbar-thumb {
     position:absolute;
     height: 85px;
     width: 100%;
-    background-color:rgba(255, 255, 255, 0.7);
+    background-color:rgba(255, 255, 255, 0.5);
     z-index: 200;
 }
 
@@ -178,7 +178,7 @@ h3{
 
 .fixed-bottom{
     position: absolute;
-    background-color: rgba(245, 242, 236, 0.7);
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .navbar-brand{
