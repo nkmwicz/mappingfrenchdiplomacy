@@ -40,7 +40,7 @@ body::-webkit-scrollbar-thumb {
     position:absolute;
     height: 100%;
     width: 100%;
-    background-image: url(../images/ambassadors-holbein.png);
+    background-image: url(../images/charles8_and_louis14.jpg);
     background-size: cover;
     margin: 0;
     z-index: 1;
@@ -136,7 +136,7 @@ h1:hover{
 }
 
 h2{
-    font-size: 24pt;
+    font-size: 36pt;
     font-weight: bold;
 }
 
@@ -145,7 +145,9 @@ h3{
 }
 
 #title{
-    margin-top: 20%;
+    position:relative;
+    top: 20%;
+    margin-bottom: 15%;
     align-content: center;
     /* font-size: 24pt; */
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -158,11 +160,20 @@ h3{
     align-content: center;
     text-align: center;
     width: 800px;
-    background-color: rgba(245, 242, 236, 0.7);
+    /* background-color: rgba(245, 242, 236, 0.7); */
     margin-left: auto;
     margin-right: auto;
     padding-top: 2rem;
     padding-bottom: 2rem;
+}
+
+.subtitle{
+    font-size: 2rem;
+}
+
+.byline{
+    font-size: 1.5rem;
+    margin-top:2rem;
 }
 
 .fixed-bottom{
@@ -174,18 +185,6 @@ h3{
     margin-right: 1rem;
     margin-left: 1rem;
 }
-/* #nav2{
-    position: absolute;
-    background-color: rgba(245, 242, 236, 0.7);
-    text-align: center;
-    vertical-align: middle;
-    font-size: 20pt;
-    bottom:0;
-    height: 65px;
-    width: 100%;
-    margin:0;
-} */
-
 
 .li2{
     display: inline;
