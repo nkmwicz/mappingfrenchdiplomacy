@@ -18,7 +18,7 @@ a:hover{
     text-decoration: none;
 }
 
-p a{
+.link{
     color: blue;
 }
 
@@ -28,7 +28,6 @@ p a{
 
 body::-webkit-scrollbar{
     width: 6px;
-
 }
 
 body::-webkit-scrollbar-thumb {
