@@ -28,6 +28,10 @@ a:hover{
     margin-bottom: 5px;
 }
 
+.notes a:hover{
+    color:blue;
+}
+
 hr{
     width: 25%;
     border-top: 1px solid black;
