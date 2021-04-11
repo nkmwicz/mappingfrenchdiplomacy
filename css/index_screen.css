@@ -4,7 +4,8 @@ body{
 }
 
 p{
-    margin:20px;
+    margin-left:20px;
+    margin-right:20px;
     font-size: 14pt;
 }
 
@@ -24,6 +25,12 @@ a:hover{
 
 .notes{
     font-size: 12pt;
+    margin-bottom: 5px;
+}
+
+hr{
+    width: 25%;
+    border-top: 1px solid black;
 }
 
 body::-webkit-scrollbar{
@@ -205,6 +212,11 @@ h3{
     width: 100%;
     margin: 0;
     /* background-color: rgba(245, 242, 236, 0.84); */
+}
+
+.project-note{
+    margin:20px;
+    border:1px solid black;
 }
 
 #mapid{ 
