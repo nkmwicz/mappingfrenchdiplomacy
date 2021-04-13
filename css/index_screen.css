@@ -1,3 +1,10 @@
+html,body{
+    width: 100%;
+    margin:0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 body{
     margin: 0;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -51,7 +58,7 @@ body::-webkit-scrollbar-thumb {
     height: 100%;
     width: 100%;
     background-image: url(../images/charles8_and_louis14.jpg);
-    background-size: cover;
+    background-size:cover;
     margin: 0;
     z-index: 1;
 }
@@ -169,12 +176,10 @@ h3{
     position: relative;
     align-content: center;
     text-align: center;
-    width: 800px;
+    max-width: 800px;
     /* background-color: rgba(245, 242, 236, 0.7); */
     margin-left: auto;
     margin-right: auto;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
 }
 
 .subtitle{
@@ -183,7 +188,7 @@ h3{
 
 .byline{
     font-size: 1.5rem;
-    margin-top:2rem;
+    padding-top:0rem;
 }
 
 .fixed-bottom{
@@ -192,8 +197,7 @@ h3{
 }
 
 .navbar-brand{
-    margin-right: 1rem;
-    margin-left: 1rem;
+    margin-left: 2rem;
 }
 
 .li2{
