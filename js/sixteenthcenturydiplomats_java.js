@@ -247,6 +247,82 @@ $(document).ready(function(){
             },
         });
 
+        lyr1515To1520 = L.geoJSON(json, {
+            filter: function(feature, layer){
+                return feature.properties.year>="1515" && feature.properties.year<="1520"
+            },
+            pointToLayer: function (feature, latlng) {
+                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
+                str += "<p>Place: "+feature.properties.place +"</p>";
+                str += "<p>Year: "+feature.properties.year +"</p>";
+                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+        // *******delete the objectID string before publication********
+                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
+                if (feature.properties.place == 'Swiss') {
+                    fillCircle='purple',
+                    colorCircle='black'
+                } else if (feature.properties.place == 'Grisons') {
+                    fillCircle='#e60000',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Holy Roman Empire') {
+                    fillCircle='#ffff00',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'England') {
+                    fillCircle='#4ce600',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Venice') {
+                    fillCircle='#9c9c9c',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Denmark') {
+                    fillCircle='#c1b8fe',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Ferrara') {
+                    fillCircle='#febfe5',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Geneva') {
+                    fillCircle='#c2f3fd',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Ottoman Empire') {
+                    fillCircle='#000000',
+                    colorCircle='white'
+                } else if (feature.properties.place == 'Netherlands') {
+                    fillCircle='#b4fddf',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Poland') {
+                    fillCircle='#d6d8ff',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Portugal') {
+                    fillCircle='#fffdb4',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Rome') {
+                    fillCircle='#efcafd',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Savoy') {
+                    fillCircle='#e2fdd3',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Saxe') {
+                    fillCircle='#fdd9c6',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Scotland') {
+                    fillCircle='#ffffbe',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Spain') {
+                    fillCircle='#ffffff',
+                    colorCircle='#000000'
+                } else if (feature.properties.place == 'Tuscany') {
+                    fillCircle='#bbdffe',
+                    colorCircle='#000000'
+                } else {
+                    fillCircle='blue',
+                    colorCircle='000000'
+                };
+                var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
+                .on('mouseover', function(){this.bindPopup(str).openPopup()})
+                .on('mouseout', function(){this.closePopup()})
+                return circleMarker;
+            },
+        });
+
         lyr1517To1525 = L.geoJSON(json, {
             filter: function(feature, layer){
                 return feature.properties.year>="1517" && feature.properties.year<="1525"
@@ -815,6 +891,13 @@ $(document).ready(function(){
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyr1547);
             mymap.fitBounds(lyr1547.getBounds(), {padding:[50,50]});
+        });
+
+        $("#1515-1520").click(function(){
+            $("#map-title").text("French Ambassadors Abroad, 1516");
+            lyrGroup.clearLayers();
+            lyrGroup.addLayer(lyr1515To1520);
+            mymap.fitBounds(lyr1515To1520.getBounds(), {padding:[150,150]});
         });
 
         $("#1515-1525").click(function(){
