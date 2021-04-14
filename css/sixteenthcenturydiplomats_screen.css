@@ -323,9 +323,9 @@ h4{
 }
 
 /* styling for leaflet aspects */
-.leaflet-popup-close-button{
-    display: none;
-}
+/* .leaflet-popup-close-button{
+    /* display: none; */
+/* } */
 
 .leaflet-popup-content p{
     font-size: 10pt;

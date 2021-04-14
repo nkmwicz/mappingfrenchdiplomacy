@@ -31,7 +31,7 @@ $(document).ready(function(){
 
     // *****loading data to the map******
     var ambassadorgeojson = false;
-    fetch('data/diplomats_data.geojson', {
+    fetch('data/16c-diplomats_data.geojson', {
         method: 'GET'
     })
     .then(Response => Response.json())
@@ -99,12 +99,14 @@ $(document).ready(function(){
     // *****Layer data for the layer group that goes into the clusters*****
         lyrAllDates = L.geoJson(json, {
             pointToLayer: function (feature, latlng) {
-                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
-                str += "<p>Place: "+feature.properties.place +"</p>";
-                str += "<p>Year: "+feature.properties.year +"</p>";
-                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+                var str = "<p style=text-align:center><span style=font-weight:bold> "+feature.properties.name +"</span></p><hr>";
+                str += "<p><span style= font-weight:bold>Place:</span> "+feature.properties.place +"</p>";
+                str += "<p><span style=font-weight:bold>Year:</span> "+feature.properties.year +"</p>";
+                str += "<p><span style=font-weight:bold>Information:</span> "+feature.properties.ambInfo +"</p>";
+                str += "<p><span style=font-weight:bold>Source:</span> "+feature.properties.source +"</p>";
+                str += "<p><span style=font-weight:bold>Link:</span> "+feature.properties.link +"</p>";
         // *******delete the objectID string before publication********
-                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
+                str += "<p><span style=font-weight:bold>Object ID:</span>: "+feature.properties.objectID +"</p>";
                 if (feature.properties.place == 'Swiss') {
                     fillCircle='purple',
                     colorCircle='black'
@@ -165,7 +167,6 @@ $(document).ready(function(){
                 };
                 var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
                 .on('mouseover', function(){this.bindPopup(str).openPopup()})
-                .on('mouseout', function(){this.closePopup()})
                 return circleMarker;
             },
         });
@@ -176,12 +177,14 @@ $(document).ready(function(){
                 return feature.properties.year=="1516" 
             },
             pointToLayer: function (feature, latlng) {
-                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
-                str += "<p>Place: "+feature.properties.place +"</p>";
-                str += "<p>Year: "+feature.properties.year +"</p>";
-                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+                var str = "<p style=text-align:center><span style=font-weight:bold> "+feature.properties.name +"</span></p><hr>";
+                str += "<p><span style= font-weight:bold>Place:</span> "+feature.properties.place +"</p>";
+                str += "<p><span style=font-weight:bold>Year:</span> "+feature.properties.year +"</p>";
+                str += "<p><span style=font-weight:bold>Information:</span> "+feature.properties.ambInfo +"</p>";
+                str += "<p><span style=font-weight:bold>Source:</span> "+feature.properties.source +"</p>";
+                str += "<p><span style=font-weight:bold>Link:</span> "+feature.properties.link +"</p>";
         // *******delete the objectID string before publication********
-                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
+                str += "<p><span style=font-weight:bold>Object ID:</span>: "+feature.properties.objectID +"</p>";       
                 if (feature.properties.place == 'Swiss') {
                     fillCircle='purple',
                     colorCircle='black'
@@ -242,7 +245,6 @@ $(document).ready(function(){
                 };
                 var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
                 .on('mouseover', function(){this.bindPopup(str).openPopup()})
-                .on('mouseout', function(){this.closePopup()})
                 return circleMarker;
             },
         });
@@ -252,13 +254,15 @@ $(document).ready(function(){
                 return feature.properties.year>="1515" && feature.properties.year<="1520"
             },
             pointToLayer: function (feature, latlng) {
-                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
-                str += "<p>Place: "+feature.properties.place +"</p>";
-                str += "<p>Year: "+feature.properties.year +"</p>";
-                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+                var str = "<p style=text-align:center><span style=font-weight:bold> "+feature.properties.name +"</span></p><hr>";
+                str += "<p><span style= font-weight:bold>Place:</span> "+feature.properties.place +"</p>";
+                str += "<p><span style=font-weight:bold>Year:</span> "+feature.properties.year +"</p>";
+                str += "<p><span style=font-weight:bold>Information:</span> "+feature.properties.ambInfo +"</p>";
+                str += "<p><span style=font-weight:bold>Source:</span> "+feature.properties.source +"</p>";
+                str += "<p><span style=font-weight:bold>Link:</span> "+feature.properties.link +"</p>";
         // *******delete the objectID string before publication********
-                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
-                if (feature.properties.place == 'Swiss') {
+                str += "<p><span style=font-weight:bold>Object ID:</span>: "+feature.properties.objectID +"</p>";               
+                 if (feature.properties.place == 'Swiss') {
                     fillCircle='purple',
                     colorCircle='black'
                 } else if (feature.properties.place == 'Grisons') {
@@ -318,7 +322,6 @@ $(document).ready(function(){
                 };
                 var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
                 .on('mouseover', function(){this.bindPopup(str).openPopup()})
-                .on('mouseout', function(){this.closePopup()})
                 return circleMarker;
             },
         });
@@ -328,13 +331,15 @@ $(document).ready(function(){
                 return feature.properties.year>="1517" && feature.properties.year<="1525"
             },
             pointToLayer: function (feature, latlng) {
-                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
-                str += "<p>Place: "+feature.properties.place +"</p>";
-                str += "<p>Year: "+feature.properties.year +"</p>";
-                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+                var str = "<p style=text-align:center><span style=font-weight:bold> "+feature.properties.name +"</span></p><hr>";
+                str += "<p><span style= font-weight:bold>Place:</span> "+feature.properties.place +"</p>";
+                str += "<p><span style=font-weight:bold>Year:</span> "+feature.properties.year +"</p>";
+                str += "<p><span style=font-weight:bold>Information:</span> "+feature.properties.ambInfo +"</p>";
+                str += "<p><span style=font-weight:bold>Source:</span> "+feature.properties.source +"</p>";
+                str += "<p><span style=font-weight:bold>Link:</span> "+feature.properties.link +"</p>";
         // *******delete the objectID string before publication********
-                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
-                if (feature.properties.place == 'Swiss') {
+                str += "<p><span style=font-weight:bold>Object ID:</span>: "+feature.properties.objectID +"</p>";               
+                 if (feature.properties.place == 'Swiss') {
                     fillCircle='purple',
                     colorCircle='black'
                 } else if (feature.properties.place == 'Grisons') {
@@ -394,7 +399,6 @@ $(document).ready(function(){
                 };
                 var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
                 .on('mouseover', function(){this.bindPopup(str).openPopup()})
-                .on('mouseout', function(){this.closePopup()})
                 return circleMarker;
             },
         });
@@ -404,13 +408,15 @@ $(document).ready(function(){
                 return feature.properties.year>="1515" && feature.properties.year<="1535"
             },
             pointToLayer: function(feature,latlng){
-                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
-                str += "<p>Place: "+feature.properties.place +"</p>";
-                str += "<p>Year: "+feature.properties.year +"</p>";
-                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+                var str = "<p style=text-align:center><span style=font-weight:bold> "+feature.properties.name +"</span></p><hr>";
+                str += "<p><span style= font-weight:bold>Place:</span> "+feature.properties.place +"</p>";
+                str += "<p><span style=font-weight:bold>Year:</span> "+feature.properties.year +"</p>";
+                str += "<p><span style=font-weight:bold>Information:</span> "+feature.properties.ambInfo +"</p>";
+                str += "<p><span style=font-weight:bold>Source:</span> "+feature.properties.source +"</p>";
+                str += "<p><span style=font-weight:bold>Link:</span> "+feature.properties.link +"</p>";
         // *******delete the objectID string before publication********
-                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
-                if (feature.properties.place == 'Swiss') {
+                str += "<p><span style=font-weight:bold>Object ID:</span>: "+feature.properties.objectID +"</p>";              
+                  if (feature.properties.place == 'Swiss') {
                     fillCircle='purple',
                     colorCircle='black'
                 } else if (feature.properties.place == 'Grisons') {
@@ -470,7 +476,6 @@ $(document).ready(function(){
                 };
                 var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
                 .on('mouseover', function(){this.bindPopup(str).openPopup()})
-                .on('mouseout', function(){this.closePopup()})
                 return circleMarker;
                 }
         });
@@ -480,13 +485,15 @@ $(document).ready(function(){
                 return feature.properties.year>="1525" && feature.properties.year<="1535"
             },
             pointToLayer: function(feature,latlng){
-                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
-                str += "<p>Place: "+feature.properties.place +"</p>";
-                str += "<p>Year: "+feature.properties.year +"</p>";
-                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+                var str = "<p style=text-align:center><span style=font-weight:bold> "+feature.properties.name +"</span></p><hr>";
+                str += "<p><span style= font-weight:bold>Place:</span> "+feature.properties.place +"</p>";
+                str += "<p><span style=font-weight:bold>Year:</span> "+feature.properties.year +"</p>";
+                str += "<p><span style=font-weight:bold>Information:</span> "+feature.properties.ambInfo +"</p>";
+                str += "<p><span style=font-weight:bold>Source:</span> "+feature.properties.source +"</p>";
+                str += "<p><span style=font-weight:bold>Link:</span> "+feature.properties.link +"</p>";
         // *******delete the objectID string before publication********
-                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
-                if (feature.properties.place == 'Swiss') {
+                str += "<p><span style=font-weight:bold>Object ID:</span>: "+feature.properties.objectID +"</p>";               
+                 if (feature.properties.place == 'Swiss') {
                     fillCircle='purple',
                     colorCircle='black'
                 } else if (feature.properties.place == 'Grisons') {
@@ -546,7 +553,6 @@ $(document).ready(function(){
                 };
                 var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
                 .on('mouseover', function(){this.bindPopup(str).openPopup()})
-                .on('mouseout', function(){this.closePopup()})
                 return circleMarker;
                 }
         });
@@ -556,12 +562,14 @@ $(document).ready(function(){
                 return feature.properties.year>="1535" && feature.properties.year<="1555"
             },
             pointToLayer: function(feature,latlng){
-                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
-                str += "<p>Place: "+feature.properties.place +"</p>";
-                str += "<p>Year: "+feature.properties.year +"</p>";
-                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+                var str = "<p style=text-align:center><span style=font-weight:bold> "+feature.properties.name +"</span></p><hr>";
+                str += "<p><span style= font-weight:bold>Place:</span> "+feature.properties.place +"</p>";
+                str += "<p><span style=font-weight:bold>Year:</span> "+feature.properties.year +"</p>";
+                str += "<p><span style=font-weight:bold>Information:</span> "+feature.properties.ambInfo +"</p>";
+                str += "<p><span style=font-weight:bold>Source:</span> "+feature.properties.source +"</p>";
+                str += "<p><span style=font-weight:bold>Link:</span> "+feature.properties.link +"</p>";
         // *******delete the objectID string before publication********
-                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
+                str += "<p><span style=font-weight:bold>Object ID:</span>: "+feature.properties.objectID +"</p>";
                 if (feature.properties.place == 'Swiss') {
                     fillCircle='purple',
                     colorCircle='black'
@@ -622,7 +630,6 @@ $(document).ready(function(){
                 };
                 var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
                 .on('mouseover', function(){this.bindPopup(str).openPopup()})
-                .on('mouseout', function(){this.closePopup()})
                 return circleMarker;
                 }
         });
@@ -632,12 +639,14 @@ $(document).ready(function(){
                 return feature.properties.year=="1546"
             },
             pointToLayer: function(feature,latlng){
-                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
-                str += "<p>Place: "+feature.properties.place +"</p>";
-                str += "<p>Year: "+feature.properties.year +"</p>";
-                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+                var str = "<p style=text-align:center><span style=font-weight:bold> "+feature.properties.name +"</span></p><hr>";
+                str += "<p><span style= font-weight:bold>Place:</span> "+feature.properties.place +"</p>";
+                str += "<p><span style=font-weight:bold>Year:</span> "+feature.properties.year +"</p>";
+                str += "<p><span style=font-weight:bold>Information:</span> "+feature.properties.ambInfo +"</p>";
+                str += "<p><span style=font-weight:bold>Source:</span> "+feature.properties.source +"</p>";
+                str += "<p><span style=font-weight:bold>Link:</span> "+feature.properties.link +"</p>";
         // *******delete the objectID string before publication********
-                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
+                str += "<p><span style=font-weight:bold>Object ID:</span>: "+feature.properties.objectID +"</p>";
                 if (feature.properties.place == 'Swiss') {
                     fillCircle='purple',
                     colorCircle='black'
@@ -698,7 +707,6 @@ $(document).ready(function(){
                 };
                 var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
                 .on('mouseover', function(){this.bindPopup(str).openPopup()})
-                .on('mouseout', function(){this.closePopup()})
                 return circleMarker;
                 }
         });
@@ -708,12 +716,14 @@ $(document).ready(function(){
                 return feature.properties.year=="1547"
             },
             pointToLayer: function(feature,latlng){
-                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
-                str += "<p>Place: "+feature.properties.place +"</p>";
-                str += "<p>Year: "+feature.properties.year +"</p>";
-                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+                var str = "<p style=text-align:center><span style=font-weight:bold> "+feature.properties.name +"</span></p><hr>";
+                str += "<p><span style= font-weight:bold>Place:</span> "+feature.properties.place +"</p>";
+                str += "<p><span style=font-weight:bold>Year:</span> "+feature.properties.year +"</p>";
+                str += "<p><span style=font-weight:bold>Information:</span> "+feature.properties.ambInfo +"</p>";
+                str += "<p><span style=font-weight:bold>Source:</span> "+feature.properties.source +"</p>";
+                str += "<p><span style=font-weight:bold>Link:</span> "+feature.properties.link +"</p>";
         // *******delete the objectID string before publication********
-                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
+                str += "<p><span style=font-weight:bold>Object ID:</span>: "+feature.properties.objectID +"</p>";
                 if (feature.properties.place == 'Swiss') {
                     fillCircle='purple',
                     colorCircle='black'
@@ -774,7 +784,6 @@ $(document).ready(function(){
                 };
                 var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
                 .on('mouseover', function(){this.bindPopup(str).openPopup()})
-                .on('mouseout', function(){this.closePopup()})
                 return circleMarker;
                 }
         });
@@ -784,12 +793,14 @@ $(document).ready(function(){
                 return feature.properties.year>="1548" && feature.properties.year<="1555"
             },
             pointToLayer: function(feature,latlng){
-                var str = "<p style= text-align:center> "+feature.properties.name +"</p><hr>";
-                str += "<p>Place: "+feature.properties.place +"</p>";
-                str += "<p>Year: "+feature.properties.year +"</p>";
-                str += "<p>Information: "+feature.properties.ambInfo +"</p>";
+                var str = "<p style=text-align:center><span style=font-weight:bold> "+feature.properties.name +"</span></p><hr>";
+                str += "<p><span style= font-weight:bold>Place:</span> "+feature.properties.place +"</p>";
+                str += "<p><span style=font-weight:bold>Year:</span> "+feature.properties.year +"</p>";
+                str += "<p><span style=font-weight:bold>Information:</span> "+feature.properties.ambInfo +"</p>";
+                str += "<p><span style=font-weight:bold>Source:</span> "+feature.properties.source +"</p>";
+                str += "<p><span style=font-weight:bold>Link:</span> "+feature.properties.link +"</p>";
         // *******delete the objectID string before publication********
-                str += "<p>Object ID: "+feature.properties.objectID +"</p>";
+                str += "<p><span style=font-weight:bold>Object ID:</span>: "+feature.properties.objectID +"</p>";
                 if (feature.properties.place == 'Swiss') {
                     fillCircle='purple',
                     colorCircle='black'
@@ -850,7 +861,6 @@ $(document).ready(function(){
                 };
                 var circleMarker = L.circleMarker(latlng, {radius:'10', fillColor:fillCircle, color:colorCircle, fillOpacity:'1'})
                 .on('mouseover', function(){this.bindPopup(str).openPopup()})
-                .on('mouseout', function(){this.closePopup()})
                 return circleMarker;
                 }
         });
