@@ -230,7 +230,7 @@ h4{
     float: right;
     /* max-width: 25%; */
     height:92%;
-    background-color: rgba(245, 242, 236, 0.84);
+    background-color: rgba(245, 242, 236, 1);
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     /* padding-left: 1.27%;
     padding-right: 1.27%; */
@@ -254,6 +254,44 @@ h4{
     border-radius: 20px;       /* roundness of the scroll thumb */
 }
 
+/* Sections button at top of Article */
+.navbar-expand{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: rgba(245, 242, 236, 1);
+    z-index: 999;
+}
+.navbar-nav .nav-link {
+    padding-right: 0;
+    padding-left: 0;
+    border: solid black;
+    border-width: thin;
+    border-radius: 5pt;
+    background-color: white;
+}
+
+.navbar-expand .navbar-nav .nav-link {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-left:-20px;
+}
+
+.dropdown-toggle::after{
+    display:none;
+}
+
+#article .dropdown-menu.show{
+    margin-left:-20px;
+}
+
+#article .dropdown-item{
+    padding: 0.25rem 0.7rem;
+}
+/* End Sections button at top of article */
+
 .action{
     border: none;
     color: blue;
@@ -266,6 +304,17 @@ h4{
 
 .action:hover{
     background-color: rgba(255, 255, 255, 0.7);
+}
+
+#reader-note{
+    border: solid black;
+    border-radius: 10pt;
+    margin: 2rem;
+    font-size: 12pt;
+}
+
+#reader-note p{
+    font-size: 1rem;
 }
 
 #back-button{
