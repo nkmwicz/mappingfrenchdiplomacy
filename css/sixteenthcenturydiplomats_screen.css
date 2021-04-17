@@ -43,7 +43,7 @@ body::-webkit-scrollbar-thumb {
     position:absolute;
     height: 100%;
     width: 100%;
-    background-image: url(../images/ambassadors-holbein.png);
+    background-image: url(../images/ambassadors-holbein1.3.jpg);
     background-size: cover;
     margin: 0;
     z-index: 1;
@@ -53,7 +53,7 @@ body::-webkit-scrollbar-thumb {
     position: absolute;
     height: 100%;
     width: 100%;
-    background-color: rgba(255, 228, 196, .7);
+    background-color: rgba(255, 228, 196, .4);
     z-index: 2;
 }
 
@@ -175,7 +175,7 @@ h4{
     align-content: center;
     text-align: center;
     max-width: 500px;
-    background-color: rgba(255, 235, 205, 0.5);
+    /* background-color: rgba(255, 235, 205, 0.5); */
     margin-left: auto;
     margin-right: auto;
     padding-top: 2rem;
