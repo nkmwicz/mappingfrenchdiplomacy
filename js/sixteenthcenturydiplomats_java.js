@@ -23,6 +23,7 @@ var ctlLayers;
 var objBasemap;
 var objOverlays;
 var mrkCircles;
+var slider;
 
 $(document).ready(function(){
     var lyrEsri_WorldShadedRelief = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
@@ -955,10 +956,55 @@ $(document).ready(function(){
             .addLayer(lyrAllDates);
         
         clusters.addTo(mymap); 
-        clusters.checkIn(lyrGroup);
-        lyrGroup.addTo(mymap); 
+        // clusters.checkIn(lyrGroup);
+        clusters.checkIn(lyrAllDates);
+        // lyrGroup.addTo(mymap); 
+        lyrAllDates.addTo(mymap);
 
-        mymap.fitBounds(lyr1547.getBounds());
+        $(document).on('keyup', '#srchfilter', function(e){
+            var userInput = e.target.value;
+            lyrAllDates.eachLayer (function(layer){
+                if (layer.feature.properties.name.toLowerCase().indexOf(userInput.toLowerCase())>-1){
+                    layer.addTo(mymap)
+                } else {
+                    mymap.removeLayer(layer)
+                }
+            });
+        });
+
+        slider = document.getElementById('slider');
+
+        noUiSlider.create(slider, {
+            start: [1515, 1600],
+            tooltips: [wNumb({decimals:0}), wNumb({decimals:0})],
+            range: {
+                'min': 1515,
+                'max': 1600
+            }
+        }).on('set', function(e){
+            console.log(e)
+            var mapdates = "French Diplomats, "+parseFloat(e[0]).toFixed(0)+" to "+parseFloat(e[1]).toFixed(0); 
+            $("#map-title").html(mapdates);
+        
+
+        lyrAllDates.eachLayer(function(layer){
+            if(layer.feature.properties.year>=parseFloat(e[0])&&layer.feature.properties.year<=parseFloat(e[1])){
+                layer.addTo(mymap);
+            } else{
+                mymap.removeLayer(layer);
+            }
+            
+        });
+        });
+
+        // slider.on('slide', function(e){
+        //     console.log(e)
+        // });
+       
+
+        
+
+        mymap.fitBounds(lyrAllDates.getBounds());
 
         mymap.on('click', function(e){
             console.log(e);
@@ -967,18 +1013,15 @@ $(document).ready(function(){
         
         // *****Event Buttons*****
         $("#back-button").click(function(){
-            $("#map-title").text("French Ambassadors Abroad, 1515 to 1600");
             mymap.fitBounds(lyr1547.getBounds());
             mymap.closePopup();
-            lyrGroup.clearLayers();
-            lyrGroup.addLayer(lyrAllDates)
+            slider.noUiSlider.set([1515,1600]);
         });
 
         $("#1516").click(function(){
-            $("#map-title").text("French Ambassadors Abroad, 1516");
-            lyrGroup.clearLayers();
-            lyrGroup.addLayer(lyr1516);
-            mymap.fitBounds(lyr1516.getBounds(), {padding:[150,150]});
+            mymap.closePopup();
+            slider.noUiSlider.set([1516, 1516]);
+            // mymap.fitBounds(this.getBounds(), {padding:[150,150]});
         });
 
         $("#1547").click(function(){

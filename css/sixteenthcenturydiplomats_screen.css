@@ -329,6 +329,29 @@ h4{
     margin-top: 10px;
 }
 
+#srch{
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    z-index: 32;
+}
+
+.noUi-horizontal .noUi-tooltip{
+    bottom: -155%;
+}
+
+.noUi-connect{
+    background: rgba(168, 165, 160, .95);
+}
+
+#slider{
+    position: absolute;
+    margin-top: 100px;
+    margin-left: 100px;
+    width: 250px;
+    z-index: 999;
+} 
+
 #map-title-line{
     position: absolute;
     margin-left: 22%;
@@ -384,3 +407,4 @@ h4{
 .popover-body{
     padding: 0.5rem;
 }
+
