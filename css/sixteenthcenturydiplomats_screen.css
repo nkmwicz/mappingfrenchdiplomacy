@@ -337,7 +337,7 @@ h4{
 }
 
 .noUi-horizontal .noUi-tooltip{
-    bottom: -155%;
+    bottom: 110%;
 }
 
 .noUi-connect{
@@ -346,8 +346,8 @@ h4{
 
 #slider{
     position: absolute;
-    margin-top: 100px;
-    margin-left: 100px;
+    bottom: 10px;
+    left: 20px;
     width: 250px;
     z-index: 999;
 } 
