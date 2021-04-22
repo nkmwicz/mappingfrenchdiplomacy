@@ -1,4 +1,6 @@
-var mymap = L.map('mapid');
+var mymap = L.map('mapid',{
+    maxZoom: 7
+});
 var popup;
 var lyrAllDatesCluster;
 var lyrAllDates;
@@ -24,6 +26,7 @@ var objBasemap;
 var objOverlays;
 var mrkCircles;
 var slider;
+var mapdates;
 
 $(document).ready(function(){
     var lyrEsri_WorldShadedRelief = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
@@ -793,23 +796,23 @@ $(document).ready(function(){
 
 
         // *****Console Logs for above data*****
-        lyr1515To1520.on('click', function(e){
+        lyrAllDates.on('click', function(e){
             console.log(e)
         });
 
-        // clusters.on('clustermouseover', function(e){
-        //     console.log(e);
-        // });
+        clusters.on('clustermouseover', function(e){
+            console.log(e);
+        });
 
         // *****layer group and cluster*****
         lyrGroup = L.layerGroup()
             .addLayer(lyrAllDates);
         
         clusters.addTo(mymap); 
-        // clusters.checkIn(lyrGroup);
-        clusters.checkIn(lyrAllDates);
-        // lyrGroup.addTo(mymap); 
-        lyrAllDates.addTo(mymap);
+        clusters.checkIn(lyrGroup);
+        // clusters.checkIn(lyrAllDates);
+        lyrGroup.addTo(mymap); 
+        // lyrAllDates.addTo(mymap);
 
         // $(document).on('keyup', '#srchfilter', function(e){
         //     var userInput = e.target.value;
@@ -825,27 +828,30 @@ $(document).ready(function(){
         slider = document.getElementById('slider');
         noUiSlider.create(slider, {
             start: [1515, 1600],
+            behaviour: 'drag-hover',
             connect: [false, true, false],
+            step: 1,
             tooltips: [wNumb({decimals:0}), wNumb({decimals:0})],
             range: {
                 'min': 1515,
                 'max': 1600
             }
         }).on('set', function(e){
-            console.log(e)
-            var mapdates = "French Diplomats, "+parseFloat(e[0]).toFixed(0)+" to "+parseFloat(e[1]).toFixed(0); 
+            if (parseFloat(e[0]).toFixed(0)==parseFloat(e[1]).toFixed(0)){
+                mapdates = "French Diplomats, "+parseFloat(e[0]).toFixed(0); 
+            } else {
+                mapdates = "French Diplomats, "+parseFloat(e[0]).toFixed(0)+"-"+parseFloat(e[1]).toFixed(0); 
+            }
             $("#map-title").html(mapdates);
-        
-
         lyrAllDates.eachLayer(function(layer){
             if(layer.feature.properties.year>=parseFloat(e[0])&&layer.feature.properties.year<=parseFloat(e[1])){
                 layer.addTo(mymap);
             } else{
                 mymap.removeLayer(layer);
-            }
-            
+            }   
         });
         });
+        
 
         // slider.on('slide', function(e){
         //     console.log(e)
@@ -866,68 +872,126 @@ $(document).ready(function(){
             mymap.fitBounds(lyrAllDates.getBounds());
             mymap.closePopup();
             slider.noUiSlider.set([1515,1600]);
+            mymap.fitBounds(clusters.getBounds());
         });
 
-        $("#1516").click(function(){
+        $(".1516").click(function(){
             mymap.closePopup();
             slider.noUiSlider.set([1516, 1516]);
-            // mymap.fitBounds(this.getBounds(), {padding:[150,150]});
+            mymap.fitBounds(clusters.getBounds(), {padding:[100,100]});
         });
 
-        $("#1547").click(function(){
+        $(".1547").click(function(){
             mymap.closePopup();
             slider.noUiSlider.set([1547, 1547]);
-            // mymap.fitBounds(this.getBounds(), {padding:[150,150]});
+            mymap.fitBounds(clusters.getBounds());
         });
 
-        $("#1515-1520").click(function(){
+        $(".1515-1520").click(function(){
             mymap.closePopup();
+            mymap.fitBounds(lyrAllDates.getBounds());
             slider.noUiSlider.set([1515, 1520]);
-            // mymap.fitBounds(this.getBounds(), {padding:[150,150]});
+            mymap.fitBounds(clusters.getBounds(), {padding:[50,50]});
         });
 
-        $("#1520-1525").click(function(){
+        $(".Bonnivet1518").click(function(){
+            mymap.closePopup();
+            slider.noUiSlider.set([1518, 1518]);
+            lyrAllDates.eachLayer(function(layer){
+                if (layer.feature.properties.name=="Gouffier de Bonnivet, Guillaume"&&layer.feature.properties.year=="1518"){
+                    layer.addTo(mymap).fire('mouseover');
+                } else {
+                    mymap.removeLayer(layer);
+                }
+            });
+            $("#map-title").text("Gouffier de Bonnivet in England, 1518");
+        });
+
+        $(".HRE1519").click(function(){
+            mymap.closePopup();
+            slider.noUiSlider.set([1519, 1519]);
+            lyrAllDates.eachLayer(function(layer){
+                if (layer.feature.properties.place=="Holy Roman Empire"&&layer.feature.properties.year=="1519"){
+                    layer.addTo(mymap).fire('mouseover');
+                } else {
+                    mymap.removeLayer(layer);
+                }
+            });
+            $("#map-title").text("French Diplomats in the Holy Roman Empire, 1519");
+            clusters.fire('mouseover');
+        });
+
+        $(".daugerant1520-1525").click(function(){
             mymap.closePopup();
             slider.noUiSlider.set([1520, 1525]);
-            // mymap.fitBounds(this.getBounds(), {padding:[150,150]});
-
+            lyrAllDates.eachLayer(function(layer){
+                if (layer.feature.properties.place=="Swiss"&&layer.feature.properties.year>="1520"&&layer.feature.properties.year<="1525"){
+                    layer.addTo(mymap)
+                } else {
+                    mymap.removeLayer(layer);
+                }
+            });
+            clusters.spiderfy();
+            $("#map-title").text("Louis Daugerant in the Swiss Cantons, 1520-1525");
+            mymap.setView([46.92,7.47]);
         });
 
-        $("#1515-1525").click(function(){
+        $(".portugal1520-1525").click(function(){
+            mymap.closePopup();
+            slider.noUiSlider.set([1520, 1525]);
+            lyrAllDates.eachLayer(function(layer){
+                if (layer.feature.properties.place=="Portugal"&&layer.feature.properties.year>="1520"&&layer.feature.properties.year<="1525"){
+                    layer.addTo(mymap)
+                } else {
+                    mymap.removeLayer(layer);
+                }
+            });
+            $("#map-title").text("French Diplomats in Portugal, 1520-1525");
+            clusters.spiderfy();
+            mymap.setView([38.74,-9.10]);
+        });
+
+        $(".1520-1525").click(function(){
+            mymap.closePopup();
+            slider.noUiSlider.set([1520, 1525]);
+            mymap.fitBounds(clusters.getBounds(), {padding:[50,50]});
+        });
+
+        $(".1515-1525").click(function(){
             mymap.closePopup();
             slider.noUiSlider.set([1515, 1525]);
-            // mymap.fitBounds(this.getBounds(), {padding:[150,150]});
+            mymap.fitBounds(clusters.getBounds(), {padding:[50,50]});
 
         });
 
-        $("#1525-1535").click(function(){
+        $(".1525-1535").click(function(){
             mymap.closePopup();
             slider.noUiSlider.set([1525, 1535]);
-            // mymap.fitBounds(this.getBounds(), {padding:[150,150]});
+            mymap.fitBounds(clusters.getBounds(), {padding:[50,50]});
 
         });
 
-        $("#1515-1535").click(function(){
+        $(".1515-1535").click(function(){
             mymap.closePopup();
             slider.noUiSlider.set([1515, 1535]);
-            // mymap.fitBounds(this.getBounds(), {padding:[150,150]});
+            mymap.fitBounds(clusters.getBounds(), {padding:[150,150]});
 
         });
 
-        $("#1535-1555").click(function(){
+        $(".1535-1555").click(function(){
             mymap.closePopup();
             slider.noUiSlider.set([1535, 1555]);
-            // mymap.fitBounds(this.getBounds(), {padding:[150,150]});
+            mymap.fitBounds(clusters.getBounds(), {padding:[150,150]});
 
         });
 
         mymap.scrollWheelZoom.disable()
 
     //********Shows coordinates of mouse in "map_coords" section******
-        // mymap.on('mousemove', function(e){
-        //     var str = "Lat: "+e.latlng.lat.toFixed(2)+" Long: "+e.latlng.lng.toFixed(2)+" | Zoom: "+mymap.getZoom(); 
-        //     $("#map_coords").html(str);
-        // });
+        mymap.on('mousemove', function(e){
+            var str = "Lat: "+e.latlng.lat.toFixed(2)+" Long: "+e.latlng.lng.toFixed(2)+" | Zoom: "+mymap.getZoom(); 
+            $("#map_coords").html(str);
+        });
     });
     // *****Data Toggles on links declaring inoperability and footnotes*****
     $('[data-toggle="popover"]').popover({trigger:'hover'});

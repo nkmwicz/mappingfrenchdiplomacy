@@ -29,6 +29,11 @@ a:hover{
     font-size: 12pt;
 }
 
+.fn{
+    padding-top:50px;
+    margin-top: -50px;
+}
+
 body::-webkit-scrollbar{
     width: 6px;
 
@@ -239,9 +244,9 @@ h4{
     overflow-x: hidden;
     z-index: 150;
     /* margin-right: 1.5%; */
-    margin-top: 1%;
-    margin-left: .5%;
-    margin-bottom: 2.5%;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 25px;
 }
 
 #article::-webkit-scrollbar{
@@ -336,26 +341,51 @@ h4{
     z-index: 32;
 }
 
+#slider{
+    position: absolute;
+    top: 30px;
+    right: 2%;
+    width: 25%;
+    height: 10px;
+    z-index: 1000;
+} 
+
+.noUi-tooltip{
+    padding: 0;
+    font-size: 10pt;
+    background: white;
+    border: solid black;
+    border-radius: 5pt;
+    padding:2px;
+    border-width: thin;
+}
+
 .noUi-horizontal .noUi-tooltip{
-    bottom: 110%;
+    bottom:98%;
+}
+
+.noUi-horizontal .noUi-handle {
+    width: 15px;
+    height: 15px;
+    right: -4px;
+    top: -4px;
+    border: none;
+    border-radius: 10px;
+    background: black;
+}
+
+.noUi-handle:after, .noUi-handle:before{
+    display: none;
 }
 
 .noUi-connect{
     background: rgba(168, 165, 160, .95);
 }
 
-#slider{
-    position: absolute;
-    bottom: 10px;
-    left: 20px;
-    width: 250px;
-    z-index: 999;
-} 
-
 #map-title-line{
     position: absolute;
-    margin-left: 22%;
-    margin-right: 48%;
+    margin-left: 25%;
+    margin-right: 45%;
     margin-top: 10px;
     bottom: 20px;
     z-index: 31;
