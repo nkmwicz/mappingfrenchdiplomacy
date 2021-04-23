@@ -843,12 +843,12 @@ $(document).ready(function(){
                 mapdates = "French Diplomats, "+parseFloat(e[0]).toFixed(0)+"-"+parseFloat(e[1]).toFixed(0); 
             }
             $("#map-title").html(mapdates);
-        lyrAllDates.eachLayer(function(layer){
-            if(layer.feature.properties.year>=parseFloat(e[0])&&layer.feature.properties.year<=parseFloat(e[1])){
-                layer.addTo(mymap);
-            } else{
-                mymap.removeLayer(layer);
-            }   
+            lyrAllDates.eachLayer(function(layer){
+                if(layer.feature.properties.year>=parseFloat(e[0])&&layer.feature.properties.year<=parseFloat(e[1])){
+                    layer.addTo(mymap);
+                } else{
+                    mymap.removeLayer(layer);
+                }   
         });
         });
         
