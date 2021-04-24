@@ -434,7 +434,15 @@ h4{
     margin: 10px 0;
 }
 
+/* styling for popovers for footnotes and othe popoverable comments */
 .popover-body{
     padding: 0.5rem;
 }
 
+.popover .arrow::after{
+    display:none;
+}
+
+.popover .arrow::before{
+    display:none;
+}
