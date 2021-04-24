@@ -178,9 +178,9 @@ $(document).ready(function(){
         //     console.log(e)
         // });
 
-        // clusters.on('clusterclick', function(e){
-        //     console.log(e);
-        // });
+        clusters.on('clusterclick', function(e){
+            console.log(e);
+        });
 
         // mymap.on('click', function(e){
         //     console.log(e);
@@ -343,15 +343,36 @@ $(document).ready(function(){
             mymap.closePopup();
             slider.noUiSlider.set([1515, 1535]);
             mymap.fitBounds(clusters.getBounds(), {padding:[150,150]});
-
         });
 
         $(".1535-1555").click(function(){
             mymap.closePopup();
             slider.noUiSlider.set([1535, 1555]);
             mymap.fitBounds(clusters.getBounds(), {padding:[150,150]});
-
         });
+
+        $(".1535-1540").click(function(){
+            mymap.closePopup();
+            slider.noUiSlider.set([1535, 1540]);
+            mymap.fitBounds(clusters.getBounds(), {padding:[150,150]});
+        });
+        
+        $(".1540-1545").click(function(){
+            mymap.closePopup();
+            slider.noUiSlider.set([1540, 1545]);
+            mymap.fitBounds(clusters.getBounds(), {padding:[150,150]});
+        });  
+
+        $(".1545-1550").click(function(){
+            mymap.closePopup();
+            slider.noUiSlider.set([1545, 1550]);
+            mymap.fitBounds(clusters.getBounds(), {padding:[150,150]});
+        });  
+        $(".1550-1555").click(function(){
+            mymap.closePopup();
+            slider.noUiSlider.set([1550, 1555]);
+            mymap.fitBounds(clusters.getBounds(), {padding:[150,150]});
+        });  
 
         mymap.scrollWheelZoom.disable()
 
