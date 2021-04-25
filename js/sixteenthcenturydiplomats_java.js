@@ -239,7 +239,28 @@ $(document).ready(function(){
         mymap.fitBounds(lyrAllDates.getBounds(), {padding:[50,50]});
 
         // *****Event Buttons*****
-        $("#back-button").click(function(){
+        $(".example").click(function(){
+            mymap.closePopup();
+            slider.noUiSlider.set([1545,1555]);
+            mymap.fitBounds(clusters.getBounds());
+            document.getElementById("map-title").innerHTML = "Example Event, 1545-1555"
+        });
+
+        $(".poland1570s").click(function(){
+            mymap.closePopup();
+            slider.noUiSlider.set([1570,1580]);
+            lyrAllDates.eachLayer(function(layer){
+                if (layer.feature.properties.place=="Poland"){
+                    layer.addTo(mymap);
+                } else {
+                    mymap.removeLayer(layer);
+                }
+            });
+            document.getElementById("map-title").innerHTML = "Poland, 1570-1580"
+            mymap.setView([52.21, 21.01]);
+        });
+
+        $(".homeview").click(function(){
             mymap.fitBounds(lyrAllDates.getBounds());
             mymap.closePopup();
             slider.noUiSlider.set([1515,1600]);
@@ -329,14 +350,12 @@ $(document).ready(function(){
             mymap.closePopup();
             slider.noUiSlider.set([1515, 1525]);
             mymap.fitBounds(clusters.getBounds(), {padding:[50,50]});
-
         });
 
         $(".1525-1535").click(function(){
             mymap.closePopup();
             slider.noUiSlider.set([1525, 1535]);
             mymap.fitBounds(clusters.getBounds(), {padding:[50,50]});
-
         });
 
         $(".1515-1535").click(function(){
@@ -371,6 +390,12 @@ $(document).ready(function(){
         $(".1550-1555").click(function(){
             mymap.closePopup();
             slider.noUiSlider.set([1550, 1555]);
+            mymap.fitBounds(clusters.getBounds(), {padding:[150,150]});
+        });  
+
+        $(".1559-1600").click(function(){
+            mymap.closePopup();
+            slider.noUiSlider.set([1559, 1600]);
             mymap.fitBounds(clusters.getBounds(), {padding:[150,150]});
         });  
 
