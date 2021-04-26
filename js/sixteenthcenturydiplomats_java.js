@@ -53,7 +53,7 @@ $(document).ready(function(){
 
         clusters = L.markerClusterGroup.layerSupport({
             iconCreateFunction: function(cluster) {
-                clusterWidth = 30 +((cluster.getChildCount()))
+                clusterWidth = 30 +((cluster.getChildCount())*.8)
                 if (cluster._cLatLng.lat == '55.68', cluster._cLatLng.lng == '12.57'){
                     clusterColor = "rgba(193,184,78,0.8)";
                 } else if (cluster._cLatLng.lat == '51.51', cluster._cLatLng.lng == '-0.12'){
