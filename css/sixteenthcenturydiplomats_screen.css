@@ -434,6 +434,29 @@ h4{
     margin: 10px 0;
 }
 
+.clusterdiv{
+    /* background-color: white; */
+    border: solid black;
+    border-radius: 100pt;
+}
+
+/* .clusterdiv b{
+    margin-left:auto;
+} */
+
+.clustertext{
+    text-align: center;
+}
+
+.leaflet-div-icon{
+    background: none;
+    border: none;
+}
+
+.leaflet-marker-icon .marker-cluster{
+    margin-left:1px;
+}
+
 /* styling for popovers for footnotes and othe popoverable comments */
 .popover-body{
     padding: 0.5rem;
