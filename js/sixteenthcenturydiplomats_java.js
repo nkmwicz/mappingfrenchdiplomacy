@@ -36,6 +36,7 @@ var marginTop;
 var marginTop2;
 var marginLeft;
 
+
 $(document).ready(function(){
     var lyrEsri_WorldShadedRelief = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri',
@@ -44,16 +45,23 @@ $(document).ready(function(){
 
     // *****loading data to the map******
     var ambassadorgeojson = false;
+    var filters = {
+        text : '',
+        ranger : []
+    };
+
     fetch('data/16c-diplomats_data.geojson', {
         method: 'GET'
     })
     .then(Response => Response.json())
     .then(json => {
+        var min = 1515;
+        var max = 1555;
         // console.log(json)
 
         clusters = L.markerClusterGroup.layerSupport({
             iconCreateFunction: function(cluster) {
-                clusterWidth = 30 +((cluster.getChildCount())*.8)
+                clusterWidth = 30 +((cluster.getChildCount())*.5)
                 if (cluster._cLatLng.lat == '55.68', cluster._cLatLng.lng == '12.57'){
                     clusterColor = "rgba(193,184,78,0.8)";
                 } else if (cluster._cLatLng.lat == '51.51', cluster._cLatLng.lng == '-0.12'){
@@ -116,7 +124,7 @@ $(document).ready(function(){
         
         clusters.on('clusterclick', function (a) {
             // a.layer is actually a cluster
-            console.log('cluster ' + a.layer.getAllChildMarkers());
+            // console.log('cluster ' + a.layer.getAllChildMarkers());
         });
 
         clusters.on('clustermouseover', function(a){
@@ -174,6 +182,7 @@ $(document).ready(function(){
     // *****Layer data for the layer group that goes into the clusters*****
         lyrAllDates = L.geoJson(json, {
             pointToLayer: function (feature, latlng) {
+            // *****Popup HTML*****
                 var str = "<p style=text-align:center><span style=font-weight:bold> "+feature.properties.name +"</span></p><hr>";
                 str += "<p><span style= font-weight:bold>Place:</span> "+feature.properties.place +"</p>";
                 str += "<p><span style=font-weight:bold>Year:</span> "+feature.properties.year +"</p>";
@@ -268,27 +277,28 @@ $(document).ready(function(){
         clusters.checkIn(lyrGroup);
         lyrGroup.addTo(mymap); 
 
-        // $(document).on('keyup', '#srchfilter', function(e){
-        //     var userInput = e.target.value;
-        //     lyrAllDates.eachLayer (function(layer){
-        //         if (layer.feature.properties.name.toLowerCase().indexOf(userInput.toLowerCase())>-1){
-        //             layer.addTo(mymap)
-        //         } else {
-        //             mymap.removeLayer(layer)
-        //         }
-        //     });
-        // });
-
+        
+        //    *****This if statement gets the slider min/max*****
+        lyrAllDates.eachLayer(function (layer){
+            // console.log(layer)
+        if(layer.feature.properties.year <min){
+            min = layer.feature.properties.year;
+        }
+        if(layer.feature.properties.year>=max){
+            max = layer.feature.properties.year;
+        }
+        });
+        filters.range = [min,max]
         slider = document.getElementById('slider');
         noUiSlider.create(slider, {
-            start: [1515, 1600],
+            start: filters.range,
             behaviour: 'drag-hover',
             connect: [false, true, false],
             step: 1,
             tooltips: [wNumb({decimals:0}), wNumb({decimals:0})],
             range: {
-                'min': 1515,
-                'max': 1600
+                'min': min,
+                'max': max
             }
         }).on('set', function(e){
             if (parseFloat(e[0]).toFixed(0)==parseFloat(e[1]).toFixed(0)){
@@ -297,19 +307,34 @@ $(document).ready(function(){
                 mapdates = "French Diplomats, "+parseFloat(e[0]).toFixed(0)+"-"+parseFloat(e[1]).toFixed(0); 
             }
             $("#map-title").html(mapdates);
+            filters.range = [parseFloat(e[0]),parseFloat(e[1])];
             lyrAllDates.eachLayer(function(layer){
-                if(layer.feature.properties.year>=parseFloat(e[0])&&layer.feature.properties.year<=parseFloat(e[1])){
-                    layer.addTo(mymap);
-                } else{
-                    mymap.removeLayer(layer);
-                }   
-        });
+                filterlyrAllDates(layer);
+            });
         });
 
-        // slider.on('slide', function(e){
-        //     console.log(e)
-        // });
-               
+        $(document).on('keyup', '#srchfilter', function(e){
+            filters.text = e.target.value;
+            lyrAllDates.eachLayer (function(layer){
+                filterlyrAllDates(layer);
+            });
+        });
+
+        function filterlyrAllDates (layer){
+            var numberOfTrue = 0;
+            if (layer.feature.properties.name.toLowerCase().indexOf(filters.text.toLowerCase())>-1){
+                numberOfTrue+=1;
+            }
+            if(layer.feature.properties.year>=filters.range[0]&&layer.feature.properties.year<=filters.range[1]){
+                numberOfTrue+=1;
+            }
+            if(numberOfTrue==2){
+                layer.addTo(mymap);
+            }else{
+                mymap.removeLayer(layer)
+            }
+        }
+                      
         mymap.fitBounds(lyrAllDates.getBounds(), {padding:[50,50]});
 
         // *****Event Buttons*****
@@ -515,10 +540,10 @@ $(document).ready(function(){
         mymap.scrollWheelZoom.disable()
 
     //********Shows coordinates of mouse in "map_coords" section******
-        mymap.on('mousemove', function(e){
-            var str = "Lat: "+e.latlng.lat.toFixed(2)+" Long: "+e.latlng.lng.toFixed(2)+" | Zoom: "+mymap.getZoom(); 
-            $("#map_coords").html(str);
-        });
+    //     mymap.on('mousemove', function(e){
+    //         var str = "Lat: "+e.latlng.lat.toFixed(2)+" Long: "+e.latlng.lng.toFixed(2)+" | Zoom: "+mymap.getZoom(); 
+    //         $("#map_coords").html(str);
+    //     });
     });
     // *****Data Toggles on links declaring inoperability and footnotes*****
     $('[data-toggle="popover"]').popover({trigger:'hover'});
