@@ -336,8 +336,9 @@ h4{
 
 #srch{
     position: absolute;
-    bottom: 50px;
-    left: 50px;
+    top: 0;
+    right: 33.4%;
+    height: 25px;
     z-index: 32;
 }
 

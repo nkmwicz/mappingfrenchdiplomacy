@@ -97,7 +97,7 @@
                         <div id="reader-note">
                             <p style="text-align: center;">Note to the Reader</p>
                             <p style="text-align: center;">**This page is still in production, but it is made available online as a prototype for the larger project, but it uses data for the locations of French Diplomats. Sections on the letters will have the same functionality, but each data point inside the cluster will represent a letter from a French ruler.**</p>
-                            <p>This map is fully interactive. Click on clusters to expand the underlying data points. Each data point represents one diplomat present in that location during one year. Click on a point to open a popup with more information. The slider in the header of this article will filter the data by year. Click on <span class="action example">blue links such as this one</span> in the text to change the data represented on the map. Use the "Home View" button to return to the original state of the map. Most events occur in the sections after the introduction. Use the hamburger in the header of the narrative to jump between sections.</p>
+                            <p>This map is fully interactive. Click on clusters to expand the underlying data points. Each data point represents one diplomat present in that location during one year. Click on a point to open a popup with more information. The slider in the header of this article will filter the data by year. The search bar will filter the data by the diplomats name. Click on <span class="action example">blue links such as this one</span> in the text to change the data represented on the map. Use the "Home View" button to return to the original state of the map. Most events occur in the sections after the introduction. Use the hamburger in the header of the narrative to jump between sections.</p>
                             <p>N.B. This project is still in its early stages. As such, the data for this section is not yet complete. Some regions and periods (such as England and Rome) are incomplete. As the research continues, the map and text will be updated. Known omissions will be made clear in footnotes.</p>
                         </div>
                     <h4 id="intro" style="padding-top:50px; margin-top: -50px;">Introduction</a></h4>
@@ -192,10 +192,9 @@
             </div> 
             
             <div id="slider"></div>
-            <!-- <div id="srch">
-                <p>Search filter</p>
-                <input id="srchfilter" type="text">
-            </div> -->
+            <div id="srch">
+                <input id="srchfilter" placeholder="Search Diplomats Here" type="text">
+            </div>
 
             <div id="map-title-line">
                 <h3 id="map-title">French Diplomats, 1515-1600</h3>
@@ -206,9 +205,9 @@
             
             
 
-            <div id="footer">
+            <!-- <div id="footer">
                 <h4 id="map_coords">Lat: 19.4 Long: -99.1 | Zoom: 11</h4>                
-            </div>
+            </div> -->
         </div>
         <script src="resources/jquery-3.6.0.min.js"></script>
         
