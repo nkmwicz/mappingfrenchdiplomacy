@@ -35,6 +35,12 @@ var clusterMaxWidth;
 var marginTop;
 var marginTop2;
 var marginLeft;
+var min;
+var max;
+var filters = {
+    text : '',
+    ranges : []
+};
 
 
 $(document).ready(function(){
@@ -45,18 +51,15 @@ $(document).ready(function(){
 
     // *****loading data to the map******
     var ambassadorgeojson = false;
-    var filters = {
-        text : '',
-        ranger : []
-    };
+    
 
     fetch('data/16c-diplomats_data.geojson', {
         method: 'GET'
     })
     .then(Response => Response.json())
     .then(json => {
-        var min = 1515;
-        var max = 1555;
+        min = 1515;
+        max = 1555;
         // console.log(json)
 
         clusters = L.markerClusterGroup.layerSupport({
@@ -108,15 +111,14 @@ $(document).ready(function(){
                     clusterTextColor = "black",
                     clusterBorder = "solid black"
                 };
-                var marginTop = (clusterWidth-23)/2;
-                var marginLeft = (clusterWidth-10)/2;
-                var marginTop2 = (clusterWidth-15)/2;
+                marginTop = (clusterWidth-23)/2;
+                marginLeft = (clusterWidth-10)/2;
+                marginTop2 = (clusterWidth-15)/2;
                 return L.divIcon({ 
                     html: '<div class="clusterdiv" style="width:'+clusterWidth+'px; height: '+clusterWidth+'px; max-height:'+clusterMaxWidth+'px; max-width:'+clusterMaxWidth+'px; margin-top:-'+marginTop2+'px; margin-left:-'+marginLeft+'px; background-color:'+clusterColor+'; color:'+clusterTextColor+'; border:'+clusterBorder+'"><div class="clustertext" style="margin-top:'+marginTop+'px"><b>' + cluster.getChildCount() + '</b></div></div>',
                     // className: 'clusterdiv',
                     // iconSize: new L.Point(width, width) 
                 });
-                console.log(cluster);
             },
             maxClusterRadius: 0,
         });
@@ -339,6 +341,8 @@ $(document).ready(function(){
 
         // *****Event Buttons*****
         $(".example").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates);
@@ -348,6 +352,8 @@ $(document).ready(function(){
         });
 
         $(".homeview").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.fitBounds(lyrAllDates.getBounds());
             mymap.closePopup();
             lyrGroup.clearLayers();
@@ -357,6 +363,8 @@ $(document).ready(function(){
         });
 
         $(".poland1570s").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates);
@@ -373,6 +381,8 @@ $(document).ready(function(){
         });
 
         $(".1516").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates);
@@ -381,6 +391,8 @@ $(document).ready(function(){
         });
 
         $(".1547").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates);
@@ -389,6 +401,8 @@ $(document).ready(function(){
         });
 
         $(".1515-1520").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates);
@@ -397,6 +411,8 @@ $(document).ready(function(){
         });
 
         $(".Bonnivet1518").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates);
@@ -412,6 +428,8 @@ $(document).ready(function(){
         });
 
         $(".HRE1519").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates);
@@ -427,6 +445,8 @@ $(document).ready(function(){
         });
 
         $(".daugerant1520-1525").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates);
@@ -443,6 +463,8 @@ $(document).ready(function(){
         });
 
         $(".portugal1520-1525").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates);
@@ -459,6 +481,8 @@ $(document).ready(function(){
         });
 
         $(".1520-1525").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates);
@@ -467,6 +491,8 @@ $(document).ready(function(){
         });
 
         $(".1515-1525").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates);
@@ -475,6 +501,8 @@ $(document).ready(function(){
         });
 
         $(".1525-1535").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates);
@@ -483,6 +511,8 @@ $(document).ready(function(){
         });
 
         $(".1515-1535").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates);
@@ -491,6 +521,8 @@ $(document).ready(function(){
         });
 
         $(".1535-1555").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates);
@@ -499,6 +531,8 @@ $(document).ready(function(){
         });
 
         $(".1535-1540").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates);
@@ -507,6 +541,8 @@ $(document).ready(function(){
         });
         
         $(".1540-1545").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates);
@@ -515,6 +551,8 @@ $(document).ready(function(){
         });  
 
         $(".1545-1550").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates);
@@ -522,6 +560,8 @@ $(document).ready(function(){
             mymap.fitBounds(clusters.getBounds(), {padding:[150,150]});
         });  
         $(".1550-1555").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates);
@@ -530,11 +570,13 @@ $(document).ready(function(){
         });  
 
         $(".1559-1600").click(function(){
+            $("#srchfilter").val('');
+            $("#srchfilter").trigger($.Event('keyup'));
             mymap.closePopup();
             lyrGroup.clearLayers();
             lyrGroup.addLayer(lyrAllDates);
             slider.noUiSlider.set([1559, 1600]);
-            mymap.fitBounds(clusters.getBounds(), {padding:[150,150]});
+            mymap.fitBounds(clusters.getBounds(), {padding:[50,50]});
         });  
 
         mymap.scrollWheelZoom.disable()
