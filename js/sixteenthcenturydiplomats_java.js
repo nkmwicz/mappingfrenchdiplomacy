@@ -2,11 +2,9 @@ var mymap = L.map("mapid", {
   maxZoom: 6,
 });
 var popup;
-var lyrAllDatesCluster;
 var lyrAllDates;
 var lyrGroup;
 var clusters;
-var popup;
 var lyrEsri_WorldShadedRelief;
 var ambassadorgeojson;
 var circleMarker;
