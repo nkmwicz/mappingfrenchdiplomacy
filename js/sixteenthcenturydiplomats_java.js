@@ -1,11 +1,9 @@
-var mymap = L.map("mapid", {
-  maxZoom: 6,
-});
-var popup;
+const mymap = L.map('mapid', {maxZoom: 6});
+let popup;
 var lyrAllDates;
 var lyrGroup;
 var clusters;
-var lyrEsri_WorldShadedRelief;
+const lyrEsri_WorldShadedRelief = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {attribution:'Tiles &copy; Esri &mdash; Source: Esri', maxZoom: 13,})
 var ambassadorgeojson;
 var circleMarker;
 var circleMarker1;
@@ -31,13 +29,7 @@ var filters = {
 };
 
 $(document).ready(function () {
-  var lyrEsri_WorldShadedRelief = L.tileLayer(
-    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}",
-    {
-      attribution: "Tiles &copy; Esri &mdash; Source: Esri",
-      maxZoom: 13,
-    }
-  ).addTo(mymap);
+  lyrEsri_WorldShadedRelief.addTo(mymap);
 
   // *****loading data to the map******
   var ambassadorgeojson = false;
@@ -146,8 +138,7 @@ $(document).ready(function () {
               clusterWidth +
               "px; height: " +
               clusterWidth +
-              "px; max-height:" +
-              clusterMaxWidth +
+              "px; max-height:" +        clusterMaxWidth +
               "px; max-width:" +
               clusterMaxWidth +
               "px; margin-top:-" +
