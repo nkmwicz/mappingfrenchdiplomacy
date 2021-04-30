@@ -1,0 +1,7 @@
+node_modules
+.next
+data/
+resources/
+
+# Ignore all HTML files:
+*.html

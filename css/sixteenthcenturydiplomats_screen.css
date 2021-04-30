@@ -421,11 +421,6 @@ h4{
     line-height: 20px;
 }
 
-/* styling for leaflet aspects */
-/* .leaflet-popup-close-button{
-    /* display: none; */
-/* } */
-
 .leaflet-popup-content p{
     font-size: 10pt;
     margin: 10px 0;
@@ -454,7 +449,7 @@ h4{
     margin-left:1px;
 }
 
-/* styling for popovers for footnotes and othe popoverable comments */
+/* styling for popovers for footnotes */
 .popover-body{
     padding: 0.5rem;
 }
@@ -465,4 +460,18 @@ h4{
 
 .popover .arrow::before{
     display:none;
+}
+
+/* styling for broken hyperlinks tooltips */
+.tooltip-inner{
+    background-color: white;
+    color: black;
+}
+
+.tooltip.bs-tooltip-top .arrow:before {
+    border-top-color: white;
+}
+
+.tooltip.bs-tooltip-right .arrow:before {
+    border-right-color: white;
 }
