@@ -4,15 +4,7 @@ const mymap = L.map('mapid', {maxZoom: 6});
 let popup;
 // eslint-disable-next-line camelcase
 const lyrEsri_WorldShadedRelief = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri', maxZoom: 13});
-let mapdates;
 let clusterWidth;
-let clusterColor;
-let clusterBorder;
-let clusterTextColor;
-let clusterMaxWidth;
-let marginTop;
-let marginTop2;
-let marginLeft;
 const filters = {
   text: '',
   ranges: [],
@@ -126,10 +118,6 @@ $(document).ready(function() {
               clusterWidth +
               'px; height: ' +
               clusterWidth +
-              'px; max-height:' +
-              clusterMaxWidth +
-              'px; max-width:' +
-              clusterMaxWidth +
               'px; margin-top:-' +
               marginTop2 +
               'px; margin-left:-' +
