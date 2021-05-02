@@ -1,10 +1,8 @@
 /* eslint-disable new-cap */
 /* eslint-disable require-jsdoc */
 const mymap = L.map('mapid', {maxZoom: 6});
-let popup;
 // eslint-disable-next-line camelcase
 const lyrEsri_WorldShadedRelief = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri', maxZoom: 13});
-let clusterWidth;
 const filters = {
   text: '',
   ranges: [],
@@ -20,12 +18,12 @@ $(document).ready(function() {
     method: 'GET',
   }).then((Response) => Response.json()).then((json) => {
     let min = 1515;
-    let max = 1555;
+    let max = 1600;
     // console.log(json)
 
     const clusters = L.markerClusterGroup.layerSupport({
       iconCreateFunction: function(cluster) {
-        clusterWidth = 30 + cluster.getChildCount() * 0.5;
+        const clusterWidth = 30 + cluster.getChildCount() * 0.5;
 
         if (
           (cluster._cLatLng.lat == '55.68', cluster._cLatLng.lng == '12.57')
@@ -109,9 +107,9 @@ $(document).ready(function() {
         } else {
           (clusterTextColor = 'black'), (clusterBorder = 'solid black');
         }
-        marginTop = (clusterWidth - 23) / 2;
-        marginLeft = (clusterWidth - 10) / 2;
-        marginTop2 = (clusterWidth - 15) / 2;
+        const marginTop = (clusterWidth - 23) / 2;
+        const marginLeft = (clusterWidth - 10) / 2;
+        const marginTop2 = (clusterWidth - 15) / 2;
         return L.divIcon({
           html:
               '<div class="clusterdiv" style="width:' +
