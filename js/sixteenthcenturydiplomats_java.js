@@ -684,6 +684,36 @@ $(document).ready(function() {
       mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
     });
 
+    $('.1550-1560').click(function() {
+      $('#srchfilter').val('');
+      $('#srchfilter').trigger($.Event('keyup'));
+      mymap.closePopup();
+      lyrGroup.clearLayers();
+      lyrGroup.addLayer(lyrAllDates);
+      slider.noUiSlider.set([1550, 1560]);
+      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+    });
+
+    $('.1560-1570').click(function() {
+      $('#srchfilter').val('');
+      $('#srchfilter').trigger($.Event('keyup'));
+      mymap.closePopup();
+      lyrGroup.clearLayers();
+      lyrGroup.addLayer(lyrAllDates);
+      slider.noUiSlider.set([1560, 1570]);
+      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+    });
+
+    $('.1570-1600').click(function() {
+      $('#srchfilter').val('');
+      $('#srchfilter').trigger($.Event('keyup'));
+      mymap.closePopup();
+      lyrGroup.clearLayers();
+      lyrGroup.addLayer(lyrAllDates);
+      slider.noUiSlider.set([1570, 1600]);
+      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+    });
+
     mymap.scrollWheelZoom.disable();
 
     //* *******Shows coordinates of mouse in 'map_coords' section******
