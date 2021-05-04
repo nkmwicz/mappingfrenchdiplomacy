@@ -1,15 +1,14 @@
 /* eslint-disable new-cap */
 /* eslint-disable require-jsdoc */
 const mymap = L.map('mapid', {maxZoom: 6});
-// eslint-disable-next-line camelcase
-const lyrEsri_WorldShadedRelief = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri', maxZoom: 13});
+const lyrEsriWorldShadedRelief = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri', maxZoom: 13});
 const filters = {
   text: '',
   ranges: [],
 };
 
 $(document).ready(function() {
-  lyrEsri_WorldShadedRelief.addTo(mymap);
+  lyrEsriWorldShadedRelief.addTo(mymap);
 
   // *****loading data to the map******
   let lyrAllDates = false;

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mapping French Diplomacy</title>
+
+        <!-- using leaflet 1.7.1 -->
+        <link rel="stylesheet" href="resources/leaflet.css">
+
+        <!-- using Bootstrap 4.0 / change to bootstrap.min.css before upload and delete full version -->
+        <link rel="stylesheet" type="text/css" href="resources/bootstrap.css">
+        
+        <!-- using leaflet 1.7.1 / change to leaflet.js before upload / delete leaflet-src-->
+        <script src="resources/leaflet-src.js"></script>
+
+        <!-- using marker cluster 1.4.1 -->
+        <link rel="stylesheet" type="text/css" href="resources/MarkerCluster.Default.css">
+        
+        <link rel="stylesheet" type="text/css" href="css/index_screen.css">
+
+    </head>
+
+    <body>
+        <div id= "box1">
+            <div id="wrapper">
+                <div id="nav1">
+                    <h1 id="h1"><a href="#">Mapping French Diplomacy</a></h1>
+                    <div class="btn-group">
+                        <button type="button" style="top:20px; margin-left:40px; z-index: 999;" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Table of Contents
+                        </button>
+                        <div class="dropdown-menu">
+                        <a class="dropdown-item" href="index.html" data-toggle="popover" data-placement="right" data-content="You are here.">Home</a>
+                        <div class="dropdown-divider"></div>
+                        <div class="drpdn">
+                            <button class="drpbtn">Introduction</button>
+                            <div class="drpdn-content" >
+                                <a href="#"data-toggle="popover" data-content="This page is under construction.">Introduction</a>
+                                <a href="#" data-toggle="popover" data-content="This page is under construction.">Distance and Diplomacy</a>
+                                <a href="sixteenthcenturydiplomats.html" data-toggle="popover" data-content="">Sixteenth-Century Diplomats</a>
+                                <a href="#" data-toggle="popover" data-content="This page is under construction.">Seventeenth-Century Diplomats</a>
+                            </div>
+                        </div>
+                        <a class="dropdown-item" href="#" data-toggle="popover" data-content="This page is under construction.">I: The Italian Wars, 1494-1559</a>
+                        <a class="dropdown-item" href="#" data-toggle="popover" data-content="This page is under construction.">II: The Wars of Religion, 1559-1629</a>
+                        <a class="dropdown-item" href="#" data-toggle="popover" data-content="This page is under construction.">III: The Thirty Years War, 1610-1659</a>
+                        <a class="dropdown-item" href="#" data-toggle="popover" data-content="This page is under construction.">IV: The Wars of Louis XIV, 1645-1715</a>
+                        <a class="dropdown-item" href="#" data-toggle="popover" data-content="This page is under construction.">Conclusion</a>
+                        <a class="dropdown-item" href="#" data-toggle="popover" data-content="This page is under construction.">Appendices</a>
+                        <a class="dropdown-item" href="#" data-toggle="popover" data-content="This page is under construction.">Bibliography</a>
+                        </div>
+                    </div>
+                </div>    
+                <div id="title">
+                    <div id="title-line">
+                        <h2>About the Author</h2>
+                        <br><br>
+                        <h2 class="subtitle">Nathan Michalewicz</h2>
+                    </div>
+                </div>
+                <nav class="navbar fixed-bottom navbar-light justify-content-center" style="z-index: 999;">
+                    <div class="d-flex justify-content-center"><a class="navbar-brand" href="index.html"data-toggle="popover" data-placement= "top" data-content="You are here.">Preface</a></div>
+                    <div class="d-flex justify-content-center"><a class="navbar-brand" href="#"data-toggle="popover" data-placement= "top" data-content="This page is under construction.">About the Author</a></div>
+                    <div class="d-flex justify-content-center"><a class="navbar-brand" href="#"data-toggle="popover" data-placement= "top" data-content="This page is under construction.">Acknowledgements</a></div>
+                  </nav>
+            </div> 
+        </div>
+            
+        <div class="row" id="box2">   
+                <div class="justify-content-center" id= "article">
+                    <br>
+                    <br>
+                    <h3 style="text-align: center;">About</h3>
+                    <p>Nathan Michalewicz </p>
+                    
+                </div> 
+            
+                <button class="btn btn-secondary" id="back-button">Home View</button>
+
+            <div id="mapid">
+            </div>
+
+            <div id="mapid-overlay">
+            </div>
+
+        
+        </div>
+        <script src="resources/jquery-3.6.0.min.js"></script>
+        
+        <script src="resources/popper.js"></script>
+               
+        <!-- using bootstrap 4.0 -->
+        <script src="resources/bootstrap.bundle.min.js"></script>
+
+        <!-- using leaflet.ajax 2.1.0 -->
+        <!-- <script src="resources/leaflet.ajax.js"></script> -->
+
+        <!-- using marker cluster 1.4.1 -->
+        <script src="resources/leaflet.markercluster.js"></script>
+
+        <!-- using markercluster.layersupport v2.0.1 -->
+        <script src="resources/leaflet.markercluster.layersupport.js"></script>
+
+        <script src="js/index_java.js"></script>
+    </body>
+</html>
