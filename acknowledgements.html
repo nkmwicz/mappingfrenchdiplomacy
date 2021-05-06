@@ -18,7 +18,7 @@
         <!-- using marker cluster 1.4.1 -->
         <link rel="stylesheet" type="text/css" href="resources/MarkerCluster.Default.css">
         
-        <link rel="stylesheet" type="text/css" href="css/about-the-author.css">
+        <link rel="stylesheet" type="text/css" href="css/acknowledgements.css">
 
     </head>
 
@@ -53,25 +53,40 @@
                         </div>
                     </div>
                 </div>    
-                    <div id= "article">
-                        <h2 class="col-3-md col-2-sm title">About the Author</h2>
-                        <br>
-                        <h2 class="subtitle">Nathan Michalewicz</h2>
-                        <br>
-                        <br>
-                        <p>Nathan is a historian of early modern Europe, diplomacy, and cross-confessional relationships. He began working with digital humanities tools during his doctoral training at George Mason University. He received his Ph.D. in history in 2020. Between 2015 and 2019, he was an editorial assistant at the <cite>Journal of Social History,</cite> proofing and copyediting articles and book reviews. He is currently an instructor in the department of history and art history at George Mason University. Along with this project, he is working on his book manuscript, <cite>The Ottoman Empire in French Foreign Policy, 1547-1610,</cite> which investigates the cross-confessional alliance and its place within France's broader foreign-policy initiatives.</p>
-                        <p> </p>
-                        
+                <div id="title">
+                    <div id="title-line">
+                        <h2>Acknowledgements</h2>
                     </div>
+                </div>
                 <nav class="navbar fixed-bottom navbar-light justify-content-center" style="z-index: 999;">
                     <div class="d-flex justify-content-center"><a class="navbar-brand" href="index.html"data-toggle="popover" data-placement= "top" data-content="">Preface</a></div>
-                    <div class="d-flex justify-content-center"><a class="navbar-brand" href="about-the-author.html" data-toggle="popover" data-placement= "top" data-content="You are here.">About the Author</a></div>
-                    <div class="d-flex justify-content-center"><a class="navbar-brand" href="acknowledgements.html"data-toggle="popover" data-placement= "top" data-content="">Acknowledgements</a></div>
+                    <div class="d-flex justify-content-center"><a class="navbar-brand" href="about-the-author.html"data-toggle="popover" data-placement= "top" data-content="">About the Author</a></div>
+                    <div class="d-flex justify-content-center"><a class="navbar-brand" href="acknowledgements.html"data-toggle="popover" data-placement= "top" data-content="You are here.">Acknowledgements</a></div>
                   </nav>
             </div> 
         </div>
             
+        <div class="row" id="box2">   
+                <div class="justify-content-center" id= "article">
+                    <br>
+                    <h3 style="text-align: center;">Acknowledgements</h3><br>
+                    <p>The amount of people who deserve thanks for this project is great, and the number surely will only increase as more of the project is published. First, I must thank my brother, Adam Michalewicz, for his insightful and throughtful suggestions for how to better represent my data. He deals extensively with big data and data visualizations at his job, so I came to him originally with my plan, and he gently redirected me toward more fruitful media. This project appears the way it does largely because of these early conversations. We still discuss the project, and he has many more suggestionst that I plan to implement as this monograph develops. I also need to thank Stephen Robertson. He was my first digital history professor during my doctoral studies at George Mason University. It was during that class that I was introduced to mapping and network analysis, and it was also during that class that I came up with the original idea of mapping royal letters after a less fruitful attempt at mapping the correspondence of a particular diplomat in the Ottoman Empire. Moreover, as I began this project, Stephen provided me with important advice, especially related to issues of sustainability. Indeed conversations with him inspired me to code the visualization in Leaflet.js myself rather than using ArcGIS StoryMaps due to those considerations. This decision proved fruitful as my project has greater flexibility because of this choice. Mack Holt provided me with encouragement each time I brought up my idea to map the letters of Henri III. Likely, the outcome of the project is much different than he expected, but his encouragement persuaded me to pursue this monograph that extends far beyond the letters of just one ruler of France.</p>
+
+                    <p>Finally, I must thank my wife and children for putting up with me while I decided to tackle this project in the middle of a pandemic. Rebecca has provided unwavering support listening to me while I explained all the super cool stuff I could do with my map. More importantly, she provided an extra pair of eyes to prevent me from making design blunders. No matter how tired she was of hearing, "Rebecca, will you come look at this," she always remained supportive. </p>
+                    
+                    
+                </div> 
+            
+                <button class="btn btn-secondary" id="back-button">Home View</button>
+
+            <div id="mapid">
+            </div>
+
+            <div id="mapid-overlay">
+            </div>
+
         
+        </div>
         <script src="resources/jquery-3.6.0.min.js"></script>
         
         <script src="resources/popper.js"></script>
@@ -88,8 +103,6 @@
         <!-- using markercluster.layersupport v2.0.1 -->
         <script src="resources/leaflet.markercluster.layersupport.js"></script>
 
-        <!-- <script> $('[data-toggle="popover"]').popover({trigger: 'hover'});</script> -->
-
-        <script src="js/about-the-author.js"></script>
+        <script src="js/acknowledgements.js"></script>
     </body>
 </html>
