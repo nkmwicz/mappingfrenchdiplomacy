@@ -6,6 +6,7 @@ const filters = {
   text: '',
   ranges: [],
 };
+let popup;
 
 $(document).ready(function() {
   lyrEsriWorldShadedRelief.addTo(mymap);
@@ -218,7 +219,7 @@ $(document).ready(function() {
       } else {
         popupText = '<p></p>';
       }
-      const popup = L.popup()
+      popup = L.popup()
           .setLatLng([a.layer._cLatLng.lat, a.layer._cLatLng.lng])
           .setContent(popupText)
           .openOn(mymap);
@@ -399,10 +400,11 @@ $(document).ready(function() {
 
     slider.noUiSlider.on('set', function(e) {
       if (parseFloat(e[0]).toFixed(0) == parseFloat(e[1]).toFixed(0)) {
-        mapdates = 'French Diplomats, ' + parseFloat(e[0]).toFixed(0);
+        mapdates = 'French Residential Ambassadors, ' +
+        parseFloat(e[0]).toFixed(0);
       } else {
         mapdates =
-            'French Diplomats, ' +
+            'French Residential Ambassadors, ' +
             parseFloat(e[0]).toFixed(0) +
             '-' +
             parseFloat(e[1]).toFixed(0);
@@ -517,7 +519,7 @@ $(document).ready(function() {
           mymap.removeLayer(layer);
         }
       });
-      $('#map-title').text('French Diplomats in the Holy Roman Empire, 1519');
+      $('#map-title').text('French Ambassadors in the Holy Roman Empire, 1519');
     });
 
     $('.daugerant1520-1525').click(function() {
@@ -560,7 +562,7 @@ $(document).ready(function() {
           mymap.removeLayer(layer);
         }
       });
-      $('#map-title').text('French Diplomats in Portugal, 1520-1525');
+      $('#map-title').text('French Ambassadors in Portugal, 1520-1525');
       mymap.setView([38.74, -9.1]);
     });
 
@@ -710,6 +712,26 @@ $(document).ready(function() {
       lyrGroup.clearLayers();
       lyrGroup.addLayer(lyrAllDates);
       slider.noUiSlider.set([1570, 1600]);
+      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+    });
+
+    $('.1535-1547').click(function() {
+      $('#srchfilter').val('');
+      $('#srchfilter').trigger($.Event('keyup'));
+      mymap.closePopup();
+      lyrGroup.clearLayers();
+      lyrGroup.addLayer(lyrAllDates);
+      slider.noUiSlider.set([1535, 1547]);
+      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+    });
+
+    $('.1588-1600').click(function() {
+      $('#srchfilter').val('');
+      $('#srchfilter').trigger($.Event('keyup'));
+      mymap.closePopup();
+      lyrGroup.clearLayers();
+      lyrGroup.addLayer(lyrAllDates);
+      slider.noUiSlider.set([1588, 1600]);
       mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
     });
 
