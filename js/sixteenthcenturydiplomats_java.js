@@ -7,6 +7,7 @@ const filters = {
   ranges: [],
 };
 let popup;
+const searchFilter = document.querySelector('#srchfilter');
 
 $(document).ready(function() {
   lyrEsriWorldShadedRelief.addTo(mymap);
@@ -24,7 +25,6 @@ $(document).ready(function() {
     const clusters = L.markerClusterGroup.layerSupport({
       iconCreateFunction: function(cluster) {
         const clusterWidth = 30 + cluster.getChildCount() * 0.5;
-
         if (
           (cluster._cLatLng.lat == '55.68', cluster._cLatLng.lng == '12.57')
         ) {
@@ -107,32 +107,23 @@ $(document).ready(function() {
         } else {
           (clusterTextColor = 'black'), (clusterBorder = 'solid black');
         }
-        const marginTop = (clusterWidth - 23) / 2;
+        const marginTop2 = (clusterWidth - 23) / 2;
         const marginLeft = (clusterWidth - 10) / 2;
-        const marginTop2 = (clusterWidth - 15) / 2;
+        const marginTop = (clusterWidth - 15) / 2;
         return L.divIcon({
           html:
-              '<div class="clusterdiv" style="width:' +
-              clusterWidth +
-              'px; height: ' +
-              clusterWidth +
-              'px; margin-top:-' +
-              marginTop2 +
-              'px; margin-left:-' +
-              marginLeft +
-              'px; background-color:' +
-              clusterColor +
-              '; color:' +
-              clusterTextColor +
-              '; border:' +
-              clusterBorder +
-              '"><div class="clustertext" style="margin-top:' +
-              marginTop +
-              'px"><b>' +
-              cluster.getChildCount() +
-              '</b></div></div>',
-          // className: 'clusterdiv',
-          // iconSize: new L.Point(width, width)
+              `<div class = 'clusterdiv' 
+              style = 'width: ${clusterWidth}px;
+              height: ${clusterWidth}px;
+              margin-top: -${marginTop}px;
+              margin-left: -${marginLeft}px;
+              background-color: ${clusterColor};
+              color: ${clusterTextColor};
+              border: ${clusterBorder}'>
+              <div class = 'clustertext'
+              style = 'margin-top: ${marginTop2}px';>
+              <b> ${cluster.getChildCount()} </b>
+              </div></div>`,
         });
       },
       maxClusterRadius: 0,
@@ -144,80 +135,65 @@ $(document).ready(function() {
     });
 
     clusters.on('clustermouseover', function(a) {
-      if (
-        (a.layer._cLatLng.lat == '55.68', a.layer._cLatLng.lng == '12.57')
-      ) {
-        popupText = '<p>Denmark</>';
-      } else if (
-        (a.layer._cLatLng.lat == '51.51', a.layer._cLatLng.lng == '-0.12')
-      ) {
-        popupText = '<p>England</p>';
-      } else if (
-        (a.layer._cLatLng.lat == '44.84', a.layer._cLatLng.lng == '11.62')
-      ) {
-        popupText = '<p>Ferrara</p>';
-      } else if (
-        (a.layer._cLatLng.lat == '46.21', a.layer._cLatLng.lng == '6.14')
-      ) {
-        popupText = '<p>Geneva</p>';
-      } else if (
-        (a.layer._cLatLng.lat == '46.66', a.layer._cLatLng.lng == '9.63')
-      ) {
-        popupText = '<p>Grisons</p>';
-      } else if (
-        (a.layer._cLatLng.lat == '48.21', a.layer._cLatLng.lng == '16.36')
-      ) {
-        popupText = '<p>Holy Roman Empire</p>';
-      } else if (
-        (a.layer._cLatLng.lat == '52.37', a.layer._cLatLng.lng == '4.89')
-      ) {
-        popupText = '<p>The Netherlands</p>';
-      } else if (
-        (a.layer._cLatLng.lat == '41.01', a.layer._cLatLng.lng == '28.96')
-      ) {
-        popupText = '<p>Ottoman Empire</p>';
-      } else if (
-        (a.layer._cLatLng.lat == '52.23', a.layer._cLatLng.lng == '21.02')
-      ) {
-        popupText = '<p>Poland</p>';
-      } else if (
-        (a.layer._cLatLng.lat == '38.72', a.layer._cLatLng.lng == '-9.13')
-      ) {
-        popupText = '<p>Portugal</p>';
-      } else if (
-        (a.layer._cLatLng.lat == '41.89', a.layer._cLatLng.lng == '12.51')
-      ) {
-        popupText = '<p>Rome</p>';
-      } else if (
-        (a.layer._cLatLng.lat == '45.06', a.layer._cLatLng.lng == '7.68')
-      ) {
-        popupText = '<p>Savoy</p>';
-      } else if (
-        (a.layer._cLatLng.lat == '51.05', a.layer._cLatLng.lng == '13.35')
-      ) {
-        popupText = '<p>Saxony</p>';
-      } else if (
-        (a.layer._cLatLng.lat == '55.95', a.layer._cLatLng.lng == '-3.19')
-      ) {
-        popupText = '<p>Scotland</p>';
-      } else if (
-        (a.layer._cLatLng.lat == '40.43', a.layer._cLatLng.lng == '-3.7')
-      ) {
-        popupText = '<p>Spain</p>';
-      } else if (
-        (a.layer._cLatLng.lat == '46.94', a.layer._cLatLng.lng == '7.45')
-      ) {
-        popupText = '<p>The Swiss Cantons</p>';
-      } else if (
-        (a.layer._cLatLng.lat == '43.46', a.layer._cLatLng.lng == '11.14')
-      ) {
-        popupText = '<p>Tuscany</p>';
-      } else if (
-        (a.layer._cLatLng.lat == '45.44', a.layer._cLatLng.lng == '12.33')
-      ) {
-        popupText = '<p>Venice</p>';
-      } else {
-        popupText = '<p></p>';
+      console.log(a);
+      switch (a.layer._cLatLng.lat) {
+        case 55.68:
+          popupText = '<p><strong>Denmark</strong></p>';
+          break;
+        case 51.51:
+          popupText = '<p><strong>England</strong></p>';
+          break;
+        case 44.84:
+          popupText = '<p><strong>Ferrara</strong></p>';
+          break;
+        case 46.21:
+          popupText = '<p><strong>Geneva</strong></p>';
+          break;
+        case 46.66:
+          popupText = '<p><strong>Grisons</strong></p>';
+          break;
+        case 48.21:
+          popupText = '<p><strong>Holy Roman Emperor</strong></p>';
+          break;
+        case 52.37:
+          popupText = '<p><strong>Netherlands</strong></p>';
+          break;
+        case 41.01:
+          popupText = '<p><strong>Ottoman Empire</strong></p>';
+          break;
+        case 52.23:
+          popupText = '<p><strong>Poland<strong></p>';
+          break;
+        case 38.72:
+          popupText = '<p><strong>Portugal</strong></p>';
+          break;
+        case 41.89:
+          popupText = '<p><strong>Rome</strong></p>';
+          break;
+        case 45.06:
+          popupText = '<p><strong>Savoy</strong></p>';
+          break;
+        case 51.05:
+          popupText = '<p><strong>Saxony</strong></p>';
+          break;
+        case 55.95:
+          popupText = '<p><strong>Scotland</strong></p>';
+          break;
+        case 40.43:
+          popupText = '<p><strong>Spain</strong></p>';
+          break;
+        case 46.94:
+          popupText = '<p><strong>The Swiss Cantons</strong></p>';
+          break;
+        case 43.46:
+          popupText = '<p><strong>Tuscany</strong></p>';
+          break;
+        case 45.44:
+          popupText = '<p><strong>Venice</strong></p>';
+          break;
+        default:
+          popupText = '<p></p>';
+          break;
       }
       popup = L.popup()
           .setLatLng([a.layer._cLatLng.lat, a.layer._cLatLng.lng])
@@ -234,34 +210,14 @@ $(document).ready(function() {
     lyrAllDates = L.geoJson(json, {
       pointToLayer: function(feature, latlng) {
         // *****Popup HTML*****
-        let str =
-            '<p style=text-align:center><span style=font-weight:bold> ' +
-            feature.properties.name +
-            '</span></p><hr>';
-        str +=
-            '<p><span style= font-weight:bold>Place:</span> ' +
-            feature.properties.place +
-            '</p>';
-        str +=
-            '<p><span style=font-weight:bold>Year:</span> ' +
-            feature.properties.year +
-            '</p>';
-        str +=
-            '<p><span style=font-weight:bold>Information:</span> ' +
-            feature.properties.ambInfo +
-            '</p>';
-        str +=
-            '<p><span style=font-weight:bold>Source:</span> ' +
-            feature.properties.source +
-            '</p>';
-        str +=
-            '<p><span style=font-weight:bold>Link:</span> ' +
-            feature.properties.link +
-            '</p>';
-        // *******delete the objectID string before publication********
-        // str +=
-        // '<p><span style=font-weight:bold>Object ID:</span>
-        //  '+feature.properties.objectID +'</p>';
+        const str =
+            `<p style = text-align:center>
+            <strong>${feature.properties.name}</strong></p><hr>
+            <p><strong>Place</strong>: ${feature.properties.name}</p>
+            <p><strong>Year</strong>: ${feature.properties.year}</p>
+            <p><strong>Information</strong>: ${feature.properties.ambInfo}</p>
+            <p><strong>Source</strong>: ${feature.properties.source}</p>
+            <p><strong>Link</strong>: ${feature.properties.link}</p>`;
 
         if (feature.properties.place == 'Swiss') {
           (fillCircle = 'purple'), (colorCircle = 'black');
@@ -367,7 +323,7 @@ $(document).ready(function() {
       });
     });
 
-    $(document).on('keyup', '#srchfilter', function(e) {
+    searchFilter.addEventListener('input', function(e) {
       filters.text = e.target.value;
       lyrAllDates.eachLayer(function(layer) {
         filterLyrAllDates(layer);
@@ -376,16 +332,18 @@ $(document).ready(function() {
 
     function filterLyrAllDates(layer) {
       let numberOfTrue = 0;
+      const ambName = layer.feature.properties.name;
+      const ambYear = layer.feature.properties.year;
       if (
-        layer.feature.properties.name
+        ambName
             .toLowerCase()
             .indexOf(filters.text.toLowerCase()) > -1
       ) {
         numberOfTrue += 1;
       }
       if (
-        layer.feature.properties.year >= filters.range[0] &&
-        layer.feature.properties.year <= filters.range[1]
+        ambYear >= filters.range[0] &&
+        ambYear <= filters.range[1]
       ) {
         numberOfTrue += 1;
       }
@@ -400,353 +358,381 @@ $(document).ready(function() {
 
     slider.noUiSlider.on('set', function(e) {
       if (parseFloat(e[0]).toFixed(0) == parseFloat(e[1]).toFixed(0)) {
-        mapdates = 'French Residential Ambassadors, ' +
-        parseFloat(e[0]).toFixed(0);
+        mapdates = `French Residential Ambassadors, 
+        ${parseFloat(e[0]).toFixed(0)}`;
       } else {
         mapdates =
-            'French Residential Ambassadors, ' +
-            parseFloat(e[0]).toFixed(0) +
-            '-' +
-            parseFloat(e[1]).toFixed(0);
+            `French Residential Ambassadors, 
+            ${parseFloat(e[0]).toFixed(0)}-${parseFloat(e[1]).toFixed(0)}`;
       }
       $('#map-title').html(mapdates);
       mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
     });
 
     // *****Event Buttons*****
-    $('.example').click(function() {
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      $('#srchfilter').val('Noailles');
-      $('#srchfilter').trigger($.Event('keyup'));
-      slider.noUiSlider.set([1545, 1580]);
-      mymap.fitBounds(clusters.getBounds());
-      document.getElementById('map-title').innerHTML =
-          'Example Event: the Noailles Family Ambassadors, 1545-1555';
-    });
+    document.querySelector('.example')
+        .addEventListener('click', function() {
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          searchFilter.value = 'Noailles';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          slider.noUiSlider.set([1545, 1580]);
+          mymap.fitBounds(clusters.getBounds());
+          document.getElementById('map-title').innerHTML =
+              'Example Event: the Noailles Family Ambassadors, 1545-1555';
+        });
 
-    $('.homeview').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.fitBounds(lyrAllDates.getBounds());
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1515, 1600]);
-      mymap.fitBounds(clusters.getBounds());
-    });
+    document.querySelector('.homeview')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.fitBounds(lyrAllDates.getBounds());
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1515, 1600]);
+          mymap.fitBounds(clusters.getBounds());
+        });
 
-    $('.poland1570s').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1570, 1580]);
-      lyrAllDates.eachLayer(function(layer) {
-        if (layer.feature.properties.place == 'Poland') {
-          layer.addTo(mymap);
-        } else {
-          mymap.removeLayer(layer);
-        }
+    document.querySelector('.poland1570s')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1570, 1580]);
+          lyrAllDates.eachLayer(function(layer) {
+            if (layer.feature.properties.place == 'Poland') {
+              layer.addTo(mymap);
+            } else {
+              mymap.removeLayer(layer);
+            }
+          });
+          document.getElementById('map-title').innerHTML = 'Poland, 1570-1580';
+          mymap.setView([52.21, 21.01]);
+        });
+
+    document.querySelector('.a1516')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1516, 1516]);
+          mymap.fitBounds(clusters.getBounds(), {padding: [100, 100]});
+        });
+
+    document.querySelector('.a1547')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1547, 1547]);
+          mymap.fitBounds(clusters.getBounds());
+        });
+
+    const button1515to1520 = document.querySelectorAll('.a1515-1520');
+    for (button of button1515to1520) {
+      button.addEventListener('click', function() {
+        searchFilter.value = '';
+        searchFilter.dispatchEvent(new KeyboardEvent('input'));
+        mymap.closePopup();
+        lyrGroup.clearLayers();
+        lyrGroup.addLayer(lyrAllDates);
+        slider.noUiSlider.set([1515, 1520]);
+        mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
       });
-      document.getElementById('map-title').innerHTML = 'Poland, 1570-1580';
-      mymap.setView([52.21, 21.01]);
-    });
+    };
 
-    $('.1516').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1516, 1516]);
-      mymap.fitBounds(clusters.getBounds(), {padding: [100, 100]});
-    });
+    document.querySelector('.Bonnivet1518')
+        .addEventListener('click', function() {
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          slider.noUiSlider.set([1518, 1518]);
+          lyrAllDates.eachLayer(function(layer) {
+            if (layer.feature.properties.objectID == '859') {
+              layer.addTo(mymap).fire('mouseover');
+            } else {
+              mymap.removeLayer(layer);
+            }
+          });
+          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+          document.querySelector('#map-title')
+              .innerHTML = 'Gouffier de Bonnivet in England, 1518';
+        });
 
-    $('.1547').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1547, 1547]);
-      mymap.fitBounds(clusters.getBounds());
-    });
+    document.querySelector('.HRE1519')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1519, 1519]);
+          lyrAllDates.eachLayer(function(layer) {
+            if (
+              layer.feature.properties.place == 'Holy Roman Empire' &&
+                layer.feature.properties.year == '1519'
+            ) {
+              layer.addTo(mymap);
+            } else {
+              mymap.removeLayer(layer);
+            }
+          });
+          $('#map-title')
+              .text('French Amabassadors in the Holy Roman Empire, 1519');
+        });
 
-    $('.1515-1520').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1515, 1520]);
-      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-    });
+    document.querySelector('.a1520-1525')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1520, 1525]);
+          mymap.fitBounds(clusters.getBounds());
+        });
 
-    $('.Bonnivet1518').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1518, 1518]);
-      lyrAllDates.eachLayer(function(layer) {
-        if (layer.feature.properties.objectID == '859') {
-          layer.addTo(mymap).fire('mouseover');
-        } else {
-          mymap.removeLayer(layer);
-        }
-      });
-      $('#map-title').text('Gouffier de Bonnivet in England, 1518');
-    });
+    document.querySelector('.daugerant1520-1525')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1520, 1525]);
+          lyrAllDates.eachLayer(function(layer) {
+            if (
+              layer.feature.properties.place == 'Swiss' &&
+                layer.feature.properties.year >= '1520' &&
+                layer.feature.properties.year <= '1525'
+            ) {
+              layer.addTo(mymap);
+            } else {
+              mymap.removeLayer(layer);
+            }
+          });
+          mymap.fitBounds(clusters.fitBounds());
+          document.querySelector('#map-title')
+              .innerHTML = 'Louis Daugerant in the Swiss Cantons, 1520-1525';
+        });
 
-    $('.HRE1519').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1519, 1519]);
-      lyrAllDates.eachLayer(function(layer) {
-        if (
-          layer.feature.properties.place == 'Holy Roman Empire' &&
-            layer.feature.properties.year == '1519'
-        ) {
-          layer.addTo(mymap).fire('mouseover');
-        } else {
-          mymap.removeLayer(layer);
-        }
-      });
-      $('#map-title').text('French Ambassadors in the Holy Roman Empire, 1519');
-    });
+    document.querySelector('.portugal1520-1525')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1520, 1525]);
+          lyrAllDates.eachLayer(function(layer) {
+            if (
+              layer.feature.properties.place == 'Portugal' &&
+                layer.feature.properties.year >= '1520' &&
+                layer.feature.properties.year <= '1525'
+            ) {
+              layer.addTo(mymap);
+            } else {
+              mymap.removeLayer(layer);
+            }
+          });
+          document.querySelector('#map-title')
+              .innerHTML = 'French Ambassadors in Portugal, 1520-1525';
+          mymap.setView([38.74, -9.1]);
+        });
 
-    $('.daugerant1520-1525').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1520, 1525]);
-      lyrAllDates.eachLayer(function(layer) {
-        if (
-          layer.feature.properties.place == 'Swiss' &&
-            layer.feature.properties.year >= '1520' &&
-            layer.feature.properties.year <= '1525'
-        ) {
-          layer.addTo(mymap);
-        } else {
-          mymap.removeLayer(layer);
-        }
-      });
-      $('#map-title').text('Louis Daugerant in the Swiss Cantons, 1520-1525');
-      mymap.setView([46.92, 7.47]);
-    });
+    document.querySelector('.a1515-1525')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1515, 1525]);
+          mymap.fitBounds(clusters.getBounds());
+        });
 
-    $('.portugal1520-1525').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1520, 1525]);
-      lyrAllDates.eachLayer(function(layer) {
-        if (
-          layer.feature.properties.place == 'Portugal' &&
-            layer.feature.properties.year >= '1520' &&
-            layer.feature.properties.year <= '1525'
-        ) {
-          layer.addTo(mymap);
-        } else {
-          mymap.removeLayer(layer);
-        }
-      });
-      $('#map-title').text('French Ambassadors in Portugal, 1520-1525');
-      mymap.setView([38.74, -9.1]);
-    });
+    document.querySelector('.a1525-1535')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1525, 1535]);
+          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+        });
 
-    $('.1520-1525').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1520, 1525]);
-      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-    });
+    document.querySelector('.a1515-1535')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1515, 1535]);
+          mymap.fitBounds(clusters.getBounds());
+        });
 
-    $('.1515-1525').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1515, 1525]);
-      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-    });
+    document.querySelector('.a1535-1555')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1535, 1555]);
+          mymap.fitBounds(clusters.getBounds(), {padding: [150, 150]});
+        });
 
-    $('.1525-1535').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1525, 1535]);
-      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-    });
+    document.querySelector('.a1535-1540')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1535, 1540]);
+          mymap.fitBounds(clusters.getBounds(), {padding: [150, 150]});
+        });
 
-    $('.1515-1535').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1515, 1535]);
-      mymap.fitBounds(clusters.getBounds(), {padding: [150, 150]});
-    });
+    document.querySelector('.a1540-1545')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1540, 1545]);
+          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+        });
 
-    $('.1535-1555').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1535, 1555]);
-      mymap.fitBounds(clusters.getBounds(), {padding: [150, 150]});
-    });
+    document.querySelector('.a1545-1550')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1545, 1550]);
+          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+        });
 
-    $('.1535-1540').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1535, 1540]);
-      mymap.fitBounds(clusters.getBounds(), {padding: [150, 150]});
-    });
+    document.querySelector('.a1550-1555')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1550, 1555]);
+          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+        });
 
-    $('.1540-1545').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1540, 1545]);
-      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-    });
+    document.querySelector('.a1555-1560')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1555, 1560]);
+          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+        });
 
-    $('.1545-1550').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1545, 1550]);
-      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-    });
-    $('.1550-1555').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1550, 1555]);
-      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-    });
+    document.querySelector('.a1535-1560')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1535, 1560]);
+          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+        });
 
-    $('.1555-1560').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1555, 1560]);
-      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-    });
+    document.querySelector('.a1559-1600')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1559, 1600]);
+          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+        });
 
-    $('.1535-1560').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1535, 1560]);
-      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-    });
+    document.querySelector('.a1550-1560')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1550, 1560]);
+          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+        });
 
-    $('.1559-1600').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1559, 1600]);
-      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-    });
+    document.querySelector('.a1560-1570')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1560, 1570]);
+          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+        });
 
-    $('.1550-1560').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1550, 1560]);
-      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-    });
+    document.querySelector('.a1570-1600')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1570, 1600]);
+          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+        });
 
-    $('.1560-1570').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1560, 1570]);
-      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-    });
+    document.querySelector('.a1535-1547')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1535, 1547]);
+          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+        });
 
-    $('.1570-1600').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1570, 1600]);
-      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-    });
-
-    $('.1535-1547').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1535, 1547]);
-      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-    });
-
-    $('.1588-1600').click(function() {
-      $('#srchfilter').val('');
-      $('#srchfilter').trigger($.Event('keyup'));
-      mymap.closePopup();
-      lyrGroup.clearLayers();
-      lyrGroup.addLayer(lyrAllDates);
-      slider.noUiSlider.set([1588, 1600]);
-      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-    });
+    document.querySelector('.a1588-1600')
+        .addEventListener('click', function() {
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
+          mymap.closePopup();
+          lyrGroup.clearLayers();
+          lyrGroup.addLayer(lyrAllDates);
+          slider.noUiSlider.set([1588, 1600]);
+          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+        });
 
     mymap.scrollWheelZoom.disable();
 
     //* *******Shows coordinates of mouse in 'map_coords' section******
-    mymap.on('mousemove', function(e) {
-      const str =
-        'Lat: ' +
-        e.latlng.lat.toFixed(2) +
-        ' Long: ' +
-        e.latlng.lng.toFixed(2) +
-        ' | Zoom: ' +
-        mymap.getZoom();
-      $('#map_coords').html(str);
+    mymap.addEventListener('mousemove', function(e) {
+      const str = `Lat: ${e.latlng.lat.toFixed(2)}
+      Long: ${e.latlng.lng.toFixed(2)} | Zoom: ${mymap.getZoom()}`;
+      document.querySelector('#map_coords').innerHTML = str;
     });
   });
   // *****Data Toggles on links declaring inoperability and footnotes*****
