@@ -135,7 +135,7 @@ $(document).ready(function() {
     });
 
     clusters.on('clustermouseover', function(a) {
-      console.log(a);
+      // console.log(a);
       switch (a.layer._cLatLng.lat) {
         case 55.68:
           popupText = '<p><strong>Denmark</strong></p>';
@@ -247,7 +247,7 @@ $(document).ready(function() {
           (fillCircle = '#efcafd'), (colorCircle = '#000000');
         } else if (feature.properties.place == 'Savoy') {
           (fillCircle = '#e2fdd3'), (colorCircle = '#000000');
-        } else if (feature.properties.place == 'Saxe') {
+        } else if (feature.properties.place == 'Saxony') {
           (fillCircle = '#fdd9c6'), (colorCircle = '#000000');
         } else if (feature.properties.place == 'Scotland') {
           (fillCircle = '#ffffbe'), (colorCircle = '#000000');
@@ -256,7 +256,7 @@ $(document).ready(function() {
         } else if (feature.properties.place == 'Tuscany') {
           (fillCircle = '#bbdffe'), (colorCircle = '#000000');
         } else {
-          (fillCircle = 'blue'), (colorCircle = '000000');
+          (fillCircle = 'blue'), (colorCircle = '#000000');
         }
         const circleMarker = L.circleMarker(latlng, {
           radius: '10',
