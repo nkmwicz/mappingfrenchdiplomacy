@@ -512,7 +512,7 @@ $(document).ready(function() {
           slider.noUiSlider.set([1520, 1525]);
           lyrAllDates.eachLayer(function(layer) {
             if (
-              layer.feature.properties.place == 'Swiss' &&
+              layer.feature.properties.place == 'Swiss Cantons' &&
                 layer.feature.properties.year >= '1520' &&
                 layer.feature.properties.year <= '1525'
             ) {
@@ -521,7 +521,7 @@ $(document).ready(function() {
               mymap.removeLayer(layer);
             }
           });
-          mymap.fitBounds(clusters.fitBounds());
+          // mymap.fitBounds(clusters.getBounds());
           document.querySelector('#map-title')
               .innerHTML = 'Louis Daugerant in the Swiss Cantons, 1520-1525';
         });
