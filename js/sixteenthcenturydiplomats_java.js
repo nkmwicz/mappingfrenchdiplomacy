@@ -493,11 +493,11 @@ $(document).ready(function() {
 
     document.querySelector('.a1520-1525')
         .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
           mymap.closePopup();
           lyrGroup.clearLayers();
           lyrGroup.addLayer(lyrAllDates);
+          searchFilter.value = '';
+          searchFilter.dispatchEvent(new KeyboardEvent('input'));
           slider.noUiSlider.set([1520, 1525]);
           mymap.fitBounds(clusters.getBounds());
         });
