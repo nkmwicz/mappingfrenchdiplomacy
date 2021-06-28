@@ -339,7 +339,7 @@ $(document).ready(function() {
     function filterLyrAllDates(layer) {
       let numberOfTrue = 0;
       const letterRecipient = layer.feature.properties.recipient;
-      const letterDate = layer.feature.properties.year;
+      const letterDate = layer.feature.properties.date;
       if (
         letterRecipient
             .toLowerCase()
