@@ -1,0 +1,485 @@
+html,
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+p {
+    margin: 10px;
+    font-size: 13pt;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.notes {
+    font-size: 12pt;
+}
+
+.fn {
+    padding-top: 50px;
+    margin-top: -50px;
+}
+
+body::-webkit-scrollbar {
+    width: 6px;
+
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(152, 152, 161);
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+}
+
+#box1 {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: url(../images/ambassadors-holbein1.3.jpg);
+    background-size: cover;
+    margin: 0;
+    z-index: 1;
+}
+
+#wrapper {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 228, 196, .4);
+    z-index: 2;
+}
+
+#nav1 {
+    position: absolute;
+    height: 85px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 200;
+}
+
+/* Navigation Drop down Button*/
+.dropdown-toggle::after {
+    vertical-align: 0;
+}
+
+.drpdn {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.drpbtn {
+    background-color: white;
+    padding: 5px;
+    padding-left: 25px;
+    /* margin-left: 15px; */
+    text-align: left;
+    font-size: 16px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}
+
+.drpdn-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    width: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.drpdn-content a {
+    width: 100%;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.drpdn-content a:hover {
+    background-color: #f1f1f1
+}
+
+.drpdn:hover .drpdn-content {
+    display: inline-block;
+}
+
+.drpdn:hover .drpbtn {
+    background-color: rgba(245, 242, 236, 0.84);
+}
+
+/* HEADERS */
+
+.dropdown-toggle::after {
+    vertical-align: 0;
+}
+
+
+
+#h1 {
+    color: black;
+    text-align: right;
+    position: relative;
+    float: right;
+    font-size: 16pt;
+    margin-right: 10px;
+    margin-top: 25px;
+    text-decoration: none;
+    z-index: 4;
+}
+
+h1:hover {
+    background-color: rgba(187, 187, 187, 0.5);
+    z-index: 4;
+}
+
+h2 {
+    font-size: 36pt;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 16pt;
+}
+
+h4 {
+    font-size: 16pt;
+    margin-left: -5px;
+    margin-top: 2rem;
+    margin-bottom: 0;
+    font-style: italic;
+}
+
+#title {
+    position: relative;
+    top: 22%;
+    margin-bottom: 15%;
+    align-content: center;
+    /* font-size: 24pt; */
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: black;
+}
+
+#title-line {
+    position: relative;
+    align-content: center;
+    text-align: center;
+    max-width: 500px;
+    /* background-color: rgba(255, 235, 205, 0.5); */
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.subtitle {
+    font-size: 2rem;
+}
+
+.fixed-bottom {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-brand {
+    margin-left: 2rem;
+}
+
+.li2 {
+    display: inline;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-top: 0;
+    vertical-align: middle;
+}
+
+.li2:hover {
+    background-color: rgba(219, 148, 26, 0.6);
+    border: rgb(16, 16, 17)
+}
+
+#box2 {
+    position: absolute;
+    top: 100%;
+    height: 100%;
+    background-color: rgba(245, 242, 236, 0.84);
+}
+
+#mapid {
+    position: absolute;
+    float: left;
+    height: 100%;
+    /* width: 73%; */
+    margin: 0;
+    z-index: 30;
+
+}
+
+#article {
+    position: relative;
+    float: right;
+    height: 92%;
+    background-color: rgba(245, 242, 236, 1);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-inline-start: 50px;
+    overflow: scroll;
+    overflow-x: hidden;
+    z-index: 150;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 25px;
+}
+
+#article::-webkit-scrollbar {
+    width: 5px;
+
+}
+
+#article::-webkit-scrollbar-thumb {
+    background-color: rgb(16, 16, 17);
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+}
+
+/* Sections button at top of Article */
+.navbar-expand {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: rgba(245, 242, 236, 1);
+    z-index: 999;
+}
+
+.navbar-nav .nav-link {
+    padding-right: 0;
+    padding-left: 0;
+    border: solid black;
+    border-width: thin;
+    border-radius: 5pt;
+    background-color: white;
+}
+
+.navbar-expand .navbar-nav .nav-link {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-left: -20px;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+#article .dropdown-menu.show {
+    margin-left: -20px;
+}
+
+#article .dropdown-item {
+    padding: 0.25rem 0.7rem;
+}
+
+/* End Sections button at top of article */
+
+.action {
+    border: none;
+    color: blue;
+    text-decoration: underline;
+    background-color: inherit;
+    padding: 0;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+.action:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+#reader-note {
+    border: solid black;
+    border-radius: 10pt;
+    margin: 2rem;
+    font-size: 12pt;
+}
+
+#reader-note p {
+    font-size: 1rem;
+}
+
+#back-button {
+    position: absolute;
+    background-color: white;
+    border-width: 2px;
+    border-color: rgba(168, 165, 160, .95);
+    color: black;
+    z-index: 200;
+    display: block;
+    margin-left: 50px;
+    margin-top: 10px;
+}
+
+#srch {
+    position: absolute;
+    top: 0;
+    right: 33.4%;
+    height: 25px;
+    z-index: 32;
+}
+
+#slider {
+    position: absolute;
+    top: 30px;
+    right: 2%;
+    width: 25%;
+    height: 10px;
+    z-index: 1000;
+}
+
+.noUi-tooltip {
+    padding: 0;
+    font-size: 10pt;
+    background: white;
+    border: solid black;
+    border-radius: 5pt;
+    padding: 2px;
+    border-width: thin;
+}
+
+.noUi-horizontal .noUi-tooltip {
+    bottom: 98%;
+}
+
+.noUi-horizontal .noUi-handle {
+    width: 15px;
+    height: 15px;
+    right: -4px;
+    top: -4px;
+    border: none;
+    border-radius: 10px;
+    background: black;
+}
+
+.noUi-handle:after,
+.noUi-handle:before {
+    display: none;
+}
+
+.noUi-connect {
+    background: rgba(168, 165, 160, .95);
+}
+
+#map-title-line {
+    position: absolute;
+    margin-left: 25%;
+    margin-right: 45%;
+    margin-top: 10px;
+    bottom: 20px;
+    z-index: 31;
+    max-width: 450px;
+    padding: 4px;
+    background-color: rgba(245, 242, 236, 0.84);
+}
+
+#map-title {
+    margin-inline-start: 10px;
+    margin-inline-end: 10px;
+    text-align: center;
+}
+
+
+#footer {
+    position: absolute;
+    margin-left: 0px;
+    bottom: 0px;
+    height: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    z-index: 300;
+    background-color: rgba(245, 242, 236, 0.84);
+}
+
+#map_coords {
+    margin-top: 0;
+    font-size: 12pt;
+    margin-inline-end: 10px;
+    margin-inline-start: 10px;
+}
+
+/* .leaflet-control refers to attribution of map container */
+.leaflet-control {
+    height: 20px;
+    line-height: 20px;
+}
+
+.leaflet-popup-content p {
+    font-size: 10pt;
+    margin: 10px 0;
+}
+
+.clusterdiv {
+    /* background-color: white; */
+    border: solid black;
+    border-radius: 100pt;
+}
+
+/* .clusterdiv b{
+    margin-left:auto;
+} */
+
+.clustertext {
+    text-align: center;
+}
+
+.leaflet-div-icon {
+    background: none;
+    border: none;
+}
+
+.leaflet-marker-icon .marker-cluster {
+    margin-left: 1px;
+}
+
+/* styling for popovers for footnotes */
+.popover-body {
+    padding: 0.5rem;
+}
+
+.popover .arrow::after {
+    display: none;
+}
+
+.popover .arrow::before {
+    display: none;
+}
+
+/* styling for broken hyperlinks tooltips */
+.tooltip-inner {
+    background-color: white;
+    color: black;
+}
+
+.tooltip.bs-tooltip-top .arrow:before {
+    border-top-color: white;
+}
+
+.tooltip.bs-tooltip-right .arrow:before {
+    border-right-color: white;
+}
