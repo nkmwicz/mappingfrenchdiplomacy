@@ -15,7 +15,7 @@ $(document).ready(function() {
   // *****loading data to the map******
   let lyrAllDates = false;
 
-  fetch('data/16c-diplomats_data.geojson', {
+  fetch('data/henri3letters.geojson', {
     method: 'GET',
   }).then((Response) => Response.json()).then((json) => {
     let min = 1515;
