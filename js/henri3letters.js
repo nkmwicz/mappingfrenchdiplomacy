@@ -4,10 +4,14 @@ const mymap = L.map('mapid', {maxZoom: 6});
 const lyrEsriWorldShadedRelief = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri', maxZoom: 13});
 const filters = {
   text: '',
+  text1: '',
   ranges: [],
 };
+const options =
+    {year: 'numeric', month: 'long', day: 'numeric'};
 let popup;
 const searchFilter = document.querySelector('#srchfilter');
+const searchFilter1 = document.querySelector('#srchfilter1');
 
 $(document).ready(function() {
   lyrEsriWorldShadedRelief.addTo(mymap);
@@ -18,8 +22,9 @@ $(document).ready(function() {
   fetch('data/henri3letters.geojson', {
     method: 'GET',
   }).then((Response) => Response.json()).then((json) => {
-    let min = 1515;
-    let max = 1600;
+    console.log(json);
+    let min = timestamp('1562');
+    let max = timestamp('1589');
     // console.log(json)
 
     const clusters = L.markerClusterGroup.layerSupport({
@@ -210,13 +215,24 @@ $(document).ready(function() {
     lyrAllDates = L.geoJson(json, {
       pointToLayer: function(feature, latlng) {
         // *****Popup HTML*****
+        const letterDate = new Date(feature.properties.date);
         const str =
             `<p style = text-align:center>
-            <strong>${feature.properties.name}</strong></p><hr>
-            <p><strong>Place</strong>: ${feature.properties.name}</p>
-            <p><strong>Year</strong>: ${feature.properties.year}</p>
-            <p><strong>Information</strong>: ${feature.properties.ambInfo}</p>
-            <p><strong>Source</strong>: ${feature.properties.source}</p>
+                <strong>${feature.properties.author} to 
+                ${feature.properties.recipient}</strong></p><hr>
+            <p><strong>Date</strong>: 
+                ${letterDate.toLocaleDateString('en-US', options)}</p>
+            <p><strong>Recipient Location</strong>: 
+                ${feature.properties.place}</p>
+            <p><strong>Letter Summary</strong>: 
+                ${feature.properties.summary}</p>
+            <p><strong>Topics:</strong> ${feature.properties.topic1}<br>
+                                        ${feature.properties.topic2}<br>
+                                        ${feature.properties.topic3}<br>
+                                        ${feature.properties.topic4}
+            <p><strong>Recipient Info:</strong> 
+                ${feature.properties.recipientInformation}
+            <p><strong>Source</strong>: ${feature.properties.citation}</p>
             <p><strong>Link</strong>: ${feature.properties.link}</p>`;
 
         if (feature.properties.place == 'Swiss') {
@@ -302,22 +318,38 @@ $(document).ready(function() {
     });
 
     filters.range = [min, max];
+
+    // Create a new date from a string, return as a timestamp.
+    function timestamp(str) {
+      return new Date(str).getTime();
+    }
     const slider = document.getElementById('slider');
     noUiSlider.create(slider, {
       start: filters.range,
       behaviour: 'drag-hover',
       connect: [false, true, false],
-      step: 1,
-      tooltips: [wNumb({decimals: 0}), wNumb({decimals: 0})],
+      step: 7 * 24 * 60 * 60 * 1000,
+      // tooltips: [wNumb({decimals: 0}), wNumb({decimals: 0})],
       range: {
         min: min,
         max: max,
       },
     });
 
+    const dateValue1 = document.getElementById('dateValue1');
+    const dateValue2 = document.getElementById('dateValue2');
+    slider.noUiSlider.on('update', function(values) {
+      dateValue1.innerHTML =
+        new Date(Number(values[0])).toLocaleDateString('en-US', options);
+      dateValue2.innerHTML =
+        new Date(Number(values[1])).toLocaleDateString('en-US', options);
+    });
+
     // *****Engage slider and search filter together with data*****
     slider.noUiSlider.on('set', function(e) {
-      filters.range = [parseFloat(e[0]), parseFloat(e[1])];
+      filters.range =
+        [Number(e[0]).toFixed(0),
+          Number(e[1]).toFixed(0)];
       lyrAllDates.eachLayer(function(layer) {
         filterLyrAllDates(layer);
       });
@@ -330,24 +362,51 @@ $(document).ready(function() {
       });
     });
 
+    searchFilter1.addEventListener('input', function(e) {
+      filters.text1 = e.target.value;
+      lyrAllDates.eachLayer(function(layer) {
+        filterLyrAllDates(layer);
+      });
+    });
+
     function filterLyrAllDates(layer) {
       let numberOfTrue = 0;
-      const ambName = layer.feature.properties.name;
-      const ambYear = layer.feature.properties.year;
+      const letterRecipient = layer.feature.properties.recipient;
+      const letterTopic1 = layer.feature.properties.topic1;
+      const letterTopic2 = layer.feature.properties.topic2;
+      const letterTopic3 = layer.feature.properties.topic3;
+      const letterTopic4 = layer.feature.properties.topic4;
+      const letterDate = layer.feature.properties.date;
       if (
-        ambName
+        letterRecipient
             .toLowerCase()
             .indexOf(filters.text.toLowerCase()) > -1
       ) {
         numberOfTrue += 1;
       }
       if (
-        ambYear >= filters.range[0] &&
-        ambYear <= filters.range[1]
+        letterTopic1
+            .toLowerCase()
+            .indexOf(filters.text1.toLowerCase()) > -1 ||
+        letterTopic2
+            .toLowerCase()
+            .indexOf(filters.text1.toLowerCase()) > -1 ||
+        letterTopic3
+            .toLowerCase()
+            .indexOf(filters.text1.toLowerCase()) > -1 ||
+        letterTopic4
+            .toLowerCase()
+            .indexOf(filters.text1.toLowerCase()) > -1
       ) {
         numberOfTrue += 1;
       }
-      if (numberOfTrue == 2) {
+      if (
+        timestamp(letterDate) >= Number(filters.range[0]) &&
+        timestamp(letterDate) <= Number(filters.range[1])
+      ) {
+        numberOfTrue += 1;
+      }
+      if (numberOfTrue == 3) {
         layer.addTo(mymap);
       } else {
         mymap.removeLayer(layer);
@@ -356,14 +415,17 @@ $(document).ready(function() {
 
     mymap.fitBounds(lyrAllDates.getBounds(), {padding: [50, 50]});
 
-    slider.noUiSlider.on('set', function(e) {
-      if (parseFloat(e[0]).toFixed(0) == parseFloat(e[1]).toFixed(0)) {
-        mapdates = `French Residential Ambassadors, 
-        ${parseFloat(e[0]).toFixed(0)}`;
+    slider.noUiSlider.on('update', function(e) {
+      if ((e[0]) == (e[1])) {
+        mapdates = `Letters, 
+        ${new Date(Number(e[0])).toLocaleDateString('en-US', options)}`;
       } else {
         mapdates =
-            `French Residential Ambassadors, 
-            ${parseFloat(e[0]).toFixed(0)}-${parseFloat(e[1]).toFixed(0)}`;
+            `Letters from <br>
+            ${new Date(Number(e[0]))
+      .toLocaleDateString('en-US', options)}
+                to ${new Date(Number(e[1]))
+      .toLocaleDateString('en-US', options)}`;
       }
       $('#map-title').html(mapdates);
       mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
