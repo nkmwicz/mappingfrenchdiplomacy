@@ -360,6 +360,7 @@ $(document).ready(function() {
       lyrAllDates.eachLayer(function(layer) {
         filterLyrAllDates(layer);
       });
+      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
     });
 
     searchFilter1.addEventListener('input', function(e) {
@@ -367,6 +368,7 @@ $(document).ready(function() {
       lyrAllDates.eachLayer(function(layer) {
         filterLyrAllDates(layer);
       });
+      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
     });
 
     function filterLyrAllDates(layer) {
