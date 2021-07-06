@@ -7,8 +7,10 @@ const filters = {
   text1: '',
   ranges: [],
 };
-const options =
-    {year: 'numeric', month: 'long', day: 'numeric'};
+const months = ['January', 'February', 'March',
+  'April', 'May', 'June', 'July',
+  'August', 'September', 'October',
+  'November', 'December'];
 let popup;
 const searchFilter = document.querySelector('#srchfilter');
 const searchFilter1 = document.querySelector('#srchfilter1');
@@ -22,10 +24,8 @@ $(document).ready(function() {
   fetch('data/henri3letters.geojson', {
     method: 'GET',
   }).then((Response) => Response.json()).then((json) => {
-    console.log(json);
     let min = timestamp('1562');
-    let max = timestamp('1589');
-    // console.log(json)
+    let max = timestamp('1590');
 
     const clusters = L.markerClusterGroup.layerSupport({
       iconCreateFunction: function(cluster) {
@@ -140,7 +140,6 @@ $(document).ready(function() {
     });
 
     clusters.on('clustermouseover', function(a) {
-      // console.log(a);
       switch (a.layer._cLatLng.lat) {
         case 55.68:
           popupText = '<p><strong>Denmark</strong></p>';
@@ -221,7 +220,7 @@ $(document).ready(function() {
                 <strong>${feature.properties.author} to 
                 ${feature.properties.recipient}</strong></p><hr>
             <p><strong>Date</strong>: 
-                ${letterDate.toLocaleDateString('en-US', options)}</p>
+                ${formatDate(new Date(letterDate))}</p>
             <p><strong>Recipient Location</strong>: 
                 ${feature.properties.place}</p>
             <p><strong>Letter Summary</strong>: 
@@ -322,27 +321,39 @@ $(document).ready(function() {
     // Create a new date from a string, return as a timestamp.
     function timestamp(str) {
       return new Date(str).getTime();
+      // return new Date(Date.UTC(str));
     }
     const slider = document.getElementById('slider');
     noUiSlider.create(slider, {
       start: filters.range,
       behaviour: 'drag-hover',
       connect: [false, true, false],
-      step: 7 * 24 * 60 * 60 * 1000,
-      // tooltips: [wNumb({decimals: 0}), wNumb({decimals: 0})],
+      step: 1 * 24 * 60 * 60 * 1000,
       range: {
         min: min,
         max: max,
       },
     });
 
+    function formatDate(date) {
+      return `${date.getUTCDate()} 
+${months[date.getUTCMonth()]} 
+${date.getUTCFullYear()}`;
+    };
+
     const dateValue1 = document.getElementById('dateValue1');
     const dateValue2 = document.getElementById('dateValue2');
     slider.noUiSlider.on('update', function(values) {
-      dateValue1.innerHTML =
-        new Date(Number(values[0])).toLocaleDateString('en-US', options);
-      dateValue2.innerHTML =
-        new Date(Number(values[1])).toLocaleDateString('en-US', options);
+      dateValue1.value =
+      new Date(Number(values[0])).toISOString().split('T')[0];
+      dateValue2.value =
+      new Date(Number(values[1])).toISOString().split('T')[0];
+    });
+    dateValue1.addEventListener('input', function(e) {
+      slider.noUiSlider.set([timestamp(e.target.value), null]);
+    });
+    dateValue2.addEventListener('input', function(e) {
+      slider.noUiSlider.set([null, timestamp(e.target.value)]);
     });
 
     // *****Engage slider and search filter together with data*****
@@ -420,14 +431,12 @@ $(document).ready(function() {
     slider.noUiSlider.on('update', function(e) {
       if ((e[0]) == (e[1])) {
         mapdates = `Letters, 
-        ${new Date(Number(e[0])).toLocaleDateString('en-US', options)}`;
+        ${formatDate(new Date(Number(e[0])))}`;
       } else {
         mapdates =
             `Letters from <br>
-            ${new Date(Number(e[0]))
-      .toLocaleDateString('en-US', options)}
-                to ${new Date(Number(e[1]))
-      .toLocaleDateString('en-US', options)}`;
+            ${formatDate(new Date(Number(e[0])))}
+                to ${formatDate(new Date(Number(e[1])))}`;
       }
       $('#map-title').html(mapdates);
       mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
@@ -441,10 +450,15 @@ $(document).ready(function() {
           lyrGroup.addLayer(lyrAllDates);
           searchFilter.value = 'Noailles';
           searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          slider.noUiSlider.set([1545, 1580]);
-          mymap.fitBounds(clusters.getBounds());
+          dateValue1.value = '1572-01-01';
+          dateValue1.dispatchEvent(new KeyboardEvent('input'));
+          dateValue2.value = '1574-01-01';
+          dateValue2.dispatchEvent(new KeyboardEvent('input'));
+          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
           document.getElementById('map-title').innerHTML =
-              'Example Event: the Noailles Family Ambassadors, 1545-1555';
+              `Example Event: Letters to the Noailles, 
+              ${formatDate(new Date(dateValue1.value))} to 
+              ${formatDate(new Date(dateValue2.value))}`;
         });
 
     document.querySelector('.homeview')
@@ -453,12 +467,11 @@ $(document).ready(function() {
           searchFilter.dispatchEvent(new KeyboardEvent('input'));
           searchFilter1.value = '';
           searchFilter1.dispatchEvent(new KeyboardEvent('input'));
-          mymap.fitBounds(lyrAllDates.getBounds());
           mymap.closePopup();
           lyrGroup.clearLayers();
           lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([timestamp(1562), timestamp(1589)]);
-          mymap.fitBounds(clusters.getBounds());
+          slider.noUiSlider.reset();
+          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
         });
 
     mymap.scrollWheelZoom.disable();

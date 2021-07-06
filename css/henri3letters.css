@@ -365,10 +365,10 @@ h4 {
 #dateValue1 {
     height: 25px;
     font-size: 10pt;
-    width: 125px;
+    width: 127px;
     text-align: center;
     position: absolute;
-    right: 22%;
+    left: 72%;
     top: 2px;
     background-color: white;
     border: solid black;
@@ -378,10 +378,10 @@ h4 {
 
 #dateValue2 {
     height: 25px;
-    width: 125px;
+    width: 127px;
     font-size: 10pt;
     text-align: center;
-    right: 10px;
+    right: 1.6%;
     top: 2px;
     position: absolute;
     background-color: white;
