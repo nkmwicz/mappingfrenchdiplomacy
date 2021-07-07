@@ -41,7 +41,7 @@ $(document).ready(function() {
         } else if (
           (cluster._cLatLng.lat == '44.84', cluster._cLatLng.lng == '11.62')
         ) {
-          clusterColor = 'rgba(254,191,229.0.8)';
+          clusterColor = 'rgba(254,191,229,0.8)';
         } else if (
           (cluster._cLatLng.lat == '46.21', cluster._cLatLng.lng == '6.14')
         ) {
@@ -140,6 +140,7 @@ $(document).ready(function() {
     });
 
     clusters.on('clustermouseover', function(a) {
+      console.log(a);
       switch (a.layer._cLatLng.lat) {
         case 55.68:
           popupText = '<p><strong>Denmark</strong></p>';
@@ -476,7 +477,7 @@ ${date.getUTCFullYear()}`;
 
     mymap.scrollWheelZoom.disable();
 
-    //* *******Shows coordinates of mouse in 'map_coords' section******
+    //* ****Shows coordinates of mouse in 'map_coords' section******
     mymap.addEventListener('mousemove', function(e) {
       const str = `Lat: ${e.latlng.lat.toFixed(2)}
       Long: ${e.latlng.lng.toFixed(2)} | Zoom: ${mymap.getZoom()}`;

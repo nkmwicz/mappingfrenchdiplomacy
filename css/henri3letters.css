@@ -339,6 +339,7 @@ h4 {
 
 #srchfilter {
     position: absolute;
+    width: 168px;
     top: 0;
     right: 33.4%;
     height: 25px;
@@ -347,6 +348,7 @@ h4 {
 
 #srchfilter1 {
     position: absolute;
+    width: 168px;
     top: 25px;
     right: 33.4%;
     height: 25px;
