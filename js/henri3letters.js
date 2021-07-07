@@ -140,7 +140,6 @@ $(document).ready(function() {
     });
 
     clusters.on('clustermouseover', function(a) {
-      console.log(a);
       switch (a.layer._cLatLng.lat) {
         case 55.68:
           popupText = '<p><strong>Denmark</strong></p>';
@@ -195,6 +194,18 @@ $(document).ready(function() {
           break;
         case 45.44:
           popupText = '<p><strong>Venice</strong></p>';
+          break;
+        case 43.72:
+          popupText = '<p><strong>Urbino</strong></p>';
+          break;
+        case 52.39:
+          popupText = '<p><strong>Brandenbourg</strong></p>';
+          break;
+        case 59.33:
+          popupText = '<p><strong>Sweden</strong></p>';
+          break;
+        case 45.17:
+          popupText = '<p><strong>Mantua</strong></p>';
           break;
         default:
           popupText = '<p></p>';
