@@ -7,10 +7,10 @@ const filters = {
   text1: '',
   ranges: [],
 };
-const months = ['January', 'February', 'March',
-  'April', 'May', 'June', 'July',
-  'August', 'September', 'October',
-  'November', 'December'];
+const months = ['Jan.', 'Feb.', 'Mar.',
+  'Apr.', 'May', 'Jun.', 'Jul.',
+  'Aug.', 'Sept.', 'Oct.',
+  'Nov.', 'Dec.'];
 let popup;
 const searchFilter = document.querySelector('#srchfilter');
 const searchFilter1 = document.querySelector('#srchfilter1');
@@ -460,12 +460,10 @@ ${date.getUTCFullYear()}`;
           mymap.closePopup();
           lyrGroup.clearLayers();
           lyrGroup.addLayer(lyrAllDates);
-          searchFilter.value = 'Noailles';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          dateValue1.value = '1572-01-01';
-          dateValue1.dispatchEvent(new KeyboardEvent('input'));
-          dateValue2.value = '1574-01-01';
-          dateValue2.dispatchEvent(new KeyboardEvent('input'));
+          inputSearchName('Noailles');
+          inputSearchTopic('polish election');
+          inputDate1('1572-01-01');
+          inputDate2('1574-01-01');
           mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
           document.getElementById('map-title').innerHTML =
               `Example Event: Letters to the Noailles, 
@@ -475,18 +473,38 @@ ${date.getUTCFullYear()}`;
 
     document.querySelector('.homeview')
         .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          searchFilter1.value = '';
-          searchFilter1.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
+          revertMap();
           lyrGroup.clearLayers();
           lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.reset();
           mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
         });
 
     mymap.scrollWheelZoom.disable();
+
+    function revertMap() {
+      searchFilter.value = '';
+      searchFilter.dispatchEvent(new KeyboardEvent('input'));
+      searchFilter1.value = '';
+      searchFilter1.dispatchEvent(new KeyboardEvent('input'));
+      slider.noUiSlider.reset();
+      mymap.closePopup();
+    };
+    function inputDate1(date1) {
+      dateValue1.value = date1;
+      dateValue1.dispatchEvent(new KeyboardEvent('input'));
+    };
+    function inputDate2(date2) {
+      dateValue2.value = date2;
+      dateValue2.dispatchEvent(new KeyboardEvent('input'));
+    };
+    function inputSearchName(name) {
+      searchFilter.value = name;
+      searchFilter.dispatchEvent(new KeyboardEvent('input'));
+    };
+    function inputSearchTopic(topic) {
+      searchFilter1.value = topic;
+      searchFilter1.dispatchEvent(new KeyboardEvent('input'));
+    }
 
     //* ****Shows coordinates of mouse in 'map_coords' section******
     mymap.addEventListener('mousemove', function(e) {
