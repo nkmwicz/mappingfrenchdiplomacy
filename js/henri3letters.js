@@ -504,7 +504,7 @@ ${date.getUTCFullYear()}`;
     function inputSearchTopic(topic) {
       searchFilter1.value = topic;
       searchFilter1.dispatchEvent(new KeyboardEvent('input'));
-    }
+    };
 
     //* ****Shows coordinates of mouse in 'map_coords' section******
     mymap.addEventListener('mousemove', function(e) {
