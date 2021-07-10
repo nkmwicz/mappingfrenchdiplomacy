@@ -333,8 +333,22 @@ h4 {
     color: black;
     z-index: 200;
     display: block;
-    margin-left: 50px;
-    margin-top: 10px;
+    left: 50px;
+    top: 8px;
+    font-size: .8rem;
+}
+
+#table-button {
+    position: absolute;
+    background-color: white;
+    border-width: 2px;
+    border-color: rgba(168, 165, 160, .95);
+    color: black;
+    z-index: 200;
+    display: block;
+    left: 50px;
+    top: 42px;
+    font-size: .8rem;
 }
 
 #srchfilter {
@@ -362,6 +376,20 @@ h4 {
     width: 25%;
     height: 10px;
     z-index: 1000;
+}
+
+#letter-table {
+    position: absolute;
+    display: none;
+    width: 30%;
+    max-height: 75%;
+    right: 35%;
+    top: 55px;
+    overflow: auto;
+    z-index: 999;
+    background: rgba(245, 242, 236, 1);
+    border: solid black;
+    border-radius: 10pt;
 }
 
 #dateValue1 {

@@ -455,6 +455,22 @@ ${date.getUTCFullYear()}`;
     });
 
     // *****Event Buttons*****
+    document.querySelector('#table-button')
+        .addEventListener('click', function() {
+          if (document.querySelector('#letter-table')
+              .style.display === 'none') {
+            document.querySelector('#letter-table')
+                .style.display = 'block',
+            document.querySelector('#table-button')
+                .innerHTML = 'Close Table';
+          } else {
+            document.querySelector('#letter-table')
+                .style.display = 'none';
+            document.querySelector('#table-button')
+                .innerHTML = 'Open Table';
+          }
+        });
+
     document.querySelector('.example')
         .addEventListener('click', function() {
           mymap.closePopup();
