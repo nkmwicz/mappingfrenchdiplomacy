@@ -395,13 +395,14 @@ ${date.getUTCFullYear()}`;
     });
 
     function filterLyrAllDates(layer) {
-      let numberOfTrue = 0;
+      // console.log(layer);
       const letterRecipient = layer.feature.properties.recipient;
       const letterTopic1 = layer.feature.properties.topic1;
       const letterTopic2 = layer.feature.properties.topic2;
       const letterTopic3 = layer.feature.properties.topic3;
       const letterTopic4 = layer.feature.properties.topic4;
       const letterDate = layer.feature.properties.date;
+      let numberOfTrue = 0;
       if (
         letterRecipient
             .toLowerCase()
@@ -433,8 +434,10 @@ ${date.getUTCFullYear()}`;
       }
       if (numberOfTrue == 3) {
         layer.addTo(mymap);
+        addLayerToTable(layer);
       } else {
         mymap.removeLayer(layer);
+        removeLayerFromTable(layer);
       }
     }
 
@@ -520,6 +523,40 @@ ${date.getUTCFullYear()}`;
     function inputSearchTopic(topic) {
       searchFilter1.value = topic;
       searchFilter1.dispatchEvent(new KeyboardEvent('input'));
+    };
+    function addLayerToTable(layer) {
+      const letterRecipient = layer.feature.properties.recipient;
+      const letterTopic1 = layer.feature.properties.topic1;
+      const letterTopic2 = layer.feature.properties.topic2;
+      const letterTopic3 = layer.feature.properties.topic3;
+      const letterTopic4 = layer.feature.properties.topic4;
+      const letterDate = layer.feature.properties.date;
+      // if (letterTopic1 !== '' && letterTopic2 !== '' &&
+      // letterTopic3 !== '' && letterTopic4 !== ''){
+      //   letterTopics = letterTopic1
+      // }
+      const letterTable = document.querySelector('#letter-table');
+      const tr = document.createElement('tr');
+      const td1 = document.createElement('td');
+      const td2 = document.createElement('td');
+      const td3 = document.createElement('td');
+      td1.appendChild(document.createTextNode(new Date(letterDate)
+          .toISOString().split('T')[0]));
+      tr.appendChild(td1);
+      td2.appendChild(document.createTextNode(letterRecipient));
+      tr.appendChild(td2);
+      td3.appendChild(document.createTextNode(letterTopic1));
+      tr.appendChild(td3);
+      letterTable.appendChild(tr);
+      console.log(letterTable.tr);
+    };
+    function removeLayerFromTable(layer) {
+      const letterRecipient = layer.feature.properties.recipient;
+      const letterTable = document.querySelector('#letter-table');
+      const tr = document.querySelector('tr');
+      // if (letterTable.tr.td.has(letterRecipient)) {
+      //   letterTable.tr.remove();
+      // }
     };
 
     //* ****Shows coordinates of mouse in 'map_coords' section******
