@@ -554,9 +554,12 @@ ${date.getUTCFullYear()}`;
       const letterRecipient = layer.feature.properties.recipient;
       const letterTable = document.querySelector('#letter-table');
       const tr = document.querySelector('tr');
-      // if (letterTable.tr.td.has(letterRecipient)) {
-      //   letterTable.tr.remove();
-      // }
+      let i;
+      for (i=0; i > tr.length; i++) {
+        if (letterTable.tr[i].has(letterRecipient)) {
+          letterTable.tr[i].remove();
+        }
+      }
     };
 
     //* ****Shows coordinates of mouse in 'map_coords' section******
