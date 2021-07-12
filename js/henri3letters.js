@@ -461,16 +461,16 @@ ${date.getUTCFullYear()}`;
     document.querySelector('#table-button')
         .addEventListener('click', function() {
           if (document.querySelector('#letter-table')
-              .style.display === 'none') {
+              .style.display === 'block') {
             document.querySelector('#letter-table')
-                .style.display = 'block',
-            document.querySelector('#table-button')
-                .innerHTML = 'Close Table';
-          } else {
-            document.querySelector('#letter-table')
-                .style.display = 'none';
+                .style.display = 'none',
             document.querySelector('#table-button')
                 .innerHTML = 'Open Table';
+          } else {
+            document.querySelector('#letter-table')
+                .style.display = 'block';
+            document.querySelector('#table-button')
+                .innerHTML = 'Close Table';
           }
         });
 
