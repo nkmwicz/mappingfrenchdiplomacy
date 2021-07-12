@@ -531,11 +531,21 @@ ${date.getUTCFullYear()}`;
       const letterTopic3 = layer.feature.properties.topic3;
       const letterTopic4 = layer.feature.properties.topic4;
       const letterDate = layer.feature.properties.date;
-      // if (letterTopic1 !== '' && letterTopic2 !== '' &&
-      // letterTopic3 !== '' && letterTopic4 !== ''){
-      //   letterTopics = letterTopic1
-      // }
-      const letterTable = document.querySelector('#letter-table');
+      if (letterTopic1 !== '' && letterTopic2 !== '' &&
+      letterTopic3 !== '' && letterTopic4 !== '') {
+        letterTopics = `${letterTopic1} / ${letterTopic2}
+       / ${letterTopic3} / ${letterTopic4}`;
+      } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
+      letterTopic3 !== '' && letterTopic4 == '') {
+        letterTopics = `${letterTopic1} / ${letterTopic2}
+       / ${letterTopic3}`;
+      } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
+      letterTopic3 == '' && letterTopic4 == '') {
+        letterTopics = `${letterTopic1} / ${letterTopic2}`;
+      } else {
+        letterTopics = `${letterTopic1}`;
+      };
+      const letterTable = document.querySelector('#letter-table tbody');
       const tr = document.createElement('tr');
       const td1 = document.createElement('td');
       const td2 = document.createElement('td');
@@ -545,7 +555,7 @@ ${date.getUTCFullYear()}`;
       tr.appendChild(td1);
       td2.appendChild(document.createTextNode(letterRecipient));
       tr.appendChild(td2);
-      td3.appendChild(document.createTextNode(letterTopic1));
+      td3.appendChild(document.createTextNode(letterTopics));
       tr.appendChild(td3);
       letterTable.appendChild(tr);
       console.log(letterTable.tr);
