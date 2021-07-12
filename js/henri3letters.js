@@ -4,10 +4,16 @@ const mymap = L.map('mapid', {maxZoom: 6});
 const lyrEsriWorldShadedRelief = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri', maxZoom: 13});
 const filters = {
   text: '',
+  text1: '',
   ranges: [],
 };
+const months = ['Jan.', 'Feb.', 'Mar.',
+  'Apr.', 'May', 'Jun.', 'Jul.',
+  'Aug.', 'Sept.', 'Oct.',
+  'Nov.', 'Dec.'];
 let popup;
 const searchFilter = document.querySelector('#srchfilter');
+const searchFilter1 = document.querySelector('#srchfilter1');
 
 $(document).ready(function() {
   lyrEsriWorldShadedRelief.addTo(mymap);
@@ -18,9 +24,8 @@ $(document).ready(function() {
   fetch('data/henri3letters.geojson', {
     method: 'GET',
   }).then((Response) => Response.json()).then((json) => {
-    let min = 1515;
-    let max = 1600;
-    // console.log(json)
+    let min = timestamp('1562');
+    let max = timestamp('1590');
 
     const clusters = L.markerClusterGroup.layerSupport({
       iconCreateFunction: function(cluster) {
@@ -36,7 +41,7 @@ $(document).ready(function() {
         } else if (
           (cluster._cLatLng.lat == '44.84', cluster._cLatLng.lng == '11.62')
         ) {
-          clusterColor = 'rgba(254,191,229.0.8)';
+          clusterColor = 'rgba(254,191,229,0.8)';
         } else if (
           (cluster._cLatLng.lat == '46.21', cluster._cLatLng.lng == '6.14')
         ) {
@@ -135,7 +140,6 @@ $(document).ready(function() {
     });
 
     clusters.on('clustermouseover', function(a) {
-      // console.log(a);
       switch (a.layer._cLatLng.lat) {
         case 55.68:
           popupText = '<p><strong>Denmark</strong></p>';
@@ -191,6 +195,18 @@ $(document).ready(function() {
         case 45.44:
           popupText = '<p><strong>Venice</strong></p>';
           break;
+        case 43.72:
+          popupText = '<p><strong>Urbino</strong></p>';
+          break;
+        case 52.39:
+          popupText = '<p><strong>Brandenbourg</strong></p>';
+          break;
+        case 59.33:
+          popupText = '<p><strong>Sweden</strong></p>';
+          break;
+        case 45.17:
+          popupText = '<p><strong>Mantua</strong></p>';
+          break;
         default:
           popupText = '<p></p>';
           break;
@@ -210,18 +226,23 @@ $(document).ready(function() {
     lyrAllDates = L.geoJson(json, {
       pointToLayer: function(feature, latlng) {
         // *****Popup HTML*****
-        const dateFormat = new Date(feature.properties.date);
-        const options = {year: 'numeric', month: 'long', day: 'numeric'};
+        const letterDate = new Date(feature.properties.date);
         const str =
             `<p style = text-align:center>
-            <strong>${feature.properties.place}</strong></p><hr>
-            <p><strong>Recipient</strong>: ${feature.properties.recipient}</p>
-            <p><strong>Date</strong>: ${dateFormat.toDateString()}</p>
-            <p><strong>Topic 1</strong>: ${feature.properties.topic1}</p>
-            <p><strong>Topic 2</strong>: ${feature.properties.topic2}</p>
-            <p><strong>Topic 3</strong>: ${feature.properties.topic3}</p>
-            <p><strong>Recipient Info</strong>: 
-                ${feature.properties.recipientInformation}</>
+                <strong>${feature.properties.author} to 
+                ${feature.properties.recipient}</strong></p><hr>
+            <p><strong>Date</strong>: 
+                ${formatDate(new Date(letterDate))}</p>
+            <p><strong>Recipient Location</strong>: 
+                ${feature.properties.place}</p>
+            <p><strong>Letter Summary</strong>: 
+                ${feature.properties.summary}</p>
+            <p><strong>Topics:</strong> ${feature.properties.topic1}<br>
+                                        ${feature.properties.topic2}<br>
+                                        ${feature.properties.topic3}<br>
+                                        ${feature.properties.topic4}
+            <p><strong>Recipient Info:</strong> 
+                ${feature.properties.recipientInformation}
             <p><strong>Source</strong>: ${feature.properties.citation}</p>
             <p><strong>Link</strong>: ${feature.properties.link}</p>`;
 
@@ -300,30 +321,58 @@ $(document).ready(function() {
     //    *****gets the slider min/max*****
     lyrAllDates.eachLayer(function(layer) {
       if (layer.feature.properties.year < min) {
-        min = layer.feature.properties.date;
+        min = layer.feature.properties.year;
       }
       if (layer.feature.properties.year >= max) {
-        max = layer.feature.properties.date;
+        max = layer.feature.properties.year;
       }
     });
 
     filters.range = [min, max];
+
+    // Create a new date from a string, return as a timestamp.
+    function timestamp(str) {
+      return new Date(str).getTime();
+      // return new Date(Date.UTC(str));
+    }
     const slider = document.getElementById('slider');
     noUiSlider.create(slider, {
       start: filters.range,
       behaviour: 'drag-hover',
       connect: [false, true, false],
-      step: 1,
-      tooltips: [wNumb({decimals: 0}), wNumb({decimals: 0})],
+      step: 1 * 24 * 60 * 60 * 1000,
       range: {
         min: min,
         max: max,
       },
     });
 
+    function formatDate(date) {
+      return `${date.getUTCDate()} 
+${months[date.getUTCMonth()]} 
+${date.getUTCFullYear()}`;
+    };
+
+    const dateValue1 = document.getElementById('dateValue1');
+    const dateValue2 = document.getElementById('dateValue2');
+    slider.noUiSlider.on('update', function(values) {
+      dateValue1.value =
+      new Date(Number(values[0])).toISOString().split('T')[0];
+      dateValue2.value =
+      new Date(Number(values[1])).toISOString().split('T')[0];
+    });
+    dateValue1.addEventListener('input', function(e) {
+      slider.noUiSlider.set([timestamp(e.target.value), null]);
+    });
+    dateValue2.addEventListener('input', function(e) {
+      slider.noUiSlider.set([null, timestamp(e.target.value)]);
+    });
+
     // *****Engage slider and search filter together with data*****
     slider.noUiSlider.on('set', function(e) {
-      filters.range = [parseFloat(e[0]), parseFloat(e[1])];
+      filters.range =
+        [Number(e[0]).toFixed(0),
+          Number(e[1]).toFixed(0)];
       lyrAllDates.eachLayer(function(layer) {
         filterLyrAllDates(layer);
       });
@@ -334,11 +383,24 @@ $(document).ready(function() {
       lyrAllDates.eachLayer(function(layer) {
         filterLyrAllDates(layer);
       });
+      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+    });
+
+    searchFilter1.addEventListener('input', function(e) {
+      filters.text1 = e.target.value;
+      lyrAllDates.eachLayer(function(layer) {
+        filterLyrAllDates(layer);
+      });
+      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
     });
 
     function filterLyrAllDates(layer) {
       let numberOfTrue = 0;
       const letterRecipient = layer.feature.properties.recipient;
+      const letterTopic1 = layer.feature.properties.topic1;
+      const letterTopic2 = layer.feature.properties.topic2;
+      const letterTopic3 = layer.feature.properties.topic3;
+      const letterTopic4 = layer.feature.properties.topic4;
       const letterDate = layer.feature.properties.date;
       if (
         letterRecipient
@@ -348,12 +410,28 @@ $(document).ready(function() {
         numberOfTrue += 1;
       }
       if (
-        letterDate >= filters.range[0] &&
-        letterDate <= filters.range[1]
+        letterTopic1
+            .toLowerCase()
+            .indexOf(filters.text1.toLowerCase()) > -1 ||
+        letterTopic2
+            .toLowerCase()
+            .indexOf(filters.text1.toLowerCase()) > -1 ||
+        letterTopic3
+            .toLowerCase()
+            .indexOf(filters.text1.toLowerCase()) > -1 ||
+        letterTopic4
+            .toLowerCase()
+            .indexOf(filters.text1.toLowerCase()) > -1
       ) {
         numberOfTrue += 1;
       }
-      if (numberOfTrue == 2) {
+      if (
+        timestamp(letterDate) >= Number(filters.range[0]) &&
+        timestamp(letterDate) <= Number(filters.range[1])
+      ) {
+        numberOfTrue += 1;
+      }
+      if (numberOfTrue == 3) {
         layer.addTo(mymap);
       } else {
         mymap.removeLayer(layer);
@@ -362,14 +440,15 @@ $(document).ready(function() {
 
     mymap.fitBounds(lyrAllDates.getBounds(), {padding: [50, 50]});
 
-    slider.noUiSlider.on('set', function(e) {
-      if (parseFloat(e[0]).toFixed(0) == parseFloat(e[1]).toFixed(0)) {
-        mapdates = `French Residential Ambassadors, 
-        ${parseFloat(e[0]).toFixed(0)}`;
+    slider.noUiSlider.on('update', function(e) {
+      if ((e[0]) == (e[1])) {
+        mapdates = `Letters, 
+        ${formatDate(new Date(Number(e[0])))}`;
       } else {
         mapdates =
-            `French Residential Ambassadors, 
-            ${parseFloat(e[0]).toFixed(0)}-${parseFloat(e[1]).toFixed(0)}`;
+            `Letters from <br>
+            ${formatDate(new Date(Number(e[0])))}
+                to ${formatDate(new Date(Number(e[1])))}`;
       }
       $('#map-title').html(mapdates);
       mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
@@ -381,360 +460,53 @@ $(document).ready(function() {
           mymap.closePopup();
           lyrGroup.clearLayers();
           lyrGroup.addLayer(lyrAllDates);
-          searchFilter.value = 'Noailles';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          slider.noUiSlider.set([1545, 1580]);
-          mymap.fitBounds(clusters.getBounds());
+          inputSearchName('Noailles');
+          inputSearchTopic('polish election');
+          inputDate1('1572-01-01');
+          inputDate2('1574-01-01');
+          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
           document.getElementById('map-title').innerHTML =
-              'Example Event: the Noailles Family Ambassadors, 1545-1555';
+              `Example Event: Letters to the Noailles, 
+              ${formatDate(new Date(dateValue1.value))} to 
+              ${formatDate(new Date(dateValue2.value))}`;
         });
 
     document.querySelector('.homeview')
         .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.fitBounds(lyrAllDates.getBounds());
-          mymap.closePopup();
+          revertMap();
           lyrGroup.clearLayers();
           lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1515, 1600]);
-          mymap.fitBounds(clusters.getBounds());
-        });
-
-    document.querySelector('.poland1570s')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1570, 1580]);
-          lyrAllDates.eachLayer(function(layer) {
-            if (layer.feature.properties.place == 'Poland') {
-              layer.addTo(mymap);
-            } else {
-              mymap.removeLayer(layer);
-            }
-          });
-          document.getElementById('map-title').innerHTML = 'Poland, 1570-1580';
-          mymap.setView([52.21, 21.01]);
-        });
-
-    document.querySelector('.a1516')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1516, 1516]);
-          mymap.fitBounds(clusters.getBounds(), {padding: [100, 100]});
-        });
-
-    document.querySelector('.a1547')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1547, 1547]);
-          mymap.fitBounds(clusters.getBounds());
-        });
-
-    const button1515to1520 = document.querySelectorAll('.a1515-1520');
-    for (button of button1515to1520) {
-      button.addEventListener('click', function() {
-        searchFilter.value = '';
-        searchFilter.dispatchEvent(new KeyboardEvent('input'));
-        mymap.closePopup();
-        lyrGroup.clearLayers();
-        lyrGroup.addLayer(lyrAllDates);
-        slider.noUiSlider.set([1515, 1520]);
-        mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-      });
-    };
-
-    document.querySelector('.Bonnivet1518')
-        .addEventListener('click', function() {
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          slider.noUiSlider.set([1518, 1518]);
-          lyrAllDates.eachLayer(function(layer) {
-            if (layer.feature.properties.objectID == '859') {
-              layer.addTo(mymap).fire('mouseover');
-            } else {
-              mymap.removeLayer(layer);
-            }
-          });
-          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-          document.querySelector('#map-title')
-              .innerHTML = 'Gouffier de Bonnivet in England, 1518';
-        });
-
-    document.querySelector('.HRE1519')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1519, 1519]);
-          lyrAllDates.eachLayer(function(layer) {
-            if (
-              layer.feature.properties.place == 'Holy Roman Empire' &&
-                layer.feature.properties.year == '1519'
-            ) {
-              layer.addTo(mymap);
-            } else {
-              mymap.removeLayer(layer);
-            }
-          });
-          $('#map-title')
-              .text('French Amabassadors in the Holy Roman Empire, 1519');
-        });
-
-    document.querySelector('.a1520-1525')
-        .addEventListener('click', function() {
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          slider.noUiSlider.set([1520, 1525]);
-          mymap.fitBounds(clusters.getBounds());
-        });
-
-    document.querySelector('.daugerant1520-1525')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1520, 1525]);
-          lyrAllDates.eachLayer(function(layer) {
-            if (
-              layer.feature.properties.place == 'Swiss Cantons' &&
-                layer.feature.properties.year >= '1520' &&
-                layer.feature.properties.year <= '1525'
-            ) {
-              layer.addTo(mymap);
-            } else {
-              mymap.removeLayer(layer);
-            }
-          });
-          // mymap.fitBounds(clusters.getBounds());
-          document.querySelector('#map-title')
-              .innerHTML = 'Louis Daugerant in the Swiss Cantons, 1520-1525';
-        });
-
-    document.querySelector('.portugal1520-1525')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1520, 1525]);
-          lyrAllDates.eachLayer(function(layer) {
-            if (
-              layer.feature.properties.place == 'Portugal' &&
-                layer.feature.properties.year >= '1520' &&
-                layer.feature.properties.year <= '1525'
-            ) {
-              layer.addTo(mymap);
-            } else {
-              mymap.removeLayer(layer);
-            }
-          });
-          document.querySelector('#map-title')
-              .innerHTML = 'French Ambassadors in Portugal, 1520-1525';
-          mymap.setView([38.74, -9.1]);
-        });
-
-    document.querySelector('.a1515-1525')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1515, 1525]);
-          mymap.fitBounds(clusters.getBounds());
-        });
-
-    document.querySelector('.a1525-1535')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1525, 1535]);
-          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-        });
-
-    document.querySelector('.a1515-1535')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1515, 1535]);
-          mymap.fitBounds(clusters.getBounds());
-        });
-
-    document.querySelector('.a1535-1555')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1535, 1555]);
-          mymap.fitBounds(clusters.getBounds(), {padding: [150, 150]});
-        });
-
-    document.querySelector('.a1535-1540')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1535, 1540]);
-          mymap.fitBounds(clusters.getBounds(), {padding: [150, 150]});
-        });
-
-    document.querySelector('.a1540-1545')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1540, 1545]);
-          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-        });
-
-    document.querySelector('.a1545-1550')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1545, 1550]);
-          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-        });
-
-    document.querySelector('.a1550-1555')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1550, 1555]);
-          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-        });
-
-    document.querySelector('.a1555-1560')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1555, 1560]);
-          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-        });
-
-    document.querySelector('.a1535-1560')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1535, 1560]);
-          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-        });
-
-    document.querySelector('.a1559-1600')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1559, 1600]);
-          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-        });
-
-    document.querySelector('.a1550-1560')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1550, 1560]);
-          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-        });
-
-    document.querySelector('.a1560-1570')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1560, 1570]);
-          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-        });
-
-    document.querySelector('.a1570-1600')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1570, 1600]);
-          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-        });
-
-    document.querySelector('.a1535-1547')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1535, 1547]);
-          mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
-        });
-
-    document.querySelector('.a1588-1600')
-        .addEventListener('click', function() {
-          searchFilter.value = '';
-          searchFilter.dispatchEvent(new KeyboardEvent('input'));
-          mymap.closePopup();
-          lyrGroup.clearLayers();
-          lyrGroup.addLayer(lyrAllDates);
-          slider.noUiSlider.set([1588, 1600]);
           mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
         });
 
     mymap.scrollWheelZoom.disable();
 
-    //* *******Shows coordinates of mouse in 'map_coords' section******
+    function revertMap() {
+      searchFilter.value = '';
+      searchFilter.dispatchEvent(new KeyboardEvent('input'));
+      searchFilter1.value = '';
+      searchFilter1.dispatchEvent(new KeyboardEvent('input'));
+      slider.noUiSlider.reset();
+      mymap.closePopup();
+    };
+    function inputDate1(date1) {
+      dateValue1.value = date1;
+      dateValue1.dispatchEvent(new KeyboardEvent('input'));
+    };
+    function inputDate2(date2) {
+      dateValue2.value = date2;
+      dateValue2.dispatchEvent(new KeyboardEvent('input'));
+    };
+    function inputSearchName(name) {
+      searchFilter.value = name;
+      searchFilter.dispatchEvent(new KeyboardEvent('input'));
+    };
+    function inputSearchTopic(topic) {
+      searchFilter1.value = topic;
+      searchFilter1.dispatchEvent(new KeyboardEvent('input'));
+    };
+
+    //* ****Shows coordinates of mouse in 'map_coords' section******
     mymap.addEventListener('mousemove', function(e) {
       const str = `Lat: ${e.latlng.lat.toFixed(2)}
       Long: ${e.latlng.lng.toFixed(2)} | Zoom: ${mymap.getZoom()}`;
