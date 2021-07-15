@@ -404,6 +404,7 @@ ${date.getUTCFullYear()}`;
               // iterate through each layer
               lyrAllDates.eachLayer(function(layer) {
                 // load each variable related to the layer
+                const layerLatLng = layer.feature.geometry.coordinates;
                 const letterLink = layer.feature.properties.link;
                 const letterID = layer.feature.properties.objectID;
                 const letterRecipient = layer.feature.properties.recipient;
@@ -438,6 +439,8 @@ ${date.getUTCFullYear()}`;
                 } else if (Number(e.target.id) === letterID) {
                   TableOfLetters.prototype.addLayerToList(layerInfo);
                   layer.addTo(mymap);
+                  // pan to layer to center it in map.
+                  mymap.panTo([layerLatLng[1], layerLatLng[0]]);
                   // simulateMouseover();
                 }
               });
@@ -469,6 +472,7 @@ ${date.getUTCFullYear()}`;
               // iterate through each layer
               lyrAllDates.eachLayer(function(layer) {
                 // load each variable related to the layer
+                const layerLatLng = layer.feature.geometry.coordinates;
                 const letterLink = layer.feature.properties.link;
                 const letterID = layer.feature.properties.objectID;
                 const letterRecipient = layer.feature.properties.recipient;
@@ -503,6 +507,8 @@ ${date.getUTCFullYear()}`;
                 } else if (Number(e.target.id) === letterID) {
                   TableOfLetters.prototype.addLayerToList(layerInfo);
                   layer.addTo(mymap);
+                  // pan to layer to center it in map.
+                  mymap.panTo([layerLatLng[1], layerLatLng[0]]);
                   // simulateMouseover();
                 }
               });
@@ -535,6 +541,7 @@ ${date.getUTCFullYear()}`;
               // iterate through each layer
               lyrAllDates.eachLayer(function(layer) {
                 // load each variable related to the layer
+                const layerLatLng = layer.feature.geometry.coordinates;
                 const letterLink = layer.feature.properties.link;
                 const letterID = layer.feature.properties.objectID;
                 const letterRecipient = layer.feature.properties.recipient;
@@ -567,8 +574,12 @@ ${date.getUTCFullYear()}`;
                 if (Number(e.target.id) !== letterID) {
                   mymap.removeLayer(layer);
                 } else if (Number(e.target.id) === letterID) {
+                  // add layer to table.
                   TableOfLetters.prototype.addLayerToList(layerInfo);
+                  // add layer to map.
                   layer.addTo(mymap);
+                  // pan to layer to center it in map.
+                  mymap.panTo([layerLatLng[1], layerLatLng[0]]);
                   // simulateMouseover();
                 }
               });
@@ -759,6 +770,7 @@ ${date.getUTCFullYear()}`;
             // iterate through each layer
             lyrAllDates.eachLayer(function(layer) {
               // load each variable related to the layer
+              const layerLatLng = layer.feature.geometry.coordinates;
               const letterLink = layer.feature.properties.link;
               const letterID = layer.feature.properties.objectID;
               const letterRecipient = layer.feature.properties.recipient;
@@ -793,6 +805,8 @@ ${date.getUTCFullYear()}`;
               } else if (Number(e.target.id) === letterID) {
                 TableOfLetters.prototype.addLayerToList(layerInfo);
                 layer.addTo(mymap);
+                // pan to layer to center it in map.
+                mymap.panTo([layerLatLng[1], layerLatLng[0]]);
                 // simulateMouseover();
               }
             });
