@@ -14,6 +14,7 @@ const months = ['Jan.', 'Feb.', 'Mar.',
 let popup;
 const searchFilter = document.querySelector('#srchfilter');
 const searchFilter1 = document.querySelector('#srchfilter1');
+const letterTable = document.querySelector('#letter-table tbody');
 
 $(document).ready(function() {
   lyrEsriWorldShadedRelief.addTo(mymap);
@@ -24,6 +25,7 @@ $(document).ready(function() {
   fetch('data/henri3letters.geojson', {
     method: 'GET',
   }).then((Response) => Response.json()).then((json) => {
+    // console.log(json);
     let min = timestamp('1562');
     let max = timestamp('1590');
 
@@ -136,7 +138,6 @@ $(document).ready(function() {
 
     clusters.on('clusterclick', function(a) {
       // a.layer is actually a cluster
-      // console.log('cluster ' + a.layer.getAllChildMarkers());
     });
 
     clusters.on('clustermouseover', function(a) {
@@ -227,6 +228,8 @@ $(document).ready(function() {
       pointToLayer: function(feature, latlng) {
         // *****Popup HTML*****
         const letterDate = new Date(feature.properties.date);
+        // console.log(json);
+        // console.log(latlng);
         const str =
             `<p style = text-align:center>
                 <strong>${feature.properties.author} to 
@@ -291,6 +294,11 @@ $(document).ready(function() {
           color: colorCircle,
           fillOpacity: '1',
         });
+        // const jsonInfo = L.popup()
+        //     .setLatLng(latlng)
+        //     .setContent(str)
+        //     .openOn(mymap);
+        // circleMarker.bindPopup(jsonInfo);
         circleMarker.on('mouseover', function() {
           this.bindPopup(str).openPopup();
         });
@@ -313,7 +321,9 @@ $(document).ready(function() {
 
     // *****layer group and cluster*****
     const lyrGroup = L.featureGroup().addLayer(lyrAllDates);
-
+    // lyrGroup.addTo(mymap);
+    // clusters.addLayer(lyrGroup);
+    // mymap.addLayer(clusters);
     clusters.addTo(mymap);
     clusters.checkIn(lyrGroup);
     lyrGroup.addTo(mymap);
@@ -373,35 +383,241 @@ ${date.getUTCFullYear()}`;
       filters.range =
         [Number(e[0]).toFixed(0),
           Number(e[1]).toFixed(0)];
+      clearTable();
       lyrAllDates.eachLayer(function(layer) {
         filterLyrAllDates(layer);
       });
+      // eventlistener to clear table and reload only row
+      // that was deleted. This code must be added to each
+      // filter and the document as a whole because the
+      // eventListener is has to reload each time it is used.
+
+      // iterate through each of the table rows
+      for (let i=0; i<letterTable.children.length; i++) {
+        // add eventListener
+        document.getElementsByClassName('table-layer-button')[i]
+            .style.cursor = 'pointer';
+        document.getElementsByClassName('table-layer-button')[i]
+            .addEventListener('click', function(e) {
+              // clear the table
+              clearTable();
+              // iterate through each layer
+              lyrAllDates.eachLayer(function(layer) {
+                // load each variable related to the layer
+                const letterLink = layer.feature.properties.link;
+                const letterID = layer.feature.properties.objectID;
+                const letterRecipient = layer.feature.properties.recipient;
+                const letterTopic1 = layer.feature.properties.topic1;
+                const letterTopic2 = layer.feature.properties.topic2;
+                const letterTopic3 = layer.feature.properties.topic3;
+                const letterTopic4 = layer.feature.properties.topic4;
+                const letterDate = layer.feature.properties.date;
+                if (letterTopic1 !== '' && letterTopic2 !== '' &&
+                letterTopic3 !== '' && letterTopic4 !== '') {
+                  letterTopics = `${letterTopic1} / ${letterTopic2}
+                / ${letterTopic3} / ${letterTopic4}`;
+                } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
+                letterTopic3 !== '' && letterTopic4 == '') {
+                  letterTopics = `${letterTopic1} / ${letterTopic2}
+                / ${letterTopic3}`;
+                } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
+                letterTopic3 == '' && letterTopic4 == '') {
+                  letterTopics = `${letterTopic1} / ${letterTopic2}`;
+                } else {
+                  letterTopics = `${letterTopic1}`;
+                };
+                // add new LayerInfo variable
+                const layerInfo = new LayerInfo(letterDate,
+                    letterRecipient,
+                    letterTopics,
+                    letterLink,
+                    letterID,
+                );
+                if (Number(e.target.id) !== letterID) {
+                  mymap.removeLayer(layer);
+                } else if (Number(e.target.id) === letterID) {
+                  TableOfLetters.prototype.addLayerToList(layerInfo);
+                  layer.addTo(mymap);
+                  // simulateMouseover();
+                }
+              });
+            });
+      };
     });
 
     searchFilter.addEventListener('input', function(e) {
       filters.text = e.target.value;
+      clearTable();
       lyrAllDates.eachLayer(function(layer) {
         filterLyrAllDates(layer);
       });
       mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+      // eventlistener to clear table and reload only row
+      // that was deleted. This code must be added to each
+      // filter and the document as a whole because the
+      // eventListener is has to reload each time it is used.
+
+      // iterate through each of the table rows
+      for (let i=0; i<letterTable.children.length; i++) {
+        // add eventListener
+        document.getElementsByClassName('table-layer-button')[i]
+            .style.cursor = 'pointer';
+        document.getElementsByClassName('table-layer-button')[i]
+            .addEventListener('click', function(e) {
+              // clear the table
+              clearTable();
+              // iterate through each layer
+              lyrAllDates.eachLayer(function(layer) {
+                // load each variable related to the layer
+                const letterLink = layer.feature.properties.link;
+                const letterID = layer.feature.properties.objectID;
+                const letterRecipient = layer.feature.properties.recipient;
+                const letterTopic1 = layer.feature.properties.topic1;
+                const letterTopic2 = layer.feature.properties.topic2;
+                const letterTopic3 = layer.feature.properties.topic3;
+                const letterTopic4 = layer.feature.properties.topic4;
+                const letterDate = layer.feature.properties.date;
+                if (letterTopic1 !== '' && letterTopic2 !== '' &&
+                letterTopic3 !== '' && letterTopic4 !== '') {
+                  letterTopics = `${letterTopic1} / ${letterTopic2}
+                / ${letterTopic3} / ${letterTopic4}`;
+                } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
+                letterTopic3 !== '' && letterTopic4 == '') {
+                  letterTopics = `${letterTopic1} / ${letterTopic2}
+                / ${letterTopic3}`;
+                } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
+                letterTopic3 == '' && letterTopic4 == '') {
+                  letterTopics = `${letterTopic1} / ${letterTopic2}`;
+                } else {
+                  letterTopics = `${letterTopic1}`;
+                };
+                // add new LayerInfo variable
+                const layerInfo = new LayerInfo(letterDate,
+                    letterRecipient,
+                    letterTopics,
+                    letterLink,
+                    letterID,
+                );
+                if (Number(e.target.id) !== letterID) {
+                  mymap.removeLayer(layer);
+                } else if (Number(e.target.id) === letterID) {
+                  TableOfLetters.prototype.addLayerToList(layerInfo);
+                  layer.addTo(mymap);
+                  // simulateMouseover();
+                }
+              });
+            });
+      };
     });
 
     searchFilter1.addEventListener('input', function(e) {
       filters.text1 = e.target.value;
+      clearTable();
       lyrAllDates.eachLayer(function(layer) {
         filterLyrAllDates(layer);
       });
       mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+
+      // eventlistener to clear table and reload only row
+      // that was deleted. This code must be added to each
+      // filter and the document as a whole because the
+      // eventListener is has to reload each time it is used.
+
+      // iterate through each of the table rows
+      for (let i=0; i<letterTable.children.length; i++) {
+        // add eventListener
+        document.getElementsByClassName('table-layer-button')[i]
+            .style.cursor = 'pointer';
+        document.getElementsByClassName('table-layer-button')[i]
+            .addEventListener('click', function(e) {
+              // clear the table
+              clearTable();
+              // iterate through each layer
+              lyrAllDates.eachLayer(function(layer) {
+                // load each variable related to the layer
+                const letterLink = layer.feature.properties.link;
+                const letterID = layer.feature.properties.objectID;
+                const letterRecipient = layer.feature.properties.recipient;
+                const letterTopic1 = layer.feature.properties.topic1;
+                const letterTopic2 = layer.feature.properties.topic2;
+                const letterTopic3 = layer.feature.properties.topic3;
+                const letterTopic4 = layer.feature.properties.topic4;
+                const letterDate = layer.feature.properties.date;
+                if (letterTopic1 !== '' && letterTopic2 !== '' &&
+                letterTopic3 !== '' && letterTopic4 !== '') {
+                  letterTopics = `${letterTopic1} / ${letterTopic2}
+                / ${letterTopic3} / ${letterTopic4}`;
+                } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
+                letterTopic3 !== '' && letterTopic4 == '') {
+                  letterTopics = `${letterTopic1} / ${letterTopic2}
+                / ${letterTopic3}`;
+                } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
+                letterTopic3 == '' && letterTopic4 == '') {
+                  letterTopics = `${letterTopic1} / ${letterTopic2}`;
+                } else {
+                  letterTopics = `${letterTopic1}`;
+                };
+                // add new LayerInfo variable
+                const layerInfo = new LayerInfo(letterDate,
+                    letterRecipient,
+                    letterTopics,
+                    letterLink,
+                    letterID,
+                );
+                if (Number(e.target.id) !== letterID) {
+                  mymap.removeLayer(layer);
+                } else if (Number(e.target.id) === letterID) {
+                  TableOfLetters.prototype.addLayerToList(layerInfo);
+                  layer.addTo(mymap);
+                  // simulateMouseover();
+                }
+              });
+            });
+      };
     });
 
+    function simulateMouseover() {
+      const layerMouseover = new MouseEvent('mouseenter', {
+        view: window,
+        bubbles: true,
+        cancelable: true,
+      });
+      const layerCircleMarker = document.querySelector('path');
+      layerCircleMarker.dispatchEvent(layerMouseover);
+      // layerCircleMarker.setAttribute();
+    };
+
     function filterLyrAllDates(layer) {
-      // console.log(layer);
+      const letterLink = layer.feature.properties.link;
+      const letterID = layer.feature.properties.objectID;
       const letterRecipient = layer.feature.properties.recipient;
       const letterTopic1 = layer.feature.properties.topic1;
       const letterTopic2 = layer.feature.properties.topic2;
       const letterTopic3 = layer.feature.properties.topic3;
       const letterTopic4 = layer.feature.properties.topic4;
       const letterDate = layer.feature.properties.date;
+      if (letterTopic1 !== '' && letterTopic2 !== '' &&
+      letterTopic3 !== '' && letterTopic4 !== '') {
+        letterTopics = `${letterTopic1} / ${letterTopic2}
+      / ${letterTopic3} / ${letterTopic4}`;
+      } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
+      letterTopic3 !== '' && letterTopic4 == '') {
+        letterTopics = `${letterTopic1} / ${letterTopic2}
+      / ${letterTopic3}`;
+      } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
+      letterTopic3 == '' && letterTopic4 == '') {
+        letterTopics = `${letterTopic1} / ${letterTopic2}`;
+      } else {
+        letterTopics = `${letterTopic1}`;
+      };
+
+      const layerInfo = new LayerInfo(letterDate,
+          letterRecipient,
+          letterTopics,
+          letterLink,
+          letterID,
+      );
+
       let numberOfTrue = 0;
       if (
         letterRecipient
@@ -434,12 +650,92 @@ ${date.getUTCFullYear()}`;
       }
       if (numberOfTrue == 3) {
         layer.addTo(mymap);
-        addLayerToTable(layer);
+        // clearTable();
+        TableOfLetters.prototype.addLayerToList(layerInfo);
+        // loadLayersToTable(layer);
+        // while (Number(row.id) !== layer.feature.properties.objectID) {
+        //   addLayerToTable(layer);
+        // };
       } else {
         mymap.removeLayer(layer);
-        removeLayerFromTable(layer);
+        // if (String(layer.feature.properties.objectID) ===
+        // row.childNodes[3].innerText) {
+        // };
+        // removeLayerFromTable(layer);
+        // while (Number(row.id) !== null) {
+        //   removeLayerFromTable(layer);
+        // };
       }
     }
+
+    function TableOfLetters() {};
+
+    TableOfLetters.prototype.addLayerToList = function(layerInfo) {
+      // const tr = document.createElement('tr');
+      const tr = letterTable.insertRow(-1);
+      if (letterTable.children === 0) {
+        tableNumber = 1;
+      } else {
+        tableNumber = letterTable.children.length;
+      };
+      tr.innerHTML = `
+      <td class = "text-center table-layer-button" id="${layerInfo.id}">
+      ${tableNumber}</td>
+      <td>${layerInfo.date}</td>
+      <td>${layerInfo.recipient}</td>
+      <td>${layerInfo.topics}</td>
+      <td>${layerInfo.link}</td>
+      `;
+    };
+
+    function LayerInfo(date, recipient, topics, link, id) {
+      this.date = date;
+      this.recipient = recipient;
+      this.topics = topics;
+      this.link = link;
+      this.id = id;
+    }
+
+    lyrAllDates.eachLayer(function(layer) {
+      arrayOfLayers = [];
+      const letterID = layer.feature.properties.objectID;
+      const letterRecipient = layer.feature.properties.recipient;
+      const letterTopic1 = layer.feature.properties.topic1;
+      const letterTopic2 = layer.feature.properties.topic2;
+      const letterTopic3 = layer.feature.properties.topic3;
+      const letterTopic4 = layer.feature.properties.topic4;
+      const letterDate = layer.feature.properties.date;
+      const letterLink = layer.feature.properties.link;
+      if (letterTopic1 !== '' && letterTopic2 !== '' &&
+      letterTopic3 !== '' && letterTopic4 !== '') {
+        letterTopics = `${letterTopic1} / ${letterTopic2}
+      / ${letterTopic3} / ${letterTopic4}`;
+      } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
+      letterTopic3 !== '' && letterTopic4 == '') {
+        letterTopics = `${letterTopic1} / ${letterTopic2}
+      / ${letterTopic3}`;
+      } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
+      letterTopic3 == '' && letterTopic4 == '') {
+        letterTopics = `${letterTopic1} / ${letterTopic2}`;
+      } else {
+        letterTopics = `${letterTopic1}`;
+      };
+
+      const layerInfo = new LayerInfo(letterDate,
+          letterRecipient,
+          letterTopics,
+          letterLink,
+          letterID,
+      );
+      TableOfLetters.prototype.addLayerToList(layerInfo);
+    });
+
+    function clearTable() {
+      const letterTable = document.querySelector('#letter-table tbody');
+      while (letterTable.firstChild) {
+        letterTable.removeChild(letterTable.firstChild);
+      }
+    };
 
     mymap.fitBounds(lyrAllDates.getBounds(), {padding: [50, 50]});
 
@@ -458,6 +754,63 @@ ${date.getUTCFullYear()}`;
     });
 
     // *****Event Buttons*****
+    // eventlistener to clear table and reload only row
+    // that was deleted. This code must be added to each
+    // filter and the document as a whole because the
+    // eventListener is has to reload each time it is used.
+
+    // iterate through each of the table rows
+    for (let i=0; i<letterTable.children.length; i++) {
+      // add eventListener
+      document.getElementsByClassName('table-layer-button')[i]
+          .style.cursor = 'pointer';
+      document.getElementsByClassName('table-layer-button')[i]
+          .addEventListener('click', function(e) {
+            // clear the table
+            clearTable();
+            // iterate through each layer
+            lyrAllDates.eachLayer(function(layer) {
+              // load each variable related to the layer
+              const letterLink = layer.feature.properties.link;
+              const letterID = layer.feature.properties.objectID;
+              const letterRecipient = layer.feature.properties.recipient;
+              const letterTopic1 = layer.feature.properties.topic1;
+              const letterTopic2 = layer.feature.properties.topic2;
+              const letterTopic3 = layer.feature.properties.topic3;
+              const letterTopic4 = layer.feature.properties.topic4;
+              const letterDate = layer.feature.properties.date;
+              if (letterTopic1 !== '' && letterTopic2 !== '' &&
+              letterTopic3 !== '' && letterTopic4 !== '') {
+                letterTopics = `${letterTopic1} / ${letterTopic2}
+              / ${letterTopic3} / ${letterTopic4}`;
+              } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
+              letterTopic3 !== '' && letterTopic4 == '') {
+                letterTopics = `${letterTopic1} / ${letterTopic2}
+              / ${letterTopic3}`;
+              } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
+              letterTopic3 == '' && letterTopic4 == '') {
+                letterTopics = `${letterTopic1} / ${letterTopic2}`;
+              } else {
+                letterTopics = `${letterTopic1}`;
+              };
+              // add new LayerInfo variable
+              const layerInfo = new LayerInfo(letterDate,
+                  letterRecipient,
+                  letterTopics,
+                  letterLink,
+                  letterID,
+              );
+              if (Number(e.target.id) !== letterID) {
+                mymap.removeLayer(layer);
+              } else if (Number(e.target.id) === letterID) {
+                TableOfLetters.prototype.addLayerToList(layerInfo);
+                layer.addTo(mymap);
+                // simulateMouseover();
+              }
+            });
+          });
+    };
+
     document.querySelector('#table-button')
         .addEventListener('click', function() {
           if (document.querySelector('#letter-table')
@@ -524,53 +877,9 @@ ${date.getUTCFullYear()}`;
       searchFilter1.value = topic;
       searchFilter1.dispatchEvent(new KeyboardEvent('input'));
     };
-    function addLayerToTable(layer) {
-      const letterRecipient = layer.feature.properties.recipient;
-      const letterTopic1 = layer.feature.properties.topic1;
-      const letterTopic2 = layer.feature.properties.topic2;
-      const letterTopic3 = layer.feature.properties.topic3;
-      const letterTopic4 = layer.feature.properties.topic4;
-      const letterDate = layer.feature.properties.date;
-      if (letterTopic1 !== '' && letterTopic2 !== '' &&
-      letterTopic3 !== '' && letterTopic4 !== '') {
-        letterTopics = `${letterTopic1} / ${letterTopic2}
-       / ${letterTopic3} / ${letterTopic4}`;
-      } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-      letterTopic3 !== '' && letterTopic4 == '') {
-        letterTopics = `${letterTopic1} / ${letterTopic2}
-       / ${letterTopic3}`;
-      } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-      letterTopic3 == '' && letterTopic4 == '') {
-        letterTopics = `${letterTopic1} / ${letterTopic2}`;
-      } else {
-        letterTopics = `${letterTopic1}`;
-      };
-      const letterTable = document.querySelector('#letter-table tbody');
-      const tr = document.createElement('tr');
-      const td1 = document.createElement('td');
-      const td2 = document.createElement('td');
-      const td3 = document.createElement('td');
-      td1.appendChild(document.createTextNode(new Date(letterDate)
-          .toISOString().split('T')[0]));
-      tr.appendChild(td1);
-      td2.appendChild(document.createTextNode(letterRecipient));
-      tr.appendChild(td2);
-      td3.appendChild(document.createTextNode(letterTopics));
-      tr.appendChild(td3);
-      letterTable.appendChild(tr);
-      console.log(letterTable.tr);
-    };
-    function removeLayerFromTable(layer) {
-      const letterRecipient = layer.feature.properties.recipient;
-      const letterTable = document.querySelector('#letter-table');
-      const tr = document.querySelector('tr');
-      let i;
-      for (i=0; i > tr.length; i++) {
-        if (letterTable.tr[i].has(letterRecipient)) {
-          letterTable.tr[i].remove();
-        }
-      }
-    };
+
+    // move these back up to load data after
+    // figuring this out.
 
     //* ****Shows coordinates of mouse in 'map_coords' section******
     mymap.addEventListener('mousemove', function(e) {

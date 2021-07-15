@@ -381,8 +381,9 @@ h4 {
 #letter-table {
     position: absolute;
     display: none;
-    width: 30%;
-    max-height: 75%;
+    width: 33%;
+    min-width: 350px;
+    max-height: 80%;
     right: 33.5%;
     top: 55px;
     overflow: auto;
@@ -410,6 +411,10 @@ table::-webkit-scrollbar-thumb {
     /* color of the scroll thumb */
     border-radius: 20px;
     /* roundness of the scroll thumb */
+}
+
+table a {
+    color: blue;
 }
 
 #dateValue1 {
