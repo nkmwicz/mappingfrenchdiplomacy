@@ -443,6 +443,10 @@ ${date.getUTCFullYear()}`;
                   layer.addTo(mymap);
                   // pan to layer to center it in map.
                   mymap.panTo([layerLatLng[1], layerLatLng[0]]);
+                  // change mapdates line.
+                  document.getElementById('map-title').innerHTML =
+                      `<p>Letter to ${letterRecipient}, on 
+                      ${formatDate(new Date(letterDate))}</p>`;
                   // simulateMouseover();
                 }
               });
@@ -511,6 +515,10 @@ ${date.getUTCFullYear()}`;
                   layer.addTo(mymap);
                   // pan to layer to center it in map.
                   mymap.panTo([layerLatLng[1], layerLatLng[0]]);
+                  // change mapdates line.
+                  document.getElementById('map-title').innerHTML =
+                      `<p>Letter to ${letterRecipient}, on 
+                      ${formatDate(new Date(letterDate))}</p>`;
                   // simulateMouseover();
                 }
               });
@@ -582,6 +590,10 @@ ${date.getUTCFullYear()}`;
                   layer.addTo(mymap);
                   // pan to layer to center it in map.
                   mymap.panTo([layerLatLng[1], layerLatLng[0]]);
+                  // change mapdates line.
+                  document.getElementById('map-title').innerHTML =
+                      `<p>Letter to ${letterRecipient}, on 
+                      ${formatDate(new Date(letterDate))}</p>`;
                   // simulateMouseover();
                 }
               });
@@ -808,6 +820,10 @@ ${date.getUTCFullYear()}`;
                 layer.addTo(mymap);
                 // pan to layer to center it in map.
                 mymap.panTo([layerLatLng[1], layerLatLng[0]]);
+                // change mapdates line.
+                document.getElementById('map-title').innerHTML =
+                    `<p>Letter to ${letterRecipient}, on 
+                    ${formatDate(new Date(letterDate))}</p>`;
                 // simulateMouseover();
               }
             });
