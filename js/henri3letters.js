@@ -751,7 +751,6 @@ ${date.getUTCFullYear()}`;
                 to ${formatDate(new Date(Number(e[1])))}`;
       }
       $('#map-title').html(mapdates);
-      // mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
     });
 
     // *****Event Buttons*****
