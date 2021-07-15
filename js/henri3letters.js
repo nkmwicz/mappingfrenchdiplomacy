@@ -602,6 +602,9 @@ ${date.getUTCFullYear()}`;
       };
     });
 
+    // Simulates a click on a leaflet marker with the
+    // path tag. Only works if only one leaflet marker is on
+    // the map.
     function simulateLayerClick() {
       const layerClick = new MouseEvent('click', {
         view: window,
@@ -610,7 +613,6 @@ ${date.getUTCFullYear()}`;
       });
       const layerCircleMarker = document.querySelector('path');
       layerCircleMarker.dispatchEvent(layerClick);
-      // layerCircleMarker.setAttribute();
     };
 
     function filterLyrAllDates(layer) {
@@ -711,7 +713,6 @@ ${date.getUTCFullYear()}`;
     }
 
     lyrAllDates.eachLayer(function(layer) {
-      arrayOfLayers = [];
       const letterID = layer.feature.properties.objectID;
       const letterRecipient = layer.feature.properties.recipient;
       const letterTopic1 = layer.feature.properties.topic1;
