@@ -387,6 +387,8 @@ ${date.getUTCFullYear()}`;
       lyrAllDates.eachLayer(function(layer) {
         filterLyrAllDates(layer);
       });
+      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+
       // eventlistener to clear table and reload only row
       // that was deleted. This code must be added to each
       // filter and the document as a whole because the
@@ -749,7 +751,7 @@ ${date.getUTCFullYear()}`;
                 to ${formatDate(new Date(Number(e[1])))}`;
       }
       $('#map-title').html(mapdates);
-      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+      // mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
     });
 
     // *****Event Buttons*****
