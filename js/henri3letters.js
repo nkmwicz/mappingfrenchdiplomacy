@@ -650,21 +650,9 @@ ${date.getUTCFullYear()}`;
       }
       if (numberOfTrue == 3) {
         layer.addTo(mymap);
-        // clearTable();
         TableOfLetters.prototype.addLayerToList(layerInfo);
-        // loadLayersToTable(layer);
-        // while (Number(row.id) !== layer.feature.properties.objectID) {
-        //   addLayerToTable(layer);
-        // };
       } else {
         mymap.removeLayer(layer);
-        // if (String(layer.feature.properties.objectID) ===
-        // row.childNodes[3].innerText) {
-        // };
-        // removeLayerFromTable(layer);
-        // while (Number(row.id) !== null) {
-        //   removeLayerFromTable(layer);
-        // };
       }
     }
 
