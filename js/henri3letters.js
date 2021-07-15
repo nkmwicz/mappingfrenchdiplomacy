@@ -751,7 +751,10 @@ ${date.getUTCFullYear()}`;
       }
     };
 
+    // set the bounds of the map on load
     mymap.fitBounds(lyrAllDates.getBounds(), {padding: [50, 50]});
+    // make sure all popups are closed on map load.
+    mymap.closePopup();
 
     slider.noUiSlider.on('update', function(e) {
       if ((e[0]) == (e[1])) {
