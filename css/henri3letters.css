@@ -381,7 +381,8 @@ h4 {
 #letter-table {
     position: absolute;
     display: none;
-    width: 33%;
+    width: auto;
+    max-width: 33%;
     min-width: 350px;
     max-height: 80%;
     right: 33.5%;
