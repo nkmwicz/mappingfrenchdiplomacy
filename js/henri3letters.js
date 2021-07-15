@@ -12,6 +12,7 @@ const months = ['Jan.', 'Feb.', 'Mar.',
   'Aug.', 'Sept.', 'Oct.',
   'Nov.', 'Dec.'];
 let popup;
+let jsonInfo;
 const searchFilter = document.querySelector('#srchfilter');
 const searchFilter1 = document.querySelector('#srchfilter1');
 const letterTable = document.querySelector('#letter-table tbody');
@@ -294,11 +295,11 @@ $(document).ready(function() {
           color: colorCircle,
           fillOpacity: '1',
         });
-        // const jsonInfo = L.popup()
-        //     .setLatLng(latlng)
-        //     .setContent(str)
-        //     .openOn(mymap);
-        // circleMarker.bindPopup(jsonInfo);
+        jsonInfo = L.popup()
+            .setLatLng(latlng)
+            .setContent(str)
+            .openOn(mymap);
+        circleMarker.bindPopup(jsonInfo);
         circleMarker.on('mouseover', function() {
           this.bindPopup(str).openPopup();
         });
@@ -447,9 +448,9 @@ ${date.getUTCFullYear()}`;
                   document.getElementById('map-title').innerHTML =
                       `<p>Letter to ${letterRecipient}, on 
                       ${formatDate(new Date(letterDate))}</p>`;
-                  // simulateMouseover();
                 }
               });
+              simulateLayerClick();
             });
       };
     });
@@ -519,9 +520,9 @@ ${date.getUTCFullYear()}`;
                   document.getElementById('map-title').innerHTML =
                       `<p>Letter to ${letterRecipient}, on 
                       ${formatDate(new Date(letterDate))}</p>`;
-                  // simulateMouseover();
                 }
               });
+              simulateLayerClick();
             });
       };
     });
@@ -594,21 +595,21 @@ ${date.getUTCFullYear()}`;
                   document.getElementById('map-title').innerHTML =
                       `<p>Letter to ${letterRecipient}, on 
                       ${formatDate(new Date(letterDate))}</p>`;
-                  // simulateMouseover();
                 }
               });
+              simulateLayerClick();
             });
       };
     });
 
-    function simulateMouseover() {
-      const layerMouseover = new MouseEvent('mouseenter', {
+    function simulateLayerClick() {
+      const layerClick = new MouseEvent('click', {
         view: window,
         bubbles: true,
         cancelable: true,
       });
       const layerCircleMarker = document.querySelector('path');
-      layerCircleMarker.dispatchEvent(layerMouseover);
+      layerCircleMarker.dispatchEvent(layerClick);
       // layerCircleMarker.setAttribute();
     };
 
@@ -766,11 +767,12 @@ ${date.getUTCFullYear()}`;
     });
 
     // *****Event Buttons*****
+
     // eventlistener to clear table and reload only row
     // that was deleted. This code must be added to each
     // filter and the document as a whole because the
     // eventListener is has to reload each time it is used.
-
+    // ****************************************
     // iterate through each of the table rows
     for (let i=0; i<letterTable.children.length; i++) {
       // add eventListener
@@ -824,9 +826,10 @@ ${date.getUTCFullYear()}`;
                 document.getElementById('map-title').innerHTML =
                     `<p>Letter to ${letterRecipient}, on 
                     ${formatDate(new Date(letterDate))}</p>`;
-                // simulateMouseover();
+                console.log(layer);
               }
             });
+            simulateLayerClick();
           });
     };
 
