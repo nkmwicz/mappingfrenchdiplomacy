@@ -231,8 +231,6 @@ $(document).ready(function() {
       pointToLayer: function(feature, latlng) {
         // *****Popup HTML*****
         const letterDate = new Date(feature.properties.date);
-        // console.log(json);
-        // console.log(latlng);
         const str =
             `<p style = text-align:center>
                 <strong>${feature.properties.author} to 
@@ -343,11 +341,6 @@ $(document).ready(function() {
 
     filters.range = [min, max];
 
-    // Create a new date from a string, return as a timestamp.
-    function timestamp(str) {
-      return new Date(str).getTime();
-      // return new Date(Date.UTC(str));
-    }
     const slider = document.getElementById('slider');
     noUiSlider.create(slider, {
       start: filters.range,
@@ -359,11 +352,6 @@ $(document).ready(function() {
         max: max,
       },
     });
-
-    function formatDate(date) {
-      // eslint-disable-next-line max-len
-      return `${date.getUTCDate()} ${months[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
-    };
 
     slider.noUiSlider.on('update', function(values) {
       dateValue1.value =
@@ -614,6 +602,16 @@ $(document).ready(function() {
     // information from the initialized slider.
     setMapDates();
 
+    // Create a new date from a string, return as a timestamp.
+    function timestamp(str) {
+      return new Date(str).getTime();
+      // return new Date(Date.UTC(str));
+    }
+
+    function formatDate(date) {
+      // eslint-disable-next-line max-len
+      return `${date.getUTCDate()} ${months[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
+    };
 
     // Simulates a click on a leaflet marker with the
     // path tag. Only works if only one leaflet marker is on
@@ -845,7 +843,6 @@ $(document).ready(function() {
                 document.getElementById('map-title').innerHTML =
                     `<p>Letter to ${letterRecipient}, on 
                     ${formatDate(new Date(letterDate))}</p>`;
-                console.log(layer);
               }
             });
             simulateLayerClick();
