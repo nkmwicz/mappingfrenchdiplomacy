@@ -16,6 +16,8 @@ let jsonInfo;
 const searchFilter = document.querySelector('#srchfilter');
 const searchFilter1 = document.querySelector('#srchfilter1');
 const letterTable = document.querySelector('#letter-table tbody');
+const dateValue1 = document.getElementById('dateValue1');
+const dateValue2 = document.getElementById('dateValue2');
 
 $(document).ready(function() {
   lyrEsriWorldShadedRelief.addTo(mymap);
@@ -359,13 +361,10 @@ $(document).ready(function() {
     });
 
     function formatDate(date) {
-      return `${date.getUTCDate()} 
-${months[date.getUTCMonth()]} 
-${date.getUTCFullYear()}`;
+      // eslint-disable-next-line max-len
+      return `${date.getUTCDate()} ${months[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
     };
 
-    const dateValue1 = document.getElementById('dateValue1');
-    const dateValue2 = document.getElementById('dateValue2');
     slider.noUiSlider.on('update', function(values) {
       dateValue1.value =
       new Date(Number(values[0])).toISOString().split('T')[0];
@@ -388,6 +387,9 @@ ${date.getUTCFullYear()}`;
       lyrAllDates.eachLayer(function(layer) {
         filterLyrAllDates(layer);
       });
+      // Set the dates of the map to the mapDates line.
+      setMapDates();
+      // Fit the bounds of the map to the clusters on map.
       mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
 
       // eventlistener to clear table and reload only row
@@ -461,6 +463,9 @@ ${date.getUTCFullYear()}`;
       lyrAllDates.eachLayer(function(layer) {
         filterLyrAllDates(layer);
       });
+      // Set the dates to the MapDates line.
+      setMapDates();
+      // Fit the bounds of the map to clusters on map.
       mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
       // eventlistener to clear table and reload only row
       // that was deleted. This code must be added to each
@@ -533,6 +538,9 @@ ${date.getUTCFullYear()}`;
       lyrAllDates.eachLayer(function(layer) {
         filterLyrAllDates(layer);
       });
+      // Set the Map Dates in the mapDates line.
+      setMapDates();
+      // fit the bounds of the map to clusters on map.
       mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
 
       // eventlistener to clear table and reload only row
@@ -601,6 +609,11 @@ ${date.getUTCFullYear()}`;
             });
       };
     });
+
+    // Set the map date to the mapDates line, getting
+    // information from the initialized slider.
+    setMapDates();
+
 
     // Simulates a click on a leaflet marker with the
     // path tag. Only works if only one leaflet marker is on
@@ -752,23 +765,25 @@ ${date.getUTCFullYear()}`;
       }
     };
 
+    // function to set the mapdates line with
+    // "Letters from dateValue1 to dateValue2"
+    function setMapDates() {
+      if (dateValue1 == dateValue2) {
+        mapdates =
+        `Letters from ${formatDate(new Date(dateValue1.value))}`;
+      } else {
+        mapdates =
+            `Letters from <br>
+            ${formatDate(new Date(dateValue1.value))}
+                to ${formatDate(new Date(dateValue2.value))}`;
+      }
+      document.getElementById('map-title').innerHTML = mapdates;
+    };
+
     // set the bounds of the map on load
     mymap.fitBounds(lyrAllDates.getBounds(), {padding: [50, 50]});
     // make sure all popups are closed on map load.
     mymap.closePopup();
-
-    slider.noUiSlider.on('update', function(e) {
-      if ((e[0]) == (e[1])) {
-        mapdates = `Letters, 
-        ${formatDate(new Date(Number(e[0])))}`;
-      } else {
-        mapdates =
-            `Letters from <br>
-            ${formatDate(new Date(Number(e[0])))}
-                to ${formatDate(new Date(Number(e[1])))}`;
-      }
-      $('#map-title').html(mapdates);
-    });
 
     // *****Event Buttons*****
 
