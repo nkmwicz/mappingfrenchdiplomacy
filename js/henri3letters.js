@@ -427,10 +427,12 @@ $(document).ready(function() {
                     letterLink,
                     letterID,
                 );
+                const tableOfLetters = new TableOfLetters();
                 if (Number(e.target.id) !== letterID) {
                   mymap.removeLayer(layer);
                 } else if (Number(e.target.id) === letterID) {
-                  TableOfLetters.prototype.addLayerToList(layerInfo);
+                  // TableOfLetters.prototype.addLayerToList(layerInfo);
+                  tableOfLetters.addLayerToList(layerInfo);
                   layer.addTo(mymap);
                   // pan to layer to center it in map.
                   mymap.panTo([layerLatLng[1], layerLatLng[0]]);
@@ -440,7 +442,9 @@ $(document).ready(function() {
                       ${formatDate(new Date(letterDate))}</p>`;
                 }
               });
-              simulateLayerClick();
+              setTimeout(function() {
+                simulateLayerClick();
+              }, 300);
             });
       };
     });
@@ -502,10 +506,12 @@ $(document).ready(function() {
                     letterLink,
                     letterID,
                 );
+                const tableOfLetters = new TableOfLetters();
                 if (Number(e.target.id) !== letterID) {
                   mymap.removeLayer(layer);
                 } else if (Number(e.target.id) === letterID) {
-                  TableOfLetters.prototype.addLayerToList(layerInfo);
+                  // TableOfLetters.prototype.addLayerToList(layerInfo);
+                  tableOfLetters.addLayerToList(layerInfo);
                   layer.addTo(mymap);
                   // pan to layer to center it in map.
                   mymap.panTo([layerLatLng[1], layerLatLng[0]]);
@@ -515,7 +521,9 @@ $(document).ready(function() {
                       ${formatDate(new Date(letterDate))}</p>`;
                 }
               });
-              simulateLayerClick();
+              setTimeout(function() {
+                simulateLayerClick();
+              }, 300);
             });
       };
     });
@@ -578,11 +586,13 @@ $(document).ready(function() {
                     letterLink,
                     letterID,
                 );
+                const tableOfLetters = new TableOfLetters();
                 if (Number(e.target.id) !== letterID) {
                   mymap.removeLayer(layer);
                 } else if (Number(e.target.id) === letterID) {
                   // add layer to table.
-                  TableOfLetters.prototype.addLayerToList(layerInfo);
+                  // TableOfLetters.prototype.addLayerToList(layerInfo);
+                  tableOfLetters.addLayerToList(layerInfo);
                   // add layer to map.
                   layer.addTo(mymap);
                   // pan to layer to center it in map.
@@ -593,7 +603,9 @@ $(document).ready(function() {
                       ${formatDate(new Date(letterDate))}</p>`;
                 }
               });
-              simulateLayerClick();
+              setTimeout(function() {
+                simulateLayerClick();
+              }, 300);
             });
       };
     });
@@ -656,6 +668,7 @@ $(document).ready(function() {
           letterLink,
           letterID,
       );
+      const tableOfLetters = new TableOfLetters();
 
       let numberOfTrue = 0;
       if (
@@ -689,7 +702,8 @@ $(document).ready(function() {
       }
       if (numberOfTrue == 3) {
         layer.addTo(mymap);
-        TableOfLetters.prototype.addLayerToList(layerInfo);
+        // TableOfLetters.prototype.addLayerToList(layerInfo);
+        tableOfLetters.addLayerToList(layerInfo);
       } else {
         mymap.removeLayer(layer);
       }
@@ -753,7 +767,9 @@ $(document).ready(function() {
           letterLink,
           letterID,
       );
-      TableOfLetters.prototype.addLayerToList(layerInfo);
+      const tableOfLetters = new TableOfLetters();
+      // TableOfLetters.prototype.addLayerToList(layerInfo);
+      tableOfLetters.addLayerToList(layerInfo);
     });
 
     function clearTable() {
@@ -832,10 +848,12 @@ $(document).ready(function() {
                   letterLink,
                   letterID,
               );
+              const tableOfLetters = new TableOfLetters();
               if (Number(e.target.id) !== letterID) {
                 mymap.removeLayer(layer);
               } else if (Number(e.target.id) === letterID) {
-                TableOfLetters.prototype.addLayerToList(layerInfo);
+                // TableOfLetters.prototype.addLayerToList(layerInfo);
+                tableOfLetters.addLayerToList(layerInfo);
                 layer.addTo(mymap);
                 // pan to layer to center it in map.
                 mymap.panTo([layerLatLng[1], layerLatLng[0]]);
@@ -845,7 +863,9 @@ $(document).ready(function() {
                     ${formatDate(new Date(letterDate))}</p>`;
               }
             });
-            simulateLayerClick();
+            setTimeout(function() {
+              simulateLayerClick();
+            }, 300);
           });
     };
 
