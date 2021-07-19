@@ -431,7 +431,6 @@ $(document).ready(function() {
                 if (Number(e.target.id) !== letterID) {
                   mymap.removeLayer(layer);
                 } else if (Number(e.target.id) === letterID) {
-                  // TableOfLetters.prototype.addLayerToList(layerInfo);
                   tableOfLetters.addLayerToList(layerInfo);
                   layer.addTo(mymap);
                   // pan to layer to center it in map.
@@ -510,7 +509,6 @@ $(document).ready(function() {
                 if (Number(e.target.id) !== letterID) {
                   mymap.removeLayer(layer);
                 } else if (Number(e.target.id) === letterID) {
-                  // TableOfLetters.prototype.addLayerToList(layerInfo);
                   tableOfLetters.addLayerToList(layerInfo);
                   layer.addTo(mymap);
                   // pan to layer to center it in map.
@@ -591,7 +589,6 @@ $(document).ready(function() {
                   mymap.removeLayer(layer);
                 } else if (Number(e.target.id) === letterID) {
                   // add layer to table.
-                  // TableOfLetters.prototype.addLayerToList(layerInfo);
                   tableOfLetters.addLayerToList(layerInfo);
                   // add layer to map.
                   layer.addTo(mymap);
@@ -702,39 +699,41 @@ $(document).ready(function() {
       }
       if (numberOfTrue == 3) {
         layer.addTo(mymap);
-        // TableOfLetters.prototype.addLayerToList(layerInfo);
         tableOfLetters.addLayerToList(layerInfo);
       } else {
         mymap.removeLayer(layer);
       }
     }
 
-    function TableOfLetters() {};
-
-    TableOfLetters.prototype.addLayerToList = function(layerInfo) {
-      // const tr = document.createElement('tr');
-      const tr = letterTable.insertRow(-1);
-      if (letterTable.children === 0) {
-        tableNumber = 1;
-      } else {
-        tableNumber = letterTable.children.length;
+    class TableOfLetters {
+      addLayerToList(layerInfo) {
+        // const tr = document.createElement('tr');
+        const tr = letterTable.insertRow(-1);
+        let tableNumber;
+        if (letterTable.children === 0) {
+          tableNumber = 1;
+        } else {
+          tableNumber = letterTable.children.length;
+        };
+        tr.innerHTML = `
+        <td class = "text-center table-layer-button" id="${layerInfo.id}">
+        ${tableNumber}</td>
+        <td>${layerInfo.date}</td>
+        <td>${layerInfo.recipient}</td>
+        <td>${layerInfo.topics}</td>
+        <td>${layerInfo.link}</td>
+        `;
       };
-      tr.innerHTML = `
-      <td class = "text-center table-layer-button" id="${layerInfo.id}">
-      ${tableNumber}</td>
-      <td>${layerInfo.date}</td>
-      <td>${layerInfo.recipient}</td>
-      <td>${layerInfo.topics}</td>
-      <td>${layerInfo.link}</td>
-      `;
-    };
+    }
 
-    function LayerInfo(date, recipient, topics, link, id) {
-      this.date = date;
-      this.recipient = recipient;
-      this.topics = topics;
-      this.link = link;
-      this.id = id;
+    class LayerInfo {
+      constructor(date, recipient, topics, link, id) {
+        this.date = date;
+        this.recipient = recipient;
+        this.topics = topics;
+        this.link = link;
+        this.id = id;
+      }
     }
 
     lyrAllDates.eachLayer(function(layer) {
@@ -768,7 +767,6 @@ $(document).ready(function() {
           letterID,
       );
       const tableOfLetters = new TableOfLetters();
-      // TableOfLetters.prototype.addLayerToList(layerInfo);
       tableOfLetters.addLayerToList(layerInfo);
     });
 
@@ -852,7 +850,6 @@ $(document).ready(function() {
               if (Number(e.target.id) !== letterID) {
                 mymap.removeLayer(layer);
               } else if (Number(e.target.id) === letterID) {
-                // TableOfLetters.prototype.addLayerToList(layerInfo);
                 tableOfLetters.addLayerToList(layerInfo);
                 layer.addTo(mymap);
                 // pan to layer to center it in map.
