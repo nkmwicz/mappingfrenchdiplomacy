@@ -224,6 +224,38 @@ clusters.addTo(mymap);
 clusters.checkIn(lyrGroup);
 lyrGroup.addTo(mymap);
 
+filters.range = [min, max];
+
+// construct slider
+const slider = document.getElementById('slider');
+noUiSlider.create(slider, {
+  start: filters.range,
+  behaviour: 'drag-hover',
+  connect: [false, true, false],
+  step: 1 * 24 * 60 * 60 * 1000,
+  range: {
+    min: min,
+    max: max,
+  },
+});
+
+// Instantiate slider
+slider.noUiSlider.on('update', function(values) {
+  // set first date value
+  dateValue1.value =
+    new Date(Number(values[0])).toISOString().split('T')[0];
+  // set second date value
+  dateValue2.value =
+    new Date(Number(values[1])).toISOString().split('T')[0];
+});
+// create event listeners for both date values
+dateValue1.addEventListener('input', function(e) {
+  slider.noUiSlider.set([timestamp(e.target.value), null]);
+});
+dateValue2.addEventListener('input', function(e) {
+  slider.noUiSlider.set([null, timestamp(e.target.value)]);
+});
+
 // Load lyrAllDates with AJAX
 let lyrAllDates = false;
 fetch('data/henri3letters.geojson', {
@@ -325,32 +357,7 @@ fetch('data/henri3letters.geojson', {
     }
   });
 
-  filters.range = [min, max];
 
-  const slider = document.getElementById('slider');
-  noUiSlider.create(slider, {
-    start: filters.range,
-    behaviour: 'drag-hover',
-    connect: [false, true, false],
-    step: 1 * 24 * 60 * 60 * 1000,
-    range: {
-      min: min,
-      max: max,
-    },
-  });
-
-  slider.noUiSlider.on('update', function(values) {
-    dateValue1.value =
-      new Date(Number(values[0])).toISOString().split('T')[0];
-    dateValue2.value =
-      new Date(Number(values[1])).toISOString().split('T')[0];
-  });
-  dateValue1.addEventListener('input', function(e) {
-    slider.noUiSlider.set([timestamp(e.target.value), null]);
-  });
-  dateValue2.addEventListener('input', function(e) {
-    slider.noUiSlider.set([null, timestamp(e.target.value)]);
-  });
 
   // *****Engage slider and search filter together with data*****
   slider.noUiSlider.on('set', function(e) {
