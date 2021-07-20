@@ -224,6 +224,7 @@ clusters.addTo(mymap);
 clusters.checkIn(lyrGroup);
 lyrGroup.addTo(mymap);
 
+// Load lyrAllDates with AJAX
 let lyrAllDates = false;
 fetch('data/henri3letters.geojson', {
   method: 'GET',
