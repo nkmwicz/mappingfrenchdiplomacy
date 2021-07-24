@@ -357,8 +357,6 @@ fetch('data/henri3letters.geojson', {
     }
   });
 
-
-
   // *****Engage slider and search filter together with data*****
   slider.noUiSlider.on('set', function(e) {
     filters.range =
