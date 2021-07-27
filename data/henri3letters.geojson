@@ -8267,7 +8267,7 @@
         "author": "Henri III",
         "co-signer": "",
         "authorPlace": "",
-        "date": "1574-10-11",
+        "date": "October 11, 1574",
         "recipient": "Emmanuel-Philibert, Duke of Savoy",
         "place": "Savoy",
         "distance": "",
@@ -8277,7 +8277,8 @@
         "topic2": "",
         "topic3": "",
         "topic4": "",
-        "summary": ""
+        "summary": "",
+        "recipientInformation": ""
       },
       "geometry": {
         "type": "Point",
