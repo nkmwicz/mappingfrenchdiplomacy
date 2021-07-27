@@ -1,7 +1,12 @@
 /* eslint-disable new-cap */
 /* eslint-disable require-jsdoc */
-const mymap = L.map('mapid', {maxZoom: 6});
-const lyrEsriWorldShadedRelief = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri', maxZoom: 13});
+const mymap = L.map('mapid', {
+  maxZoom: 6,
+});
+const lyrEsriWorldShadedRelief = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
+  attribution: 'Tiles &copy; Esri &mdash; Source: Esri',
+  maxZoom: 13,
+});
 const filters = {
   text: '',
   text1: '',
@@ -10,7 +15,8 @@ const filters = {
 const months = ['Jan.', 'Feb.', 'Mar.',
   'Apr.', 'May', 'Jun.', 'Jul.',
   'Aug.', 'Sept.', 'Oct.',
-  'Nov.', 'Dec.'];
+  'Nov.', 'Dec.',
+];
 let popup;
 let jsonInfo;
 const searchFilter = document.querySelector('#srchfilter');
@@ -114,8 +120,7 @@ const clusters = L.markerClusterGroup.layerSupport({
     const marginLeft = (clusterWidth - 10) / 2;
     const marginTop = (clusterWidth - 15) / 2;
     return L.divIcon({
-      html:
-            `<div class = 'clusterdiv' 
+      html: `<div class = 'clusterdiv' 
             style = 'width: ${clusterWidth}px;
             height: ${clusterWidth}px;
             margin-top: -${marginTop}px;
@@ -261,15 +266,13 @@ let lyrAllDates = false;
 fetch('data/henri3letters.geojson', {
   method: 'GET',
 }).then((Response) => Response.json()).then((json) => {
-  // console.log(json);
-
   // *****Layer data for the layer group that goes into the clusters*****
   lyrAllDates = L.geoJson(json, {
     pointToLayer: function(feature, latlng) {
       // *****Popup HTML*****
       const letterDate = new Date(feature.properties.date);
       const str =
-            `<p style = text-align:center>
+        `<p style = text-align:center>
                 <strong>${feature.properties.author} to 
                 ${feature.properties.recipient}</strong></p><hr>
             <p><strong>Date</strong>: 
@@ -359,9 +362,10 @@ fetch('data/henri3letters.geojson', {
 
   // *****Engage slider and search filter together with data*****
   slider.noUiSlider.on('set', function(e) {
-    filters.range =
-        [Number(e[0]).toFixed(0),
-          Number(e[1]).toFixed(0)];
+    filters.range = [
+      Number(e[0]).toFixed(0),
+      Number(e[1]).toFixed(0),
+    ];
     clearTable();
     lyrAllDates.eachLayer(function(layer) {
       filterLyrAllDates(layer);
@@ -369,7 +373,9 @@ fetch('data/henri3letters.geojson', {
     // Set the dates of the map to the mapDates line.
     setMapDates();
     // Fit the bounds of the map to the clusters on map.
-    mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+    mymap.fitBounds(clusters.getBounds(), {
+      padding: [50, 50],
+    });
 
     // eventlistener to clear table and reload only row
     // that was deleted. This code must be added to each
@@ -377,17 +383,17 @@ fetch('data/henri3letters.geojson', {
     // eventListener is has to reload each time it is used.
 
     // iterate through each of the table rows
-    for (let i=0; i<letterTable.children.length; i++) {
+    for (let i = 0; i < letterTable.children.length; i++) {
       // add eventListener
       document.getElementsByClassName('table-layer-button')[i]
           .style.cursor = 'pointer';
       document.getElementsByClassName('table-layer-button')[i]
           .addEventListener('click', function(e) {
-            // clear the table
+          // clear the table
             clearTable();
             // iterate through each layer
             lyrAllDates.eachLayer(function(layer) {
-              // load each variable related to the layer
+            // load each variable related to the layer
               const layerLatLng = layer.feature.geometry.coordinates;
               const letterLink = layer.feature.properties.link;
               const letterID = layer.feature.properties.objectID;
@@ -398,15 +404,15 @@ fetch('data/henri3letters.geojson', {
               const letterTopic4 = layer.feature.properties.topic4;
               const letterDate = layer.feature.properties.date;
               if (letterTopic1 !== '' && letterTopic2 !== '' &&
-                letterTopic3 !== '' && letterTopic4 !== '') {
+              letterTopic3 !== '' && letterTopic4 !== '') {
                 letterTopics = `${letterTopic1} / ${letterTopic2}
                 / ${letterTopic3} / ${letterTopic4}`;
               } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-                letterTopic3 !== '' && letterTopic4 == '') {
+              letterTopic3 !== '' && letterTopic4 == '') {
                 letterTopics = `${letterTopic1} / ${letterTopic2}
                 / ${letterTopic3}`;
               } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-                letterTopic3 == '' && letterTopic4 == '') {
+              letterTopic3 == '' && letterTopic4 == '') {
                 letterTopics = `${letterTopic1} / ${letterTopic2}`;
               } else {
                 letterTopics = `${letterTopic1}`;
@@ -428,7 +434,7 @@ fetch('data/henri3letters.geojson', {
                 mymap.panTo([layerLatLng[1], layerLatLng[0]]);
                 // change mapdates line.
                 document.getElementById('map-title').innerHTML =
-                      `<p>Letter to ${letterRecipient}, on 
+                `<p>Letter to ${letterRecipient}, on 
                       ${formatDate(new Date(letterDate))}</p>`;
               }
             });
@@ -448,24 +454,26 @@ fetch('data/henri3letters.geojson', {
     // Set the dates to the MapDates line.
     setMapDates();
     // Fit the bounds of the map to clusters on map.
-    mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+    mymap.fitBounds(clusters.getBounds(), {
+      padding: [50, 50],
+    });
     // eventlistener to clear table and reload only row
     // that was deleted. This code must be added to each
     // filter and the document as a whole because the
     // eventListener is has to reload each time it is used.
 
     // iterate through each of the table rows
-    for (let i=0; i<letterTable.children.length; i++) {
+    for (let i = 0; i < letterTable.children.length; i++) {
       // add eventListener
       document.getElementsByClassName('table-layer-button')[i]
           .style.cursor = 'pointer';
       document.getElementsByClassName('table-layer-button')[i]
           .addEventListener('click', function(e) {
-            // clear the table
+          // clear the table
             clearTable();
             // iterate through each layer
             lyrAllDates.eachLayer(function(layer) {
-              // load each variable related to the layer
+            // load each variable related to the layer
               const layerLatLng = layer.feature.geometry.coordinates;
               const letterLink = layer.feature.properties.link;
               const letterID = layer.feature.properties.objectID;
@@ -476,15 +484,15 @@ fetch('data/henri3letters.geojson', {
               const letterTopic4 = layer.feature.properties.topic4;
               const letterDate = layer.feature.properties.date;
               if (letterTopic1 !== '' && letterTopic2 !== '' &&
-                letterTopic3 !== '' && letterTopic4 !== '') {
+              letterTopic3 !== '' && letterTopic4 !== '') {
                 letterTopics = `${letterTopic1} / ${letterTopic2}
                 / ${letterTopic3} / ${letterTopic4}`;
               } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-                letterTopic3 !== '' && letterTopic4 == '') {
+              letterTopic3 !== '' && letterTopic4 == '') {
                 letterTopics = `${letterTopic1} / ${letterTopic2}
                 / ${letterTopic3}`;
               } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-                letterTopic3 == '' && letterTopic4 == '') {
+              letterTopic3 == '' && letterTopic4 == '') {
                 letterTopics = `${letterTopic1} / ${letterTopic2}`;
               } else {
                 letterTopics = `${letterTopic1}`;
@@ -506,7 +514,7 @@ fetch('data/henri3letters.geojson', {
                 mymap.panTo([layerLatLng[1], layerLatLng[0]]);
                 // change mapdates line.
                 document.getElementById('map-title').innerHTML =
-                      `<p>Letter to ${letterRecipient}, on 
+                `<p>Letter to ${letterRecipient}, on 
                       ${formatDate(new Date(letterDate))}</p>`;
               }
             });
@@ -526,7 +534,9 @@ fetch('data/henri3letters.geojson', {
     // Set the Map Dates in the mapDates line.
     setMapDates();
     // fit the bounds of the map to clusters on map.
-    mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+    mymap.fitBounds(clusters.getBounds(), {
+      padding: [50, 50],
+    });
 
     // eventlistener to clear table and reload only row
     // that was deleted. This code must be added to each
@@ -534,17 +544,17 @@ fetch('data/henri3letters.geojson', {
     // eventListener is has to reload each time it is used.
 
     // iterate through each of the table rows
-    for (let i=0; i<letterTable.children.length; i++) {
+    for (let i = 0; i < letterTable.children.length; i++) {
       // add eventListener
       document.getElementsByClassName('table-layer-button')[i]
           .style.cursor = 'pointer';
       document.getElementsByClassName('table-layer-button')[i]
           .addEventListener('click', function(e) {
-            // clear the table
+          // clear the table
             clearTable();
             // iterate through each layer
             lyrAllDates.eachLayer(function(layer) {
-              // load each variable related to the layer
+            // load each variable related to the layer
               const layerLatLng = layer.feature.geometry.coordinates;
               const letterLink = layer.feature.properties.link;
               const letterID = layer.feature.properties.objectID;
@@ -555,15 +565,15 @@ fetch('data/henri3letters.geojson', {
               const letterTopic4 = layer.feature.properties.topic4;
               const letterDate = layer.feature.properties.date;
               if (letterTopic1 !== '' && letterTopic2 !== '' &&
-                letterTopic3 !== '' && letterTopic4 !== '') {
+              letterTopic3 !== '' && letterTopic4 !== '') {
                 letterTopics = `${letterTopic1} / ${letterTopic2}
                 / ${letterTopic3} / ${letterTopic4}`;
               } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-                letterTopic3 !== '' && letterTopic4 == '') {
+              letterTopic3 !== '' && letterTopic4 == '') {
                 letterTopics = `${letterTopic1} / ${letterTopic2}
                 / ${letterTopic3}`;
               } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-                letterTopic3 == '' && letterTopic4 == '') {
+              letterTopic3 == '' && letterTopic4 == '') {
                 letterTopics = `${letterTopic1} / ${letterTopic2}`;
               } else {
                 letterTopics = `${letterTopic1}`;
@@ -579,7 +589,7 @@ fetch('data/henri3letters.geojson', {
               if (Number(e.target.id) !== letterID) {
                 mymap.removeLayer(layer);
               } else if (Number(e.target.id) === letterID) {
-                // add layer to table.
+              // add layer to table.
                 tableOfLetters.addLayerToList(layerInfo);
                 // add layer to map.
                 layer.addTo(mymap);
@@ -587,7 +597,7 @@ fetch('data/henri3letters.geojson', {
                 mymap.panTo([layerLatLng[1], layerLatLng[0]]);
                 // change mapdates line.
                 document.getElementById('map-title').innerHTML =
-                      `<p>Letter to ${letterRecipient}, on 
+                `<p>Letter to ${letterRecipient}, on 
                       ${formatDate(new Date(letterDate))}</p>`;
               }
             });
@@ -659,21 +669,21 @@ fetch('data/henri3letters.geojson', {
       letterTopic1
           .toLowerCase()
           .indexOf(filters.text1.toLowerCase()) > -1 ||
-        letterTopic2
-            .toLowerCase()
-            .indexOf(filters.text1.toLowerCase()) > -1 ||
-        letterTopic3
-            .toLowerCase()
-            .indexOf(filters.text1.toLowerCase()) > -1 ||
-        letterTopic4
-            .toLowerCase()
-            .indexOf(filters.text1.toLowerCase()) > -1
+      letterTopic2
+          .toLowerCase()
+          .indexOf(filters.text1.toLowerCase()) > -1 ||
+      letterTopic3
+          .toLowerCase()
+          .indexOf(filters.text1.toLowerCase()) > -1 ||
+      letterTopic4
+          .toLowerCase()
+          .indexOf(filters.text1.toLowerCase()) > -1
     ) {
       numberOfTrue += 1;
     }
     if (
       timestamp(letterDate) >= Number(filters.range[0]) &&
-        timestamp(letterDate) <= Number(filters.range[1])
+      timestamp(letterDate) <= Number(filters.range[1])
     ) {
       numberOfTrue += 1;
     }
@@ -684,7 +694,6 @@ fetch('data/henri3letters.geojson', {
       mymap.removeLayer(layer);
     }
   }
-
   class TableOfLetters {
     addLayerToList(layerInfo) {
       // const tr = document.createElement('tr');
@@ -765,7 +774,7 @@ fetch('data/henri3letters.geojson', {
         `Letters from ${formatDate(new Date(dateValue1.value))}`;
     } else {
       mapdates =
-            `Letters from <br>
+        `Letters from <br>
             ${formatDate(new Date(dateValue1.value))}
                 to ${formatDate(new Date(dateValue2.value))}`;
     }
@@ -773,7 +782,9 @@ fetch('data/henri3letters.geojson', {
   };
 
   // set the bounds of the map on load
-  mymap.fitBounds(lyrAllDates.getBounds(), {padding: [50, 50]});
+  mymap.fitBounds(lyrAllDates.getBounds(), {
+    padding: [50, 50],
+  });
   // make sure all popups are closed on map load.
   mymap.closePopup();
 
@@ -785,17 +796,17 @@ fetch('data/henri3letters.geojson', {
   // eventListener is has to reload each time it is used.
   // ****************************************
   // iterate through each of the table rows
-  for (let i=0; i<letterTable.children.length; i++) {
+  for (let i = 0; i < letterTable.children.length; i++) {
     // add eventListener
     document.getElementsByClassName('table-layer-button')[i]
         .style.cursor = 'pointer';
     document.getElementsByClassName('table-layer-button')[i]
         .addEventListener('click', function(e) {
-          // clear the table
+        // clear the table
           clearTable();
           // iterate through each layer
           lyrAllDates.eachLayer(function(layer) {
-            // load each variable related to the layer
+          // load each variable related to the layer
             const layerLatLng = layer.feature.geometry.coordinates;
             const letterLink = layer.feature.properties.link;
             const letterID = layer.feature.properties.objectID;
@@ -806,15 +817,15 @@ fetch('data/henri3letters.geojson', {
             const letterTopic4 = layer.feature.properties.topic4;
             const letterDate = layer.feature.properties.date;
             if (letterTopic1 !== '' && letterTopic2 !== '' &&
-              letterTopic3 !== '' && letterTopic4 !== '') {
+            letterTopic3 !== '' && letterTopic4 !== '') {
               letterTopics = `${letterTopic1} / ${letterTopic2}
               / ${letterTopic3} / ${letterTopic4}`;
             } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-              letterTopic3 !== '' && letterTopic4 == '') {
+            letterTopic3 !== '' && letterTopic4 == '') {
               letterTopics = `${letterTopic1} / ${letterTopic2}
               / ${letterTopic3}`;
             } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-              letterTopic3 == '' && letterTopic4 == '') {
+            letterTopic3 == '' && letterTopic4 == '') {
               letterTopics = `${letterTopic1} / ${letterTopic2}`;
             } else {
               letterTopics = `${letterTopic1}`;
@@ -836,7 +847,7 @@ fetch('data/henri3letters.geojson', {
               mymap.panTo([layerLatLng[1], layerLatLng[0]]);
               // change mapdates line.
               document.getElementById('map-title').innerHTML =
-                    `<p>Letter to ${letterRecipient}, on 
+              `<p>Letter to ${letterRecipient}, on 
                     ${formatDate(new Date(letterDate))}</p>`;
             }
           });
@@ -871,9 +882,11 @@ fetch('data/henri3letters.geojson', {
         inputSearchTopic('polish election');
         inputDate1('1572-01-01');
         inputDate2('1574-01-01');
-        mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+        mymap.fitBounds(clusters.getBounds(), {
+          padding: [50, 50],
+        });
         document.getElementById('map-title').innerHTML =
-            `Example Event: Letters to the Noailles, 
+        `Example Event: Letters to the Noailles, 
             ${formatDate(new Date(dateValue1.value))} to 
             ${formatDate(new Date(dateValue2.value))}`;
       });
@@ -886,7 +899,9 @@ document.querySelector('.homeview')
       revertMap();
       lyrGroup.clearLayers();
       lyrGroup.addLayer(lyrAllDates);
-      mymap.fitBounds(clusters.getBounds(), {padding: [50, 50]});
+      mymap.fitBounds(clusters.getBounds(), {
+        padding: [50, 50],
+      });
     });
 
 // Create a new date from a string, return as a timestamp.
@@ -940,7 +955,9 @@ mymap.addEventListener('mousemove', function(e) {
   document.querySelector('#map_coords').innerHTML = str;
 });
 // *****Data Toggles on links declaring inoperability and footnotes*****
-$('[data-toggle="popover"]').popover({trigger: 'hover'});
+$('[data-toggle="popover"]').popover({
+  trigger: 'hover',
+});
 $('[data-toggle="tooltip"]').tooltip();
 
 // *****creating the Layer control*****
