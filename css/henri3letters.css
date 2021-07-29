@@ -51,7 +51,7 @@ body::-webkit-scrollbar-thumb {
     position: absolute;
     height: 100%;
     width: 100%;
-    background-image: url(../images/ambassadors-holbein1.3.jpg);
+    background-image: url(../images/henri3v1.jpg);
     background-size: cover;
     margin: 0;
     z-index: 1;
@@ -250,7 +250,6 @@ h4 {
 
 #article::-webkit-scrollbar {
     width: 5px;
-
 }
 
 #article::-webkit-scrollbar-thumb {
@@ -333,8 +332,22 @@ h4 {
     color: black;
     z-index: 200;
     display: block;
-    margin-left: 50px;
-    margin-top: 10px;
+    left: 50px;
+    top: 8px;
+    font-size: .8rem;
+}
+
+#table-button {
+    position: absolute;
+    background-color: white;
+    border-width: 2px;
+    border-color: rgba(168, 165, 160, .95);
+    color: black;
+    z-index: 200;
+    display: block;
+    left: 50px;
+    top: 42px;
+    font-size: .8rem;
 }
 
 #srchfilter {
@@ -362,6 +375,46 @@ h4 {
     width: 25%;
     height: 10px;
     z-index: 1000;
+}
+
+#letter-table {
+    position: absolute;
+    display: none;
+    width: auto;
+    max-width: 33%;
+    min-width: 350px;
+    max-height: 80%;
+    right: 33.5%;
+    top: 55px;
+    overflow: auto;
+    z-index: 999;
+    background: rgba(245, 242, 236, 1);
+    border: solid black;
+    border-radius: 10pt;
+}
+
+.table thead {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: rgba(245, 242, 236, 1);
+}
+
+table::-webkit-scrollbar {
+    width: 6px;
+
+}
+
+table::-webkit-scrollbar-thumb {
+    background-color: rgb(152, 152, 161);
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+}
+
+table a {
+    color: blue;
 }
 
 #dateValue1 {
