@@ -51,7 +51,7 @@ body::-webkit-scrollbar-thumb {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-image: url(../images/henri3v1.jpg);
+  background-image: url(../images/data-ambassadors-holbein1.2.jpg);
   background-size: cover;
   margin: 0;
   z-index: 1;
@@ -220,32 +220,10 @@ h4 {
   position: absolute;
   top: 100%;
   height: 100%;
+  width: 100%;
+  /* height: 500px; */
+
   background-color: rgba(245, 242, 236, 0.84);
-}
-
-#mapid {
-  position: absolute;
-  float: left;
-  height: 100%;
-  /* width: 73%; */
-  margin: 0;
-  z-index: 30;
-
-}
-
-#article {
-  position: relative;
-  float: right;
-  height: 92%;
-  background-color: rgba(245, 242, 236, 1);
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  margin-inline-start: 50px;
-  overflow: scroll;
-  overflow-x: hidden;
-  z-index: 150;
-  margin-top: 10px;
-  margin-left: 5px;
-  margin-bottom: 25px;
 }
 
 #article::-webkit-scrollbar {
@@ -377,15 +355,21 @@ h4 {
   z-index: 1000;
 }
 
+#table-div {
+  position: relative;
+  height: 100%;
+}
+
 #letter-table {
-  position: absolute;
-  display: none;
+  position: relative;
   width: auto;
-  max-width: 33%;
+  max-width: 95%;
   min-width: 350px;
   max-height: 80%;
-  right: 33.5%;
   top: 55px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   overflow: auto;
   z-index: 999;
   background: rgba(245, 242, 236, 1);
@@ -393,7 +377,7 @@ h4 {
   border-radius: 10pt;
 }
 
-.table thead {
+#letter-table thead {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
