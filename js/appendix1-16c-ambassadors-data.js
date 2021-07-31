@@ -4,16 +4,15 @@ const months = ['Jan.', 'Feb.', 'Mar.',
   'Aug.', 'Sept.', 'Oct.',
   'Nov.', 'Dec.',
 ];
-const letterTable = document.querySelector('#letter-table tbody');
+const table16cAmb = document.querySelector('#table-16c-amb tbody');
 
 fetch('data/16c-diplomats_data.geojson', {
   method: 'GET',
 }).then((Response) => Response.json()).then((json) => {
   const data = json.features;
-  console.log(data);
   class TableOfLetters {
     addLayerToList(layerInfo) {
-      const tr = letterTable.insertRow(-1);
+      const tr = table16cAmb.insertRow(-1);
       tr.innerHTML = `
           <td class = "text-center table-layer-button" id="${layerInfo.id}">
           ${layerInfo.id}</td>
