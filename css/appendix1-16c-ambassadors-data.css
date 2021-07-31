@@ -366,8 +366,7 @@ h4 {
   max-width: 95%;
   min-width: 350px;
   max-height: 80%;
-  top: 55px;
-  display: block;
+  display: none;
   margin-left: auto;
   margin-right: auto;
   overflow: auto;
@@ -401,8 +400,16 @@ table a {
 }
 
 hr {
-  height: 10px;
+  height: 5px;
   z-index: 999;
+}
+
+.appendices-line {
+  margin: 10px;
+}
+
+.data-buttons {
+  margin: 25px;
 }
 
 #footer {

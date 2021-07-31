@@ -4,7 +4,19 @@ const months = ['Jan.', 'Feb.', 'Mar.',
   'Aug.', 'Sept.', 'Oct.',
   'Nov.', 'Dec.',
 ];
-const table16cAmb = document.querySelector('#table-16c-amb tbody');
+const table16cAmbBody = document.querySelector('#table-16c-amb tbody');
+const table16cAmb = document.querySelector('#table-16c-amb');
+
+const btnOpen16cAmbTable = document.querySelector('#btn-open-16c-ambs');
+
+btnOpen16cAmbTable.addEventListener('click', function() {
+  if (table16cAmb.style.display != 'none') {
+    table16cAmb.style.display = 'none';
+  } else if (table16cAmb.style.display = 'none') {
+    table16cAmb.style.display = 'block';
+  }
+  return;
+});
 
 fetch('data/16c-diplomats_data.geojson', {
   method: 'GET',
@@ -12,7 +24,7 @@ fetch('data/16c-diplomats_data.geojson', {
   const data = json.features;
   class TableOfLetters {
     addLayerToList(layerInfo) {
-      const tr = table16cAmb.insertRow(-1);
+      const tr = table16cAmbBody.insertRow(-1);
       tr.innerHTML = `
           <td class = "text-center table-layer-button" id="${layerInfo.id}">
           ${layerInfo.id}</td>
@@ -56,7 +68,6 @@ fetch('data/16c-diplomats_data.geojson', {
   }
 
   data.forEach(function(layer) {
-    console.log(layer);
     const ambID = layer.properties.objectID.toString();
     const ambName = layer.properties.name;
     const ambPlace = layer.properties.place;
