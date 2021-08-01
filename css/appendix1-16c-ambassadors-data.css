@@ -328,12 +328,12 @@ h4 {
   font-size: .8rem;
 }
 
-#table-div-16c-amb {
+#table-div {
   position: relative;
   height: auto;
 }
 
-#table-16c-amb {
+.data-tables {
   position: relative;
   width: auto;
   max-width: 95%;
@@ -349,7 +349,7 @@ h4 {
   border-radius: 10pt;
 }
 
-#table-16c-amb thead {
+.data-tables {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
