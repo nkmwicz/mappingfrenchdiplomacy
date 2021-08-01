@@ -8,13 +8,15 @@ const table16cAmbBody = document.querySelector('#table-16c-amb tbody');
 const table16cAmb = document.querySelector('#table-16c-amb');
 
 const btnOpen16cAmbTable = document.querySelector('#btn-open-16c-ambs');
+const btnClose16cAmbTable = document.querySelector('#btn-close-16c-ambs');
 
 btnOpen16cAmbTable.addEventListener('click', function() {
-  if (table16cAmb.style.display = 'none') {
-    table16cAmb.style.display = 'block';
-  } else if (table16cAmb.style.display = 'block') {
-    table16cAmb.style.display = 'none';
-  }
+  closeTables();
+  table16cAmb.style.display = 'block';
+});
+
+btnClose16cAmbTable.addEventListener('click', function() {
+  table16cAmb.style.display = 'none';
 });
 
 fetch('data/16c-diplomats_data.geojson', {
@@ -99,6 +101,10 @@ function formatDate(date) {
   // eslint-disable-next-line max-len
   return `${date.getUTCDate()} ${months[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
 };
+
+function closeTables() {
+  document.querySelector('.data-tables').style.display = 'none';
+}
 
 $('[data-toggle="popover"]').popover({
   trigger: 'hover',
