@@ -51,7 +51,7 @@ body::-webkit-scrollbar-thumb {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-image: url(../images/data-ambassadors-holbein1.2.jpg);
+  background-image: url(../images/bnf.jpg);
   background-size: cover;
   margin: 0;
   z-index: 1;
@@ -197,6 +197,7 @@ h4 {
 .fixed-bottom {
   position: absolute;
   background-color: rgba(255, 255, 255, 0.5);
+  height: 75px;
 }
 
 .navbar-brand {
@@ -379,7 +380,7 @@ hr {
 
 #note-to-reader {
   border: solid black;
-  max-width: 300px;
+  max-width: 500px;
   margin-right: auto;
   margin-left: auto;
   margin-top: 25px;
