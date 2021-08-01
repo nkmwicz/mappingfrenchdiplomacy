@@ -10,12 +10,11 @@ const table16cAmb = document.querySelector('#table-16c-amb');
 const btnOpen16cAmbTable = document.querySelector('#btn-open-16c-ambs');
 
 btnOpen16cAmbTable.addEventListener('click', function() {
-  if (table16cAmb.style.display != 'none') {
-    table16cAmb.style.display = 'none';
-  } else if (table16cAmb.style.display = 'none') {
+  if (table16cAmb.style.display = 'none') {
     table16cAmb.style.display = 'block';
+  } else if (table16cAmb.style.display = 'block') {
+    table16cAmb.style.display = 'none';
   }
-  return;
 });
 
 fetch('data/16c-diplomats_data.geojson', {
