@@ -377,6 +377,30 @@ hr {
   z-index: 999;
 }
 
+#note-to-reader {
+  border: solid black;
+  max-width: 300px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border-radius: 10pt;
+  justify-content: center;
+}
+
+#note-to-reader h3 {
+  text-align: center;
+  margin: 5px;
+}
+
+#note-to-reader p {
+  text-align: center;
+}
+
+#note-to-reader a {
+  color: blue;
+}
+
 .appendices-line {
   margin: 10px;
 }
