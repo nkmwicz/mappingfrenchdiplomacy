@@ -350,7 +350,7 @@ h4 {
   border-radius: 10pt;
 }
 
-.data-tables {
+.data-tables thead {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
