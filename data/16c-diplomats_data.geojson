@@ -18143,6 +18143,27 @@
           45.44
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.51,
+          41.89
+        ]
+      },
+      "properties": {
+        "objectID": 865,
+        "name": "De Selve, Jean-Paul",
+        "place": "Rome",
+        "year": 1556,
+        "fullYear": "",
+        "duration": 1,
+        "ambInfo": "",
+        "source": "Bibliothèque de l'Arsenal, Ms-4602",
+        "link": "<a href='https://archivesetmanuscrits.bnf.fr/ark:/12148/cc84917z' target='blank'>Click here.</a>"
+      }
     }
   ]
 }
