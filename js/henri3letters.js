@@ -271,6 +271,19 @@ fetch('data/henri3letters.geojson', {
     pointToLayer: function(feature, latlng) {
       // *****Popup HTML*****
       const letterDate = new Date(feature.properties.date);
+      const topics = [];
+      if (feature.properties.topic1 !== '') {
+        topics.push(feature.properties.topic1);
+      };
+      if (feature.properties.topic2 !== '') {
+        topics.push(feature.properties.topic2);
+      };
+      if (feature.properties.topic3 !== '') {
+        topics.push(feature.properties.topic3);
+      };
+      if (feature.properties.topic4 !== '') {
+        topics.push(feature.properties.topic4);
+      };
       const str =
         `<p style = text-align:center>
                 <strong>${feature.properties.author} to 
@@ -281,10 +294,7 @@ fetch('data/henri3letters.geojson', {
                 ${feature.properties.place}</p>
             <p><strong>Letter Summary</strong>: 
                 ${feature.properties.summary}</p>
-            <p><strong>Topics:</strong> ${feature.properties.topic1}<br>
-                                        ${feature.properties.topic2}<br>
-                                        ${feature.properties.topic3}<br>
-                                        ${feature.properties.topic4}
+            <p><strong>Topics:</strong> ${topics.join(separator= ' / ')}
             <p><strong>Recipient Info:</strong> 
                 ${feature.properties.recipientInformation}
             <p><strong>Source</strong>: ${feature.properties.citation}</p>
