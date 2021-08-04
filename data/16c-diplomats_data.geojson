@@ -18164,6 +18164,69 @@
         "source": "Bibliothèque de l'Arsenal, Ms-4602",
         "link": "<a href='https://archivesetmanuscrits.bnf.fr/ark:/12148/cc84917z' target='blank'>Click here.</a>"
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.51,
+          41.89
+        ]
+      },
+      "properties": {
+        "objectID": 866,
+        "name": "Seyssel, Claude de",
+        "place": "Rome",
+        "year": 1513,
+        "fullYear": "",
+        "duration": 1,
+        "ambInfo": "An ambassador to Rome under Louis XII from 1513 until the King's death in 1515. He was the illegitimate son of the governor of Piedmont. He was the chancellor to the duke of Savoy before he entered the service of Louis XII. He became the bishop of Marseilles in 1509. He played an important role when Louis XII divorce Jeanne",
+        "source": "Fletcher, <i>Diplomacy in Renaissance Rome,</i> 86.",
+        "link": "<a href='https://www.google.com/books/edition/Diplomacy_in_Renaissance_Rome/YJuNCgAAQBAJ?hl=en&gbpv=1&dq=fletcher+diplomacy&printsec=frontcover' target='blank'>Click here.</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.51,
+          41.89
+        ]
+      },
+      "properties": {
+        "objectID": 867,
+        "name": "Seyssel, Claude de",
+        "place": "Rome",
+        "year": 1514,
+        "fullYear": "",
+        "duration": 1,
+        "ambInfo": "An ambassador to Rome under Louis XII from 1513 until the King's death in 1515. He was the illegitimate son of the governor of Piedmont. He was the chancellor to the duke of Savoy before he entered the service of Louis XII. He became the bishop of Marseilles in 1509. He played an important role when Louis XII divorce Jeanne",
+        "source": "Fletcher, <i>Diplomacy in Renaissance Rome,</i> 86.",
+        "link": "<a href='https://www.google.com/books/edition/Diplomacy_in_Renaissance_Rome/YJuNCgAAQBAJ?hl=en&gbpv=1&dq=fletcher+diplomacy&printsec=frontcover' target='blank'>Click here.</a>"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.51,
+          41.89
+        ]
+      },
+      "properties": {
+        "objectID": 867,
+        "name": "Seyssel, Claude de",
+        "place": "Rome",
+        "year": 1515,
+        "fullYear": "",
+        "duration": 1,
+        "ambInfo": "An ambassador to Rome under Louis XII from 1513 until the King's death in 1515. He was the illegitimate son of the governor of Piedmont. He was the chancellor to the duke of Savoy before he entered the service of Louis XII. He became the bishop of Marseilles in 1509. He played an important role when Louis XII divorce Jeanne",
+        "source": "Fletcher, <i>Diplomacy in Renaissance Rome,</i> 86.",
+        "link": "<a href='https://www.google.com/books/edition/Diplomacy_in_Renaissance_Rome/YJuNCgAAQBAJ?hl=en&gbpv=1&dq=fletcher+diplomacy&printsec=frontcover' target='blank'>Click here.</a>"
+      }
     }
   ]
 }
