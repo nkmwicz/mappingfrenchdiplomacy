@@ -356,7 +356,6 @@ fetch('data/henri3letters.geojson', {
       return circleMarker;
     },
   });
-
   // layer group and cluster
   lyrGroup.addLayer(lyrAllDates);
 
