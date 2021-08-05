@@ -263,7 +263,7 @@ dateValue2.addEventListener('input', function(e) {
 
 // Load lyrAllDates with AJAX
 let lyrAllDates = false;
-fetch('data/henri3letters.geojson', {
+fetch('data/henri3letters.json', {
   method: 'GET',
 }).then((Response) => Response.json()).then((json) => {
   // *****Layer data for the layer group that goes into the clusters*****
