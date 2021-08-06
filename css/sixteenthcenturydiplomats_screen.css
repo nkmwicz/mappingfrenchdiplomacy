@@ -171,7 +171,7 @@ body::-webkit-scrollbar-thumb {
     position: absolute;
     height: 100%;
     width: 100%;
-    background-image: url(../images/ambassadors-holbein1.3.jpg);
+    background-image: url(../images/ambassadors-holbein1.5.jpg);
     background-size: cover;
     margin: 0;
     z-index: 1;
@@ -293,8 +293,6 @@ h4 {
     top: 22%;
     margin-bottom: 15%;
     align-content: center;
-    /* font-size: 24pt; */
-    /* font-family: 'Tangerine', cursive; */
     color: black;
 }
 
@@ -311,8 +309,12 @@ h4 {
     padding-bottom: 2rem;
 }
 
+.title {
+    font-size: 6rem;
+}
+
 .subtitle {
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 .fixed-bottom {
