@@ -25,81 +25,125 @@ $(document).ready(function() {
     const clusters = L.markerClusterGroup.layerSupport({
       iconCreateFunction: function(cluster) {
         const clusterWidth = 30 + cluster.getChildCount() * 0.5;
-        if (
-          (cluster._cLatLng.lat == '55.68', cluster._cLatLng.lng == '12.57')
-        ) {
-          clusterColor = 'rgba(193,184,78,0.8)';
-        } else if (
-          (cluster._cLatLng.lat == '51.51', cluster._cLatLng.lng == '-0.12')
-        ) {
-          clusterColor = 'rgba(20,234,52,0.8)';
-        } else if (
-          (cluster._cLatLng.lat == '44.84', cluster._cLatLng.lng == '11.62')
-        ) {
-          clusterColor = 'rgba(254,191,229.0.8)';
-        } else if (
-          (cluster._cLatLng.lat == '46.21', cluster._cLatLng.lng == '6.14')
-        ) {
-          clusterColor = 'rgba(194,243,253,0.8)';
-        } else if (
-          (cluster._cLatLng.lat == '46.66', cluster._cLatLng.lng == '9.63')
-        ) {
-          clusterColor = 'rgba(230,0,0,0.8)';
-        } else if (
-          (cluster._cLatLng.lat == '48.21', cluster._cLatLng.lng == '16.36')
-        ) {
-          clusterColor = 'rgba(255,255,0,0.8)';
-        } else if (
-          (cluster._cLatLng.lat == '52.37', cluster._cLatLng.lng == '4.89')
-        ) {
-          clusterColor = 'rgba(180,253,223,0.8)';
-        } else if (
-          (cluster._cLatLng.lat == '41.01', cluster._cLatLng.lng == '28.96')
-        ) {
-          clusterColor = 'rgba(0,0,0,0.8)';
-        } else if (
-          (cluster._cLatLng.lat == '52.23', cluster._cLatLng.lng == '21.02')
-        ) {
-          clusterColor = 'rgba(214,216,255,0.8)';
-        } else if (
-          (cluster._cLatLng.lat == '38.72', cluster._cLatLng.lng == '-9.13')
-        ) {
-          clusterColor = 'rgba(255,253,180,0.8)';
-        } else if (
-          (cluster._cLatLng.lat == '41.89', cluster._cLatLng.lng == '12.51')
-        ) {
-          clusterColor = 'rgba(239,202,253,0.8)';
-        } else if (
-          (cluster._cLatLng.lat == '45.06', cluster._cLatLng.lng == '7.68')
-        ) {
-          clusterColor = 'rgba(226,253,211,0.8)';
-        } else if (
-          (cluster._cLatLng.lat == '51.05', cluster._cLatLng.lng == '13.35')
-        ) {
-          clusterColor = 'rgba(253,217,198,0.8)';
-        } else if (
-          (cluster._cLatLng.lat == '55.95', cluster._cLatLng.lng == '-3.19')
-        ) {
-          clusterColor = 'rgba(255,255,190,0.8)';
-        } else if (
-          (cluster._cLatLng.lat == '40.43', cluster._cLatLng.lng == '-3.7')
-        ) {
-          clusterColor = 'rgba(234,234,234,0.8)';
-        } else if (
-          (cluster._cLatLng.lat == '46.94', cluster._cLatLng.lng == '7.45')
-        ) {
-          clusterColor = 'rgba(184,0,230,0.8)';
-        } else if (
-          (cluster._cLatLng.lat == '43.46', cluster._cLatLng.lng == '11.14')
-        ) {
-          clusterColor = 'rgba(187,223,254,0.8)';
-        } else if (
-          (cluster._cLatLng.lat == '45.44', cluster._cLatLng.lng == '12.33')
-        ) {
-          clusterColor = 'rgba(156,156,156,0.8)';
+        // Denmark
+        if
+        (cluster._cLatLng.lat == '55.68' && cluster._cLatLng.lng == '12.57') {
+          clusterColor = 'rgba(189,183,107,0.8)'; // darkkhaki
+        } else if
+        // England
+        (cluster._cLatLng.lat == '51.51' && cluster._cLatLng.lng == '-0.12') {
+          clusterColor = 'rgba(124,252,0,0.8)'; // lawngreen
+        } else if
+        // Ferrara
+        (cluster._cLatLng.lat == '44.84' && cluster._cLatLng.lng == '11.62') {
+          clusterColor = 'rgba(255,182,193,0.8)'; // lightpink
+        } else if
+        // Geneva
+        (cluster._cLatLng.lat == '46.21' && cluster._cLatLng.lng == '6.14') {
+          clusterColor = 'rgba(173,216,230,0.8)'; // lightblue
+        } else if
+        // Grisons
+        (cluster._cLatLng.lat == '46.66' && cluster._cLatLng.lng == '9.63') {
+          clusterColor = 'rgba(139,0,0,0.8)'; // darkred
+        } else if
+        // Holy Roman Emperor
+        (cluster._cLatLng.lat == '48.21' && cluster._cLatLng.lng == '16.36') {
+          clusterColor = 'rgba(255,255,0,0.8)'; // yellow
+        } else if
+        // Netherlands
+        (cluster._cLatLng.lat == '52.37' && cluster._cLatLng.lng == '4.89') {
+          clusterColor = 'rgba(143,188,143,0.8)'; // darkseagreen
+        } else if
+        // Ottoman Empire
+        (cluster._cLatLng.lat == '41.01' && cluster._cLatLng.lng == '28.96') {
+          clusterColor = 'rgba(0,0,0,0.8)'; // black
+        } else if
+        // Poland
+        (cluster._cLatLng.lat == '52.23' && cluster._cLatLng.lng == '21.02') {
+          clusterColor = 'rgba(0,255,255,0.8)'; // cyan
+        } else if
+        // Portugal
+        (cluster._cLatLng.lat == '38.72' && cluster._cLatLng.lng == '-9.13') {
+          clusterColor = 'rgba(255,250,205,0.8)'; // lemonchiffon
+        } else if
+        // Rome
+        (cluster._cLatLng.lat == '41.89' && cluster._cLatLng.lng == '12.51') {
+          clusterColor = 'rgba(255,0,255,0.8)'; // magenta
+        } else if
+        // Savoy
+        (cluster._cLatLng.lat == '45.06' && cluster._cLatLng.lng == '7.68') {
+          clusterColor = 'rgba(244,164,96,0.8)'; // sandybrown
+        } else if
+        // Saxony
+        (cluster._cLatLng.lat == '51.05' && cluster._cLatLng.lng == '13.35') {
+          clusterColor = 'rgba(245,245,220,0.8)'; // beige
+        } else if
+        // Scotland
+        (cluster._cLatLng.lat == '55.95' && cluster._cLatLng.lng == '-3.19') {
+          clusterColor = 'rgba(255,127,80,0.8)'; // coral
+        } else if
+        // Spain
+        (cluster._cLatLng.lat == '40.43' && cluster._cLatLng.lng == '-3.7') {
+          clusterColor = 'rgba(255,105,180,0.8)'; // hotpink
+        } else if
+        // Swiss Cantons
+        (cluster._cLatLng.lat == '46.94' && cluster._cLatLng.lng == '7.45') {
+          clusterColor = 'rgba(147,112,219,0.8)'; // mediumpurple
+        } else if
+        // Tuscany
+        (cluster._cLatLng.lat == '43.46' && cluster._cLatLng.lng == '11.14') {
+          clusterColor = 'rgba(72,209,204,0.8)'; // mediumturquoise
+        } else if
+        // Venice
+        (cluster._cLatLng.lat == '45.44' && cluster._cLatLng.lng == '12.33') {
+          clusterColor = 'rgba(169,169,169,0.8)'; // darkgrey
+        } else if
+        // Lorraine
+        (cluster._cLatLng.lat == '48.76' && cluster._cLatLng.lng == '6.14') {
+          clusterColor = 'rgba(0,191,255,0.8)'; // deepskyblue
+        } else if
+        // Urbino
+        (cluster._cLatLng.lat == '43.72' && cluster._cLatLng.lng == '12.63') {
+          clusterColor = 'rgba(0,128,128,0.8)'; // teal
+        } else if
+        // Wurttemburg
+        (cluster._cLatLng.lat == '48.55' && cluster._cLatLng.lng == '9.04') {
+          clusterColor = 'rgba(255,0,0,0.8)'; // red
+        } else if
+        // Brandenbourg
+        (cluster._cLatLng.lat == '52.39' && cluster._cLatLng.lng == '13.06') {
+          clusterColor = 'rgba(255,140,0,0.8)'; // darkorange
+        } else if
+        // Elector of the Palatine
+        (cluster._cLatLng.lat == '49.91' && cluster._cLatLng.lng == '7.45') {
+          clusterColor = 'rgba(95,158,160)'; // cadetblue
+        } else if
+        // Mantua
+        (cluster._cLatLng.lat == '45.17' && cluster._cLatLng.lng == '10.79') {
+          clusterColor = 'rgba(65,105,225,0.8)'; // royalblue
+        } else if
+        // Hamburg
+        (cluster._cLatLng.lat == '52.55' && cluster._cLatLng.lng == '9.99') {
+          clusterColor = 'rgba(128,128,0,0.8)'; // olive
+        } else if
+        // Spanish Netherlands
+        (cluster._cLatLng.lat == '50.84' && cluster._cLatLng.lng == '4.36') {
+          clusterColor = 'rgba(255,255,240,0.8)'; // ivory
+        } else if
+        // Santa-Fiore
+        (cluster._cLatLng.lat == '43.77' && cluster._cLatLng.lng == '11.26') {
+          clusterColor = 'rgba(255,222,173,0.8)'; // navajowhite
+        } else if
+        // Sweden
+        (cluster._cLatLng.lat == '59.33' && cluster._cLatLng.lng == '18.07') {
+          clusterColor = 'rgba(219,112,147,0.8)'; // palevioletred
+        } else if
+        // Fribourg
+        (cluster._cLatLng.lat == '46.8' && cluster._cLatLng.lng == '7.15') {
+          clusterColor = 'rgba(255,218,185,0.8)'; // peachpuff
         } else {
           clusterColor = 'white';
-        }
+        };
         if (
           (cluster._cLatLng.lat == '41.01', cluster._cLatLng.lng == '28.96')
         ) {
@@ -213,50 +257,72 @@ $(document).ready(function() {
         const str =
             `<p style = text-align:center>
             <strong>${feature.properties.name}</strong></p><hr>
-            <p><strong>Place</strong>: ${feature.properties.name}</p>
+            <p><strong>Place</strong>: ${feature.properties.place}</p>
             <p><strong>Year</strong>: ${feature.properties.year}</p>
             <p><strong>Information</strong>: ${feature.properties.ambInfo}</p>
             <p><strong>Source</strong>: ${feature.properties.source}</p>
             <p><strong>Link</strong>: ${feature.properties.link}</p>`;
 
-        if (feature.properties.place == 'Swiss') {
-          (fillCircle = 'purple'), (colorCircle = 'black');
+        if (feature.properties.place == 'Swiss Cantons') {
+          (fillCircle = 'mediumpurple'), (colorCircle = 'black');
         } else if (feature.properties.place == 'Grisons') {
-          (fillCircle = '#e60000'), (colorCircle = '#000000');
+          (fillCircle = 'darkred'), (colorCircle = 'black');
         } else if (feature.properties.place == 'Holy Roman Empire') {
-          (fillCircle = '#ffff00'), (colorCircle = '#000000');
+          (fillCircle = 'yellow'), (colorCircle = 'black');
         } else if (feature.properties.place == 'England') {
-          (fillCircle = '#4ce600'), (colorCircle = '#000000');
+          (fillCircle = 'lawngreen'), (colorCircle = 'black');
         } else if (feature.properties.place == 'Venice') {
-          (fillCircle = '#9c9c9c'), (colorCircle = '#000000');
+          (fillCircle = 'darkgrey'), (colorCircle = 'black');
         } else if (feature.properties.place == 'Denmark') {
-          (fillCircle = '#c1b8fe'), (colorCircle = '#000000');
+          (fillCircle = 'darkkhaki'), (colorCircle = 'black');
         } else if (feature.properties.place == 'Ferrara') {
-          (fillCircle = '#febfe5'), (colorCircle = '#000000');
+          (fillCircle = 'lightpink'), (colorCircle = 'black');
         } else if (feature.properties.place == 'Geneva') {
-          (fillCircle = '#c2f3fd'), (colorCircle = '#000000');
+          (fillCircle = 'lightblue'), (colorCircle = 'black');
         } else if (feature.properties.place == 'Ottoman Empire') {
-          (fillCircle = '#000000'), (colorCircle = 'white');
+          (fillCircle = 'black'), (colorCircle = 'white');
         } else if (feature.properties.place == 'Netherlands') {
-          (fillCircle = '#b4fddf'), (colorCircle = '#000000');
+          (fillCircle = 'darkseagreen'), (colorCircle = 'black');
         } else if (feature.properties.place == 'Poland') {
-          (fillCircle = '#d6d8ff'), (colorCircle = '#000000');
+          (fillCircle = 'cyan'), (colorCircle = 'black');
         } else if (feature.properties.place == 'Portugal') {
-          (fillCircle = '#fffdb4'), (colorCircle = '#000000');
+          (fillCircle = 'lemonchiffon'), (colorCircle = 'black');
         } else if (feature.properties.place == 'Rome') {
-          (fillCircle = '#efcafd'), (colorCircle = '#000000');
+          (fillCircle = 'magenta'), (colorCircle = 'black');
         } else if (feature.properties.place == 'Savoy') {
-          (fillCircle = '#e2fdd3'), (colorCircle = '#000000');
+          (fillCircle = 'sandybrown'), (colorCircle = 'black');
         } else if (feature.properties.place == 'Saxony') {
-          (fillCircle = '#fdd9c6'), (colorCircle = '#000000');
+          (fillCircle = 'beige'), (colorCircle = 'black');
         } else if (feature.properties.place == 'Scotland') {
-          (fillCircle = '#ffffbe'), (colorCircle = '#000000');
+          (fillCircle = 'coral'), (colorCircle = 'black');
         } else if (feature.properties.place == 'Spain') {
-          (fillCircle = '#ffffff'), (colorCircle = '#000000');
+          (fillCircle = 'hotpink'), (colorCircle = 'black');
         } else if (feature.properties.place == 'Tuscany') {
-          (fillCircle = '#bbdffe'), (colorCircle = '#000000');
+          (fillCircle = 'mediumturquoise'), (colorCircle = 'black');
+        } else if (feature.properties.place == 'Santa-Fiore') {
+          (fillCircle = 'navajowhite'), (colorCircle = 'black');
+        } else if (feature.properties.place == 'Lorraine') {
+          (fillCircle = 'deepskyblue'), (colorCircle = 'black');
+        } else if (feature.properties.place == 'Urbino') {
+          (fillCircle = 'teal'), (colorCircle = 'black');
+        } else if (feature.properties.place == 'Electorate of the Palatine') {
+          (fillCircle = 'cadetblue'), (colorCircle = 'black');
+        } else if (feature.properties.place == 'Brandenbourg') {
+          (fillCircle = 'darkorange'), (colorCircle = 'black');
+        } else if (feature.properties.place == 'Sweden') {
+          (fillCircle = 'palevioletred'), (colorCircle = 'black');
+        } else if (feature.properties.place == 'Mantua') {
+          (fillCircle = 'royalblue'), (colorCircle = 'black');
+        } else if (feature.properties.place == 'Wurttemburg') {
+          (fillCircle = 'red'), (colorCircle = 'black');
+        } else if (feature.properties.place == 'Spanish Netherlands') {
+          (fillCircle = 'ivory'), (colorCircle = 'black');
+        } else if (feature.properties.place == 'Fribourg') {
+          (fillCircle = 'peachpuff'), (colorCircle = 'black');
+        } else if (feature.properties.place == 'Hamburg') {
+          (fillCircle = 'olive'), (colorCircle = 'black');
         } else {
-          (fillCircle = 'blue'), (colorCircle = '#000000');
+          (fillCircle = 'blue'), (colorCircle = 'black');
         }
         const circleMarker = L.circleMarker(latlng, {
           radius: '10',
