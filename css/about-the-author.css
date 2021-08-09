@@ -128,7 +128,7 @@ body {
 
 body {
     margin: 0;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'EB Garamond', serif;
 }
 
 p {
@@ -287,8 +287,10 @@ h3 {
 .title {
     text-align: center;
     /* font-size: 24pt; */
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'EB Garamond', serif;
     color: black;
+    font-size: 4vw;
+    font-weight: 300;
 
 }
 
@@ -304,7 +306,8 @@ h3 {
 
 .subtitle {
     text-align: center;
-    font-size: 2rem;
+    font-size: 2vw;
+    font-weight: 200;
 }
 
 .byline {
@@ -377,7 +380,7 @@ h3 {
     min-width: 570px;
     height: 50%;
     /* background-color: rgba(245, 242, 236, 0.84); */
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'EB Garamond', serif;
     overflow: scroll;
     overflow-x: hidden;
     z-index: 150;
@@ -444,7 +447,7 @@ h3 {
     position: absolute;
     bottom: 0px;
     height: 20px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'EB Garamond', serif;
     z-index: 300;
     background-color: rgba(245, 242, 236, 0.84);
 }

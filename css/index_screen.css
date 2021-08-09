@@ -220,17 +220,17 @@ body::-webkit-scrollbar-thumb {
     position: absolute;
     height: 100%;
     width: 100%;
-    background-image: url(../images/charles8_and_louis14.jpg);
-    background-size: cover;
+    background: rgba(255, 255, 255, 0.5) url(../images/charles8_and_louis14.jpg) center center no-repeat;
+    background-size: 100% auto;
     margin: 0;
     z-index: 1;
 }
 
 #wrapper {
     position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(255, 228, 196, .4);
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(255, 228, 196, .3);
     z-index: 2;
 }
 
@@ -330,7 +330,7 @@ h3 {
     margin-bottom: 15%;
     align-content: center;
     /* font-size: 24pt; */
-    font-family: 'Charm', cursive;
+    font-family: 'Tangerine', cursive;
     color: black;
 
 }
@@ -345,14 +345,20 @@ h3 {
     margin-right: auto;
 }
 
+.title {
+    font-size: 5vw;
+}
+
 .subtitle {
-    font-size: 2rem;
+    font-size: 3vw;
 }
 
 .byline {
     font-size: 1.5rem;
     padding-top: 0rem;
     font-family: 'EB Garamond', serif;
+    font-size: 1.5vw;
+    font-weight: 200;
 }
 
 .fixed-bottom {

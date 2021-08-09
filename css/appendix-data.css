@@ -171,8 +171,8 @@ body::-webkit-scrollbar-thumb {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-image: url(../images/bnf.jpg);
-  background-size: cover;
+  background: rgba(255, 255, 255, 0.5) url(../images/bnf.jpg) center center no-repeat;
+  background-size: 100% auto;
   margin: 0;
   z-index: 1;
 }
@@ -311,7 +311,11 @@ h4 {
 }
 
 .subtitle {
-  font-size: 2rem;
+  font-size: 3vw;
+}
+
+.title {
+  font-size: 5vw;
 }
 
 .fixed-bottom {
