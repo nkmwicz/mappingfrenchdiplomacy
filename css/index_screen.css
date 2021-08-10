@@ -394,7 +394,26 @@ h3 {
 
 .project-note {
     margin: 20px;
-    border: 1px solid black;
+    border: solid black;
+    border-radius: 10pt;
+}
+
+.header-div {
+    position: -webkit-sticky;
+    position: sticky;
+    will-change: transform;
+    top: 0;
+    padding: 10px;
+    background-color: rgba(245, 242, 236, 1);
+    z-index: 999;
+}
+
+.header {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    background: rgba(245, 242, 236, 1);
+    margin-top: 10px;
 }
 
 #mapid {
