@@ -196,6 +196,11 @@ a:hover {
     margin-bottom: 5px;
 }
 
+.fn {
+    margin-top: -80px;
+    padding-top: 80px
+}
+
 .notes a:hover {
     color: blue;
 }
@@ -408,10 +413,24 @@ h3 {
     z-index: 999;
 }
 
-.header {
-    position: sticky;
-    position: -webkit-sticky;
+#navbarNavDropdown {
     top: 0;
+    z-index: 1000;
+}
+
+#navbarDropdownMenuLink {
+    padding: 2px 5px 2px 5px;
+    border: 1px solid black;
+    border-radius: 5pt;
+    background-color: white;
+}
+
+#navbarDropdownMenuLink::after {
+    display: none;
+}
+
+.header {
+    margin-left: 34%;
     background: rgba(245, 242, 236, 1);
     margin-top: 10px;
 }
