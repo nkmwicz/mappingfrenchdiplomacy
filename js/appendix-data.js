@@ -117,11 +117,10 @@ fetch('data/16c-diplomats_data.geojson', {
 
 // Fetch and create the table for the json information from
 // Letters of Henri III
-fetch('data/henri3letters.geojson', {
+fetch('data/henri3letters.json', {
   method: 'GET',
 }).then((Response) => Response.json()).then((json) => {
-  const lettersHenri3 = json.features;
-  console.log(lettersHenri3);
+  const lettersHenri3 = json;
   class TableOfLetters {
     addLayerToList(layerInfo) {
       const tr = tableHenri3LettersBody.insertRow(-1);
