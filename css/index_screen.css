@@ -232,6 +232,7 @@ body::-webkit-scrollbar-thumb {
     background-position: center;
     background-repeat: no-repeat;
     background-color: rgba(197, 180, 163, 0.94);
+    background-size: 100%;
 }
 
 #wrapper {
