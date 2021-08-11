@@ -387,6 +387,20 @@ $(document).ready(function() {
       lyrAllDates.eachLayer(function(layer) {
         filterLyrAllDates(layer);
       });
+      // change citation line to add dates
+      if (parseFloat(e[0]) === min &&
+        parseFloat(e[1]) === max) {
+        citedates = '';
+      } else if (parseFloat(e[0]) === parseFloat(e[1])) {
+        citedates =
+          ` Map date: "${parseFloat(e[0])}."`;
+      } else {
+        citedates =
+          ` Map dates: "${parseFloat(e[0])}
+                  to ${parseFloat(e[1])}."`;
+      }
+      document.getElementById('cite-dates').innerHTML =
+                citedates;
     });
 
     searchFilter.addEventListener('input', function(e) {
@@ -394,6 +408,14 @@ $(document).ready(function() {
       lyrAllDates.eachLayer(function(layer) {
         filterLyrAllDates(layer);
       });
+      // change citation line to add name searchfilter
+      if (searchFilter.value === '') {
+        citeName = '';
+      } else {
+        citeName = ` Search name: "${e.target.value}."`;
+      }
+      document.getElementById('cite-name').innerHTML =
+                citeName;
     });
 
     function filterLyrAllDates(layer) {

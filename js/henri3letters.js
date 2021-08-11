@@ -462,7 +462,6 @@ fetch('data/henri3letters.json', {
       padding: [50, 50],
     });
 
-    console.log(dateValue1.value);
     // change citation line to add dates
     if (timestamp(dateValue1.value) === min &&
     timestamp(dateValue2.value) === max) {
