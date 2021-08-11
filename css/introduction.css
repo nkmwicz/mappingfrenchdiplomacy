@@ -331,7 +331,7 @@ h3 {
 
 #title {
   position: relative;
-  top: 20%;
+  top: 32%;
   margin-bottom: 15%;
   align-content: center;
   /* font-size: 24pt; */
@@ -430,7 +430,7 @@ h3 {
 }
 
 .header {
-  margin-left: 34%;
+  margin-left: 37%;
   background: rgba(245, 242, 236, 1);
   margin-top: 10px;
 }
@@ -461,7 +461,7 @@ h3 {
   width: 35%;
   min-width: 570px;
   height: 100%;
-  background-color: rgba(245, 242, 236, 0.84);
+  background-color: rgba(245, 242, 236, 1);
   font-family: 'EB Garamond', serif;
   overflow: scroll;
   overflow-x: hidden;
