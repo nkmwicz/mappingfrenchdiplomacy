@@ -171,10 +171,13 @@ body::-webkit-scrollbar-thumb {
     position: absolute;
     height: 100%;
     width: 100%;
-    background: rgba(255, 255, 255, 0.5) url(../images/henri3v1.jpg) center center no-repeat;
-    background-size: cover;
+    background-image: url(../images/henri3v1.jpg);
+    background-size: contain;
     margin: 0;
     z-index: 1;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(197, 180, 163, 0.94);
 }
 
 #wrapper {

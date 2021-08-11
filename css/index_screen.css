@@ -225,10 +225,13 @@ body::-webkit-scrollbar-thumb {
     position: absolute;
     height: 100%;
     width: 100%;
-    background: rgba(255, 255, 255, 0.5) url(../images/charles8_and_louis14.jpg) center center no-repeat;
-    background-size: 100% auto;
+    background-image: url(../images/charles8_and_louis14.jpg);
+    background-size: contain;
     margin: 0;
     z-index: 1;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(197, 180, 163, 0.94);
 }
 
 #wrapper {
