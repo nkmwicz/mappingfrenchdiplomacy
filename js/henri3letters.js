@@ -462,6 +462,22 @@ fetch('data/henri3letters.json', {
       padding: [50, 50],
     });
 
+    console.log(dateValue1.value);
+    // change citation line to add dates
+    if (timestamp(dateValue1.value) === min &&
+    timestamp(dateValue2.value) === max) {
+      citedates = '';
+    } else if (dateValue1 == dateValue2) {
+      citedates =
+          ` Map date: "${formatDate(new Date(dateValue1.value))}."`;
+    } else {
+      citedates =
+          ` Map dates: "${formatDate(new Date(dateValue1.value))}
+                  to ${formatDate(new Date(dateValue2.value))}."`;
+    }
+    document.getElementById('cite-dates').innerHTML =
+                citedates;
+
     // eventlistener to clear table and reload only row
     // that was deleted. This code must be added to each
     // filter and the document as a whole because the
@@ -542,6 +558,15 @@ fetch('data/henri3letters.json', {
     mymap.fitBounds(clusters.getBounds(), {
       padding: [50, 50],
     });
+    // change citation line to add name searchfilter
+    if (searchFilter.value === '') {
+      citeName = '';
+    } else {
+      citeName = ` Search name: "${e.target.value}."`;
+    }
+    document.getElementById('cite-name').innerHTML =
+                citeName;
+
     // eventlistener to clear table and reload only row
     // that was deleted. This code must be added to each
     // filter and the document as a whole because the
@@ -622,6 +647,14 @@ fetch('data/henri3letters.json', {
     mymap.fitBounds(clusters.getBounds(), {
       padding: [50, 50],
     });
+    // change citation line to add searchfilter
+    if (searchFilter1.value === '') {
+      citeTopic = '';
+    } else {
+      citeTopic = ` Search topic: "${e.target.value}."`;
+    }
+    document.getElementById('cite-topic').innerHTML =
+                citeTopic;
 
     // eventlistener to clear table and reload only row
     // that was deleted. This code must be added to each
