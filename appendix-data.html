@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- using Bootstrap 4.0 / change to bootstrap.min.css before upload and delete full version -->
+  <link rel="stylesheet" type="text/css" href="resources/bootstrap.css">
+
+  <link rel="stylesheet" href="css/appendix-data.css">
+  <title>Appendix 1: Data</title>
+</head>
+<body>
+  <body>
+        <div id= "box1">
+            <div id="wrapper">
+                <div id="nav1">
+                    <h1 id="h1"><a href="index.html">Mapping French Diplomacy</a></h1>
+                    <div class="btn-group">
+                        <button type="button" style="top:20px; margin-left:40px; z-index: 999;" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Table of Contents
+                        </button>
+                        <div class="dropdown-menu">
+                        <a class="dropdown-item" href="index.html">Home</a>
+                        <div class="dropdown-divider"></div>
+                        <div class="drpdn">
+                            <button class="drpbtn">Introduction</button>
+                            <div class="drpdn-content" >
+                                <a href="introduction.html" data-toggle="popover" data-content="">Introduction</a>
+                                <a href="sixteenthcenturydiplomats.html" data-toggle="popover" data-content="">Sixteenth-Century Diplomats</a>
+                            </div>
+                        </div>
+                        <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="right" title="This page is under construction.">I: The Italian Wars, 1494-1559</a>
+                        <div class="drpdn">
+                            <button class="drpbtn">II: The Wars of Religion, 1559-1629</button>
+                            <div class="drpdn-content" >
+                                <a href="henri3letters.html" data-toggle="tooltip" data-placement="right" title="">Letters of Henri III (r. 1574-1589)</a>
+                            </div>
+                        </div>
+                        <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="right" title ="This page is under construction.">III: The Thirty Years War, 1610-1659</a>
+                        <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="right" title ="This page is under construction.">IV: The Wars of Louis XIV, 1645-1715</a>
+                        <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="right" title ="This page is under construction.">Conclusion</a>
+                        <div class="drpdn">
+                            <button class="drpbtn">Appendices</button>
+                            <div class="drpdn-content" >
+                                <a href="appendix-data.html" data-toggle="tooltip" data-placement="right" title="">Appendix 1: Data</a>
+                            </div>
+                        </div>
+                        <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="right" title="This page is under construction.">Bibliography</a>
+                        </div>
+                    </div>
+                </div>    
+                <div id="title">
+                    <div id="title-line">
+                        <h2 class="title">Appendix 1:</h2><h2 class="subtitle">Data</h2>
+                    </div>
+                </div>
+                <nav class="navbar fixed-bottom navbar-light justify-content-center bottom-navbar" style="z-index: 999;">
+                    
+                  </nav>
+            </div> 
+        </div>
+            
+        <div id="box2">
+            <div id="note-to-reader">
+                <h3>Note to the Reader</h3>
+                <p>Readers will find the datasets used in this monograph below. You can open tables of each dataset or download the file using the appropriate buttons. The data is downloaded as geojson files&ndash;a common file for storing data with geographic coordinates and other geographic information. Geojson files are not very readable, so you probably want to convert it into a csv file at a website such as <a href="https://data.page/json/csv" target="blank">data.page</a> or <a href="https://www.anyconv.com/geojson-to-csv-converter/" target="blank">anyconv.com.</a> </p>
+            </div>
+            <hr>
+            <div id="table-div"> 
+                <row class="justify-content-center">
+                    <h3 class="text-center appendices-line">Data Appendix 1: Sixteenth-Century Ambassadors</h3>
+                    </row>
+                <div class="row justify-content-center">
+                    <button class="btn btn-secondary data-buttons" id="btn-open-16c-ambs">Open Data Table</button>
+                    <button class="btn btn-secondary data-buttons" id="btn-close-16c-ambs">Close Data Table</button>
+                    <a href="/data/16c-diplomats_data.geojson" download>
+                        <button class="btn btn-secondary data-buttons" id="btn-download-16c-ambs">Download JSON</button>
+                    </a>
+                </div>
+                <table class="table table-sm table-bordered table-hover data-tables" id="table-16c-amb">  
+                    <thead>
+                        <tr>
+                            <th class="text-center">Object ID</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Place</th>
+                            <th class="text-center">Lat</th>
+                            <th class="text-center">Long</th>
+                            <th class="text-center">Year</th>
+                            <th class="text-center">Duration</th>
+                            <th class="text-center">Amb-Info</th>
+                            <th class="text-center">Source</th>
+                            <th class="text-center">Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <hr>
+                <row class="justify-content-center">
+                    <h3 class="text-center appendices-line">Data Appendix 2: Letters of Henri III</h3>
+                    </row>
+                <div class="row justify-content-center">
+                    <button class="btn btn-secondary data-buttons" id="btn-open-henri3-letters">Open Data Table</button>
+                    <button class="btn btn-secondary data-buttons" id="btn-close-henri3-letters">Close Data Table</button>
+                    <a href="/data/henri3letters.json" download>
+                        <button class="btn btn-secondary data-buttons" id="btn-download-henri3-letters">Download JSON</button>
+                    </a>
+
+                </div>
+                <table class="table table-sm table-bordered table-hover data-tables" id="table-henri3-letters">  
+                    <thead>
+                        <tr>
+                            <th class="text-center">Object ID</th>
+                            <th class="text-center">Author</th>
+                            <th class="text-center">Author Loc</th>
+                            <th class="text-center">Date</th>
+                            <th class="text-center">Recipient</th>
+                            <th class="text-center">Recipient<br>Place</th>
+                            <th class="text-center">Recipient<br>Lat</th>
+                            <th class="text-center">Recipient<br>Long</th>
+                            <th class="text-center">Recipient<br>Info</th>
+                            <th class="text-center">Summary</th>
+                            <th class="text-center">Topics</th>
+                            <th class="text-center">Source</th>
+                            <th class="text-center">Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <hr>
+            </div>
+        </div>
+
+  <script src="resources/jquery-3.6.0.min.js"></script>
+  <script src="resources/popper.js"></script>
+  <!-- using bootstrap 4.0 -->
+  <script src="resources/bootstrap.bundle.min.js"></script>
+  <script src="js/appendix-data.js"></script>
+</body>
+</html>
