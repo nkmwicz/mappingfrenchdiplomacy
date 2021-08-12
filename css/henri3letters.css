@@ -146,6 +146,10 @@ a:hover {
     text-decoration: none;
 }
 
+p a {
+    color: blue;
+}
+
 .notes {
     font-size: 12pt;
 }
