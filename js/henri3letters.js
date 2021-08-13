@@ -186,7 +186,6 @@ clusters.on('clusterclick', function(a) {
 });
 
 clusters.on('clustermouseover', function(a) {
-  console.log(a);
   switch (a.layer._cLatLng.lat) {
     case 55.68:
       popupText = '<p><strong>Denmark</strong></p>';
@@ -518,7 +517,8 @@ fetch('data/henri3letters.json', {
                 letterTopics = `${letterTopic1}`;
               };
               // add new LayerInfo variable
-              const layerInfo = new LayerInfo(letterDate,
+              const layerInfo = new LayerInfo(
+                  formatDate(new Date(letterDate)),
                   letterRecipient,
                   letterTopics,
                   letterLink,
@@ -607,7 +607,8 @@ fetch('data/henri3letters.json', {
                 letterTopics = `${letterTopic1}`;
               };
               // add new LayerInfo variable
-              const layerInfo = new LayerInfo(letterDate,
+              const layerInfo = new LayerInfo(
+                  formatDate(new Date(letterDate)),
                   letterRecipient,
                   letterTopics,
                   letterLink,
@@ -696,7 +697,8 @@ fetch('data/henri3letters.json', {
                 letterTopics = `${letterTopic1}`;
               };
               // add new LayerInfo variable
-              const layerInfo = new LayerInfo(letterDate,
+              const layerInfo = new LayerInfo(
+                  formatDate(new Date(letterDate)),
                   letterRecipient,
                   letterTopics,
                   letterLink,
@@ -766,7 +768,8 @@ fetch('data/henri3letters.json', {
       letterTopics = `${letterTopic1}`;
     };
 
-    const layerInfo = new LayerInfo(letterDate,
+    const layerInfo = new LayerInfo(
+        formatDate(new Date(letterDate)),
         letterRecipient,
         letterTopics,
         letterLink,
@@ -866,7 +869,8 @@ fetch('data/henri3letters.json', {
       letterTopics = `${letterTopic1}`;
     };
 
-    const layerInfo = new LayerInfo(letterDate,
+    const layerInfo = new LayerInfo(
+        formatDate(new Date(letterDate)),
         letterRecipient,
         letterTopics,
         letterLink,
