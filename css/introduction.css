@@ -493,7 +493,7 @@ h3 {
 #article::-webkit-scrollbar-thumb {
   background-color: rgb(16, 16, 17);
   /* color of the scroll thumb */
-  */ border-radius: 20px;
+  border-radius: 20px;
   /* roundness of the scroll thumb */
 }
 
