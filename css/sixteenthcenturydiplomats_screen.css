@@ -146,6 +146,11 @@ a:hover {
     text-decoration: none;
 }
 
+hr {
+    width: 25%;
+    border-top: 1px solid black;
+}
+
 p a {
     color: blue;
 }

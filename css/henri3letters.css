@@ -154,6 +154,11 @@ p a {
     font-size: 12pt;
 }
 
+hr {
+    width: 25%;
+    border-top: 1px solid black;
+}
+
 .fn {
     padding-top: 50px;
     margin-top: -50px;
