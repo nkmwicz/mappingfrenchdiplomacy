@@ -124,6 +124,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    scrollbar-width: thin;
 }
 
 body {
@@ -386,11 +387,12 @@ h3 {
     height: 100%;
     background-color: rgba(245, 242, 236, 0.84);
     font-family: 'EB Garamond', serif;
-    overflow: scroll;
+    overflow: auto;
     overflow-x: hidden;
     z-index: 150;
     margin-right: auto;
     margin-left: auto;
+    scrollbar-width: thin;
 }
 
 #article::-webkit-scrollbar {

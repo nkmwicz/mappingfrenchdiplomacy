@@ -385,9 +385,10 @@ h3 {
     height: 50%;
     /* background-color: rgba(245, 242, 236, 0.84); */
     font-family: 'EB Garamond', serif;
-    overflow: scroll;
+    overflow: auto;
     overflow-x: hidden;
     z-index: 150;
+    scrollbar-width: thin;
 }
 
 #article::-webkit-scrollbar {

@@ -477,7 +477,7 @@ h3 {
   height: 100%;
   background-color: rgba(245, 242, 236, 1);
   font-family: 'EB Garamond', serif;
-  overflow: scroll;
+  overflow: auto;
   overflow-x: hidden;
   scrollbar-width: thin;
   z-index: 150;
