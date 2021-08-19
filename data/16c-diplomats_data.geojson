@@ -893,7 +893,7 @@
         "duration": 1,
         "ambInfo": "",
         "source": "Vindry, <i>Ambassadeurs</i>, 12.",
-        "link": "<a href='http://gallica.bnf.fr/ark:/12148/bpt6k92325g' target='blank'>Click here.</a>"
+        "link": "<a href='http://gallica.bnf.fr/ark:/12148/bpt6k92325g' target='blank'>Click here</a>"
       },
       "geometry": {
         "type": "Point",
