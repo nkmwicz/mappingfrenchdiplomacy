@@ -2312,7 +2312,7 @@
       "topic3": "",
       "topic4": "",
       "summary": "Packet of letters from Charles IX and Catherine de Medici along with a double of the letter from Charles IX to Sultan Selim II.",
-      "recipientInformation": ""
+      "recipientInformation": "François de Noailles was the Bishop of Dax, and he was a member of the prominent diplomatic family that included his father Antoine and his brother Gilles. François de Noailles was an ambassador in England (1556-1557), Venice (1557-1561), and the Ottoman Empire (1572-1574)."
     },
     "geometry": {
       "type": "Point",
@@ -2331,22 +2331,22 @@
       "authorPlace": "France",
       "date": "1571-07-29",
       "recipient": "Noailles, François de, Bishop of Dax",
-      "place": "Ottoman Empire",
+      "place": "Venice",
       "distance": "",
       "citation": "SHD, A1 7, fol. 29v.",
-      "link": "N/A",
-      "topic1": "",
+      "link": "<a href='https://archive.mappingfrenchdiplomacy.org/files/original/62665ca4afd8b0cc78f408f58af6149a.jpg' target='blank'>Link to letter</a>",
+      "topic1": "Ragusa | Anthoine Berth",
       "topic2": "",
       "topic3": "",
       "topic4": "",
-      "summary": "",
-      "recipientInformation": ""
+      "summary": "Henri is concerned about the safety of his letters and packets as they pass through Ragusa.",
+      "recipientInformation": "François de Noailles was the Bishop of Dax, and he was a member of the prominent diplomatic family that included his father Antoine and his brother Gilles. François de Noailles was an ambassador in England (1556-1557), Venice (1557-1561), and the Ottoman Empire (1572-1574)."
     },
     "geometry": {
       "type": "Point",
       "coordinates": [
-        28.96,
-        41.01
+        12.33,
+        45.44
       ]
     }
   },
@@ -2411,26 +2411,26 @@
     "properties": {
       "objectID": 87,
       "author": "Henri III",
-      "co-signer": "",
+      "co-signer": "Simon Fizes",
       "authorPlace": "France",
       "date": "1571-08-01",
       "recipient": "Noailles, François de, Bishop of Dax",
-      "place": "Ottoman Empire",
+      "place": "Venice",
       "distance": "",
       "citation": "<i>Lettres de Henri III</i>, 1:173-174; SHD, A1 3, fol. 25.",
-      "link": "N/A",
-      "topic1": "",
+      "link": "Links to<a href='https://archive.mappingfrenchdiplomacy.org/files/original/f5c4a109cb3e9671203f9f73734e3bcf.JPG' target='blank'> page 1</a> and <a href='https://archive.mappingfrenchdiplomacy.org/files/original/3da0e3202a0fa088acf70ff3b792dbb4.JPG' target='blank'>page 2</a> of the letter.",
+      "topic1": "Secretaire Milan",
       "topic2": "",
       "topic3": "",
       "topic4": "",
       "summary": "",
-      "recipientInformation": ""
+      "recipientInformation": "François de Noailles was the Bishop of Dax, and he was a member of the prominent diplomatic family that included his father Antoine and his brother Gilles. François de Noailles was an ambassador in England (1556-1557), Venice (1557-1561), and the Ottoman Empire (1572-1574)."
     },
     "geometry": {
       "type": "Point",
       "coordinates": [
-        28.96,
-        41.01
+        12.33,
+        45.44
       ]
     }
   },
@@ -2555,22 +2555,22 @@
       "authorPlace": "France",
       "date": "1571-09-12",
       "recipient": "Noailles, François de, Bishop of Dax",
-      "place": "Ottoman Empire",
+      "place": "Venice",
       "distance": "",
-      "citation": "SHD, A1 7, fol. 65.",
-      "link": "N/A",
-      "topic1": "",
+      "citation": "SHD, A1 7, fol. 65r.",
+      "link": "<a href='https://archive.mappingfrenchdiplomacy.org/files/original/c9ac98fb9db6189e00510ff274757331.jpg' target='blank'>Link to letter.</a>",
+      "topic1": "Spain | Holy Roman Emperor | Ottoman Empire",
       "topic2": "",
       "topic3": "",
       "topic4": "",
-      "summary": "",
-      "recipientInformation": ""
+      "summary": "Noailles mission should counter the insolence of the Spanish and to reconcile the Venetians with the Ottomans.",
+      "recipientInformation": "François de Noailles was the Bishop of Dax, and he was a member of the prominent diplomatic family that included his father Antoine and his brother Gilles. François de Noailles was an ambassador in England (1556-1557), Venice (1557-1561), and the Ottoman Empire (1572-1574)."
     },
     "geometry": {
       "type": "Point",
       "coordinates": [
-        28.96,
-        41.01
+        12.33,
+        45.44
       ]
     }
   },
@@ -2639,22 +2639,22 @@
       "authorPlace": "France",
       "date": "1571-11-30",
       "recipient": "Noailles, François de, Bishop of Dax",
-      "place": "Ottoman Empire",
+      "place": "Venice",
       "distance": "",
       "citation": "SHD, A1 7, fol. 82.",
-      "link": "N/A",
-      "topic1": "",
+      "link": "<a href='http://archive.mappingfrenchdiplomacy.org/files/original/2d6ebb2f5ba2a9c10494eda88751788d.jpg' target='blank'>Link to first page.</a> <a href='http://archive.mappingfrenchdiplomacy.org/files/original/7216f88a8cdd2ff20533be3069462c28.jpg' target = 'blank'>Link to second page.</a>",
+      "topic1": "Arnaud du Ferrier | Milan",
       "topic2": "",
       "topic3": "",
       "topic4": "",
-      "summary": "",
-      "recipientInformation": ""
+      "summary": "Henri and Charles IX are very pleased with the service from François, which was zealous without causing problems.",
+      "recipientInformation": "François de Noailles was the Bishop of Dax, and he was a member of the prominent diplomatic family that included his father Antoine and his brother Gilles. François de Noailles was an ambassador in England (1556-1557), Venice (1557-1561), and the Ottoman Empire (1572-1574)."
     },
     "geometry": {
       "type": "Point",
       "coordinates": [
-        28.96,
-        41.01
+        12.33,
+        45.44
       ]
     }
   },
@@ -2732,7 +2732,7 @@
       "topic3": "",
       "topic4": "",
       "summary": "",
-      "recipientInformation": ""
+      "recipientInformation": "François de Noailles was the Bishop of Dax, and he was a member of the prominent diplomatic family that included his father Antoine and his brother Gilles. François de Noailles was an ambassador in England (1556-1557), Venice (1557-1561), and the Ottoman Empire (1572-1574)."
     },
     "geometry": {
       "type": "Point",
@@ -2950,13 +2950,13 @@
       "place": "Ottoman Empire",
       "distance": "",
       "citation": "SHD, A1 7, fol. 109r.",
-      "link": "N/A",
+      "link": "<a href='https://archive.mappingfrenchdiplomacy.org/files/original/dcb391393dc1b71558985f35dc0a33c8.jpg' target='blank'>Link to letter.</a>",
       "topic1": "",
       "topic2": "",
       "topic3": "",
       "topic4": "",
-      "summary": "",
-      "recipientInformation": ""
+      "summary": "Pleased with the service of Noailles.",
+      "recipientInformation": "François de Noailles was the Bishop of Dax, and he was a member of the prominent diplomatic family that included his father Antoine and his brother Gilles. François de Noailles was an ambassador in England (1556-1557), Venice (1557-1561), and the Ottoman Empire (1572-1574)."
     },
     "geometry": {
       "type": "Point",
@@ -3285,14 +3285,14 @@
       "recipient": "Noailles, François de, Bishop of Dax",
       "place": "Ottoman Empire",
       "distance": "",
-      "citation": "SHD, A1 7, fol. 129.",
-      "link": "N/A",
+      "citation": "SHD, A1 7, fol. 129r-v.",
+      "link": "Link to <a href='https://archive.mappingfrenchdiplomacy.org/files/original/54f8d96716dbc2cc512510954096fd36.jpg' target='blank'>page 1 </a>and<a href='https://archive.mappingfrenchdiplomacy.org/files/original/4f24a2c746c76053e7fc4fbefbdc2cea.jpg' target='blank'> page 2 </a> of the letter.",
       "topic1": "",
       "topic2": "",
       "topic3": "",
       "topic4": "",
-      "summary": "",
-      "recipientInformation": ""
+      "summary": "Dax can do Henri greater service than he has already by completing the mission Charles IX asked of him.",
+      "recipientInformation": "François de Noailles was the Bishop of Dax, and he was a member of the prominent diplomatic family that included his father Antoine and his brother Gilles. François de Noailles was an ambassador in England (1556-1557), Venice (1557-1561), and the Ottoman Empire (1572-1574)."
     },
     "geometry": {
       "type": "Point",
@@ -3649,14 +3649,14 @@
       "recipient": "Noailles, François de, Bishop of Dax",
       "place": "Ottoman Empire",
       "distance": "",
-      "citation": "SHD, A1 7, fol. 151v.",
-      "link": "N/A",
+      "citation": "SHD, A1 7, fol. 151v-152r.",
+      "link": "<a href='https://archive.mappingfrenchdiplomacy.org/files/original/cf6cbe663c928ad2536d218b05fb39a2.jpg' target='blank'>Link to letter.</a>",
       "topic1": "",
       "topic2": "",
       "topic3": "",
       "topic4": "",
-      "summary": "",
-      "recipientInformation": ""
+      "summary": "Henri has learned from Dax's letters all that he has done and knows Dax will not allow anything come to pass that does not benefit His Majesty or his friends.",
+      "recipientInformation": "François de Noailles was the Bishop of Dax, and he was a member of the prominent diplomatic family that included his father Antoine and his brother Gilles. François de Noailles was an ambassador in England (1556-1557), Venice (1557-1561), and the Ottoman Empire (1572-1574)."
     },
     "geometry": {
       "type": "Point",
@@ -3762,13 +3762,13 @@
       "place": "Ottoman Empire",
       "distance": "",
       "citation": "SHD, A1 7, fol. 200.",
-      "link": "N/A",
+      "link": "<a href='https://archive.mappingfrenchdiplomacy.org/files/original/7c5a05b6760b886286163f4022698c73.jpg' target='blank'>Link to letter.</a>",
       "topic1": "",
       "topic2": "",
       "topic3": "",
       "topic4": "",
-      "summary": "",
-      "recipientInformation": ""
+      "summary": "About Dax's return to Constantinople. Dax is in Henri's greatest affection. Dax should carry out his mission from the king with discretion.",
+      "recipientInformation": "François de Noailles was the Bishop of Dax, and he was a member of the prominent diplomatic family that included his father Antoine and his brother Gilles. François de Noailles was an ambassador in England (1556-1557), Venice (1557-1561), and the Ottoman Empire (1572-1574)."
     },
     "geometry": {
       "type": "Point",
@@ -3880,7 +3880,7 @@
       "topic3": "",
       "topic4": "",
       "summary": "Discussing the Polish election.",
-      "recipientInformation": ""
+      "recipientInformation": "Gilles de Noailles was the Abbot of L'Isle, and he was a member of the prominent diplomatic family that included his father Antoine and his brother François. Gilles was an ambassador in England (1555, 1559-1560), Rome (1561-1564), Poland (1572-1574), and the Ottoman Empire (1574-1578)."
     },
     "geometry": {
       "type": "Point",
@@ -3908,7 +3908,7 @@
       "topic3": "",
       "topic4": "",
       "summary": "Thanks L'Isle for his role in electing Henri as King of Poland.",
-      "recipientInformation": ""
+      "recipientInformation": "Gilles de Noailles was the Abbot of L'Isle, and he was a member of the prominent diplomatic family that included his father Antoine and his brother François. Gilles was an ambassador in England (1555, 1559-1560), Rome (1561-1564), Poland (1572-1574), and the Ottoman Empire (1574-1578)."
     },
     "geometry": {
       "type": "Point",
@@ -4692,7 +4692,7 @@
       "topic3": "",
       "topic4": "",
       "summary": "Discussing the departure of the Polish ambassadors.",
-      "recipientInformation": ""
+      "recipientInformation": "Gilles de Noailles was the Abbot of L'Isle, and he was a member of the prominent diplomatic family that included his father Antoine and his brother François. Gilles was an ambassador in England (1555, 1559-1560), Rome (1561-1564), Poland (1572-1574), and the Ottoman Empire (1574-1578)."
     },
     "geometry": {
       "type": "Point",
@@ -4748,7 +4748,7 @@
       "topic3": "",
       "topic4": "",
       "summary": "Discussing the departure of the Polish ambassadors.",
-      "recipientInformation": ""
+      "recipientInformation": "Gilles de Noailles was the Abbot of L'Isle, and he was a member of the prominent diplomatic family that included his father Antoine and his brother François. Gilles was an ambassador in England (1555, 1559-1560), Rome (1561-1564), Poland (1572-1574), and the Ottoman Empire (1574-1578)."
     },
     "geometry": {
       "type": "Point",
@@ -4994,13 +4994,13 @@
       "place": "Ottoman Empire",
       "distance": "",
       "citation": "SHD, A1 7, fol. 246.",
-      "link": "N/A",
+      "link": "Link to<a href='https://archive.mappingfrenchdiplomacy.org/files/original/3d7f5300337aaecf9049335e06dd1367.jpg' target='blank'>page 1</a> and <a href='https://archive.mappingfrenchdiplomacy.org/files/original/6eef5c92c1da0bede4667485a1d5b509.jpg' target='blank'>page 2</a> of letter.",
       "topic1": "Polish Election",
       "topic2": "",
       "topic3": "",
       "topic4": "",
       "summary": "Send thanks to the Sultan for offering safe passage through his lands to Poland, but it will not be necessary.",
-      "recipientInformation": ""
+      "recipientInformation": "François de Noailles was the Bishop of Dax, and he was a member of the prominent diplomatic family that included his father Antoine and his brother Gilles. François de Noailles was an ambassador in England (1556-1557), Venice (1557-1561), and the Ottoman Empire (1572-1574)."
     },
     "geometry": {
       "type": "Point",
@@ -5246,13 +5246,13 @@
       "place": "Ottoman Empire",
       "distance": "",
       "citation": "SHD, A1 7, fol. 249.",
-      "link": "N/A",
-      "topic1": "",
+      "link": "<a href='https://archive.mappingfrenchdiplomacy.org/files/original/fa1d199962cdc5b325bd8f5b1ea28f9b.jpg' target='blank'>Link to letter.</a>",
+      "topic1": "sultan | grand vizier | Count Prospere Thienne | Venice",
       "topic2": "",
       "topic3": "",
       "topic4": "",
-      "summary": "",
-      "recipientInformation": ""
+      "summary": "Charles IX wrote of contentment with the sultan and grand vizier. Asks Dax to recommend the affairs of the Count Prospere Thienne to the Ottomans.",
+      "recipientInformation": "François de Noailles was the Bishop of Dax, and he was a member of the prominent diplomatic family that included his father Antoine and his brother Gilles. François de Noailles was an ambassador in England (1556-1557), Venice (1557-1561), and the Ottoman Empire (1572-1574)."
     },
     "geometry": {
       "type": "Point",
@@ -6848,7 +6848,7 @@
       "topic3": "Prisoner",
       "topic4": "",
       "summary": "",
-      "recipientInformation": ""
+      "recipientInformation": "François de Noailles was the Bishop of Dax, and he was a member of the prominent diplomatic family that included his father Antoine and his brother Gilles. François de Noailles was an ambassador in England (1556-1557), Venice (1557-1561), and the Ottoman Empire (1572-1574)."
     },
     "geometry": {
       "type": "Point",
@@ -7451,20 +7451,20 @@
     "properties": {
       "objectID": 267,
       "author": "Henri III",
-      "co-signer": "",
+      "co-signer": "Martin Ruzé",
       "authorPlace": "France",
       "date": "1574-08-09",
       "recipient": "Noailles, François de, Bishop of Dax",
       "place": "Ottoman Empire",
       "distance": "",
       "citation": "SHD, A1 7, fol. 328.",
-      "link": "N/A",
+      "link": "<a href='https://archive.mappingfrenchdiplomacy.org/files/original/39a961296195c8989a4fe81789473eaa.jpg' target='blank'>Link to letter.</a>",
       "topic1": "Ferrier, Arnaud du",
       "topic2": "",
       "topic3": "",
       "topic4": "",
-      "summary": "",
-      "recipientInformation": ""
+      "summary": "Henri hopes Dax will continue his good service to him. Henri will send packets through Arnoud du Ferrier.",
+      "recipientInformation": "François de Noailles was the Bishop of Dax, and he was a member of the prominent diplomatic family that included his father Antoine and his brother Gilles. François de Noailles was an ambassador in England (1556-1557), Venice (1557-1561), and the Ottoman Empire (1572-1574)."
     },
     "geometry": {
       "type": "Point",
@@ -7800,7 +7800,7 @@
       "topic3": "Venice",
       "topic4": "",
       "summary": "Relating to gifts that will not arrive on time for the arrival of the Abbot of L'Isle because of the illness of Jacques de Germigny in Venice.",
-      "recipientInformation": ""
+      "recipientInformation": "François de Noailles was the Bishop of Dax, and he was a member of the prominent diplomatic family that included his father Antoine and his brother Gilles. François de Noailles was an ambassador in England (1556-1557), Venice (1557-1561), and the Ottoman Empire (1572-1574)."
     },
     "geometry": {
       "type": "Point",
@@ -8284,6 +8284,174 @@
         7.68,
         45.06
       ]
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        7.68,
+        45.06
+      ]
+    },
+    "properties": {
+      "objectID": "297",
+      "author": "Henri III",
+      "co-signer": "",
+      "authorPlace": "France",
+      "date": "October 11, 1574",
+      "recipient": "Emmanuel-Philibert, Duke of Savoy",
+      "place": "Savoy",
+      "distance": "",
+      "citation": "<i>Letters de Henri III</i>, 2:41.",
+      "link": "N/A",
+      "topic1": "seigneurs de Ruffey",
+      "topic2": "Treaty of Cateau-Cambrésis",
+      "topic3": "Philibert de Seyssel, baron de Ruffey",
+      "topic4": "Claude de Seyssel",
+      "summary": "The seigneurs de Ruffey want an end to the contravention that the senate pretended to make against certain aspects of the treaty of peace of Cateau-Cambésis.",
+      "recipientInformation": ""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -3.7,
+        40.43
+      ]
+    },
+    "properties": {
+      "objectID": "298",
+      "author": "Henri III",
+      "co-signer": "Nicolas de Neufville",
+      "authorPlace": "France",
+      "date": "October 12, 1574",
+      "recipient": "Anna of Austria, Queen of Spain",
+      "place": "Spain",
+      "distance": "",
+      "citation": "<i>Lettres de Henri III</i>, 2:43; Simancas, Archivio General, K 1536, B 37, no. 64.",
+      "link": "N/A",
+      "topic1": "",
+      "topic2": "",
+      "topic3": "",
+      "topic4": "",
+      "summary": "Promises his good will to Anna in memory of his brother Charles IX, who was married to Anna's sister Elisabeth. Sent a mand to send this message to the ambassador in Spain, Saint-Gouard.",
+      "recipientInformation": "Anna of Austria married her uncle, Philip II, in 1570. Anna was the sister of Elizabeth of Austria, who was married to Charles IX before he died."
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        28.96,
+        41.01
+      ]
+    },
+    "properties": {
+      "objectID": "299",
+      "author": "Henri III",
+      "co-signer": "Simon Fizes",
+      "authorPlace": "France",
+      "date": "October 12, 1574",
+      "recipient": "Noailles, Gilles de, Abbott of L'Isle",
+      "place": "Ottoman Empire",
+      "distance": "",
+      "citation": "<i>Letters de Henri III</i>, 2:43; SHD, A1 5, fol. 55r; BNF, Français 3321, fol. 14r.",
+      "link": "<a href='https://gallica.bnf.fr/ark:/12148/btv1b9060212v/f1.item.r=%22francais%203321%22' target='blank'>Link to Fr. 3321</a>",
+      "topic1": "",
+      "topic2": "",
+      "topic3": "",
+      "topic4": "",
+      "summary": "Astonished not to have received a letter since his arrival in Constantinople. Desires to maintain 'amitié' with the Ottomans. Imperial ministers complained about the Bishop of Dax because he worked against imperial representation in Constantinople. L'Isle should treat the imperials as friendly as possible since they permitted Henri III to cross their lands to enter Poland.",
+      "recipientInformation": "Gilles de Noailles was the Abbot of L'Isle, and he was a member of the prominent diplomatic family that included his father Antoine and his brother François. Gilles was an ambassador in England (1555, 1559-1560), Rome (1561-1564), Poland (1572-1574), and the Ottoman Empire (1574-1578)."
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        28.96,
+        41.01
+      ]
+    },
+    "properties": {
+      "objectID": "300",
+      "author": "Henri III",
+      "co-signer": "Simon Fizes",
+      "authorPlace": "France",
+      "date": "25 May 1574",
+      "recipient": "Noailles, François de, Bishop of Dax",
+      "place": "Ottoman Empire",
+      "distance": "",
+      "citation": "SHD, A1 7, fol. 306r.",
+      "link": "<a href='https://archive.mappingfrenchdiplomacy.org/files/original/1707a2c4be9d50f79a9cb4e9f123e46c.jpg' target='blank'>Link to letter.</a>",
+      "topic1": "Jacques de Germigny | presents | Tuscany | Holy Roman Empire",
+      "topic2": "",
+      "topic3": "",
+      "topic4": "",
+      "summary": "Germigny sending presents for Gilles de L'Isle. Holy Roman Empire trying to conserve truce with Ottomans. Then discusses the Wars of Religion in France",
+      "recipientInformation": "François de Noailles was the Bishop of Dax, and he was a member of the prominent diplomatic family that included his father Antoine and his brother Gilles. François de Noailles was an ambassador in England (1556-1557), Venice (1557-1561), and the Ottoman Empire (1572-1574)."
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        28.96,
+        41.01
+      ]
+    },
+    "properties": {
+      "objectID": "301",
+      "author": "Henri III",
+      "co-signer": "Simon Fizes",
+      "authorPlace": "France",
+      "date": "October 13, 1573",
+      "recipient": "Noailles, François de, Bishop of Dax",
+      "place": "Ottoman Empire",
+      "distance": "",
+      "citation": "SHD, A1 7, fol. 345r.",
+      "link": "<a href='https://archive.mappingfrenchdiplomacy.org/files/original/97f44d589002ed1267de318c9b4890fe.jpg' target='blank'>Page 1</a> and <a href='https://archive.mappingfrenchdiplomacy.org/files/original/0ca6e1a89379b467dcdf06da6b6b025b.jpg' target='blank'>Page 2</a>",
+      "topic1": "Philip II | Ottoman-Spanish peace | sultan",
+      "topic2": "",
+      "topic3": "",
+      "topic4": "",
+      "summary": "Oppose the Ottoman-Spanish peace negotiations with all means possible.",
+      "recipientInformation": "François de Noailles was the Bishop of Dax, and he was a member of the prominent diplomatic family that included his father Antoine and his brother Gilles. François de Noailles was an ambassador in England (1556-1557), Venice (1557-1561), and the Ottoman Empire (1572-1574)."
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        28.96,
+        41.01
+      ]
+    },
+    "properties": {
+      "objectID": "302",
+      "author": "Henri III",
+      "co-signer": "",
+      "authorPlace": "France",
+      "date": "12 November 1571",
+      "recipient": "Noailles, François de, Bishop of Dax",
+      "place": "Ottoman Empire",
+      "distance": "",
+      "citation": "SHD, A1 7, fol. 65v.",
+      "link": "<a href='https://archive.mappingfrenchdiplomacy.org/files/original/0b6b8d19db687b51d85c5d681d8703a0.jpg' target='blank'>Link to letter.</a>",
+      "topic1": "Charles IX",
+      "topic2": "",
+      "topic3": "",
+      "topic4": "",
+      "summary": "Charles IX wants the bishop to continue his voyage to Constantinople from Venice for which he was dispatched [this message is coming after the defeat of the Ottomans at Lopanto], and Henri thanks the bishop of Dax for his service to the king.",
+      "recipientInformation": "François de Noailles was the Bishop of Dax, and he was a member of the prominent diplomatic family that included his father Antoine and his brother Gilles. François de Noailles was an ambassador in England (1556-1557), Venice (1557-1561), and the Ottoman Empire (1572-1574)."
     }
   }
 ]
