@@ -12,7 +12,8 @@ const filters = {
   text1: '',
   ranges: [],
 };
-const months = ['Jan.', 'Feb.', 'Mar.',
+const months = [
+  'Jan.', 'Feb.', 'Mar.',
   'Apr.', 'May', 'Jun.', 'Jul.',
   'Aug.', 'Sept.', 'Oct.',
   'Nov.', 'Dec.',
