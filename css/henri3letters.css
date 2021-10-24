@@ -541,12 +541,12 @@ h4 {
     background-color: rgba(245, 242, 236, 1);
 }
 
-table::-webkit-scrollbar {
+#letter-table::-webkit-scrollbar {
     width: 6px;
 
 }
 
-table::-webkit-scrollbar-thumb {
+#letter-table::-webkit-scrollbar-thumb {
     background-color: rgb(152, 152, 161);
     /* color of the scroll thumb */
     border-radius: 20px;

@@ -10,7 +10,7 @@ const lyrEsriWorldShadedRelief = L.tileLayer('https://server.arcgisonline.com/Ar
 const filters = {
   text: '',
   text1: '',
-  ranges: [],
+  range: [],
 };
 const months = [
   'Jan.', 'Feb.', 'Mar.',
@@ -470,7 +470,7 @@ fetch('data/henri3letters.json', {
     // eventlistener to clear table and reload only row
     // that was deleted. This code must be added to each
     // filter and the document as a whole because the
-    // eventListener is has to reload each time it is used.
+    // eventListener has to reload each time it is used.
 
     // iterate through each of the table rows
     for (let i = 0; i < letterTable.children.length; i++) {
@@ -740,7 +740,8 @@ fetch('data/henri3letters.json', {
       };
       tr.innerHTML = `
         <td class = "text-center table-layer-button" id="${layerInfo.id}">
-        ${tableNumber}</td>
+          ${tableNumber}
+        </td>
         <td>${layerInfo.date}</td>
         <td>${layerInfo.recipient}</td>
         <td>${layerInfo.topics}</td>
