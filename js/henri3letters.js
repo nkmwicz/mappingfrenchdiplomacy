@@ -329,17 +329,20 @@ fetch('data/henri3letters.json', {
         `<p style = text-align:center>
                 <strong>${feature.properties.author} to 
                 ${feature.properties.recipient}</strong></p><hr>
-            <p><strong>Date</strong>: 
+            <p><span class='popup-keys'>Date</span>: 
                 ${formatDate(new Date(letterDate))}</p>
-            <p><strong>Recipient Location</strong>: 
+            <p><span class='popup-keys'>Recipient Location</span>: 
                 ${feature.properties.place}</p>
-            <p><strong>Letter Summary</strong>: 
+            <p><span class='popup-keys'>Letter Summary</span>: 
                 ${feature.properties.summary}</p>
-            <p><strong>Topics:</strong> ${feature.properties.topics}
-            <p><strong>Recipient Info:</strong> 
+            <p><span class='popup-keys'>Topics:</span>
+                ${feature.properties.topics}
+            <p><span class='popup-keys'>Recipient Info:</span> 
                 ${feature.properties.recipientInformation}
-            <p><strong>Source</strong>: ${feature.properties.citation}</p>
-            <p><strong>Link</strong>: ${feature.properties.link}</p>`;
+            <p><span class='popup-keys'>Source</span>: 
+                ${feature.properties.citation}</p>
+            <p><span class='popup-keys'>Link</span>:
+                ${feature.properties.link}</p>`;
 
       if (feature.properties.place == 'Swiss Cantons') {
         (fillCircle = 'mediumpurple'), (colorCircle = 'black');

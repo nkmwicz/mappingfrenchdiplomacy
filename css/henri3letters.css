@@ -660,9 +660,19 @@ table a {
     line-height: 20px;
 }
 
+.leaflet-popup-content {
+    max-height: 350px;
+    overflow: auto;
+    scrollbar-width: thin;
+}
+
 .leaflet-popup-content p {
     font-size: 10pt;
     margin: 2px 0;
+}
+
+.popup-keys {
+    font-weight: bold;
 }
 
 .clusterdiv {
