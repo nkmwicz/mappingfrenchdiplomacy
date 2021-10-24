@@ -186,26 +186,9 @@ fetch('data/henri3letters.json', {
     const letterLong = layer.geometry.coordinates[0];
     const letterRecipientInfo = layer.properties.recipientInformation;
     const letterSummary = layer.properties.summary;
-    const letterTopic1 = layer.properties.topic1;
-    const letterTopic2 = layer.properties.topic2;
-    const letterTopic3 = layer.properties.topic3;
-    const letterTopic4 = layer.properties.topic4;
+    const letterTopics = layer.properties.topics;
     const letterSource = layer.properties.citation;
     const letterLink = layer.properties.link;
-    if (letterTopic1 !== '' && letterTopic2 !== '' &&
-    letterTopic3 !== '' && letterTopic4 !== '') {
-      letterTopics = `${letterTopic1} / ${letterTopic2}
-      / ${letterTopic3} / ${letterTopic4}`;
-    } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-    letterTopic3 !== '' && letterTopic4 == '') {
-      letterTopics = `${letterTopic1} / ${letterTopic2}
-      / ${letterTopic3}`;
-    } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-    letterTopic3 == '' && letterTopic4 == '') {
-      letterTopics = `${letterTopic1} / ${letterTopic2}`;
-    } else {
-      letterTopics = `${letterTopic1}`;
-    };
 
     const layerInfo = new Henri3LettersInfo(
         letterID,

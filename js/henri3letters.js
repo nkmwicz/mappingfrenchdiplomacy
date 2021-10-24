@@ -324,19 +324,6 @@ fetch('data/henri3letters.json', {
     pointToLayer: function(feature, latlng) {
       // *****Popup HTML*****
       const letterDate = new Date(feature.properties.date);
-      const topics = [];
-      if (feature.properties.topic1 !== '') {
-        topics.push(feature.properties.topic1);
-      };
-      if (feature.properties.topic2 !== '') {
-        topics.push(feature.properties.topic2);
-      };
-      if (feature.properties.topic3 !== '') {
-        topics.push(feature.properties.topic3);
-      };
-      if (feature.properties.topic4 !== '') {
-        topics.push(feature.properties.topic4);
-      };
       const str =
         `<p style = text-align:center>
                 <strong>${feature.properties.author} to 
@@ -347,7 +334,7 @@ fetch('data/henri3letters.json', {
                 ${feature.properties.place}</p>
             <p><strong>Letter Summary</strong>: 
                 ${feature.properties.summary}</p>
-            <p><strong>Topics:</strong> ${topics.join(separator= ' / ')}
+            <p><strong>Topics:</strong> ${feature.properties.topics}
             <p><strong>Recipient Info:</strong> 
                 ${feature.properties.recipientInformation}
             <p><strong>Source</strong>: ${feature.properties.citation}</p>
@@ -497,25 +484,8 @@ fetch('data/henri3letters.json', {
               const letterLink = layer.feature.properties.link;
               const letterID = layer.feature.properties.objectID;
               const letterRecipient = layer.feature.properties.recipient;
-              const letterTopic1 = layer.feature.properties.topic1;
-              const letterTopic2 = layer.feature.properties.topic2;
-              const letterTopic3 = layer.feature.properties.topic3;
-              const letterTopic4 = layer.feature.properties.topic4;
+              const letterTopics = layer.feature.properties.topics;
               const letterDate = layer.feature.properties.date;
-              if (letterTopic1 !== '' && letterTopic2 !== '' &&
-              letterTopic3 !== '' && letterTopic4 !== '') {
-                letterTopics = `${letterTopic1} / ${letterTopic2}
-                / ${letterTopic3} / ${letterTopic4}`;
-              } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-              letterTopic3 !== '' && letterTopic4 == '') {
-                letterTopics = `${letterTopic1} / ${letterTopic2}
-                / ${letterTopic3}`;
-              } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-              letterTopic3 == '' && letterTopic4 == '') {
-                letterTopics = `${letterTopic1} / ${letterTopic2}`;
-              } else {
-                letterTopics = `${letterTopic1}`;
-              };
               // add new LayerInfo variable
               const layerInfo = new LayerInfo(
                   formatDate(new Date(letterDate)),
@@ -587,25 +557,8 @@ fetch('data/henri3letters.json', {
               const letterLink = layer.feature.properties.link;
               const letterID = layer.feature.properties.objectID;
               const letterRecipient = layer.feature.properties.recipient;
-              const letterTopic1 = layer.feature.properties.topic1;
-              const letterTopic2 = layer.feature.properties.topic2;
-              const letterTopic3 = layer.feature.properties.topic3;
-              const letterTopic4 = layer.feature.properties.topic4;
+              const letterTopics = layer.feature.properties.topics;
               const letterDate = layer.feature.properties.date;
-              if (letterTopic1 !== '' && letterTopic2 !== '' &&
-              letterTopic3 !== '' && letterTopic4 !== '') {
-                letterTopics = `${letterTopic1} / ${letterTopic2}
-                / ${letterTopic3} / ${letterTopic4}`;
-              } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-              letterTopic3 !== '' && letterTopic4 == '') {
-                letterTopics = `${letterTopic1} / ${letterTopic2}
-                / ${letterTopic3}`;
-              } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-              letterTopic3 == '' && letterTopic4 == '') {
-                letterTopics = `${letterTopic1} / ${letterTopic2}`;
-              } else {
-                letterTopics = `${letterTopic1}`;
-              };
               // add new LayerInfo variable
               const layerInfo = new LayerInfo(
                   formatDate(new Date(letterDate)),
@@ -677,25 +630,8 @@ fetch('data/henri3letters.json', {
               const letterLink = layer.feature.properties.link;
               const letterID = layer.feature.properties.objectID;
               const letterRecipient = layer.feature.properties.recipient;
-              const letterTopic1 = layer.feature.properties.topic1;
-              const letterTopic2 = layer.feature.properties.topic2;
-              const letterTopic3 = layer.feature.properties.topic3;
-              const letterTopic4 = layer.feature.properties.topic4;
+              const letterTopics = layer.feature.properties.topics;
               const letterDate = layer.feature.properties.date;
-              if (letterTopic1 !== '' && letterTopic2 !== '' &&
-              letterTopic3 !== '' && letterTopic4 !== '') {
-                letterTopics = `${letterTopic1} / ${letterTopic2}
-                / ${letterTopic3} / ${letterTopic4}`;
-              } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-              letterTopic3 !== '' && letterTopic4 == '') {
-                letterTopics = `${letterTopic1} / ${letterTopic2}
-                / ${letterTopic3}`;
-              } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-              letterTopic3 == '' && letterTopic4 == '') {
-                letterTopics = `${letterTopic1} / ${letterTopic2}`;
-              } else {
-                letterTopics = `${letterTopic1}`;
-              };
               // add new LayerInfo variable
               const layerInfo = new LayerInfo(
                   formatDate(new Date(letterDate)),
@@ -748,25 +684,8 @@ fetch('data/henri3letters.json', {
     const letterLink = layer.feature.properties.link;
     const letterID = layer.feature.properties.objectID;
     const letterRecipient = layer.feature.properties.recipient;
-    const letterTopic1 = layer.feature.properties.topic1;
-    const letterTopic2 = layer.feature.properties.topic2;
-    const letterTopic3 = layer.feature.properties.topic3;
-    const letterTopic4 = layer.feature.properties.topic4;
+    const letterTopics = layer.feature.properties.topics;
     const letterDate = layer.feature.properties.date;
-    if (letterTopic1 !== '' && letterTopic2 !== '' &&
-      letterTopic3 !== '' && letterTopic4 !== '') {
-      letterTopics = `${letterTopic1} / ${letterTopic2}
-      / ${letterTopic3} / ${letterTopic4}`;
-    } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-      letterTopic3 !== '' && letterTopic4 == '') {
-      letterTopics = `${letterTopic1} / ${letterTopic2}
-      / ${letterTopic3}`;
-    } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-      letterTopic3 == '' && letterTopic4 == '') {
-      letterTopics = `${letterTopic1} / ${letterTopic2}`;
-    } else {
-      letterTopics = `${letterTopic1}`;
-    };
 
     const layerInfo = new LayerInfo(
         formatDate(new Date(letterDate)),
@@ -786,16 +705,7 @@ fetch('data/henri3letters.json', {
       numberOfTrue += 1;
     }
     if (
-      letterTopic1
-          .toLowerCase()
-          .indexOf(filters.text1.toLowerCase()) > -1 ||
-      letterTopic2
-          .toLowerCase()
-          .indexOf(filters.text1.toLowerCase()) > -1 ||
-      letterTopic3
-          .toLowerCase()
-          .indexOf(filters.text1.toLowerCase()) > -1 ||
-      letterTopic4
+      letterTopics
           .toLowerCase()
           .indexOf(filters.text1.toLowerCase()) > -1
     ) {
@@ -848,26 +758,9 @@ fetch('data/henri3letters.json', {
   lyrAllDates.eachLayer(function(layer) {
     const letterID = layer.feature.properties.objectID;
     const letterRecipient = layer.feature.properties.recipient;
-    const letterTopic1 = layer.feature.properties.topic1;
-    const letterTopic2 = layer.feature.properties.topic2;
-    const letterTopic3 = layer.feature.properties.topic3;
-    const letterTopic4 = layer.feature.properties.topic4;
+    const letterTopics = layer.feature.properties.topics;
     const letterDate = layer.feature.properties.date;
     const letterLink = layer.feature.properties.link;
-    if (letterTopic1 !== '' && letterTopic2 !== '' &&
-      letterTopic3 !== '' && letterTopic4 !== '') {
-      letterTopics = `${letterTopic1} / ${letterTopic2}
-      / ${letterTopic3} / ${letterTopic4}`;
-    } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-      letterTopic3 !== '' && letterTopic4 == '') {
-      letterTopics = `${letterTopic1} / ${letterTopic2}
-      / ${letterTopic3}`;
-    } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-      letterTopic3 == '' && letterTopic4 == '') {
-      letterTopics = `${letterTopic1} / ${letterTopic2}`;
-    } else {
-      letterTopics = `${letterTopic1}`;
-    };
 
     const layerInfo = new LayerInfo(
         formatDate(new Date(letterDate)),
@@ -932,25 +825,9 @@ fetch('data/henri3letters.json', {
             const letterLink = layer.feature.properties.link;
             const letterID = layer.feature.properties.objectID;
             const letterRecipient = layer.feature.properties.recipient;
-            const letterTopic1 = layer.feature.properties.topic1;
-            const letterTopic2 = layer.feature.properties.topic2;
-            const letterTopic3 = layer.feature.properties.topic3;
-            const letterTopic4 = layer.feature.properties.topic4;
+            const letterTopics = layer.feature.properties.topics;
             const letterDate = layer.feature.properties.date;
-            if (letterTopic1 !== '' && letterTopic2 !== '' &&
-            letterTopic3 !== '' && letterTopic4 !== '') {
-              letterTopics = `${letterTopic1} / ${letterTopic2}
-              / ${letterTopic3} / ${letterTopic4}`;
-            } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-            letterTopic3 !== '' && letterTopic4 == '') {
-              letterTopics = `${letterTopic1} / ${letterTopic2}
-              / ${letterTopic3}`;
-            } else if (letterTopic1 !== '' && letterTopic2 !== '' &&
-            letterTopic3 == '' && letterTopic4 == '') {
-              letterTopics = `${letterTopic1} / ${letterTopic2}`;
-            } else {
-              letterTopics = `${letterTopic1}`;
-            };
+
             // add new LayerInfo variable
             const layerInfo = new LayerInfo(letterDate,
                 letterRecipient,
