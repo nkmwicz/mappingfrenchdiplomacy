@@ -407,6 +407,12 @@ h4 {
     z-index: 999;
 }
 
+.example-button {
+    border-width: 1.5px;
+    border-radius: 5pt;
+    background-color: white;
+}
+
 .navbar-nav .nav-link {
     padding-right: 0;
     padding-left: 0;
