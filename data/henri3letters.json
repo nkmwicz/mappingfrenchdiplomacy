@@ -5138,7 +5138,7 @@
       "link": "<a href\"https://gallica.bnf.fr/ark:/12148/btv1b90598823.r=%22francais%203304%22?rk=85837;2\" target=\"blank\">Link to Fr. 3304</a>",
       "topics": "Sweden | Poland",
       "summary": "Wants Sweden and Poland to remain in good relations.",
-      "recipientInformation": ""
+      "recipientInformation": "Pontus de La Gardie was a Frenchman, who became a mercenary, entering the service of Sweden and Denmark. He later became a general in the Swedish army. He became a favorite of Jean III after 1569 and gained noble status. In 1571, he was made a baron."
     },
     "geometry": {
       "type": "Point",
@@ -7546,6 +7546,56 @@
       "topics": "Charles IX",
       "summary": "Charles IX wants the bishop to continue his voyage to Constantinople from Venice for which he was dispatched [this message is coming after the defeat of the Ottomans at Lopanto], and Henri thanks the bishop of Dax for his service to the king.",
       "recipientInformation": "François de Noailles was the Bishop of Dax, and he was a member of the prominent diplomatic family that included his father Antoine and his brother Gilles. François de Noailles was an ambassador in England (1556-1557), Venice (1557-1561), and the Ottoman Empire (1572-1574)."
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        18.07,
+        59.33
+      ]
+    },
+    "properties": {
+      "objectID": "303",
+      "author": "Henri III",
+      "co-signer": "",
+      "authorPlace": "France",
+      "date": "15 October 1574",
+      "recipient": "Jean III, King of Sweden",
+      "place": "Sweden",
+      "distance": "",
+      "citation": "<i>Lettres de Henri III</i>, 2:46; BNF, Fr. 3304, fol. 11.",
+      "link": "<a href='https://gallica.bnf.fr/ark:/12148/btv1b90598823.r=%22Francais%203304%22?rk=85837;2' target = 'blank'>Link to Fr. 3304</a>",
+      "topics": "amitié | Poland | Charles de Danzay",
+      "summary": "Intends to maintain amitié with Sweden. Concerned about losing Poland, and notifies Jean III that Henri left suddenly for good reason.",
+      "recipientInformation": "Jean III was the King of Sweden, and he was married to Catherine Jagiellon of the Polish-Lithuanian royal family that ruled Poland before it became an elective monarchy."
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        18.07,
+        59.33
+      ]
+    },
+    "properties": {
+      "objectID": "304",
+      "author": "Henri III",
+      "co-signer": "",
+      "authorPlace": "France",
+      "date": "15 October 1574",
+      "recipient": "La Gardie, Sr. de",
+      "place": "Sweden",
+      "distance": "",
+      "citation": "<i>Lettres de Henri III</i>, 2:46; BNF, Fr. 3304, fol. 11v.",
+      "link": "<a href='https://gallica.bnf.fr/ark:/12148/btv1b90598823.r=%22Francais%203304%22?rk=85837;2' target = 'blank'>Link to Fr. 3304</a>",
+      "topics": "amitié | Jean III King of Sweden",
+      "summary": "Wrote to the king of Sweden, announcing his return to France. Asks La Gardie to work judiciously to maintain the friendship between France and Sweden.",
+      "recipientInformation": "Pontus de La Gardie was a Frenchman, who became a mercenary, entering the service of Sweden and Denmark. He later became a general in the Swedish army. He became a favorite of Jean III after 1569 and gained noble status. In 1571, he was made a baron. He became a general in the Swedish army in 1574."
     }
   }
 ]
