@@ -800,12 +800,13 @@ fetch('data/henri3letters.json', {
     document.getElementById('map-title').innerHTML = mapdates;
   };
 
-  // set the bounds of the map on load
+  // make sure all popups are closed on map load.
+  mymap.closePopup();
+
+  // set the bounds of the map on load.
   mymap.fitBounds(lyrAllDates.getBounds(), {
     padding: [50, 50],
   });
-  // make sure all popups are closed on map load.
-  mymap.closePopup();
 
   // *****Event Buttons*****
 
@@ -897,6 +898,16 @@ fetch('data/henri3letters.json', {
   mymap.scrollWheelZoom.disable();
 });
 
+// set the bounds to the clusters since lyrAllDates.getBounds
+// for some reason moves the map up for no reason.
+// setTimeout(function() {
+//   mymap.fitBounds(clusters.getBounds(), {
+//     padding: [50, 50],
+//   });
+//   console.log(clusters.getCenter());
+// }, 200);
+
+// create Homeview action
 document.querySelector('.homeview')
     .addEventListener('click', function() {
       revertMap();
