@@ -898,6 +898,12 @@ fetch('data/henri3letters.json', {
   mymap.scrollWheelZoom.disable();
 });
 
+// set the date for the cite-accessed-date
+// for the citation
+const citationAccessedDate = new Date();
+document.querySelector('#cite-accessed-date')
+    .innerHTML=`${citationAccessedDate.getDate()} ${months[citationAccessedDate.getMonth()]} ${citationAccessedDate.getUTCFullYear()}`;
+
 // set the bounds to the clusters since lyrAllDates.getBounds
 // for some reason moves the map up for no reason.
 // setTimeout(function() {
