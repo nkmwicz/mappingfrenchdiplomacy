@@ -900,9 +900,13 @@ fetch('data/henri3letters.json', {
 
 // set the date for the cite-accessed-date
 // for the citation
-const citationAccessedDate = new Date();
+const citeAccessedDate = new Date();
 document.querySelector('#cite-accessed-date')
-    .innerHTML=`${citationAccessedDate.getDate()} ${months[citationAccessedDate.getMonth()]} ${citationAccessedDate.getUTCFullYear()}`;
+    .innerHTML=`
+    ${citeAccessedDate.getDate()} 
+    ${months[citeAccessedDate.getMonth()]} 
+    ${citeAccessedDate.getUTCFullYear()}
+    `;
 
 // set the bounds to the clusters since lyrAllDates.getBounds
 // for some reason moves the map up for no reason.
