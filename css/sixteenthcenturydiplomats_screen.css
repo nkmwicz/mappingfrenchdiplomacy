@@ -451,31 +451,31 @@ figure {
 }
 
 #chart1 {
-    min-height: 500px;
+    position: float;
+    background: blue;
+    min-height: 350px;
     width: 100%;
     z-index: 160;
 }
 
 #chart2 {
-    min-height: 500px;
+    position: float;
+    background: blue;
+    min-height: 350px;
     width: 100%;
     z-index: 160;
 }
 
-svg {
-    max-width: 500x;
-    height: 100%;
-    width: 80%;
-    margin: 0 10%;
-    z-index: 170;
+.barchart1 {
+    width: inherit;
+    height: inherit;
 }
 
-.svg-innercontainer {
-    position: absolute;
-    width: 750px;
-    height: 500px;
-    z-index: 50;
-}
+/* svg {
+    max-width: inherit;
+    height: inherit;
+    width: inherit;
+    /* margin: 0 10%; */
 
 .tick text {
     fill: #635F5d;

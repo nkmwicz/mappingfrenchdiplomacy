@@ -21,16 +21,16 @@ $(document).ready(function() {
     let min = 1515;
     let max = 1600;
     console.log(json.features);
-    const data = json.features;
+    const jsonData = json.features;
     // Making Charts
     // filter the data
-    const data1515To1525 = data.filter((e) =>
+    const data1515To1525 = jsonData.filter((e) =>
       e.properties.year >= 1515 &&
       e.properties.year <= 1525);
-    const data1525To1535 = data.filter((e) =>
+    const data1525To1535 = jsonData.filter((e) =>
       e.properties.year >= 1525 &&
       e.properties.year <= 1535);
-    const data1535To1560 = data.filter((e) =>
+    const data1535To1560 = jsonData.filter((e) =>
       e.properties.year >= 1535 &&
       e.properties.year <= 1560);
 
@@ -57,14 +57,14 @@ $(document).ready(function() {
       d3.select('#chart1')
           .append('svg')
           .classed('barChart1', true);
-      makeBasicBarChart(grouped1515To1525, '.barChart1', '.chart1');
+      makeBasicBarChart(grouped1515To1525, '.barChart1', '#chart1');
     }, true);
     window.addEventListener('resize', function() {
       d3.select('.barChart2').remove();
       d3.select('#chart2')
           .append('svg')
           .classed('barChart2', true);
-      makeBasicBarChart(grouped1525To1535, '.barChart2', 'chart2');
+      makeBasicBarChart(grouped1525To1535, '.barChart2', '#chart2');
     }, true);
 
     const clusters = L.markerClusterGroup.layerSupport({

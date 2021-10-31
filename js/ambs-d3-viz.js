@@ -1,21 +1,25 @@
 /* eslint-disable require-jsdoc */
 function makeBasicBarChart(data, svgSelection, div) {
-  // const width = +svg.attr('width');
-  const width = parseInt(d3.select(svgSelection).style('width'), 10);
-  // const height = +svg.attr('height');
-  const height = parseInt(d3.select(svgSelection).style('height'), 10);
+  const cwidth = parseInt(d3.select(svgSelection).style('width'), 10);
+  console.log(cwidth);
+
+  const cheight = parseInt(d3.select(svgSelection).style('height'), 10);
+  console.log(cheight);
 
   const svg = d3.select(svgSelection)
-      .attr('viewBox', `0 0 ${width} ${height}`);
-    // .attr('preserveAspectRatio', 'xMidYMid meet')
-    // .attr('width', 300)
-    // .attr('height', 300);
+      .attr('viewBox', `0 0 ${cwidth} ${cheight}`);
+  // .attr('preserveAspectRatio', 'xMidYMid meet')
+  // .attr('width', 500)
+  // .attr('height', 400);
+  const height = +svg.attr('height');
+  const width = +svg.attr('width');
+
   const sortedXValue = data.sort((a, b) =>
     b.value.length - a.value.length);
   const xValue = (d) => d.place;
 
   const yValue = (d) => d.value.length;
-  const margin = {top: 30, right: 20, bottom: 200, left: 20};
+  const margin = {top: 30, right: 10, bottom: 20, left: 10};
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
