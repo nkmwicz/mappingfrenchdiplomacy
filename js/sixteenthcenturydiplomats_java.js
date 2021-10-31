@@ -20,7 +20,52 @@ $(document).ready(function() {
   }).then((Response) => Response.json()).then((json) => {
     let min = 1515;
     let max = 1600;
-    // console.log(json)
+    console.log(json.features);
+    const data = json.features;
+    // Making Charts
+    // filter the data
+    const data1515To1525 = data.filter((e) =>
+      e.properties.year >= 1515 &&
+      e.properties.year <= 1525);
+    const data1525To1535 = data.filter((e) =>
+      e.properties.year >= 1525 &&
+      e.properties.year <= 1535);
+    const data1535To1560 = data.filter((e) =>
+      e.properties.year >= 1535 &&
+      e.properties.year <= 1560);
+
+    // Format and Group the Data
+    const grouped1515To1525 = Array.from(d3.group(data1515To1525,
+        (d) => d.properties.place), ([place, value]) => ({place, value}));
+    const grouped1525To1535 = Array.from(d3.group(data1525To1535,
+        (d) => d.properties.place), ([place, value]) => ({place, value}));
+    const groupedUniqueName1535To1560 = Array.from(d3.group(data1535To1560,
+        (d) => d.properties.place,
+        (d)=>d.properties.name), ([place, value])=>({place, value}),
+    );
+    console.log(groupedUniqueName1535To1560);
+
+    const unique = (value, index, self) => {
+      return self.indexOf(value) === index;
+    };
+
+    // Call the function to make the charts
+    makeBasicBarChart(grouped1515To1525, '.barChart1', '#chart1');
+    makeBasicBarChart(grouped1525To1535, '.barChart2', '#chart2');
+    window.addEventListener('resize', function() {
+      d3.select('.barChart1').remove();
+      d3.select('#chart1')
+          .append('svg')
+          .classed('barChart1', true);
+      makeBasicBarChart(grouped1515To1525, '.barChart1', '.chart1');
+    }, true);
+    window.addEventListener('resize', function() {
+      d3.select('.barChart2').remove();
+      d3.select('#chart2')
+          .append('svg')
+          .classed('barChart2', true);
+      makeBasicBarChart(grouped1525To1535, '.barChart2', 'chart2');
+    }, true);
 
     const clusters = L.markerClusterGroup.layerSupport({
       iconCreateFunction: function(cluster) {
@@ -824,7 +869,10 @@ $(document).ready(function() {
     });
   });
   // *****Data Toggles on links declaring inoperability and footnotes*****
-  $('[data-toggle="popover"]').popover({trigger: 'hover'});
+  $('[data-toggle="popover"]').popover({
+    trigger: 'hover',
+    container: 'body',
+  });
   $('[data-toggle="tooltip"]').tooltip();
 
   // *****creating the Layer control*****
