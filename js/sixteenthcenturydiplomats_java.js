@@ -50,21 +50,21 @@ $(document).ready(function() {
     };
 
     // Call the function to make the charts
-    makeBasicBarChart(grouped1515To1525, '.barChart1', '#chart1');
-    makeBasicBarChart(grouped1525To1535, '.barChart2', '#chart2');
+    makeBasicBarChart(grouped1515To1525, '#bar-chart1');
+    makeBasicBarChart(grouped1525To1535, '#bar-chart2');
     window.addEventListener('resize', function() {
-      d3.select('.barChart1').remove();
+      d3.select('#bar-chart1').remove();
       d3.select('#chart1')
           .append('svg')
-          .classed('barChart1', true);
-      makeBasicBarChart(grouped1515To1525, '.barChart1', '#chart1');
+          .attr('id', 'bar-chart1');
+      makeBasicBarChart(grouped1515To1525, '#bar-chart1', '#chart1');
     }, true);
     window.addEventListener('resize', function() {
-      d3.select('.barChart2').remove();
+      d3.select('#bar-chart2').remove();
       d3.select('#chart2')
           .append('svg')
-          .classed('barChart2', true);
-      makeBasicBarChart(grouped1525To1535, '.barChart2', '#chart2');
+          .attr('id', 'bar-chart2');
+      makeBasicBarChart(grouped1525To1535, '#bar-chart2', '#chart2');
     }, true);
 
     const clusters = L.markerClusterGroup.layerSupport({

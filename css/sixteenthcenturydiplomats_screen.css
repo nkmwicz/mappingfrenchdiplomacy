@@ -445,37 +445,23 @@ h4 {
 /* End Sections button at top of article */
 
 /* D3 Chart CSS */
-figure {
-    width: 100%;
+#bar-chart1 {
     height: 400px;
+    width: 100%;
 }
 
-#chart1 {
+#bar-chart2 {
+    height: 400px;
+    width: 100%;
+}
+
+.svg-outer-div {
     position: float;
-    background: blue;
-    min-height: 350px;
+    background-color: white;
+    height: 400px;
     width: 100%;
     z-index: 160;
 }
-
-#chart2 {
-    position: float;
-    background: blue;
-    min-height: 350px;
-    width: 100%;
-    z-index: 160;
-}
-
-.barchart1 {
-    width: inherit;
-    height: inherit;
-}
-
-/* svg {
-    max-width: inherit;
-    height: inherit;
-    width: inherit;
-    /* margin: 0 10%; */
 
 .tick text {
     fill: #635F5d;
