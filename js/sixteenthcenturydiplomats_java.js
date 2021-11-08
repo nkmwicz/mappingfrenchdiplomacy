@@ -20,7 +20,6 @@ $(document).ready(function() {
   }).then((Response) => Response.json()).then((json) => {
     let min = 1515;
     let max = 1600;
-    console.log(json.features);
     const jsonData = json.features;
     // Making Charts
     // filter the data
@@ -41,9 +40,9 @@ $(document).ready(function() {
         (d) => d.properties.place), ([place, value]) => ({place, value}));
     const groupedUniqueName1535To1560 = Array.from(d3.group(data1535To1560,
         (d) => d.properties.place,
-        (d)=>d.properties.name), ([place, value])=>({place, value}),
+        (d) => d.properties.name),
+    ([place, value])=>({place, value}),
     );
-    console.log(groupedUniqueName1535To1560);
 
     const unique = (value, index, self) => {
       return self.indexOf(value) === index;
@@ -52,6 +51,7 @@ $(document).ready(function() {
     // Call the function to make the charts
     makeBasicBarChart(grouped1515To1525, '#bar-chart1');
     makeBasicBarChart(grouped1525To1535, '#bar-chart2');
+    makeUniqueAmbBarChart(groupedUniqueName1535To1560, '#bar-chart3');
     window.addEventListener('resize', function() {
       d3.select('#bar-chart1').remove();
       d3.select('#chart1')
@@ -65,6 +65,13 @@ $(document).ready(function() {
           .append('svg')
           .attr('id', 'bar-chart2');
       makeBasicBarChart(grouped1525To1535, '#bar-chart2', '#chart2');
+    }, true);
+    window.addEventListener('resize', function() {
+      d3.select('#bar-chart3').remove();
+      d3.select('#chart3')
+          .append('svg')
+          .attr('id', 'bar-chart3');
+      makeBasicBarChart(grouped1525To1535, '#bar-chart3', '#chart3');
     }, true);
 
     const clusters = L.markerClusterGroup.layerSupport({
@@ -871,7 +878,6 @@ $(document).ready(function() {
   // *****Data Toggles on links declaring inoperability and footnotes*****
   $('[data-toggle="popover"]').popover({
     trigger: 'hover',
-    container: 'body',
   });
   $('[data-toggle="tooltip"]').tooltip();
 

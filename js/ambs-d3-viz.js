@@ -1,18 +1,16 @@
 /* eslint-disable require-jsdoc */
 function makeBasicBarChart(data, svgSelection, div) {
-  const cwidth = parseInt(d3.select(svgSelection).style('width'), 10);
-
-  const cheight = parseInt(d3.select(svgSelection).style('height'), 10);
+  const getSvgWidth = parseInt(d3.select(svgSelection).style('width'), 10);
+  // const cheight = parseInt(d3.select(svgSelection).style('height'), 10);
   const height = '400';
-  const pwidth = '400';
   const svg = d3.select(svgSelection)
-      .attr('viewBox', `0 0 ${cwidth} ${height}`);
+      .attr('viewBox', `0 0 ${getSvgWidth} ${height}`);
   // .attr('preserveAspectRatio', 'xMidYMid meet')
   // .attr('width', 500)
   // .attr('height', 400);
   // const height = +svg.attr('height');
 
-  const width = +svg.attr('width');
+  // const width = +svg.attr('width');
   const svgWidth = parseInt(d3.select(svgSelection).style('width'));
 
   const sortedXValue = data.sort((a, b) =>
@@ -123,8 +121,8 @@ function makeBasicBarChart(data, svgSelection, div) {
       .attr('fill', (d) => fillColor(d))
       .attr('stroke', (d) => strokeColor(d))
       .attr('data-toggle', 'popover')
-      .attr('title', (d) => popoverTitleContent(d))
-      .attr('data-content', (d) => dataContent(d))
+      .attr('title', (d) => basicPopoverTitleContent(d))
+      .attr('data-content', (d) => basicDataContent(d))
       .attr('data-html', 'true')
       .attr('title-html', 'true');
 
@@ -135,47 +133,79 @@ function makeBasicBarChart(data, svgSelection, div) {
   //     .style('text-anchor', 'middle')
   //     .text('Cumulative Years of Ambassadorial Presence by Host State');
 
-  $('[data-toggle="popover"]').popover({trigger: 'hover', container: 'body'});
+  $('[data-toggle="popover"]').popover({
+    trigger: 'hover',
+    container: 'body',
+    placement: 'top',
+  });
+
+  function basicPopoverTitleContent(d) {
+    titleText = `
+        <p class='text-center'>
+        ${d.place}: ${d.value.length} year(s) of representation
+        </p>
+        `;
+    return titleText;
+  }
+  function basicDataContent(d) {
+    const arrayValues = [];
+    let popoverText = `
+        <table class='popover-table table-striped'>
+        <thead>
+        <tr>
+        <th>Ambassador(s) </th>
+        <th>Year(s)</th>
+        </tr>
+        </thead>
+        `;
+    for (const values of d.value) {
+      arrayValues.push(values);
+    }
+    const groupedDataName = Array.from(d3.group(arrayValues,
+        (d) => d.properties.name),
+    ([name, value]) =>
+      ({name, value}));
+    for (const nameValues of groupedDataName) {
+      const arrayYearValues = [];
+      for (const yearValues of nameValues.value) {
+        arrayYearValues.push(yearValues.properties.year);
+      }
+      popoverText += `
+        <tr>
+        <td>${nameValues.name}</td>
+        <td>${arrayYearValues.join(', ')}</td>
+        </tr>
+        `;
+    }
+    return popoverText;
+  }
 }
 
 function makeUniqueAmbBarChart(data, svgSelection, div) {
-  const cwidth = parseInt(d3.select(svgSelection).style('width'), 10);
+  const getSvgWidth = parseInt(d3.select(svgSelection).style('width'), 10);
 
-  const cheight = parseInt(d3.select(svgSelection).style('height'), 10);
+  const getSvgHeight = parseInt(d3.select(svgSelection).style('height'), 10);
   const height = '400';
-  const pwidth = '400';
   const svg = d3.select(svgSelection)
-      .attr('viewBox', `0 0 ${cwidth} ${height}`);
-  // .attr('preserveAspectRatio', 'xMidYMid meet')
-  // .attr('width', 500)
-  // .attr('height', 400);
-  // const height = +svg.attr('height');
+      .attr('viewBox', `0 0 ${getSvgWidth} ${height}`);
 
-  const width = +svg.attr('width');
+  // const width = +svg.attr('width');
   const svgWidth = parseInt(d3.select(svgSelection).style('width'));
 
   const sortedXValue = data.sort((a, b) =>
-    b.value.length - a.value.length);
+    b.value.size - a.value.size);
   const xValue = (d) => d.place;
 
-  const yValue = (d) => d.value.length;
-  const margin = {top: 15, right: 10, bottom: 50, left: 20};
+  const yValue = (d) => d.value.size;
+  const margin = {top: 15, right: 10, bottom: 50, left: 15};
   const innerWidth = svgWidth - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
-  // const xScale = d3.scaleBand()
-  //     .domain(arrayGrouped1515To1525.map(xValue))
-  //     .range([0, innerWidth])
-  //     .padding(0.1);
   const xScale = d3.scaleBand()
       .domain(sortedXValue.map(xValue))
       .range([0, innerWidth])
       .padding(0.1);
 
-  // const yScale = d3.scaleLinear()
-  //     .domain([0, d3.max(arrayGrouped1515To1525, yValue)])
-  //     .range([innerHeight, 0])
-  //     .nice();
   const yScale = d3.scaleLinear()
       .domain([0, d3.max(data, yValue)])
       .range([innerHeight, 0])
@@ -262,8 +292,8 @@ function makeUniqueAmbBarChart(data, svgSelection, div) {
       .attr('fill', (d) => fillColor(d))
       .attr('stroke', (d) => strokeColor(d))
       .attr('data-toggle', 'popover')
-      .attr('title', (d) => popoverTitleContent(d))
-      .attr('data-content', (d) => dataContent(d))
+      .attr('title', (d) => uniqueAmbPopoverTitleContent(d))
+      .attr('data-content', (d) => uniqueAmbDataContent(d))
       .attr('data-html', 'true')
       .attr('title-html', 'true');
 
@@ -274,51 +304,61 @@ function makeUniqueAmbBarChart(data, svgSelection, div) {
   //     .style('text-anchor', 'middle')
   //     .text('Cumulative Years of Ambassadorial Presence by Host State');
 
-  $('[data-toggle="popover"]').popover({trigger: 'hover', container: 'body'});
-}
+  $('[data-toggle="popover"]').popover({
+    trigger: 'hover',
+    container: 'body',
+    placement: 'top',
+  });
 
-
-function popoverTitleContent(d) {
-  titleText = `
-      <p class='text-center'>
-      ${d.place}: ${d.value.length} year(s) of representation
-      </p>
-      `;
-  return titleText;
-}
-
-function dataContent(d) {
-  const arrayValues = [];
-  let popoverText = `
-      <table class='popover-table table-striped'>
-      <thead>
-      <tr>
-      <th>Ambassador(s) </th>
-      <th>Year(s)</th>
-      </tr>
-      </thead>
-      `;
-  for (const values of d.value) {
-    arrayValues.push(values);
+  function uniqueAmbPopoverTitleContent(d) {
+    titleText = `
+        <p class='text-center'>
+        ${d.place}: ${d.value.size} unique ambassador(s).
+        </p>
+        `;
+    return titleText;
   }
-  const groupedDataName = Array.from(d3.group(arrayValues,
-      (d) => d.properties.name),
-  ([name, value]) =>
-    ({name, value}));
-  for (const nameValues of groupedDataName) {
-    const arrayYearValues = [];
-    for (const yearValues of nameValues.value) {
-      arrayYearValues.push(yearValues.properties.year);
+  function uniqueAmbDataContent(d) {
+    let popoverText = `
+        <table class='popover-table table-striped'>
+        <thead>
+        <tr>
+        <th>Ambassador(s) </th>
+        <th>Year(s)</th>
+        </tr>
+        </thead>
+        `;
+    for (values of d.value) {
+      const arrayValues = [];
+
+      for (years of values) {
+        values[1].forEach((a) =>{
+          arrayValues.push(a.properties.year);
+        });
+      }
+      maxYear = d3.max(arrayValues);
+      minYear = d3.min(arrayValues);
+      console.log(`${minYear} - ${maxYear}`);
+      if (minYear === maxYear) {
+        popoverText += `
+        <tr>
+        <td>${values[0]}</td>
+        <td class = 'text-center'>${minYear}</td>
+        </tr>
+      `;
+      } else {
+        popoverText += `
+        <tr>
+        <td>${values[0]}</td>
+        <td>${minYear} - ${maxYear}</td>
+        </tr>
+      `;
+      }
     }
-    popoverText += `
-      <tr>
-      <td>${nameValues.name}</td>
-      <td>${arrayYearValues.join(', ')}</td>
-      </tr>
-      `;
+    return popoverText;
   }
-  return popoverText;
 }
+
 
 function fillColor(d) {
   if (d.place == 'Swiss Cantons') {

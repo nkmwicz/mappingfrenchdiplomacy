@@ -455,17 +455,22 @@ h4 {
     width: 100%;
 }
 
+#bar-chart3 {
+    height: 400px;
+    width: 100%;
+}
+
 .svg-outer-div {
     position: float;
     background-color: white;
-    height: 400px;
+    height: 445px;
     width: 100%;
     z-index: 160;
 }
 
 .tick text {
     fill: #635F5d;
-    font-size: 1.4em;
+    font-size: 1.1em;
 }
 
 .tick line {
@@ -644,6 +649,19 @@ h4 {
 
 .popover .arrow::before {
     display: none;
+}
+
+/* styling for d3 popovers */
+.svg-inner-div .popover .arrow::after {
+    display: block;
+}
+
+.svg-inner-div .popover .arrow::before {
+    display: block;
+}
+
+figcaption {
+    background-color: white;
 }
 
 /* styling for broken hyperlinks tooltips */
