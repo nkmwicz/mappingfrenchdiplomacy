@@ -16,9 +16,8 @@ function makeBasicBarChart(data, svgSelection, div) {
   const sortedXValue = data.sort((a, b) =>
     b.value.length - a.value.length);
   const xValue = (d) => d.place;
-
   const yValue = (d) => d.value.length;
-  const margin = {top: 15, right: 10, bottom: 50, left: 20};
+  const margin = {top: 15, right: 10, bottom: 50, left: 25};
   const innerWidth = svgWidth - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
@@ -195,9 +194,8 @@ function makeUniqueAmbBarChart(data, svgSelection, div) {
   const sortedXValue = data.sort((a, b) =>
     b.value.size - a.value.size);
   const xValue = (d) => d.place;
-
   const yValue = (d) => d.value.size;
-  const margin = {top: 15, right: 10, bottom: 50, left: 15};
+  const margin = {top: 15, right: 10, bottom: 50, left: 25};
   const innerWidth = svgWidth - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
