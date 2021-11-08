@@ -160,10 +160,10 @@ p a {
     font-size: 12pt;
 }
 
-.fn {
+/* .fn {
     padding-top: 50px;
     margin-top: -50px;
-}
+} */
 
 body::-webkit-scrollbar {
     width: 6px;
@@ -296,7 +296,7 @@ h3 {
 
 h4 {
     font-size: 16pt;
-    margin-left: -5px;
+    margin-left: 0px;
     margin-top: 2rem;
     margin-bottom: 0;
     font-style: italic;
@@ -377,25 +377,38 @@ h4 {
     background-color: rgba(245, 242, 236, 1);
     font-family: 'EB Garamond', serif;
     margin-inline-start: 50px;
-    overflow: scroll;
-    overflow-x: hidden;
+    /* overflow: scroll; */
+    /* overflow-x: hidden; */
     z-index: 150;
     margin-top: 10px;
     margin-left: 5px;
     margin-bottom: 25px;
-    scrollbar-width: thin;
+
 }
 
-#article::-webkit-scrollbar {
+#article-text::-webkit-scrollbar {
     width: 5px;
 
 }
 
-#article::-webkit-scrollbar-thumb {
+#article-text::-webkit-scrollbar-thumb {
     background-color: rgb(16, 16, 17);
     /* color of the scroll thumb */
     border-radius: 20px;
     /* roundness of the scroll thumb */
+}
+
+#article-text {
+    height: 85%;
+    margin-top: 40px;
+    overflow: auto;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+#article-text p {
+    margin-left: 5px;
+    scrollbar-width: thin;
 }
 
 /* Sections button at top of Article */
@@ -643,23 +656,7 @@ h4 {
     padding: 0.5rem;
 }
 
-.popover .arrow::after {
-    display: none;
-}
-
-.popover .arrow::before {
-    display: none;
-}
-
-/* styling for d3 popovers */
-.svg-inner-div .popover .arrow::after {
-    display: block;
-}
-
-.svg-inner-div .popover .arrow::before {
-    display: block;
-}
-
+/* d3.js charts styling */
 figcaption {
     background-color: white;
 }
