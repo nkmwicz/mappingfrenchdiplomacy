@@ -1,7 +1,6 @@
 /* eslint-disable new-cap */
 /* eslint-disable require-jsdoc */
-import { makeBasicBarChart } from "./ambs-d3-viz.js";
-import { makeUniqueAmbBarChart } from "./ambs-d3-viz.js";
+import { makeBasicBarChart, makeUniqueAmbBarChart } from "./ambs-d3-viz.js";
 const mymap = L.map('mapid', {maxZoom: 6});
 const lyrEsriWorldShadedRelief = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri', maxZoom: 13});
 const filters = {
