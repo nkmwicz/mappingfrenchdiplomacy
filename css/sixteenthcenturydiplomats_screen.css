@@ -404,6 +404,7 @@ h4 {
     overflow: auto;
     margin-right: 0;
     margin-left: 0;
+    scrollbar-width: thin;
 }
 
 #article-text p {

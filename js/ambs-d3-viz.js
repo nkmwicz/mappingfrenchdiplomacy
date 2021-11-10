@@ -1,5 +1,5 @@
 /* eslint-disable require-jsdoc */
-function makeBasicBarChart(data, svgSelection, div) {
+export function makeBasicBarChart(data, svgSelection, div) {
   const getSvgWidth = parseInt(d3.select(svgSelection).style('width'), 10);
   // const cheight = parseInt(d3.select(svgSelection).style('height'), 10);
   const height = '400';
@@ -57,57 +57,7 @@ function makeBasicBarChart(data, svgSelection, div) {
 
   d3.selectAll('.xAxisStuff .tick line').remove();
 
-  const tickText = document.querySelectorAll('.xAxisStuff .tick text');
-  for (i=0; i< tickText.length; i++) {
-    tickText[i].style.transform = 'translate(-15px, 25px) rotate(-90deg)';
-    if (tickText[i].textContent === 'Holy Roman Empire') {
-      tickText[i].textContent = 'HRE';
-    } else if (tickText[i].textContent === 'Ottoman Empire') {
-      tickText[i].textContent = 'Ott. E.';
-    } else if (tickText[i].textContent === 'Denmark') {
-      tickText[i].textContent = 'Den.';
-    } else if (tickText[i].textContent === 'England') {
-      tickText[i].textContent = 'Eng.';
-    } else if (tickText[i].textContent === 'Ferrara') {
-      tickText[i].textContent = 'Ferr.';
-    } else if (tickText[i].textContent === 'Geneva') {
-      tickText[i].textContent = 'Gen.';
-    } else if (tickText[i].textContent === 'Grisons') {
-      tickText[i].textContent = 'Gris.';
-    } else if (tickText[i].textContent === 'Netherlands') {
-      tickText[i].textContent = 'Neth.';
-    } else if (tickText[i].textContent === 'Poland') {
-      tickText[i].textContent = 'Pol';
-    } else if (tickText[i].textContent === 'Portugal') {
-      tickText[i].textContent = 'Port.';
-    } else if (tickText[i].textContent === 'Rome') {
-      tickText[i].textContent = 'Rome';
-    } else if (tickText[i].textContent === 'Santa-Fiore') {
-      tickText[i].textContent = 'St.Fiore.';
-    } else if (tickText[i].textContent === 'Savoy') {
-      tickText[i].textContent = 'Sav.';
-    } else if (tickText[i].textContent === 'Saxony') {
-      tickText[i].textContent = 'Sax.';
-    } else if (tickText[i].textContent === 'Scotland') {
-      tickText[i].textContent = 'Scot.';
-    } else if (tickText[i].textContent === 'Spain') {
-      tickText[i].textContent = 'Sp.';
-    } else if (tickText[i].textContent === 'Swiss Cantons') {
-      tickText[i].textContent = 'Swiss';
-    } else if (tickText[i].textContent === 'Tuscany') {
-      tickText[i].textContent = 'Tus.';
-    } else if (tickText[i].textContent === 'Urbino') {
-      tickText[i].textContent = 'Urb.';
-    } else if (tickText[i].textContent === 'Venice') {
-      tickText[i].textContent = 'Ven.';
-    } else if (tickText[i].textContent === 'Wurttemburg') {
-      tickText[i].textContent = 'Wurt.';
-    } else if (tickText[i].textContent === 'Lorraine') {
-      tickText[i].textContent = 'Lor.';
-    } else if (tickText[i].textContent === 'Brandenbourg') {
-      tickText[i].textContent = 'Brand.';
-    }
-  }
+  changeTickText();
 
   g.selectAll('rect')
       .data(data)
@@ -139,7 +89,7 @@ function makeBasicBarChart(data, svgSelection, div) {
   });
 
   function basicPopoverTitleContent(d) {
-    titleText = `
+    let titleText = `
         <p class='text-center'>
         ${d.place}: ${d.value.length} year(s) of representation
         </p>
@@ -180,7 +130,7 @@ function makeBasicBarChart(data, svgSelection, div) {
   }
 }
 
-function makeUniqueAmbBarChart(data, svgSelection, div) {
+export function makeUniqueAmbBarChart(data, svgSelection, div) {
   const getSvgWidth = parseInt(d3.select(svgSelection).style('width'), 10);
 
   const getSvgHeight = parseInt(d3.select(svgSelection).style('height'), 10);
@@ -227,8 +177,89 @@ function makeUniqueAmbBarChart(data, svgSelection, div) {
 
   d3.selectAll('.xAxisStuff .tick line').remove();
 
+  changeTickText();
+
+  g.selectAll('rect')
+      .data(data)
+      .enter()
+      .append('rect')
+      .attr('x', (d) => xScale(xValue(d)))
+      .attr('y', (d) => yScale(yValue(d)))
+      .attr('width', xScale.bandwidth())
+      .attr('height', (d) => innerHeight - yScale(yValue(d)))
+      .attr('fill', (d) => fillColor(d))
+      .attr('stroke', (d) => strokeColor(d))
+      .attr('data-toggle', 'popover')
+      .attr('title', (d) => uniqueAmbPopoverTitleContent(d))
+      .attr('data-content', (d) => uniqueAmbDataContent(d))
+      .attr('data-html', 'true')
+      .attr('title-html', 'true');
+
+  // g.append('text')
+  //     .attr('class', 'bar-chart-title')
+  //     .attr('y', -10)
+  //     .attr('x', innerWidth / 2)
+  //     .style('text-anchor', 'middle')
+  //     .text('Cumulative Years of Ambassadorial Presence by Host State');
+
+  $('[data-toggle="popover"]').popover({
+    trigger: 'hover',
+    container: 'body',
+    placement: 'top',
+  });
+
+  function uniqueAmbPopoverTitleContent(d) {
+    let titleText = `
+        <p class='text-center'>
+        ${d.place}: ${d.value.size} unique ambassador(s).
+        </p>
+        `;
+    return titleText;
+  }
+  function uniqueAmbDataContent(d) {
+    let popoverText = `
+        <table class='popover-table table-striped'>
+        <thead>
+        <tr>
+        <th>Ambassador(s) </th>
+        <th>Year(s)</th>
+        </tr>
+        </thead>
+        `;
+    for (let values of d.value) {
+      const arrayValues = [];
+
+      for (let years of values) {
+        values[1].forEach((a) =>{
+          arrayValues.push(a.properties.year);
+        });
+      }
+      let maxYear = d3.max(arrayValues);
+      let minYear = d3.min(arrayValues);
+      // console.log(`${minYear} - ${maxYear}`);
+      if (minYear === maxYear) {
+        popoverText += `
+        <tr>
+        <td>${values[0]}</td>
+        <td class = 'text-center'>${minYear}</td>
+        </tr>
+      `;
+      } else {
+        popoverText += `
+        <tr>
+        <td>${values[0]}</td>
+        <td>${minYear} - ${maxYear}</td>
+        </tr>
+      `;
+      }
+    }
+    return popoverText;
+  }
+}
+
+function changeTickText() {
   const tickText = document.querySelectorAll('.xAxisStuff .tick text');
-  for (i=0; i< tickText.length; i++) {
+  for (let i=0; i< tickText.length; i++) {
     tickText[i].style.transform = 'translate(-15px, 25px) rotate(-90deg)';
     if (tickText[i].textContent === 'Holy Roman Empire') {
       tickText[i].textContent = 'HRE';
@@ -278,87 +309,10 @@ function makeUniqueAmbBarChart(data, svgSelection, div) {
       tickText[i].textContent = 'Brand.';
     }
   }
-
-  g.selectAll('rect')
-      .data(data)
-      .enter()
-      .append('rect')
-      .attr('x', (d) => xScale(xValue(d)))
-      .attr('y', (d) => yScale(yValue(d)))
-      .attr('width', xScale.bandwidth())
-      .attr('height', (d) => innerHeight - yScale(yValue(d)))
-      .attr('fill', (d) => fillColor(d))
-      .attr('stroke', (d) => strokeColor(d))
-      .attr('data-toggle', 'popover')
-      .attr('title', (d) => uniqueAmbPopoverTitleContent(d))
-      .attr('data-content', (d) => uniqueAmbDataContent(d))
-      .attr('data-html', 'true')
-      .attr('title-html', 'true');
-
-  // g.append('text')
-  //     .attr('class', 'bar-chart-title')
-  //     .attr('y', -10)
-  //     .attr('x', innerWidth / 2)
-  //     .style('text-anchor', 'middle')
-  //     .text('Cumulative Years of Ambassadorial Presence by Host State');
-
-  $('[data-toggle="popover"]').popover({
-    trigger: 'hover',
-    container: 'body',
-    placement: 'top',
-  });
-
-  function uniqueAmbPopoverTitleContent(d) {
-    titleText = `
-        <p class='text-center'>
-        ${d.place}: ${d.value.size} unique ambassador(s).
-        </p>
-        `;
-    return titleText;
-  }
-  function uniqueAmbDataContent(d) {
-    let popoverText = `
-        <table class='popover-table table-striped'>
-        <thead>
-        <tr>
-        <th>Ambassador(s) </th>
-        <th>Year(s)</th>
-        </tr>
-        </thead>
-        `;
-    for (values of d.value) {
-      const arrayValues = [];
-
-      for (years of values) {
-        values[1].forEach((a) =>{
-          arrayValues.push(a.properties.year);
-        });
-      }
-      maxYear = d3.max(arrayValues);
-      minYear = d3.min(arrayValues);
-      console.log(`${minYear} - ${maxYear}`);
-      if (minYear === maxYear) {
-        popoverText += `
-        <tr>
-        <td>${values[0]}</td>
-        <td class = 'text-center'>${minYear}</td>
-        </tr>
-      `;
-      } else {
-        popoverText += `
-        <tr>
-        <td>${values[0]}</td>
-        <td>${minYear} - ${maxYear}</td>
-        </tr>
-      `;
-      }
-    }
-    return popoverText;
-  }
 }
 
-
 function fillColor(d) {
+  let fillCircle, colorCircle;
   if (d.place == 'Swiss Cantons') {
     (fillCircle = 'mediumpurple'), (colorCircle = 'black');
   } else if (d.place == 'Grisons') {
@@ -422,8 +376,9 @@ function fillColor(d) {
 }
 
 function strokeColor(d) {
+  let fillCircle, colorCircle;
   if (d.place == 'Swiss Cantons') {
-    'mediumpurple';
+    (fillCircle='mediumpurple'), (colorCircle = 'black');
   } else if (d.place == 'Grisons') {
     (fillCircle = 'darkred'), (colorCircle = 'black');
   } else if (d.place == 'Holy Roman Empire') {

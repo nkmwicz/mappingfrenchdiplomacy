@@ -1,5 +1,7 @@
 /* eslint-disable new-cap */
 /* eslint-disable require-jsdoc */
+import { makeBasicBarChart } from "./ambs-d3-viz.js";
+import { makeUniqueAmbBarChart } from "./ambs-d3-viz.js";
 const mymap = L.map('mapid', {maxZoom: 6});
 const lyrEsriWorldShadedRelief = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri', maxZoom: 13});
 const filters = {
@@ -44,9 +46,10 @@ $(document).ready(function() {
     ([place, value])=>({place, value}),
     );
 
-    const unique = (value, index, self) => {
-      return self.indexOf(value) === index;
-    };
+    // get unique values
+    // const unique = (value, index, self) => {
+    //   return self.indexOf(value) === index;
+    // };
 
     // Call the function to make the charts
     makeBasicBarChart(grouped1515To1525, '#bar-chart1');
@@ -77,6 +80,8 @@ $(document).ready(function() {
     const clusters = L.markerClusterGroup.layerSupport({
       iconCreateFunction: function(cluster) {
         const clusterWidth = 30 + cluster.getChildCount() * 0.5;
+        let clusterColor;
+        let clusterTextColor, clusterBorder;
         // Denmark
         if
         (cluster._cLatLng.lat == '55.68' && cluster._cLatLng.lng == '12.57') {
@@ -231,6 +236,7 @@ $(document).ready(function() {
     });
 
     clusters.on('clustermouseover', function(a) {
+      let popupText;
       // console.log(a);
       switch (a.layer._cLatLng.lat) {
         case 55.68:
@@ -314,7 +320,7 @@ $(document).ready(function() {
             <p><strong>Information</strong>: ${feature.properties.ambInfo}</p>
             <p><strong>Source</strong>: ${feature.properties.source}</p>
             <p><strong>Link</strong>: ${feature.properties.link}</p>`;
-
+        let fillCircle, colorCircle;
         if (feature.properties.place == 'Swiss Cantons') {
           (fillCircle = 'mediumpurple'), (colorCircle = 'black');
         } else if (feature.properties.place == 'Grisons') {
@@ -577,7 +583,7 @@ $(document).ready(function() {
         });
 
     const button1515to1520 = document.querySelectorAll('.a1515-1520');
-    for (button of button1515to1520) {
+    for (let button of button1515to1520) {
       button.addEventListener('click', function() {
         searchFilter.value = '';
         searchFilter.dispatchEvent(new KeyboardEvent('input'));
