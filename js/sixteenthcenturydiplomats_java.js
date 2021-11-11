@@ -1,6 +1,10 @@
 /* eslint-disable new-cap */
 /* eslint-disable require-jsdoc */
-import { makeBasicBarChart, makeUniqueAmbBarChart } from "./ambs-d3-viz.js";
+import { 
+  makeBasicBarChart,
+  makeUniqueAmbBarChart,
+  styleCircles,
+} from "./ambs-d3-viz.js";
 const mymap = L.map('mapid', {maxZoom: 6});
 const lyrEsriWorldShadedRelief = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri', maxZoom: 13});
 const filters = {
@@ -78,135 +82,8 @@ $(document).ready(function() {
 
     const clusters = L.markerClusterGroup.layerSupport({
       iconCreateFunction: function(cluster) {
+
         const clusterWidth = 30 + cluster.getChildCount() * 0.5;
-        let clusterColor;
-        let clusterTextColor, clusterBorder;
-        // Denmark
-        if
-        (cluster._cLatLng.lat == '55.68' && cluster._cLatLng.lng == '12.57') {
-          clusterColor = 'rgba(189,183,107,0.8)'; // darkkhaki
-        } else if
-        // England
-        (cluster._cLatLng.lat == '51.51' && cluster._cLatLng.lng == '-0.12') {
-          clusterColor = 'rgba(124,252,0,0.8)'; // lawngreen
-        } else if
-        // Ferrara
-        (cluster._cLatLng.lat == '44.84' && cluster._cLatLng.lng == '11.62') {
-          clusterColor = 'rgba(255,182,193,0.8)'; // lightpink
-        } else if
-        // Geneva
-        (cluster._cLatLng.lat == '46.21' && cluster._cLatLng.lng == '6.14') {
-          clusterColor = 'rgba(173,216,230,0.8)'; // lightblue
-        } else if
-        // Grisons
-        (cluster._cLatLng.lat == '46.66' && cluster._cLatLng.lng == '9.63') {
-          clusterColor = 'rgba(139,0,0,0.8)'; // darkred
-        } else if
-        // Holy Roman Emperor
-        (cluster._cLatLng.lat == '48.21' && cluster._cLatLng.lng == '16.36') {
-          clusterColor = 'rgba(255,255,0,0.8)'; // yellow
-        } else if
-        // Netherlands
-        (cluster._cLatLng.lat == '52.37' && cluster._cLatLng.lng == '4.89') {
-          clusterColor = 'rgba(143,188,143,0.8)'; // darkseagreen
-        } else if
-        // Ottoman Empire
-        (cluster._cLatLng.lat == '41.01' && cluster._cLatLng.lng == '28.96') {
-          clusterColor = 'rgba(0,0,0,0.8)'; // black
-        } else if
-        // Poland
-        (cluster._cLatLng.lat == '52.23' && cluster._cLatLng.lng == '21.02') {
-          clusterColor = 'rgba(0,255,255,0.8)'; // cyan
-        } else if
-        // Portugal
-        (cluster._cLatLng.lat == '38.72' && cluster._cLatLng.lng == '-9.13') {
-          clusterColor = 'rgba(255,250,205,0.8)'; // lemonchiffon
-        } else if
-        // Rome
-        (cluster._cLatLng.lat == '41.89' && cluster._cLatLng.lng == '12.51') {
-          clusterColor = 'rgba(255,0,255,0.8)'; // magenta
-        } else if
-        // Savoy
-        (cluster._cLatLng.lat == '45.06' && cluster._cLatLng.lng == '7.68') {
-          clusterColor = 'rgba(244,164,96,0.8)'; // sandybrown
-        } else if
-        // Saxony
-        (cluster._cLatLng.lat == '51.05' && cluster._cLatLng.lng == '13.35') {
-          clusterColor = 'rgba(245,245,220,0.8)'; // beige
-        } else if
-        // Scotland
-        (cluster._cLatLng.lat == '55.95' && cluster._cLatLng.lng == '-3.19') {
-          clusterColor = 'rgba(255,127,80,0.8)'; // coral
-        } else if
-        // Spain
-        (cluster._cLatLng.lat == '40.43' && cluster._cLatLng.lng == '-3.7') {
-          clusterColor = 'rgba(255,105,180,0.8)'; // hotpink
-        } else if
-        // Swiss Cantons
-        (cluster._cLatLng.lat == '46.94' && cluster._cLatLng.lng == '7.45') {
-          clusterColor = 'rgba(147,112,219,0.8)'; // mediumpurple
-        } else if
-        // Tuscany
-        (cluster._cLatLng.lat == '43.46' && cluster._cLatLng.lng == '11.14') {
-          clusterColor = 'rgba(72,209,204,0.8)'; // mediumturquoise
-        } else if
-        // Venice
-        (cluster._cLatLng.lat == '45.44' && cluster._cLatLng.lng == '12.33') {
-          clusterColor = 'rgba(169,169,169,0.8)'; // darkgrey
-        } else if
-        // Lorraine
-        (cluster._cLatLng.lat == '48.76' && cluster._cLatLng.lng == '6.14') {
-          clusterColor = 'rgba(0,191,255,0.8)'; // deepskyblue
-        } else if
-        // Urbino
-        (cluster._cLatLng.lat == '43.72' && cluster._cLatLng.lng == '12.63') {
-          clusterColor = 'rgba(0,128,128,0.8)'; // teal
-        } else if
-        // Wurttemburg
-        (cluster._cLatLng.lat == '48.55' && cluster._cLatLng.lng == '9.04') {
-          clusterColor = 'rgba(255,0,0,0.8)'; // red
-        } else if
-        // Brandenbourg
-        (cluster._cLatLng.lat == '52.39' && cluster._cLatLng.lng == '13.06') {
-          clusterColor = 'rgba(255,140,0,0.8)'; // darkorange
-        } else if
-        // Elector of the Palatine
-        (cluster._cLatLng.lat == '49.91' && cluster._cLatLng.lng == '7.45') {
-          clusterColor = 'rgba(95,158,160)'; // cadetblue
-        } else if
-        // Mantua
-        (cluster._cLatLng.lat == '45.17' && cluster._cLatLng.lng == '10.79') {
-          clusterColor = 'rgba(65,105,225,0.8)'; // royalblue
-        } else if
-        // Hamburg
-        (cluster._cLatLng.lat == '52.55' && cluster._cLatLng.lng == '9.99') {
-          clusterColor = 'rgba(128,128,0,0.8)'; // olive
-        } else if
-        // Spanish Netherlands
-        (cluster._cLatLng.lat == '50.84' && cluster._cLatLng.lng == '4.36') {
-          clusterColor = 'rgba(255,255,240,0.8)'; // ivory
-        } else if
-        // Santa-Fiore
-        (cluster._cLatLng.lat == '43.77' && cluster._cLatLng.lng == '11.26') {
-          clusterColor = 'rgba(255,222,173,0.8)'; // navajowhite
-        } else if
-        // Sweden
-        (cluster._cLatLng.lat == '59.33' && cluster._cLatLng.lng == '18.07') {
-          clusterColor = 'rgba(219,112,147,0.8)'; // palevioletred
-        } else if
-        // Fribourg
-        (cluster._cLatLng.lat == '46.8' && cluster._cLatLng.lng == '7.15') {
-          clusterColor = 'rgba(255,218,185,0.8)'; // peachpuff
-        } else {
-          clusterColor = 'white';
-        };
-        if (
-          (cluster._cLatLng.lat == '41.01', cluster._cLatLng.lng == '28.96')
-        ) {
-          (clusterTextColor = 'white'), (clusterBorder = 'solid white');
-        } else {
-          (clusterTextColor = 'black'), (clusterBorder = 'solid black');
-        }
         const marginTop2 = (clusterWidth - 23) / 2;
         const marginLeft = (clusterWidth - 10) / 2;
         const marginTop = (clusterWidth - 15) / 2;
@@ -217,9 +94,9 @@ $(document).ready(function() {
               height: ${clusterWidth}px;
               margin-top: -${marginTop}px;
               margin-left: -${marginLeft}px;
-              background-color: ${clusterColor};
-              color: ${clusterTextColor};
-              border: ${clusterBorder}'>
+              background-color: ${styleCircles(null, cluster._cLatLng.lat).clusterColor};
+              color: ${styleCircles(null, cluster._cLatLng.lat).colorCircle};
+              border-color: ${styleCircles(null, cluster._cLatLng.lat).colorCircle}';>
               <div class = 'clustertext'
               style = 'margin-top: ${marginTop2}px';>
               <b> ${cluster.getChildCount()} </b>
@@ -235,70 +112,9 @@ $(document).ready(function() {
     });
 
     clusters.on('clustermouseover', function(a) {
-      let popupText;
-      // console.log(a);
-      switch (a.layer._cLatLng.lat) {
-        case 55.68:
-          popupText = '<p><strong>Denmark</strong></p>';
-          break;
-        case 51.51:
-          popupText = '<p><strong>England</strong></p>';
-          break;
-        case 44.84:
-          popupText = '<p><strong>Ferrara</strong></p>';
-          break;
-        case 46.21:
-          popupText = '<p><strong>Geneva</strong></p>';
-          break;
-        case 46.66:
-          popupText = '<p><strong>Grisons</strong></p>';
-          break;
-        case 48.21:
-          popupText = '<p><strong>Holy Roman Emperor</strong></p>';
-          break;
-        case 52.37:
-          popupText = '<p><strong>Netherlands</strong></p>';
-          break;
-        case 41.01:
-          popupText = '<p><strong>Ottoman Empire</strong></p>';
-          break;
-        case 52.23:
-          popupText = '<p><strong>Poland<strong></p>';
-          break;
-        case 38.72:
-          popupText = '<p><strong>Portugal</strong></p>';
-          break;
-        case 41.89:
-          popupText = '<p><strong>Rome</strong></p>';
-          break;
-        case 45.06:
-          popupText = '<p><strong>Savoy</strong></p>';
-          break;
-        case 51.05:
-          popupText = '<p><strong>Saxony</strong></p>';
-          break;
-        case 55.95:
-          popupText = '<p><strong>Scotland</strong></p>';
-          break;
-        case 40.43:
-          popupText = '<p><strong>Spain</strong></p>';
-          break;
-        case 46.94:
-          popupText = '<p><strong>The Swiss Cantons</strong></p>';
-          break;
-        case 43.46:
-          popupText = '<p><strong>Tuscany</strong></p>';
-          break;
-        case 45.44:
-          popupText = '<p><strong>Venice</strong></p>';
-          break;
-        default:
-          popupText = '<p></p>';
-          break;
-      }
       popup = L.popup()
           .setLatLng([a.layer._cLatLng.lat, a.layer._cLatLng.lng])
-          .setContent(popupText)
+          .setContent(styleCircles(null, a.layer._cLatLng.lat).clusterPopText)
           .openOn(mymap);
       a.layer.openPopup(popup);
     });
@@ -319,72 +135,10 @@ $(document).ready(function() {
             <p><strong>Information</strong>: ${feature.properties.ambInfo}</p>
             <p><strong>Source</strong>: ${feature.properties.source}</p>
             <p><strong>Link</strong>: ${feature.properties.link}</p>`;
-        let fillCircle, colorCircle;
-        if (feature.properties.place == 'Swiss Cantons') {
-          (fillCircle = 'mediumpurple'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Grisons') {
-          (fillCircle = 'darkred'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Holy Roman Empire') {
-          (fillCircle = 'yellow'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'England') {
-          (fillCircle = 'lawngreen'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Venice') {
-          (fillCircle = 'darkgrey'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Denmark') {
-          (fillCircle = 'darkkhaki'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Ferrara') {
-          (fillCircle = 'lightpink'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Geneva') {
-          (fillCircle = 'lightblue'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Ottoman Empire') {
-          (fillCircle = 'black'), (colorCircle = 'white');
-        } else if (feature.properties.place == 'Netherlands') {
-          (fillCircle = 'darkseagreen'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Poland') {
-          (fillCircle = 'cyan'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Portugal') {
-          (fillCircle = 'lemonchiffon'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Rome') {
-          (fillCircle = 'magenta'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Savoy') {
-          (fillCircle = 'sandybrown'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Saxony') {
-          (fillCircle = 'beige'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Scotland') {
-          (fillCircle = 'coral'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Spain') {
-          (fillCircle = 'hotpink'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Tuscany') {
-          (fillCircle = 'mediumturquoise'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Santa-Fiore') {
-          (fillCircle = 'navajowhite'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Lorraine') {
-          (fillCircle = 'deepskyblue'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Urbino') {
-          (fillCircle = 'teal'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Electorate of the Palatine') {
-          (fillCircle = 'cadetblue'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Brandenbourg') {
-          (fillCircle = 'darkorange'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Sweden') {
-          (fillCircle = 'palevioletred'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Mantua') {
-          (fillCircle = 'royalblue'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Wurttemburg') {
-          (fillCircle = 'red'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Spanish Netherlands') {
-          (fillCircle = 'ivory'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Fribourg') {
-          (fillCircle = 'peachpuff'), (colorCircle = 'black');
-        } else if (feature.properties.place == 'Hamburg') {
-          (fillCircle = 'olive'), (colorCircle = 'black');
-        } else {
-          (fillCircle = 'blue'), (colorCircle = 'black');
-        }
         const circleMarker = L.circleMarker(latlng, {
           radius: '10',
-          fillColor: fillCircle,
-          color: colorCircle,
+          fillColor: styleCircles(feature.properties).fillCircle,
+          color: styleCircles(feature.properties).colorCircle,
           fillOpacity: '1',
         });
         circleMarker.on('mouseover', function() {
@@ -445,6 +199,7 @@ $(document).ready(function() {
         filterLyrAllDates(layer);
       });
       // change citation line to add dates
+      let citedates;
       if (parseFloat(e[0]) === min &&
         parseFloat(e[1]) === max) {
         citedates = '';

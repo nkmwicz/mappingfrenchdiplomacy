@@ -67,8 +67,8 @@ export function makeBasicBarChart(data, svgSelection, div) {
       .attr('y', (d) => yScale(yValue(d)))
       .attr('width', xScale.bandwidth())
       .attr('height', (d) => innerHeight - yScale(yValue(d)))
-      .attr('fill', (d) => fillColor(d))
-      .attr('stroke', (d) => strokeColor(d))
+      .attr('fill', (d) => styleCircles(d).fillCircle)
+      .attr('stroke', (d) => styleCircles(d).colorCircle)
       .attr('data-toggle', 'popover')
       .attr('title', (d) => basicPopoverTitleContent(d))
       .attr('data-content', (d) => basicDataContent(d))
@@ -187,8 +187,8 @@ export function makeUniqueAmbBarChart(data, svgSelection, div) {
       .attr('y', (d) => yScale(yValue(d)))
       .attr('width', xScale.bandwidth())
       .attr('height', (d) => innerHeight - yScale(yValue(d)))
-      .attr('fill', (d) => fillColor(d))
-      .attr('stroke', (d) => strokeColor(d))
+      .attr('fill', (d) => styleCircles(d).fillCircle)
+      .attr('stroke', (d) => styleCircles(d).colorCircle)
       .attr('data-toggle', 'popover')
       .attr('title', (d) => uniqueAmbPopoverTitleContent(d))
       .attr('data-content', (d) => uniqueAmbDataContent(d))
@@ -311,130 +311,227 @@ function changeTickText() {
   }
 }
 
-function fillColor(d) {
-  let fillCircle, colorCircle;
-  if (d.place == 'Swiss Cantons') {
-    (fillCircle = 'mediumpurple'), (colorCircle = 'black');
-  } else if (d.place == 'Grisons') {
-    (fillCircle = 'darkred'), (colorCircle = 'black');
-  } else if (d.place == 'Holy Roman Empire') {
-    (fillCircle = 'yellow'), (colorCircle = 'black');
-  } else if (d.place == 'England') {
-    (fillCircle = 'lawngreen'), (colorCircle = 'black');
-  } else if (d.place == 'Venice') {
-    (fillCircle = 'darkgrey'), (colorCircle = 'black');
-  } else if (d.place == 'Denmark') {
-    (fillCircle = 'darkkhaki'), (colorCircle = 'black');
-  } else if (d.place == 'Ferrara') {
-    (fillCircle = 'lightpink'), (colorCircle = 'black');
-  } else if (d.place == 'Geneva') {
-    (fillCircle = 'lightblue'), (colorCircle = 'black');
-  } else if (d.place == 'Ottoman Empire') {
-    (fillCircle = 'black'), (colorCircle = 'white');
-  } else if (d.place == 'Netherlands') {
-    (fillCircle = 'darkseagreen'), (colorCircle = 'black');
-  } else if (d.place == 'Poland') {
-    (fillCircle = 'cyan'), (colorCircle = 'black');
-  } else if (d.place == 'Portugal') {
-    (fillCircle = 'lemonchiffon'), (colorCircle = 'black');
-  } else if (d.place == 'Rome') {
-    (fillCircle = 'magenta'), (colorCircle = 'black');
-  } else if (d.place == 'Savoy') {
-    (fillCircle = 'sandybrown'), (colorCircle = 'black');
-  } else if (d.place == 'Saxony') {
-    (fillCircle = 'beige'), (colorCircle = 'black');
-  } else if (d.place == 'Scotland') {
-    (fillCircle = 'coral'), (colorCircle = 'black');
-  } else if (d.place == 'Spain') {
-    (fillCircle = 'hotpink'), (colorCircle = 'black');
-  } else if (d.place == 'Tuscany') {
-    (fillCircle = 'mediumturquoise'), (colorCircle = 'black');
-  } else if (d.place == 'Santa-Fiore') {
-    (fillCircle = 'navajowhite'), (colorCircle = 'black');
-  } else if (d.place == 'Lorraine') {
-    (fillCircle = 'deepskyblue'), (colorCircle = 'black');
-  } else if (d.place == 'Urbino') {
-    (fillCircle = 'teal'), (colorCircle = 'black');
-  } else if (d.place == 'Electorate of the Palatine') {
-    (fillCircle = 'cadetblue'), (colorCircle = 'black');
-  } else if (d.place == 'Brandenbourg') {
-    (fillCircle = 'darkorange'), (colorCircle = 'black');
-  } else if (d.place == 'Sweden') {
-    (fillCircle = 'palevioletred'), (colorCircle = 'black');
-  } else if (d.place == 'Mantua') {
-    (fillCircle = 'royalblue'), (colorCircle = 'black');
-  } else if (d.place == 'Wurttemburg') {
-    (fillCircle = 'red'), (colorCircle = 'black');
-  } else if (d.place == 'Spanish Netherlands') {
-    (fillCircle = 'ivory'), (colorCircle = 'black');
-  } else if (d.place == 'Fribourg') {
-    (fillCircle = 'peachpuff'), (colorCircle = 'black');
-  } else if (d.place == 'Hamburg') {
-    (fillCircle = 'olive'), (colorCircle = 'black');
+export function styleCircles(d, latitude) {
+  let fillCircle,
+    colorCircle,
+    clusterPopText,
+    clusterColor;
+  if (d? d.place === 'Swiss Cantons' : latitude === 46.94) {
+    (fillCircle = 'mediumpurple'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Swiss Cantons</strong><p>'),
+    (clusterColor = 'rgba(147,112,219,0.8)'); 
+  } else if (d? d.place === 'Grisons' : latitude === 46.66) {
+    (fillCircle = 'darkred'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Grisons</strong><p>'),
+    (clusterColor = 'rgba(139,0,0,0.8)');
+  } else if (d? d.place === 'Holy Roman Empire' : latitude === 48.21) {
+    (fillCircle = 'yellow'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Holy Roman Emperor</strong></p>'),
+    (clusterColor = 'rgba(255,255,0,0.8)');
+  } else if (d? d.place === 'England' : latitude === 51.51) {
+    (fillCircle = 'lawngreen'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>England</strong><p>'),
+    (clusterColor = 'rgba(124,252,193,0.8)');
+  } else if (d? d.place === 'Venice' : latitude === 45.44) {
+    (fillCircle = 'darkgrey'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Venice</strong></p>'),
+    (clusterColor = 'rgba(169,169,169,0.8)');
+  } else if (d? d.place === 'Denmark' : latitude === 55.68) {
+    (fillCircle = 'darkkhaki'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Denmark</strong></p>'),
+    (clusterColor = 'rgba(189,183,107,0.8)');
+  } else if (d? d.place === 'Ferrara' : latitude === 44.84) {
+    (fillCircle = 'lightpink'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Ferrara</strong></p>'),
+    (clusterColor = 'rgba(255,182,193,0.8)');
+  } else if (d? d.place === 'Geneva' : latitude === 46.21) {
+    (fillCircle = 'lightblue'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Geneva</strong></p>'),
+    (clusterColor = 'rgba(173,216,230,0.8)');
+  } else if (d? d.place === 'Ottoman Empire' : latitude === 41.01) {
+    (fillCircle = 'black'),
+    (colorCircle = 'white'),
+    (clusterPopText = '<p><strong>Ottoman Empire</strong></p>'),
+    (clusterColor = 'rgba(0,0,0,0.8)');
+  } else if (d? d.place === 'Netherlands' : latitude === 52.37) {
+    (fillCircle = 'darkseagreen'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Netherlands</strong></p>'),
+    (clusterColor = 'rgba(143,188,143,0.8)');
+  } else if (d? d.place === 'Poland' : latitude === 52.23) {
+    (fillCircle = 'cyan'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Poland</strong></p>'),
+    (clusterColor = 'rgba(0,255,255,0.8)');
+  } else if (d? d.place === 'Portugal' : latitude === 38.72) {
+    (fillCircle = 'lemonchiffon'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Portugal</strong></p>'),
+    (clusterColor = 'rgba(255,250,205,0.8)');
+  } else if (d? d.place === 'Rome' : latitude === 41.89) {
+    (fillCircle = 'magenta'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Rome</strong></p>'),
+    (clusterColor = 'rgba(255,0,255,0.8)');
+  } else if (d? d.place === 'Savoy' : latitude === 45.06) {
+    (fillCircle = 'sandybrown'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Savoy</strong></p>'),
+    (clusterColor = 'rgba(244,164,96,0.8)');
+  } else if (d? d.place === 'Saxony' : latitude === 51.05) {
+    (fillCircle = 'beige'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Saxony</strong></p>'),
+    (clusterColor = 'rgba(245,245,220,0.8)');
+  } else if (d? d.place === 'Scotland' : latitude === 55.95) {
+    (fillCircle = 'coral'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Scotland</strong></p>'),
+    (clusterColor = 'rgba(255,127,80,0.8)');
+  } else if (d? d.place == 'Spain' : latitude === 40.43) {
+    (fillCircle = 'hotpink'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Spain</strong></p>'),
+    (clusterColor = 'rgba(255,105,180,0.8)');
+  } else if (d? d.place == 'Tuscany' : latitude === 43.46) {
+    (fillCircle = 'mediumturquoise'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Tuscany</strong></p>'),
+    (clusterColor = 'rgba(72,209,204,0.8)');
+  } else if (d? d.place == 'Santa-Fiore' : latitude === 43.77) {
+    (fillCircle = 'navajowhite'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Santa-Fiore</strong></p>'),
+    (clusterColor = 'rgba(255,222,173,0.8)');
+  } else if (d? d.place == 'Lorraine' : latitude === 48.76) {
+    (fillCircle = 'deepskyblue'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Lorraine</strong></p>'),
+    (clusterColor = 'rgba(0,191,255,0.8)');
+  } else if (d? d.place == 'Urbino' : latitude === 43.72) {
+    (fillCircle = 'teal'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Urbino</strong></p>'),
+    (clusterColor = 'rgba(0,128,128,0.8)');
+  } else if (d? d.place == 'Electorate of the Palatine' : latitude === 49.91) {
+    (fillCircle = 'cadetblue'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Electorate of the Palatine</strong></p>'),
+    (clusterColor = 'rgba(95,158,160)');
+  } else if (d? d.place == 'Brandenbourg' : latitude === 52.39) {
+    (fillCircle = 'darkorange'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Brandenbourg</strong></p>'),
+    (clusterColor = 'rgba(255,140,0,0.8)');
+  } else if (d? d.place == 'Sweden' : latitude === 59.33) {
+    (fillCircle = 'palevioletred'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Sweden</strong></p>'),
+    (clusterColor = 'rgba(219,112,147,0.8)');
+  } else if (d? d.place == 'Mantua' : latitude === 45.17) {
+    (fillCircle = 'royalblue'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Mantua</strong></p>'),
+    (clusterColor = 'rgba(65,105,225,0.8)');
+  } else if (d? d.place == 'Wurttemburg' : latitude === 48.55) {
+    (fillCircle = 'red'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Wurttemburg</strong></p>'),
+    (clusterColor = 'rgba(255,0,0,0.8)');
+  } else if (d? d.place == 'Spanish Netherlands' : latitude === 50.84) {
+    (fillCircle = 'ivory'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Spanish Netherlands</strong></p>'),
+    (clusterColor = 'rgba(255,255,240,0.8)');
+  } else if (d? d.place == 'Fribourg' : latitude === 46.8) {
+    (fillCircle = 'peachpuff'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Fribourg</strong></p>'),
+    (clusterColor = 'rgba(255,218,185,0.8)');
+  } else if (d? d.place == 'Hamburg' : latitude === 52.55) {
+    (fillCircle = 'olive'), 
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Hamburg</strong></p>'),
+    (clusterColor = 'rgba(128,128,0,0.8)');
   }
-  return fillCircle;
+  return {
+    fillCircle,
+    colorCircle,
+    clusterPopText,
+    clusterColor
+  }
 }
 
-function strokeColor(d) {
-  let fillCircle, colorCircle;
-  if (d.place == 'Swiss Cantons') {
-    (fillCircle='mediumpurple'), (colorCircle = 'black');
-  } else if (d.place == 'Grisons') {
-    (fillCircle = 'darkred'), (colorCircle = 'black');
-  } else if (d.place == 'Holy Roman Empire') {
-    (fillCircle = 'yellow'), (colorCircle = 'black');
-  } else if (d.place == 'England') {
-    (fillCircle = 'lawngreen'), (colorCircle = 'black');
-  } else if (d.place == 'Venice') {
-    (fillCircle = 'darkgrey'), (colorCircle = 'black');
-  } else if (d.place == 'Denmark') {
-    (fillCircle = 'darkkhaki'), (colorCircle = 'black');
-  } else if (d.place == 'Ferrara') {
-    (fillCircle = 'lightpink'), (colorCircle = 'black');
-  } else if (d.place == 'Geneva') {
-    (fillCircle = 'lightblue'), (colorCircle = 'black');
-  } else if (d.place == 'Ottoman Empire') {
-    (fillCircle = 'black'), (colorCircle = 'white');
-  } else if (d.place == 'Netherlands') {
-    (fillCircle = 'darkseagreen'), (colorCircle = 'black');
-  } else if (d.place == 'Poland') {
-    (fillCircle = 'cyan'), (colorCircle = 'black');
-  } else if (d.place == 'Portugal') {
-    (fillCircle = 'lemonchiffon'), (colorCircle = 'black');
-  } else if (d.place == 'Rome') {
-    (fillCircle = 'magenta'), (colorCircle = 'black');
-  } else if (d.place == 'Savoy') {
-    (fillCircle = 'sandybrown'), (colorCircle = 'black');
-  } else if (d.place == 'Saxony') {
-    (fillCircle = 'beige'), (colorCircle = 'black');
-  } else if (d.place == 'Scotland') {
-    (fillCircle = 'coral'), (colorCircle = 'black');
-  } else if (d.place == 'Spain') {
-    (fillCircle = 'hotpink'), (colorCircle = 'black');
-  } else if (d.place == 'Tuscany') {
-    (fillCircle = 'mediumturquoise'), (colorCircle = 'black');
-  } else if (d.place == 'Santa-Fiore') {
-    (fillCircle = 'navajowhite'), (colorCircle = 'black');
-  } else if (d.place == 'Lorraine') {
-    (fillCircle = 'deepskyblue'), (colorCircle = 'black');
-  } else if (d.place == 'Urbino') {
-    (fillCircle = 'teal'), (colorCircle = 'black');
-  } else if (d.place == 'Electorate of the Palatine') {
-    (fillCircle = 'cadetblue'), (colorCircle = 'black');
-  } else if (d.place == 'Brandenbourg') {
-    (fillCircle = 'darkorange'), (colorCircle = 'black');
-  } else if (d.place == 'Sweden') {
-    (fillCircle = 'palevioletred'), (colorCircle = 'black');
-  } else if (d.place == 'Mantua') {
-    (fillCircle = 'royalblue'), (colorCircle = 'black');
-  } else if (d.place == 'Wurttemburg') {
-    (fillCircle = 'red'), (colorCircle = 'black');
-  } else if (d.place == 'Spanish Netherlands') {
-    (fillCircle = 'ivory'), (colorCircle = 'black');
-  } else if (d.place == 'Fribourg') {
-    (fillCircle = 'peachpuff'), (colorCircle = 'black');
-  } else if (d.place == 'Hamburg') {
-    (fillCircle = 'olive'), (colorCircle = 'black');
-  }
-  return colorCircle;
+
+export function nameClusters(latitude) {
+  let popupText;
+      // console.log(a);
+      switch (latitude) {
+        case 55.68:
+          popupText = '<p><strong>Denmark</strong></p>';
+          break;
+        case 51.51:
+          popupText = '<p><strong>England</strong></p>';
+          break;
+        case 44.84:
+          popupText = '<p><strong>Ferrara</strong></p>';
+          break;
+        case 46.21:
+          popupText = '<p><strong>Geneva</strong></p>';
+          break;
+        case 46.66:
+          popupText = '<p><strong>Grisons</strong></p>';
+          break;
+        case 48.21:
+          popupText = '<p><strong>Holy Roman Emperor</strong></p>';
+          break;
+        case 52.37:
+          popupText = '<p><strong>Netherlands</strong></p>';
+          break;
+        case 41.01:
+          popupText = '<p><strong>Ottoman Empire</strong></p>';
+          break;
+        case 52.23:
+          popupText = '<p><strong>Poland<strong></p>';
+          break;
+        case 38.72:
+          popupText = '<p><strong>Portugal</strong></p>';
+          break;
+        case 41.89:
+          popupText = '<p><strong>Rome</strong></p>';
+          break;
+        case 45.06:
+          popupText = '<p><strong>Savoy</strong></p>';
+          break;
+        case 51.05:
+          popupText = '<p><strong>Saxony</strong></p>';
+          break;
+        case 55.95:
+          popupText = '<p><strong>Scotland</strong></p>';
+          break;
+        case 40.43:
+          popupText = '<p><strong>Spain</strong></p>';
+          break;
+        case 46.94:
+          popupText = '<p><strong>The Swiss Cantons</strong></p>';
+          break;
+        case 43.46:
+          popupText = '<p><strong>Tuscany</strong></p>';
+          break;
+        case 45.44:
+          popupText = '<p><strong>Venice</strong></p>';
+          break;
+        default:
+          popupText = '<p></p>';
+          break;
+      }
+      return popupText
 }
