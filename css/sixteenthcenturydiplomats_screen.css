@@ -160,10 +160,10 @@ p a {
     font-size: 12pt;
 }
 
-.fn {
+/* .fn {
     padding-top: 50px;
     margin-top: -50px;
-}
+} */
 
 body::-webkit-scrollbar {
     width: 6px;
@@ -296,7 +296,7 @@ h3 {
 
 h4 {
     font-size: 16pt;
-    margin-left: -5px;
+    margin-left: 0px;
     margin-top: 2rem;
     margin-bottom: 0;
     font-style: italic;
@@ -377,25 +377,39 @@ h4 {
     background-color: rgba(245, 242, 236, 1);
     font-family: 'EB Garamond', serif;
     margin-inline-start: 50px;
-    overflow: scroll;
-    overflow-x: hidden;
+    /* overflow: scroll; */
+    /* overflow-x: hidden; */
     z-index: 150;
     margin-top: 10px;
     margin-left: 5px;
     margin-bottom: 25px;
-    scrollbar-width: thin;
+
 }
 
-#article::-webkit-scrollbar {
+#article-text::-webkit-scrollbar {
     width: 5px;
 
 }
 
-#article::-webkit-scrollbar-thumb {
+#article-text::-webkit-scrollbar-thumb {
     background-color: rgb(16, 16, 17);
     /* color of the scroll thumb */
     border-radius: 20px;
     /* roundness of the scroll thumb */
+}
+
+#article-text {
+    height: 85%;
+    margin-top: 40px;
+    overflow: auto;
+    margin-right: 0;
+    margin-left: 0;
+    scrollbar-width: thin;
+}
+
+#article-text p {
+    margin-left: 5px;
+    scrollbar-width: thin;
 }
 
 /* Sections button at top of Article */
@@ -443,6 +457,43 @@ h4 {
 }
 
 /* End Sections button at top of article */
+
+/* D3 Chart CSS */
+#bar-chart1 {
+    height: 400px;
+    width: 100%;
+}
+
+#bar-chart2 {
+    height: 400px;
+    width: 100%;
+}
+
+#bar-chart3 {
+    height: 400px;
+    width: 100%;
+}
+
+.svg-outer-div {
+    position: float;
+    background-color: white;
+    height: 445px;
+    width: 100%;
+    z-index: 160;
+}
+
+.tick text {
+    fill: #635F5d;
+    font-size: 1.1em;
+}
+
+.tick line {
+    stroke: #C0C0BB;
+}
+
+.bar-chart-title {
+    font-size: 1.3em;
+}
 
 .action {
     border: none;
@@ -579,9 +630,9 @@ h4 {
 }
 
 .clusterdiv {
-    /* background-color: white; */
     border: solid black;
     border-radius: 100pt;
+    opacity: 0.8;
 }
 
 /* .clusterdiv b{
@@ -606,12 +657,9 @@ h4 {
     padding: 0.5rem;
 }
 
-.popover .arrow::after {
-    display: none;
-}
-
-.popover .arrow::before {
-    display: none;
+/* d3.js charts styling */
+figcaption {
+    background-color: white;
 }
 
 /* styling for broken hyperlinks tooltips */

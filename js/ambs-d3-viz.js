@@ -1,22 +1,24 @@
 /* eslint-disable require-jsdoc */
-function makeBasicBarChart(data, svgSelection, div) {
-  // const width = +svg.attr('width');
-  const width = parseInt(d3.select(svgSelection).style('width'), 10);
-  // const height = +svg.attr('height');
-  const height = parseInt(d3.select(svgSelection).style('height'), 10);
-
+export function makeBasicBarChart(data, svgSelection, div) {
+  const getSvgWidth = parseInt(d3.select(svgSelection).style('width'), 10);
+  // const cheight = parseInt(d3.select(svgSelection).style('height'), 10);
+  const height = '400';
   const svg = d3.select(svgSelection)
-      .attr('viewBox', `0 0 ${width} ${height}`);
-    // .attr('preserveAspectRatio', 'xMidYMid meet')
-    // .attr('width', 300)
-    // .attr('height', 300);
+      .attr('viewBox', `0 0 ${getSvgWidth} ${height}`);
+  // .attr('preserveAspectRatio', 'xMidYMid meet')
+  // .attr('width', 500)
+  // .attr('height', 400);
+  // const height = +svg.attr('height');
+
+  // const width = +svg.attr('width');
+  const svgWidth = parseInt(d3.select(svgSelection).style('width'));
+
   const sortedXValue = data.sort((a, b) =>
     b.value.length - a.value.length);
   const xValue = (d) => d.place;
-
   const yValue = (d) => d.value.length;
-  const margin = {top: 30, right: 20, bottom: 200, left: 20};
-  const innerWidth = width - margin.left - margin.right;
+  const margin = {top: 15, right: 10, bottom: 50, left: 25};
+  const innerWidth = svgWidth - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
   // const xScale = d3.scaleBand()
@@ -55,8 +57,212 @@ function makeBasicBarChart(data, svgSelection, div) {
 
   d3.selectAll('.xAxisStuff .tick line').remove();
 
+  changeTickText();
+
+  g.selectAll('rect')
+      .data(data)
+      .enter()
+      .append('rect')
+      .attr('x', (d) => xScale(xValue(d)))
+      .attr('y', (d) => yScale(yValue(d)))
+      .attr('width', xScale.bandwidth())
+      .attr('height', (d) => innerHeight - yScale(yValue(d)))
+      .attr('fill', (d) => styleCircles(d).fillCircle)
+      .attr('stroke', (d) => styleCircles(d).colorCircle)
+      .attr('data-toggle', 'popover')
+      .attr('title', (d) => basicPopoverTitleContent(d))
+      .attr('data-content', (d) => basicDataContent(d))
+      .attr('data-html', 'true')
+      .attr('title-html', 'true');
+
+  // g.append('text')
+  //     .attr('class', 'bar-chart-title')
+  //     .attr('y', innerHeight / 2)
+  //     .attr('x', 0)
+  //     .style('text-anchor', 'middle')
+  //     .style('transform', 'rotate(90deg))')
+  //     .text('Years Diplomatic Presence');
+
+  $('[data-toggle="popover"]').popover({
+    trigger: 'hover',
+    container: 'body',
+    placement: 'top',
+  });
+
+  function basicPopoverTitleContent(d) {
+    let titleText = `
+        <p class='text-center'>
+        ${d.place}: ${d.value.length} year(s) of representation
+        </p>
+        `;
+    return titleText;
+  }
+  function basicDataContent(d) {
+    const arrayValues = [];
+    let popoverText = `
+        <table class='popover-table table-striped'>
+        <thead>
+        <tr>
+        <th>Ambassador(s): </th>
+        <th> # of Years</th>
+        </tr>
+        </thead>
+        `;
+    for (const values of d.value) {
+      arrayValues.push(values);
+    }
+    const groupedDataName = Array.from(d3.group(arrayValues,
+        (d) => d.properties.name),
+    ([name, value]) =>
+      ({name, value}));
+    for (const nameValues of groupedDataName) {
+      const arrayYearValues = [];
+      for (const yearValues of nameValues.value) {
+        arrayYearValues.push(yearValues.properties.year);
+      }
+      let minMaxYears = d3.min(arrayYearValues) === d3.max(arrayYearValues)?
+        `&nbsp;in ${d3.min(arrayYearValues)}` : `, ${d3.min(arrayYearValues)}-${d3.max(arrayYearValues)}`
+      popoverText += `
+        <tr>
+        <td> ${nameValues.name}:&nbsp;</td> 
+        <td class='text-center'>${arrayYearValues.length}yr(s) ${minMaxYears}</td>
+        </tr>
+        `;
+    }
+    return popoverText;
+  }
+}
+
+export function makeUniqueAmbBarChart(data, svgSelection, div) {
+  const getSvgWidth = parseInt(d3.select(svgSelection).style('width'), 10);
+
+  const getSvgHeight = parseInt(d3.select(svgSelection).style('height'), 10);
+  const height = '400';
+  const svg = d3.select(svgSelection)
+      .attr('viewBox', `0 0 ${getSvgWidth} ${height}`);
+
+  // const width = +svg.attr('width');
+  const svgWidth = parseInt(d3.select(svgSelection).style('width'));
+
+  const sortedXValue = data.sort((a, b) =>
+    b.value.size - a.value.size);
+  const xValue = (d) => d.place;
+  const yValue = (d) => d.value.size;
+  const margin = {top: 15, right: 10, bottom: 50, left: 25};
+  const innerWidth = svgWidth - margin.left - margin.right;
+  const innerHeight = height - margin.top - margin.bottom;
+
+  const xScale = d3.scaleBand()
+      .domain(sortedXValue.map(xValue))
+      .range([0, innerWidth])
+      .padding(0.1);
+
+  const yScale = d3.scaleLinear()
+      .domain([0, d3.max(data, yValue)])
+      .range([innerHeight, 0])
+      .nice();
+
+  const yAxis = d3.axisLeft(yScale)
+      .tickSize(-innerWidth);
+  const xAxis = d3.axisBottom(xScale);
+
+  const g = svg.append('g')
+      .attr('transform', `translate(${margin.left}, ${margin.top})`);
+
+  g.append('g').call(yAxis);
+  g.append('g').call(xAxis)
+      .classed('xAxisStuff', true)
+      .attr('transform', `translate(0, ${innerHeight})`)
+      .selectAll('.tick line')
+      .attr('text-anchor', 'start')
+      .selectAll('.tick line')
+      .remove();
+
+  d3.selectAll('.xAxisStuff .tick line').remove();
+
+  changeTickText();
+
+  g.selectAll('rect')
+      .data(data)
+      .enter()
+      .append('rect')
+      .attr('x', (d) => xScale(xValue(d)))
+      .attr('y', (d) => yScale(yValue(d)))
+      .attr('width', xScale.bandwidth())
+      .attr('height', (d) => innerHeight - yScale(yValue(d)))
+      .attr('fill', (d) => styleCircles(d).fillCircle)
+      .attr('stroke', (d) => styleCircles(d).colorCircle)
+      .attr('data-toggle', 'popover')
+      .attr('title', (d) => uniqueAmbPopoverTitleContent(d))
+      .attr('data-content', (d) => uniqueAmbDataContent(d))
+      .attr('data-html', 'true')
+      .attr('title-html', 'true');
+
+  // g.append('text')
+  //     .attr('class', 'bar-chart-title')
+  //     .attr('y', -10)
+  //     .attr('x', innerWidth / 2)
+  //     .style('text-anchor', 'middle')
+  //     .text('Cumulative Years of Ambassadorial Presence by Host State');
+
+  $('[data-toggle="popover"]').popover({
+    trigger: 'hover',
+    container: 'body',
+    placement: 'top',
+  });
+
+  function uniqueAmbPopoverTitleContent(d) {
+    let titleText = `
+        <p class='text-center'>
+        ${d.place}: ${d.value.size} unique ambassador(s).
+        </p>
+        `;
+    return titleText;
+  }
+  function uniqueAmbDataContent(d) {
+    let popoverText = `
+        <table class='popover-table table-striped'>
+        <thead>
+        <tr>
+        <th>Ambassador(s) </th>
+        <th>Year(s)</th>
+        </tr>
+        </thead>
+        `;
+    for (let values of d.value) {
+      const arrayValues = [];
+
+      for (let years of values) {
+        values[1].forEach((a) =>{
+          arrayValues.push(a.properties.year);
+        });
+      }
+      let maxYear = d3.max(arrayValues);
+      let minYear = d3.min(arrayValues);
+      // console.log(`${minYear} - ${maxYear}`);
+      if (minYear === maxYear) {
+        popoverText += `
+        <tr>
+        <td>${values[0]}</td>
+        <td class = 'text-center'>${minYear}</td>
+        </tr>
+      `;
+      } else {
+        popoverText += `
+        <tr>
+        <td>${values[0]}</td>
+        <td>${minYear} - ${maxYear}</td>
+        </tr>
+      `;
+      }
+    }
+    return popoverText;
+  }
+}
+
+function changeTickText() {
   const tickText = document.querySelectorAll('.xAxisStuff .tick text');
-  for (i=0; i< tickText.length; i++) {
+  for (let i=0; i< tickText.length; i++) {
     tickText[i].style.transform = 'translate(-15px, 25px) rotate(-90deg)';
     if (tickText[i].textContent === 'Holy Roman Empire') {
       tickText[i].textContent = 'HRE';
@@ -106,198 +312,163 @@ function makeBasicBarChart(data, svgSelection, div) {
       tickText[i].textContent = 'Brand.';
     }
   }
-
-  g.selectAll('rect')
-      .data(data)
-      .enter()
-      .append('rect')
-      .attr('x', (d) => xScale(xValue(d)))
-      .attr('y', (d) => yScale(yValue(d)))
-      .attr('width', xScale.bandwidth())
-      .attr('height', (d) => innerHeight - yScale(yValue(d)))
-      .attr('fill', (d) => fillColor(d))
-      .attr('stroke', (d) => strokeColor(d))
-      .attr('data-toggle', 'popover')
-      .attr('title', (d) => popoverTitleContent(d))
-      .attr('data-content', (d) => dataContent(d))
-      .attr('data-html', 'true')
-      .attr('title-html', 'true');
-
-  g.append('text')
-      .attr('class', 'bar-chart-title')
-      .attr('y', -10)
-      .attr('x', innerWidth / 2)
-      .style('text-anchor', 'middle')
-      .text('Cumulative Years of Ambassadorial Presence by Host State');
-
-  $('[data-toggle="popover"]').popover({trigger: 'hover', container: 'body'});
 }
 
-
-function popoverTitleContent(d) {
-  titleText = `
-      <p class='text-center'>
-      ${d.place}: ${d.value.length} year(s) of representation
-      </p>
-      `;
-  return titleText;
-}
-
-function dataContent(d) {
-  const arrayValues = [];
-  let popoverText = `
-      <table class='popover-table table-striped'>
-      <thead>
-      <tr>
-      <th>Ambassador(s) </th>
-      <th>Year(s)</th>
-      </tr>
-      </thead>
-      `;
-  for (const values of d.value) {
-    arrayValues.push(values);
+export function styleCircles(d, latitude) {
+  let fillCircle,
+    colorCircle,
+    clusterPopText,
+    clusterColor;
+  if (d? d.place === 'Swiss Cantons' : latitude === 46.94) {
+    (fillCircle = 'mediumpurple'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Swiss Cantons</strong><p>'),
+    (clusterColor = 'rgba(147,112,219,0.8)'); 
+  } else if (d? d.place === 'Grisons' : latitude === 46.66) {
+    (fillCircle = 'darkred'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Grisons</strong><p>'),
+    (clusterColor = 'rgba(139,0,0,0.8)');
+  } else if (d? d.place === 'Holy Roman Empire' : latitude === 48.21) {
+    (fillCircle = 'yellow'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Holy Roman Emperor</strong></p>'),
+    (clusterColor = 'rgba(255,255,0,0.8)');
+  } else if (d? d.place === 'England' : latitude === 51.51) {
+    (fillCircle = 'lawngreen'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>England</strong><p>'),
+    (clusterColor = 'rgba(124,252,193,0.8)');
+  } else if (d? d.place === 'Venice' : latitude === 45.44) {
+    (fillCircle = 'darkgrey'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Venice</strong></p>'),
+    (clusterColor = 'rgba(169,169,169,0.8)');
+  } else if (d? d.place === 'Denmark' : latitude === 55.68) {
+    (fillCircle = 'darkkhaki'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Denmark</strong></p>'),
+    (clusterColor = 'rgba(189,183,107,0.8)');
+  } else if (d? d.place === 'Ferrara' : latitude === 44.84) {
+    (fillCircle = 'lightpink'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Ferrara</strong></p>'),
+    (clusterColor = 'rgba(255,182,193,0.8)');
+  } else if (d? d.place === 'Geneva' : latitude === 46.21) {
+    (fillCircle = 'lightblue'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Geneva</strong></p>'),
+    (clusterColor = 'rgba(173,216,230,0.8)');
+  } else if (d? d.place === 'Ottoman Empire' : latitude === 41.01) {
+    (fillCircle = 'black'),
+    (colorCircle = 'white'),
+    (clusterPopText = '<p><strong>Ottoman Empire</strong></p>'),
+    (clusterColor = 'rgba(0,0,0,0.8)');
+  } else if (d? d.place === 'Netherlands' : latitude === 52.37) {
+    (fillCircle = 'darkseagreen'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Netherlands</strong></p>'),
+    (clusterColor = 'rgba(143,188,143,0.8)');
+  } else if (d? d.place === 'Poland' : latitude === 52.23) {
+    (fillCircle = 'cyan'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Poland</strong></p>'),
+    (clusterColor = 'rgba(0,255,255,0.8)');
+  } else if (d? d.place === 'Portugal' : latitude === 38.72) {
+    (fillCircle = 'lemonchiffon'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Portugal</strong></p>'),
+    (clusterColor = 'rgba(255,250,205,0.8)');
+  } else if (d? d.place === 'Rome' : latitude === 41.89) {
+    (fillCircle = 'magenta'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Rome</strong></p>'),
+    (clusterColor = 'rgba(255,0,255,0.8)');
+  } else if (d? d.place === 'Savoy' : latitude === 45.06) {
+    (fillCircle = 'sandybrown'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Savoy</strong></p>'),
+    (clusterColor = 'rgba(244,164,96,0.8)');
+  } else if (d? d.place === 'Saxony' : latitude === 51.05) {
+    (fillCircle = 'beige'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Saxony</strong></p>'),
+    (clusterColor = 'rgba(245,245,220,0.8)');
+  } else if (d? d.place === 'Scotland' : latitude === 55.95) {
+    (fillCircle = 'coral'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Scotland</strong></p>'),
+    (clusterColor = 'rgba(255,127,80,0.8)');
+  } else if (d? d.place == 'Spain' : latitude === 40.43) {
+    (fillCircle = 'hotpink'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Spain</strong></p>'),
+    (clusterColor = 'rgba(255,105,180,0.8)');
+  } else if (d? d.place == 'Tuscany' : latitude === 43.46) {
+    (fillCircle = 'mediumturquoise'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Tuscany</strong></p>'),
+    (clusterColor = 'rgba(72,209,204,0.8)');
+  } else if (d? d.place == 'Santa-Fiore' : latitude === 43.77) {
+    (fillCircle = 'navajowhite'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Santa-Fiore</strong></p>'),
+    (clusterColor = 'rgba(255,222,173,0.8)');
+  } else if (d? d.place == 'Lorraine' : latitude === 48.76) {
+    (fillCircle = 'deepskyblue'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Lorraine</strong></p>'),
+    (clusterColor = 'rgba(0,191,255,0.8)');
+  } else if (d? d.place == 'Urbino' : latitude === 43.72) {
+    (fillCircle = 'teal'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Urbino</strong></p>'),
+    (clusterColor = 'rgba(0,128,128,0.8)');
+  } else if (d? d.place == 'Electorate of the Palatine' : latitude === 49.91) {
+    (fillCircle = 'cadetblue'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Electorate of the Palatine</strong></p>'),
+    (clusterColor = 'rgba(95,158,160)');
+  } else if (d? d.place == 'Brandenbourg' : latitude === 52.39) {
+    (fillCircle = 'darkorange'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Brandenbourg</strong></p>'),
+    (clusterColor = 'rgba(255,140,0,0.8)');
+  } else if (d? d.place == 'Sweden' : latitude === 59.33) {
+    (fillCircle = 'palevioletred'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Sweden</strong></p>'),
+    (clusterColor = 'rgba(219,112,147,0.8)');
+  } else if (d? d.place == 'Mantua' : latitude === 45.17) {
+    (fillCircle = 'royalblue'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Mantua</strong></p>'),
+    (clusterColor = 'rgba(65,105,225,0.8)');
+  } else if (d? d.place == 'Wurttemburg' : latitude === 48.55) {
+    (fillCircle = 'red'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Wurttemburg</strong></p>'),
+    (clusterColor = 'rgba(255,0,0,0.8)');
+  } else if (d? d.place == 'Spanish Netherlands' : latitude === 50.84) {
+    (fillCircle = 'ivory'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Spanish Netherlands</strong></p>'),
+    (clusterColor = 'rgba(255,255,240,0.8)');
+  } else if (d? d.place == 'Fribourg' : latitude === 46.8) {
+    (fillCircle = 'peachpuff'),
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Fribourg</strong></p>'),
+    (clusterColor = 'rgba(255,218,185,0.8)');
+  } else if (d? d.place == 'Hamburg' : latitude === 52.55) {
+    (fillCircle = 'olive'), 
+    (colorCircle = 'black'),
+    (clusterPopText = '<p><strong>Hamburg</strong></p>'),
+    (clusterColor = 'rgba(128,128,0,0.8)');
   }
-  const groupedDataName = Array.from(d3.group(arrayValues,
-      (d) => d.properties.name),
-  ([name, value]) =>
-    ({name, value}));
-  for (const nameValues of groupedDataName) {
-    const arrayYearValues = [];
-    for (const yearValues of nameValues.value) {
-      arrayYearValues.push(yearValues.properties.year);
-    }
-    popoverText += `
-      <tr>
-      <td>${nameValues.name}</td>
-      <td>${arrayYearValues.join(', ')}</td>
-      </tr>
-      `;
+  return {
+    fillCircle,
+    colorCircle,
+    clusterPopText,
+    clusterColor
   }
-  return popoverText;
-}
-
-function fillColor(d) {
-  if (d.place == 'Swiss Cantons') {
-    (fillCircle = 'mediumpurple'), (colorCircle = 'black');
-  } else if (d.place == 'Grisons') {
-    (fillCircle = 'darkred'), (colorCircle = 'black');
-  } else if (d.place == 'Holy Roman Empire') {
-    (fillCircle = 'yellow'), (colorCircle = 'black');
-  } else if (d.place == 'England') {
-    (fillCircle = 'lawngreen'), (colorCircle = 'black');
-  } else if (d.place == 'Venice') {
-    (fillCircle = 'darkgrey'), (colorCircle = 'black');
-  } else if (d.place == 'Denmark') {
-    (fillCircle = 'darkkhaki'), (colorCircle = 'black');
-  } else if (d.place == 'Ferrara') {
-    (fillCircle = 'lightpink'), (colorCircle = 'black');
-  } else if (d.place == 'Geneva') {
-    (fillCircle = 'lightblue'), (colorCircle = 'black');
-  } else if (d.place == 'Ottoman Empire') {
-    (fillCircle = 'black'), (colorCircle = 'white');
-  } else if (d.place == 'Netherlands') {
-    (fillCircle = 'darkseagreen'), (colorCircle = 'black');
-  } else if (d.place == 'Poland') {
-    (fillCircle = 'cyan'), (colorCircle = 'black');
-  } else if (d.place == 'Portugal') {
-    (fillCircle = 'lemonchiffon'), (colorCircle = 'black');
-  } else if (d.place == 'Rome') {
-    (fillCircle = 'magenta'), (colorCircle = 'black');
-  } else if (d.place == 'Savoy') {
-    (fillCircle = 'sandybrown'), (colorCircle = 'black');
-  } else if (d.place == 'Saxony') {
-    (fillCircle = 'beige'), (colorCircle = 'black');
-  } else if (d.place == 'Scotland') {
-    (fillCircle = 'coral'), (colorCircle = 'black');
-  } else if (d.place == 'Spain') {
-    (fillCircle = 'hotpink'), (colorCircle = 'black');
-  } else if (d.place == 'Tuscany') {
-    (fillCircle = 'mediumturquoise'), (colorCircle = 'black');
-  } else if (d.place == 'Santa-Fiore') {
-    (fillCircle = 'navajowhite'), (colorCircle = 'black');
-  } else if (d.place == 'Lorraine') {
-    (fillCircle = 'deepskyblue'), (colorCircle = 'black');
-  } else if (d.place == 'Urbino') {
-    (fillCircle = 'teal'), (colorCircle = 'black');
-  } else if (d.place == 'Electorate of the Palatine') {
-    (fillCircle = 'cadetblue'), (colorCircle = 'black');
-  } else if (d.place == 'Brandenbourg') {
-    (fillCircle = 'darkorange'), (colorCircle = 'black');
-  } else if (d.place == 'Sweden') {
-    (fillCircle = 'palevioletred'), (colorCircle = 'black');
-  } else if (d.place == 'Mantua') {
-    (fillCircle = 'royalblue'), (colorCircle = 'black');
-  } else if (d.place == 'Wurttemburg') {
-    (fillCircle = 'red'), (colorCircle = 'black');
-  } else if (d.place == 'Spanish Netherlands') {
-    (fillCircle = 'ivory'), (colorCircle = 'black');
-  } else if (d.place == 'Fribourg') {
-    (fillCircle = 'peachpuff'), (colorCircle = 'black');
-  } else if (d.place == 'Hamburg') {
-    (fillCircle = 'olive'), (colorCircle = 'black');
-  }
-  return fillCircle;
-}
-
-function strokeColor(d) {
-  if (d.place == 'Swiss Cantons') {
-    'mediumpurple';
-  } else if (d.place == 'Grisons') {
-    (fillCircle = 'darkred'), (colorCircle = 'black');
-  } else if (d.place == 'Holy Roman Empire') {
-    (fillCircle = 'yellow'), (colorCircle = 'black');
-  } else if (d.place == 'England') {
-    (fillCircle = 'lawngreen'), (colorCircle = 'black');
-  } else if (d.place == 'Venice') {
-    (fillCircle = 'darkgrey'), (colorCircle = 'black');
-  } else if (d.place == 'Denmark') {
-    (fillCircle = 'darkkhaki'), (colorCircle = 'black');
-  } else if (d.place == 'Ferrara') {
-    (fillCircle = 'lightpink'), (colorCircle = 'black');
-  } else if (d.place == 'Geneva') {
-    (fillCircle = 'lightblue'), (colorCircle = 'black');
-  } else if (d.place == 'Ottoman Empire') {
-    (fillCircle = 'black'), (colorCircle = 'white');
-  } else if (d.place == 'Netherlands') {
-    (fillCircle = 'darkseagreen'), (colorCircle = 'black');
-  } else if (d.place == 'Poland') {
-    (fillCircle = 'cyan'), (colorCircle = 'black');
-  } else if (d.place == 'Portugal') {
-    (fillCircle = 'lemonchiffon'), (colorCircle = 'black');
-  } else if (d.place == 'Rome') {
-    (fillCircle = 'magenta'), (colorCircle = 'black');
-  } else if (d.place == 'Savoy') {
-    (fillCircle = 'sandybrown'), (colorCircle = 'black');
-  } else if (d.place == 'Saxony') {
-    (fillCircle = 'beige'), (colorCircle = 'black');
-  } else if (d.place == 'Scotland') {
-    (fillCircle = 'coral'), (colorCircle = 'black');
-  } else if (d.place == 'Spain') {
-    (fillCircle = 'hotpink'), (colorCircle = 'black');
-  } else if (d.place == 'Tuscany') {
-    (fillCircle = 'mediumturquoise'), (colorCircle = 'black');
-  } else if (d.place == 'Santa-Fiore') {
-    (fillCircle = 'navajowhite'), (colorCircle = 'black');
-  } else if (d.place == 'Lorraine') {
-    (fillCircle = 'deepskyblue'), (colorCircle = 'black');
-  } else if (d.place == 'Urbino') {
-    (fillCircle = 'teal'), (colorCircle = 'black');
-  } else if (d.place == 'Electorate of the Palatine') {
-    (fillCircle = 'cadetblue'), (colorCircle = 'black');
-  } else if (d.place == 'Brandenbourg') {
-    (fillCircle = 'darkorange'), (colorCircle = 'black');
-  } else if (d.place == 'Sweden') {
-    (fillCircle = 'palevioletred'), (colorCircle = 'black');
-  } else if (d.place == 'Mantua') {
-    (fillCircle = 'royalblue'), (colorCircle = 'black');
-  } else if (d.place == 'Wurttemburg') {
-    (fillCircle = 'red'), (colorCircle = 'black');
-  } else if (d.place == 'Spanish Netherlands') {
-    (fillCircle = 'ivory'), (colorCircle = 'black');
-  } else if (d.place == 'Fribourg') {
-    (fillCircle = 'peachpuff'), (colorCircle = 'black');
-  } else if (d.place == 'Hamburg') {
-    (fillCircle = 'olive'), (colorCircle = 'black');
-  }
-  return colorCircle;
 }
