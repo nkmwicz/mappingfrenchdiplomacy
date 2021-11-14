@@ -77,10 +77,11 @@ export function makeBasicBarChart(data, svgSelection, div) {
 
   // g.append('text')
   //     .attr('class', 'bar-chart-title')
-  //     .attr('y', -10)
-  //     .attr('x', innerWidth / 2)
+  //     .attr('y', innerHeight / 2)
+  //     .attr('x', 0)
   //     .style('text-anchor', 'middle')
-  //     .text('Cumulative Years of Ambassadorial Presence by Host State');
+  //     .style('transform', 'rotate(90deg))')
+  //     .text('Years Diplomatic Presence');
 
   $('[data-toggle="popover"]').popover({
     trigger: 'hover',
@@ -102,8 +103,8 @@ export function makeBasicBarChart(data, svgSelection, div) {
         <table class='popover-table table-striped'>
         <thead>
         <tr>
-        <th>Ambassador(s) </th>
-        <th>Year(s)</th>
+        <th>Ambassador(s): </th>
+        <th> # of Years</th>
         </tr>
         </thead>
         `;
@@ -119,10 +120,12 @@ export function makeBasicBarChart(data, svgSelection, div) {
       for (const yearValues of nameValues.value) {
         arrayYearValues.push(yearValues.properties.year);
       }
+      let minMaxYears = d3.min(arrayYearValues) === d3.max(arrayYearValues)?
+        `&nbsp;in ${d3.min(arrayYearValues)}` : `, ${d3.min(arrayYearValues)}-${d3.max(arrayYearValues)}`
       popoverText += `
         <tr>
-        <td>${nameValues.name}</td>
-        <td>${arrayYearValues.join(', ')}</td>
+        <td> ${nameValues.name}:&nbsp;</td> 
+        <td class='text-center'>${arrayYearValues.length}yr(s) ${minMaxYears}</td>
         </tr>
         `;
     }

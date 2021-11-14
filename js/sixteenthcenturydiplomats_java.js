@@ -9,7 +9,7 @@ const mymap = L.map('mapid', {maxZoom: 6});
 const lyrEsriWorldShadedRelief = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri', maxZoom: 13});
 const filters = {
   text: '',
-  ranges: [],
+  range: [],
 };
 let popup;
 const searchFilter = document.querySelector('#srchfilter');
@@ -94,13 +94,14 @@ $(document).ready(function() {
               height: ${clusterWidth}px;
               margin-top: -${marginTop}px;
               margin-left: -${marginLeft}px;
-              background-color: ${styleCircles(null, cluster._cLatLng.lat).clusterColor};
+              background-color: ${styleCircles(null, cluster._cLatLng.lat).fillCircle};
               color: ${styleCircles(null, cluster._cLatLng.lat).colorCircle};
               border-color: ${styleCircles(null, cluster._cLatLng.lat).colorCircle}';>
-              <div class = 'clustertext'
-              style = 'margin-top: ${marginTop2}px';>
-              <b> ${cluster.getChildCount()} </b>
-              </div></div>`,
+                <div class = 'clustertext'
+                style = 'margin-top: ${marginTop2}px';>
+                <b> ${cluster.getChildCount()} </b>
+                </div>
+              </div>`,
         });
       },
       maxClusterRadius: 0,
@@ -216,6 +217,7 @@ $(document).ready(function() {
     });
 
     searchFilter.addEventListener('input', function(e) {
+      let citeName;
       filters.text = e.target.value;
       lyrAllDates.eachLayer(function(layer) {
         filterLyrAllDates(layer);
@@ -230,6 +232,7 @@ $(document).ready(function() {
                 citeName;
     });
 
+    let arrayOfLayers = [];
     function filterLyrAllDates(layer) {
       let numberOfTrue = 0;
       const ambName = layer.feature.properties.name;
@@ -249,14 +252,31 @@ $(document).ready(function() {
       }
       if (numberOfTrue == 2) {
         layer.addTo(mymap);
+        // if (!(arrayOfLayers.indexOf(layer.feature.properties) > -1)) {
+        //   arrayOfLayers.push(layer.feature.properties);
+        // }
       } else {
         mymap.removeLayer(layer);
+        // removeItemAll(arrayOfLayers, layer.feature.properties);
       }
+    }
+
+    function removeItemAll(arr, value) {
+      let i = 0;
+      while (i < arr.length) {
+        if (arr[i] === value) {
+          arr.splice(i, 1);
+        } else {
+          ++i;
+        }
+      }
+      return arr;
     }
 
     mymap.fitBounds(lyrAllDates.getBounds(), {padding: [50, 50]});
 
     slider.noUiSlider.on('set', function(e) {
+      let mapdates;
       if (parseFloat(e[0]).toFixed(0) == parseFloat(e[1]).toFixed(0)) {
         mapdates = `French Residential Ambassadors, 
         ${parseFloat(e[0]).toFixed(0)}`;
@@ -638,6 +658,7 @@ $(document).ready(function() {
   // *****Data Toggles on links declaring inoperability and footnotes*****
   $('[data-toggle="popover"]').popover({
     trigger: 'hover',
+    placement: 'top'
   });
   $('[data-toggle="tooltip"]').tooltip();
 

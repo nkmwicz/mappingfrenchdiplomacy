@@ -630,9 +630,9 @@ h4 {
 }
 
 .clusterdiv {
-    /* background-color: white; */
     border: solid black;
     border-radius: 100pt;
+    opacity: 0.8;
 }
 
 /* .clusterdiv b{
