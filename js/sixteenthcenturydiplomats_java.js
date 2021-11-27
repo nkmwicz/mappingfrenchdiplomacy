@@ -20,12 +20,12 @@ $(document).ready(function() {
   // *****loading data to the map******
   let lyrAllDates = false;
 
-  fetch('data/16c-diplomats_data.geojson', {
+  fetch('data/16c-diplomats_data.json', {
     method: 'GET',
   }).then((Response) => Response.json()).then((json) => {
     let min = 1515;
     let max = 1600;
-    const jsonData = json.features;
+    const jsonData = json;
     // Making Charts
     // filter the data
     const data1515To1525 = jsonData.filter((e) =>
